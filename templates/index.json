@@ -5025,13 +5025,13 @@
         "mobile_bg": "shopify://shop_images/Screenshot_2026-04-24_at_6.45.04_PM_1_db880964-e922-4739-ae91-92c00345c7e3.png",
         "top_text": "Featured in TIME's 2025 Best Inventions",
         "heading": "Clear & Free\nNasal Breathing",
-        "subheading": "No Drugs. No Side Effects. No Compromises.",
+        "subheading": "No Drugs. No Side Effects. No compromises.",
         "description": "The world's first FDA 510-K cleared wearable that uses personalized vibro-acoustic therapy to relieve nasal congestion in minutes.",
         "button_text": "SHOP NOW",
         "button_link": "",
         "badge_image": "shopify://shop_images/Layer_1_4.png",
-        "button_bg": "#656AE3",
-        "button_text_color": "#FFFFFF"
+        "button_bg": "#656ae3",
+        "button_text_color": "#ffffff"
       }
     }
   },
