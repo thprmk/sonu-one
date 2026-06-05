@@ -14,6 +14,12 @@ This changelog documents the complete commit history on the active development b
 
 ### June 6, 2026
 
+* **c8dfddc** - *Fix: Overrode swiper pagination lock for step progressbar and set section background color to match Figma mockup* (by Jay)
+  - **Files modified:**
+    - [assets/custom.css](file:///Users/jay/Downloads/getsonu/assets/custom.css) (Overrode Swiper pagination lock to keep progress bar visible even with one slide)
+    - [sections/custom-step-slider.liquid](file:///Users/jay/Downloads/getsonu/sections/custom-step-slider.liquid) (Updated default background color in schema to #F4EFEA)
+    - [templates/product.sonu-product-page.json](file:///Users/jay/Downloads/getsonu/templates/product.sonu-product-page.json) (Configured bg_color to #f4efea in template settings)
+
 * **975542d** - *Fix: Remove white card background from step slider and update controls layout to match Figma mockup* (by Jay)
   - **Files modified:**
     - [assets/custom.css](file:///Users/jay/Downloads/getsonu/assets/custom.css) (Removed card card backgrounds and borders, adjusted controls layout)
