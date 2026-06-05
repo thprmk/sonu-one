@@ -159,7 +159,40 @@
     },
     "video_slider": {
       "type": "custom-video-slider",
-      "settings": {}
+      "blocks": {
+        "video_slide_ciTmtU": {
+          "type": "video_slide",
+          "settings": {
+            "video": "shopify://files/videos/Mobile Version_SONU Band - Try Risk Free for 30 Days.mp4",
+            "video_url": "",
+            "overlay_text": "",
+            "overlay_pos": "center",
+            "badge_width": 100
+          }
+        },
+        "video_slide_HNcPBi": {
+          "type": "video_slide",
+          "settings": {
+            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
+            "video_url": "",
+            "overlay_text": "",
+            "overlay_pos": "center",
+            "badge_width": 100
+          }
+        }
+      },
+      "block_order": [
+        "video_slide_ciTmtU",
+        "video_slide_HNcPBi"
+      ],
+      "settings": {
+        "heading": "See it to believe it",
+        "description": "Spatial Sleep is a personalized sleep headband that uses gentle sound and vibration to help you drift off naturally.",
+        "bg_color": "#f9f6f0",
+        "text_color": "#3d1b03",
+        "desktop_slide_width": 340,
+        "mobile_slide_width": 240
+      }
     }
   },
   "order": [
