@@ -1252,6 +1252,10 @@
   overflow: hidden;
 }
 
+.custom-step-progressbar.swiper-pagination-lock {
+  display: block !important;
+}
+
 .custom-step-progressbar .swiper-pagination-progressbar-fill {
   position: absolute;
   left: 0;

@@ -231,12 +231,13 @@
       "settings": {
         "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>",
         "description": "",
-        "bg_color": "#f9f6f0",
+        "bg_color": "#f4efea",
         "text_color": "#3d1b03",
         "padding_top": 80,
         "padding_bottom": 80,
         "padding_top_mobile": 60,
         "padding_bottom_mobile": 60
+      }
       }
     }
   },
