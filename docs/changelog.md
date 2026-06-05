@@ -14,7 +14,11 @@ This changelog documents the complete commit history on the active development b
 
 ### June 6, 2026
 
-* **8a2566c** - *Feat: Create custom step slider section and integrate into product template* (by Jay)
+* **975542d** - *Fix: Remove white card background from step slider and update controls layout to match Figma mockup* (by Jay)
+  - **Files modified:**
+    - [assets/custom.css](file:///Users/jay/Downloads/getsonu/assets/custom.css) (Removed card card backgrounds and borders, adjusted controls layout)
+
+* **0e7760e** - *Feat: Create custom step slider section and integrate into product template* (by Jay)
   - **Files modified:**
     - [sections/custom-step-slider.liquid](file:///Users/jay/Downloads/getsonu/sections/custom-step-slider.liquid) (Created new section file)
     - [assets/custom.css](file:///Users/jay/Downloads/getsonu/assets/custom.css) (Added layout and responsive rules for step slider)
