@@ -1,12 +1,161 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "custom-featured-product",
-      "settings": {}
+      "settings": {
+        "product": "",
+        "reviews_text": "66 reviews",
+        "description": "",
+        "card_bg_color": "#f4efea"
+      }
     },
     "comparison": {
       "type": "custom-comparison",
-      "settings": {}
+      "blocks": {
+        "column_cRTVmQ": {
+          "type": "column",
+          "settings": {
+            "title": "SONU Band",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "check",
+            "row_3_text": "",
+            "row_4_val": "check",
+            "row_4_text": "",
+            "row_5_val": "text",
+            "row_5_text": "",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_ke9ReD": {
+          "type": "column",
+          "settings": {
+            "title": "SONU Band",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "check",
+            "row_3_text": "",
+            "row_4_val": "check",
+            "row_4_text": "",
+            "row_5_val": "text",
+            "row_5_text": "",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_fGKAGG": {
+          "type": "column",
+          "settings": {
+            "title": "SONU Band",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "check",
+            "row_3_text": "",
+            "row_4_val": "check",
+            "row_4_text": "",
+            "row_5_val": "text",
+            "row_5_text": "",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_iRjErG": {
+          "type": "column",
+          "settings": {
+            "title": "SONU Band",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "check",
+            "row_3_text": "",
+            "row_4_val": "check",
+            "row_4_text": "",
+            "row_5_val": "text",
+            "row_5_text": "",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_nFqUqJ": {
+          "type": "column",
+          "settings": {
+            "title": "SONU Band",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "check",
+            "row_3_text": "",
+            "row_4_val": "check",
+            "row_4_text": "",
+            "row_5_val": "text",
+            "row_5_text": "",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_cRTVmQ",
+        "column_ke9ReD",
+        "column_fGKAGG",
+        "column_iRjErG",
+        "column_nFqUqJ"
+      ],
+      "settings": {
+        "heading": "How SONU Compares",
+        "bg_color": "#f9f6f0",
+        "label_1": "Efficacy",
+        "label_2": "Side Effects",
+        "label_3": "Personalization",
+        "label_4": "Monitoring",
+        "label_5": "Time to Relief",
+        "label_6": "",
+        "label_7": "",
+        "label_8": ""
+      }
     }
   },
   "order": [
