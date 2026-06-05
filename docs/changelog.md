@@ -14,6 +14,13 @@ This changelog documents the complete commit history on the active development b
 
 ### June 6, 2026
 
+* **d3c8cc3** - *Feat: Create custom stats slider section and integrate into product template* (by Jay)
+  - **Files modified:**
+    - [sections/custom-stats-slider.liquid](file:///Users/jay/Downloads/getsonu/sections/custom-stats-slider.liquid) (Created new stats slider section file)
+    - [assets/custom.css](file:///Users/jay/Downloads/getsonu/assets/custom.css) (Added layouts, typography, and controls CSS for stats slider)
+    - [assets/custom.js](file:///Users/jay/Downloads/getsonu/assets/custom.js) (Added Swiper module initialization and callbacks for stats slider)
+    - [templates/product.sonu-product-page.json](file:///Users/jay/Downloads/getsonu/templates/product.sonu-product-page.json) (Added stats slider section below step slider, fixed template JSON syntax error)
+
 * **c8dfddc** - *Fix: Overrode swiper pagination lock for step progressbar and set section background color to match Figma mockup* (by Jay)
   - **Files modified:**
     - [assets/custom.css](file:///Users/jay/Downloads/getsonu/assets/custom.css) (Overrode Swiper pagination lock to keep progress bar visible even with one slide)
