@@ -1,0 +1,775 @@
+{% comment %}
+  SONU Therapy Editorial Scoped Section
+{% endcomment %}
+
+<section class="ste-section-wrapper {% if section.settings.hide_mobile %}ste-hide-mobile{% endif %}" style="background: {{ section.settings.bg_color }};">  
+  
+  {% if section.settings.enable_top_gradient %}
+  <div class="ste-gradient-overlay" style="
+    background: linear-gradient(to bottom, {{ section.settings.gradient_color }} {{ section.settings.gradient_stop }}%, transparent {{ section.settings.gradient_fade_end }}%);
+    pointer-events: none;
+  "></div>
+  {% endif %}
+  
+  <div class="ste-media-canvas-wrap ste-desktop-only ste-animate-blur">
+    {% if section.settings.desktop_image != blank %}
+      <img
+        src="{{ section.settings.desktop_image | image_url: width: 1600 }}"
+        alt=""
+        class="ste-responsive-img"
+        loading="lazy"
+        style="object-position: {{ section.settings.desktop_image_position }};"
+      >
+    {% endif %}
+  </div>
+
+  <div class="ste-page-container">
+    <div class="ste-layout-grid">
+
+      <div class="ste-mobile-media-canvas ste-mobile-only ste-animate-blur">
+        {% if section.settings.mobile_image != blank %}
+          <img
+            src="{{ section.settings.mobile_image | image_url: width: 750 }}"
+            alt=""
+            class="ste-responsive-img"
+            loading="lazy"
+            style="object-position: {{ section.settings.mobile_image_position }};"
+          >
+        {% elsif section.settings.desktop_image != blank %}
+          <img
+            src="{{ section.settings.desktop_image | image_url: width: 750 }}"
+            alt=""
+            class="ste-responsive-img"
+            loading="lazy"
+            style="object-position: {{ section.settings.mobile_image_position }};"
+          >
+        {% endif %}
+      </div>
+
+      <div class="ste-main-editorial-content ste-desktop-only ste-animate-blur ste-delay-4">
+        {% if section.settings.heading != blank %}
+          {% assign ste_formatted_heading = section.settings.heading
+            | replace: '[[', '<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color }};">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+          <h2 class="ste-main-title" style="color: {{ section.settings.heading_color }};">
+            {{ ste_formatted_heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="ste-body-description" style="color: {{ section.settings.description_color }};">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ste-grid-spacer ste-desktop-only"></div>
+
+      <div class="ste-metrics-sidebar">
+        {% for block in section.blocks %}
+          <div class="ste-metric-card ste-animate-blur ste-delay-{{ forloop.index }}" style="background: {{ block.settings.card_bg_color }}; border-color: {{ block.settings.card_border_color }};">
+            
+            <div class="ste-metric-card-header">
+              <div class="ste-metric-num-display" style="color: {{ block.settings.number_color }};">
+                {% if block.settings.prefix != blank %}
+                  <span class="ste-metric-prefix" style="color: {{ block.settings.number_color }};">{{ block.settings.prefix }}</span>
+                {% endif %}
+
+                <span class="ste-metric-counter" data-target="{{ block.settings.number }}" style="color: {{ block.settings.number_color }};">0</span>
+
+                {% if block.settings.postfix != blank %}
+                  <span class="ste-metric-postfix" style="color: {{ block.settings.number_color }};">{{ block.settings.postfix }}</span>
+                {% endif %}
+              </div>
+
+              {% if block.settings.heading != blank %}
+                <h3 class="ste-metric-label" style="color: {{ block.settings.label_color }};">
+                  {{ block.settings.heading }}
+                </h3>
+              {% endif %}
+            </div>
+
+            {% if block.settings.text != blank %}
+              <div class="ste-metric-caption" style="color: {{ block.settings.caption_color }};">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}
+
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="ste-main-editorial-content ste-mobile-only ste-animate-blur ste-delay-4">
+        {% if section.settings.heading != blank %}
+          {% assign ste_formatted_heading = section.settings.heading
+            | replace: '[[', '<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color }};">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+          <h2 class="ste-main-title" style="color: {{ section.settings.heading_color }};">
+            {{ ste_formatted_heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="ste-body-description" style="color: {{ section.settings.description_color }};">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-Regular.otf" | asset_url }}') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-Regular.otf" | asset_url }}') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   DESKTOP GLOBAL & LAYOUT SYSTEM
+   ========================================================================== */
+.ste-section-wrapper {
+  padding: 190px 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-height:100%!important;
+  display: flex;
+  align-items: center;
+}
+
+/* Gradient Overlay Styles */
+.ste-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  z-index: 2;
+}
+
+.ste-page-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 3;
+}
+
+.ste-layout-grid {
+  display: grid;
+  grid-template-columns: 460px 1fr 395px;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+}
+
+/* ==========================================================================
+   LEFT COMPONENT PIECE: EDITORIAL TEXT
+   ========================================================================== */
+.ste-main-editorial-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ste-main-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 58px;
+  margin: 0 0 40px 0;
+  letter-spacing: -0.02em;
+  text-align:left;
+}
+
+.ste-serif-highlight {
+  font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+  font-style: italic;
+}
+
+.ste-body-description {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+/* ==========================================================================
+   MIDDLE COMPONENT PIECE: BACKGROUND MEDIA CANVAS
+   ========================================================================== */
+.ste-media-canvas-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ste-media-canvas-wrap .ste-responsive-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ste-responsive-img {
+  display: block;
+  max-width: 100%;
+}
+
+.ste-desktop-only { display: block !important; }
+.ste-mobile-only { display: none !important; }
+
+/* ==========================================================================
+   RIGHT COMPONENT PIECE: METRIC CARDS
+   ========================================================================== */
+.ste-metrics-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ste-metric-card {
+  box-sizing: border-box;
+  width: 395px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 12px;
+  padding: 24px 30px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+}
+
+.ste-metric-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.ste-metric-num-display,
+.ste-metric-num-display * {
+  font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 48px;
+  line-height: 54px;
+}
+
+.ste-metric-counter,
+.ste-metric-prefix,
+.ste-metric-postfix {
+  font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+  font-weight: 200;
+}
+
+.ste-metric-label {
+  font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0;
+}
+
+.ste-metric-caption {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ==========================================================================
+   ANIMATION MODULE ENGINE
+   ========================================================================== */
+.ste-animate-blur {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(15px);
+  animation: steBlurFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.ste-delay-1 { animation-delay: .10s; }
+.ste-delay-2 { animation-delay: .20s; }
+.ste-delay-3 { animation-delay: .30s; }
+.ste-delay-4 { animation-delay: .40s; }
+
+@keyframes steBlurFadeIn {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   TABLET RESPONSIVE INTERMEDIARY MODIFICATIONS
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .ste-page-container { padding: 0 40px; }
+  .ste-layout-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .ste-grid-spacer { display: none; }
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE SYSTEM (Synced with exact specifications)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .ste-section-wrapper {
+    padding: 32px 0 60px 0;
+    min-height: auto;
+  }
+
+  .ste-page-container {
+    padding: 0 24px;
+  }
+
+  .ste-layout-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .ste-mobile-media-canvas {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .ste-mobile-media-canvas .ste-responsive-img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .ste-desktop-only { display: none !important; }
+  .ste-mobile-only { display: block !important; }
+
+  .ste-metrics-sidebar {
+    width: 100%;
+    gap: 0;
+  }
+
+  .ste-metric-card {
+    width: 100%;
+    min-height: auto;
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 0;
+    padding: 35px 0;
+    align-items: center;
+    border-bottom: 1px solid rgba(74, 71, 65, 0.5) !important;
+    position: relative;
+  }
+
+  .ste-metric-card:last-child {
+    border-bottom: none !important;
+    padding-bottom: 40px;
+  }
+
+  .ste-metric-card-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+    margin-bottom: 14px;
+  }
+
+  /* Core Metric Dynamic Value Numbers styling */
+  .ste-metric-num-display,
+  .ste-metric-num-display * {
+    font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+    font-style: normal !important;
+    font-weight: 200 !important;
+    font-size: 55px !important;
+    line-height: 70px !important;
+    text-align: center !important;
+  }
+
+  /* Metric Sub-Labels styling */
+  .ste-metric-label {
+    font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    line-height: 25px !important;
+    text-align: center !important;
+    margin-top: 5px !important;
+  }
+
+  /* Metric Description Captions styling */
+  .ste-metric-caption {
+    font-family: 'Instrument Sans', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 22px !important;
+    text-align: center !important;
+    max-width: 314px !important;
+    margin: 0 auto !important;
+  }
+
+  .ste-main-editorial-content {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    margin-top: 40px;
+  }
+
+  /* Section Dynamic Header positioning */
+  .ste-main-title {
+    font-family: 'Instrument Sans', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+    line-height: 29px !important;
+    max-width: 328px !important;
+    margin: 0 auto 27px auto !important;
+  }
+
+  /* Section Body description text styling */
+  .ste-body-description {
+    font-family: 'Instrument Sans', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 22px !important;
+    max-width: 325px !important;
+    margin: 0 auto !important;
+    text-align: left !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ste-hide-mobile {
+    display: none !important;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const steCounters = document.querySelectorAll(".ste-metric-counter[data-target]");
+
+  if ('IntersectionObserver' in window) {
+    const steObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = parseFloat(counter.dataset.target);
+          if (!isNaN(target)) {
+            animateCounter(counter, target);
+          }
+          observer.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    steCounters.forEach(counter => steObserver.observe(counter));
+  } else {
+    steCounters.forEach(counter => {
+      const target = parseFloat(counter.dataset.target);
+      if (!isNaN(target)) animateCounter(counter, target);
+    });
+  }
+
+  function animateCounter(counter, target) {
+    let current = 0;
+    const duration = 1400;
+    const increment = target / (duration / 16);
+
+    function updateCounter() {
+      current += increment;
+      if (current < target) {
+        counter.innerText = Math.floor(current);
+        requestAnimationFrame(updateCounter);
+      } else {
+        counter.innerText = target;
+      }
+    }
+    updateCounter();
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "STE Therapy Editorial",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide on Mobile",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Top Gradient Fade"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_top_gradient",
+      "label": "Enable Top Gradient Fade",
+      "default": false,
+      "info": "Adds a fading gradient at the top of the section to blend with white background"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color",
+      "label": "Gradient Color",
+      "default": "#FFFFFF",
+      "info": "The color to fade from at the top"
+    },
+    {
+      "type": "range",
+      "id": "gradient_stop",
+      "label": "Gradient Start Opacity %",
+      "default": 100,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "info": "Opacity percentage at the very top (100% = solid color)"
+    },
+    {
+      "type": "range",
+      "id": "gradient_fade_end",
+      "label": "Fade Completion %",
+      "default": 100,
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "info": "At what point the gradient becomes fully transparent (lower = shorter fade)"
+    },
+    {
+      "type": "header",
+      "content": "Background & Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#E5DEFF"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_position",
+      "label": "Desktop Image Position",
+      "default": "center center",
+      "options": [
+        { "value": "top left", "label": "Top Left" },
+        { "value": "top center", "label": "Top Center" },
+        { "value": "top right", "label": "Top Right" },
+        { "value": "center left", "label": "Center Left" },
+        { "value": "center center", "label": "Center Center" },
+        { "value": "center right", "label": "Center Right" },
+        { "value": "bottom left", "label": "Bottom Left" },
+        { "value": "bottom center", "label": "Bottom Center" },
+        { "value": "bottom right", "label": "Bottom Right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Mobile Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_position",
+      "label": "Mobile Image Position",
+      "default": "center center",
+      "options": [
+        { "value": "top left", "label": "Top Left" },
+        { "value": "top center", "label": "Top Center" },
+        { "value": "top right", "label": "Top Right" },
+        { "value": "center left", "label": "Center Left" },
+        { "value": "center center", "label": "Center Center" },
+        { "value": "center right", "label": "Center Right" },
+        { "value": "bottom left", "label": "Bottom Left" },
+        { "value": "bottom center", "label": "Bottom Center" },
+        { "value": "bottom right", "label": "Bottom Right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Text Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Text Color",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Acoustic Resonance\nTherapy modified\nfor Sleep"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat Card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Card Colors"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card Background Color",
+          "default": "rgba(255, 255, 255, 0.4)"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card Border Color",
+          "default": "rgba(255, 255, 255, 0.4)"
+        },
+        {
+          "type": "color",
+          "id": "number_color",
+          "label": "Number/Prefix/Postfix Color",
+          "default": "#001755"
+        },
+        {
+          "type": "color",
+          "id": "label_color",
+          "label": "Card Label Color",
+          "default": "#001755"
+        },
+        {
+          "type": "color",
+          "id": "caption_color",
+          "label": "Caption Text Color",
+          "default": "#1E1E1E"
+        },
+        {
+          "type": "header",
+          "content": "Card Content"
+        },
+        {
+          "type": "text",
+          "id": "prefix",
+          "label": "Prefix"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "2"
+        },
+        {
+          "type": "text",
+          "id": "postfix",
+          "label": "Postfix",
+          "default": "X"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Card Mini Title",
+          "default": "Better Sleep"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Card Description Line"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "STE Therapy Editorial",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "prefix": ">",
+            "number": "2",
+            "postfix": "X",
+            "heading": "Better Sleep",
+            "text": "Clinical trial participants reported 2X improvement in sleep quality after 2 weeks' use."
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "prefix": "",
+            "number": "100",
+            "postfix": "%",
+            "heading": "faster onset",
+            "text": "100% of trial participants fell asleep faster."
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "prefix": ">",
+            "number": "70",
+            "postfix": "%",
+            "heading": "stayed asleep",
+            "text": "Over 70% of trial participants slept through the night."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,457 @@
+{% schema %}
+{
+  "name": "SONU Hero Scoped Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_bg",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "id": "top_text",
+      "label": "Top Small Text",
+      "default": "Featured in TIME's 2025 Best Inventions"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Clear & Free\nNasal Breathing"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "No Drugs. No Side Effects. No Compromises."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "The world's first FDA 510-K cleared wearable that uses personalized vibro-acoustic therapy to relieve nasal congestion in minutes."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "Bottom Badge Image"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Desktop Button Background",
+      "default": "#656AE3"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SONU Hero Scoped Banner"
+    }
+  ]
+}
+{% endschema %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<section class="sbh-section-wrapper">
+  <div class="sbh-hero-container">
+
+    <div class="sbh-media-bg">
+      {% if section.settings.desktop_bg != blank %}
+        <img
+          class="sbh-desktop-only"
+          src="{{ section.settings.desktop_bg | image_url: width: 2500 }}"
+          alt=""
+        >
+      {% endif %}
+
+      {% if section.settings.mobile_bg != blank %}
+        <img
+          class="sbh-mobile-only"
+          src="{{ section.settings.mobile_bg | image_url: width: 1200 }}"
+          alt=""
+        >
+      {% endif %}
+    </div>
+
+    <div class="sbh-dimmer-overlay"></div>
+
+    <div class="sbh-layout-content">
+      <div class="sbh-text-block-wrap">
+    
+        {% if section.settings.logo != blank %}
+          <div class="sbh-brand-logo">
+            <img 
+              src="{{ section.settings.logo | image_url: width: 400 }}" 
+              alt="Logo"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+
+        {% if section.settings.top_text != blank %}
+          <p class="sbh-kicker-text">
+            {{ section.settings.top_text }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          {% assign sbh_heading = section.settings.heading
+            | replace: '[[', '<span class="sbh-serif-highlight">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+          <h1 class="sbh-main-title">
+            {{ sbh_heading }}
+          </h1>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <div class="sbh-sub-title">
+            {{ section.settings.subheading | newline_to_br }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="sbh-body-desc">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="sbh-action-footer">
+        {% if section.settings.button_text != blank %}
+          <a href="{{ section.settings.button_link }}" class="sbh-cta-button">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.badge_image != blank %}
+          <div class="sbh-trust-badge">
+            <img
+              src="{{ section.settings.badge_image | image_url: width: 500 }}"
+              alt="Badge"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-RegularItalic.woff2" | asset_url }}') format('woff2');
+}
+
+/* ==========================================================================
+   DESKTOP STYLES (Scoped under .sbh-)
+   ========================================================================== */
+.sbh-section-wrapper {
+  padding: 20px;
+  width: 100%;
+  max-width: 1760px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.sbh-serif-highlight {
+  font-family: 'pp-editorial', serif !important;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.sbh-hero-container {
+  position: relative;
+  min-height: 100vh !important;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+.sbh-media-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.sbh-media-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sbh-desktop-only {
+  display: block;
+}
+
+.sbh-mobile-only {
+  display: none;
+}
+
+.sbh-dimmer-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.20) 45%,
+    rgba(0,0,0,.05) 100%
+  );
+}
+
+.sbh-layout-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 810px;
+}
+
+.sbh-text-block-wrap {
+  width: 100%;
+}
+
+.sbh-brand-logo {
+  margin-bottom: 60px;
+}
+
+.sbh-brand-logo img {
+  max-width: 220px;
+  display: block;
+}
+
+.sbh-kicker-text {
+  font-size: 24px;
+  line-height: 29px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.sbh-main-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 500;
+  font-size: 85px;
+  line-height: 104px;
+  color: #fff;
+  margin: 0 0 24px;
+}
+
+.sbh-sub-title {
+  font-size: 22px;
+  line-height: 32px;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.sbh-body-desc {
+  font-size: 22px;
+  line-height: 1.5;
+  color: #fff;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.sbh-action-footer {
+  margin-top: 20px;
+}
+
+.sbh-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 305px;
+  height: 66px;
+  background: {{ section.settings.button_bg }};
+  color: {{ section.settings.button_text_color }};
+  border-radius: 33px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.sbh-cta-button:hover {
+  opacity: 0.9;
+}
+
+.sbh-trust-badge {
+  margin-top: 30px;
+}
+
+.sbh-trust-badge img {
+  width: 220px;
+  display: block;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE VIEWPORT SYSTEM (Figma Values Translated Safely)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .sbh-section-wrapper {
+    padding: 0;
+  }
+
+  .sbh-hero-container {
+    min-height: 100svh !important;
+    border-radius: 0;
+    padding: 40px 24px 30px;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .sbh-desktop-only {
+    display: none;
+  }
+
+  .sbh-mobile-only {
+    display: block;
+  }
+
+  .sbh-dimmer-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+  }
+
+  .sbh-layout-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 340px;
+    height: 100%;
+    min-height: calc(100svh - 70px); /* Keeps text perfectly separated from image background area */
+    margin: 0 auto;
+  }
+
+  .sbh-text-block-wrap {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sbh-brand-logo, 
+  .sbh-kicker-text {
+    display: none;
+  }
+
+  /* Fall Asleep Faster Stay Asleep Longer Header */
+  .sbh-main-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 44px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 110px 0 0 0; /* Matches top: 150px baseline safely */
+    width: 100%;
+    max-width: 332px;
+  }
+
+  /* without pills or guesswork. Subtitle */
+  .sbh-sub-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 12px 0 0 0; /* Simulates top: 255px relational drop */
+    width: 100%;
+    max-width: 194px;
+  }
+
+  /* Spatial Sleep Descriptive Body Text */
+  .sbh-body-desc {
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 28px 0 0 0; /* Simulates top: 303px drop without rigid breaks */
+    width: 100%;
+    max-width: 294px;
+  }
+
+  /* Action Buttons Box Wrapper */
+  .sbh-action-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: auto; /* Aligns everything down to top: 632px baseline */
+    padding-bottom: 10px;
+  }
+
+  /* Rectangle 114 + SHOP NOW Text rules */
+  .sbh-cta-button {
+    width: 136px;
+    height: 41px;
+    background: #FFFFFF !important;
+    color: #1E1E1E !important;
+    border-radius: 33px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+  }
+
+  .sbh-trust-badge {
+    margin-top: 22px;
+  }
+
+  .sbh-trust-badge img {
+    width: 120px;
+    margin: 0 auto;
+  }
+}
+</style>

@@ -1,0 +1,423 @@
+{% schema %}
+{
+  "name": "SONU Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_bg",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "id": "top_text",
+      "label": "Top Small Text",
+      "default": "Featured in TIME's 2025 Best Inventions"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Clear & Free\nNasal Breathing"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "No Drugs. No Side Effects. No Compromises."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "The world's first FDA 510-K cleared wearable that uses personalized vibro-acoustic therapy to relieve nasal congestion in minutes."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "Bottom Badge Image"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Desktop Button Background",
+      "default": "#656AE3"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SONU Hero Banner"
+    }
+  ]
+}
+{% endschema %}
+
+<!-- Google Fonts Preconnect and Link tags for rock-solid font loading in any browser/theme -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<section class="sonuh-wrapper">
+  <div class="sonuh-hero">
+
+    <div class="sonuh-bg">
+      {% if section.settings.desktop_bg != blank %}
+        <img
+          class="sonuh-desktop-bg"
+          src="{{ section.settings.desktop_bg | image_url: width: 2500 }}"
+          alt=""
+        >
+      {% endif %}
+
+      {% if section.settings.mobile_bg != blank %}
+        <img
+          class="sonuh-mobile-bg"
+          src="{{ section.settings.mobile_bg | image_url: width: 1200 }}"
+          alt=""
+        >
+      {% endif %}
+    </div>
+
+    <div class="sonuh-overlay"></div>
+
+    <div class="sonuh-content">
+
+      <div class="sonuh-text-wrap">
+    
+    {% if section.settings.logo != blank %}
+      <div class="sonu-logo">
+        <img 
+          src="{{ section.settings.logo | image_url: width: 400 }}" 
+          alt="Logo"
+          loading="lazy"
+        >
+      </div>
+    {% endif %}
+
+    {% if section.settings.top_text != blank %}
+      <p class="sonu-top-text">
+        {{ section.settings.top_text }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+  {% assign sonu_heading = section.settings.heading
+    | replace: '[[', '<span class="sonu-highlight">'
+    | replace: ']]', '</span>'
+    | newline_to_br
+  %}
+
+  <h1 class="sonu-heading">
+    {{ sonu_heading }}
+  </h1>
+{% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <div class="sonu-subheading">
+        {{ section.settings.subheading | newline_to_br }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="sonu-description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
+    {% comment %} {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_link }}" class="sonu-btn">
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %} {% endcomment %}
+
+       </div>
+
+      <div class="sonuh-btn-wrap">
+
+        {% if section.settings.button_text != blank %}
+          <a href="{{ section.settings.button_link }}" class="sonuh-btn">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.badge_image != blank %}
+          <div class="sonuh-badge">
+            <img
+              src="{{ section.settings.badge_image | image_url: width: 500 }}"
+              alt="Badge"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+     
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-RegularItalic.woff2" | asset_url }}') format('woff2');
+}
+.sonuh-wrapper{
+  padding:20px;
+  width:100%;
+  max-width:1760px;
+  margin:0 auto;
+}
+.sonu-highlight{
+  font-family:'pp-editorial', serif !important;
+  font-style:italic;
+  font-weight:400;
+}
+.sonuh-hero{
+  position:relative;
+  min-height:100vh!important;
+  display:flex;
+  align-items:flex-end;
+  color:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  padding:50px;
+}
+
+.sonuh-bg{
+  position:absolute;
+  inset:0;
+  z-index:1;
+}
+
+.sonuh-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.sonuh-desktop-bg{
+  display:block;
+}
+
+.sonuh-mobile-bg{
+  display:none;
+}
+
+.sonuh-overlay{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.20) 45%,
+    rgba(0,0,0,.05) 100%
+  );
+}
+
+.sonuh-content{
+  position:relative;
+  z-index:3;
+  width:100%;
+  max-width:810px;
+}
+
+.sonuh-text-wrap{
+  width:100%;
+}
+
+.sonu-logo{
+  margin-bottom:60px;
+}
+
+.sonu-logo img{
+  max-width:220px;
+  display:block;
+}
+
+.sonu-top-text{
+  font-size:24px;
+  line-height:29px;
+  color:#fff;
+  margin-bottom:20px;
+}
+
+.sonu-heading{
+  font-family:'Instrument Sans',sans-serif;
+  font-weight:500;
+  font-size:85px;
+  line-height:104px;
+  color:#fff;
+  margin:0 0 24px;
+}
+
+.sonu-subheading{
+  font-size:22px;
+  line-height:32px;
+  color:#fff;
+  margin-bottom:40px;
+}
+
+.sonu-description{
+  font-size:22px;
+  line-height:1.5;
+  color:#fff;
+  margin-bottom:40px;
+  max-width:600px;
+}
+
+.sonuh-btn-wrap{
+  margin-top:20px;
+}
+
+.sonuh-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:305px;
+  height:66px;
+  background:{{ section.settings.button_bg }};
+  color:{{ section.settings.button_text_color }};
+  border-radius:33px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:18px;
+  text-transform:uppercase;
+}
+
+.sonuh-badge{
+  margin-top:30px;
+}
+
+.sonuh-badge img{
+  width:220px;
+  display:block;
+}
+
+@media(max-width:768px){
+
+  .sonuh-wrapper{
+    padding:0;
+  }
+
+  .sonuh-hero{
+    min-height:100svh;
+    border-radius:0;
+    padding:20px;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .sonuh-desktop-bg{
+    display:none;
+  }
+
+  .sonuh-mobile-bg{
+    display:block;
+  }
+
+  .sonuh-content{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    width:322px;
+    height:496px;
+    margin:auto;
+  }
+
+  .sonuh-text-wrap{
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .sonu-logo{
+    display:none;
+  }
+
+  .sonu-top-text{
+    display:none;
+  }
+
+  .sonu-heading{
+    font-size:36px;
+    line-height:44px;
+    text-align:center;
+    margin-bottom:18px;
+  }
+
+  .sonu-subheading{
+    font-size:16px;
+    line-height:20px;
+    text-align:center;
+    margin-bottom:190px;
+  }
+
+  .sonu-description{
+    font-size:14px;
+    line-height:22px;
+    text-align:center;
+    max-width:294px;
+    margin:0 auto;
+  }
+
+  .sonuh-btn-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+    margin-top:auto;
+  }
+
+  .sonuh-btn{
+    width:136px;
+    height:41px;
+    background:#FFFFFF;
+    color:#1E1E1E;
+    border-radius:33px;
+    font-size:14px;
+    line-height:17px;
+  }
+
+  .sonuh-badge{
+    margin-top:22px;
+  }
+
+  .sonuh-badge img{
+    width:120px;
+  }
+}
+
+
+</style>

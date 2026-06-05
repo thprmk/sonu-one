@@ -1,0 +1,421 @@
+<style>
+
+
+.custom-hero-wrapper {
+  padding: 20px;
+  width: 100%;
+  max-width: 1760px;
+  margin: 0 auto;
+}
+
+{% comment %} .custom-hero {
+  position: relative;
+  width: 100%;
+  max-width: 1720px;
+  min-height: 1073px;
+  margin: 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end; /* Aligns content to bottom on desktop */
+  padding: 0 0 80px 190px;
+  background-color: #000;
+} {% endcomment %}
+
+.custom-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  border-radius: 15px;
+  max-width: 100%;
+  padding: 50px;
+}
+
+
+/* Background Image */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mobile vs Desktop Image Swap */
+.hero-bg .desktop-bg { display: block; }
+.hero-bg .mobile-bg { display: none; }
+
+/* Overlay Gradient */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(var(--hero-overlay-direction), var(--hero-overlay-color), transparent);
+}
+
+/* Content Area */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 810px;
+}
+
+/* Heading */
+.hero-title {
+  font-family: 'Instrument Sans', sans-serif !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 85px;
+  line-height: 104px;
+  color: #FFFFFF;
+  margin: 0 0 30px 0;
+}
+
+/* Figma highlight (Italic overlay) - Use [[ ]] in the customizer! */
+.hero-title .highlight {
+  font-family: 'pp-editorial', serif !important;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Description / Subheading */
+.hero-description {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 16px!important;
+  line-height: 1.5;
+  color: #FFFFFF;
+  margin-bottom: 40px;
+  font-weight:300!important;
+}
+
+/* Mobile Description Hide */
+.hero-description-mobile { display: none; }
+
+/* Button */
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 305px;
+  height: 66px;
+  background: var(--hero-button-bg, #001755);
+  border-radius: 33px;
+  font-family: 'Instrument Sans', sans-serif !important;
+  font-style: normal;
+  font-weight: 600;
+  margin-top:20px;
+  font-size: 18px;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: var(--hero-button-text-color, #FFFFFF);
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.hero-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Mobile Responsive Adjustments
+   ========================================================================== */
+@media (max-width: 990px) {
+  .custom-hero {
+    min-height: 800px;
+    padding: 0 40px 60px 40px;
+  }
+  .hero-title {
+    font-size: 60px;
+    line-height: 1.1;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-hero-wrapper {
+    padding: 0;
+  }
+  
+  .custom-hero {
+    min-height: 100svh;
+    border-radius: 0;
+    padding: 20px;
+    align-items: center; /* Centers the 496px box vertically */
+    justify-content: center;
+  }
+
+  .hero-bg .desktop-bg { display: none; }
+  .hero-bg .mobile-bg { display: block; }
+
+  /* Exact 322x496 Figma Box */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes text top, button bottom */
+    align-items: center;
+    width: 322px; 
+    height: 496px; 
+    margin: 0 auto;
+  }
+
+  .hero-text-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: 36px !important;
+    line-height: 44px !important;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .hero-description { display: none; }
+  
+  /* Fixed Black Text Issue caused by Shopify <p> tags */
+  .hero-subtitle,
+  .hero-subtitle p,
+  .hero-description-mobile,
+  .hero-description-mobile p,
+  .hero-description-mobile span {
+    display: block;
+    font-family: 'Instrument Sans', sans-serif !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    font-weight: 400 !important;
+    color: #FFFFFF !important;
+    text-align: center;
+    margin: 0;
+  }
+
+  .hero-btn-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: auto; 
+  }
+
+  .hero-btn {
+    width: 160px !important; 
+    height: 41px !important; 
+    background: rgba(30, 30, 30, 0.6) !important; 
+    backdrop-filter: blur(22.5px) !important;
+    -webkit-backdrop-filter: blur(22.5px) !important;
+    color: #FFFFFF !important;
+    font-size: 14px;
+    border-radius: 33px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+}
+
+</style>
+
+{% assign overlay_alpha = section.settings.overlay_opacity | times: 0.01 %}
+
+<section class="custom-hero-wrapper">
+  <div class="custom-hero" style="
+    --hero-overlay-direction: {{ section.settings.overlay_direction }}; 
+    --hero-overlay-color: {{ section.settings.overlay_color | color_modify: 'alpha', overlay_alpha }}; 
+    --hero-button-bg: {{ section.settings.button_bg }}; 
+    --hero-button-text-color: {{ section.settings.button_text_color }}; 
+    --hero-button-bg-mobile: {{ section.settings.button_bg_mobile }}; 
+    --hero-button-text-color-mobile: {{ section.settings.button_text_color_mobile }};
+  ">
+
+    <!-- Background Image -->
+    <div class="hero-bg">
+      {% if section.settings.bg_image != blank %}
+        <img class="desktop-bg" src="{{ section.settings.bg_image | image_url: width: 2500 }}" alt="">
+      {% endif %}
+      
+      {% if section.settings.mobile_bg_image != blank %}
+        <img class="mobile-bg" src="{{ section.settings.mobile_bg_image | image_url: width: 1200 }}" alt="">
+      {% else %}
+        {% if section.settings.bg_image != blank %}
+          <img class="mobile-bg" src="{{ section.settings.bg_image | image_url: width: 1200 }}" alt="">
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <!-- Gradient Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      
+      <!-- Top Half (Mobile) -->
+      <div class="hero-text-wrap">
+        {% if section.settings.tagline != blank %}
+          <div class="hero-tagline animate-blur">{{ section.settings.tagline }}</div>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          {% assign formatted_heading = section.settings.heading
+            | replace: '[[', '<span class="highlight">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+          <h1 class="hero-title animate-blur delay-1">{{ formatted_heading }}</h1>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <p class="hero-subtitle animate-blur delay-2">{{ section.settings.subheading }}</p>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="hero-description animate-blur delay-3">{{ section.settings.description }}</div>
+        {% endif %}
+
+        {% if section.settings.mobile_description != blank %}
+          <div class="hero-description-mobile animate-blur delay-3">{{ section.settings.mobile_description }}</div>
+        {% else %}
+          <div class="hero-description-mobile animate-blur delay-3">{{ section.settings.description }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Bottom Half (Mobile) -->
+      <div class="hero-btn-wrap">
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link }}" class="hero-btn animate-blur delay-4">
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.custom_liquid != blank %}
+          <div class="hero-custom-liquid animate-blur delay-4">{{ section.settings.custom_liquid }}</div>
+        {% endif %}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "overlay_direction",
+      "label": "Overlay Direction",
+      "options": [
+        { "value": "to right", "label": "Left to Right" },
+        { "value": "to left", "label": "Right to Left" },
+        { "value": "to bottom", "label": "Top to Bottom" },
+        { "value": "to top", "label": "Bottom to Top" }
+      ],
+      "default": "to right"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (Use [[ ]] for special font)"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Desktop Description"
+    },
+    {
+      "type": "richtext",
+      "id": "mobile_description",
+      "label": "Mobile Description"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Custom Liquid "
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Desktop Button Background",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Desktop Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_mobile",
+      "label": "Mobile Button Background",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color_mobile",
+      "label": "Mobile Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero"
+    }
+  ]
+}
+{% endschema %}

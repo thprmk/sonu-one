@@ -1,0 +1,775 @@
+<style>
+/* ==========================================================================
+   GLOBAL SECTION RESTRICTIONS
+   ========================================================================== */
+.sleep-benefits {
+  position: relative;
+  overflow: hidden;
+  /* Reduced baseline padding to keep layout within standard viewports */
+  padding: 60px 0; 
+  background: {{ section.settings.bg_color }};
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.sleep-container {
+  position: relative;
+  z-index: 2;
+  /* Lock max width to standard high-res boundary screens */
+  width: 100%;
+  max-width: 1280px; 
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.sleep-subheading .sleep-serif {
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
+}
+
+.sleep-benefits:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at bottom left, rgba(170,145,255,.18), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(201,177,255,.14), transparent 35%);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   TOP HEADER SPACING
+   ========================================================================== */
+.sleep-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px; /* Tighter layout compression */
+}
+
+.sleep-heading {
+  max-width: 550px;
+}
+
+.sleep-heading h2 {
+  margin: 0;
+  color: {{ section.settings.heading_color }};
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px; /* Scaled down slightly from 60px to look clean on web viewports */
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.sleep-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 54px;
+  border-radius: 33px;
+  background: #001755;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: opacity .3s ease;
+}
+
+.sleep-btn:hover {
+  opacity: .9;
+}
+
+/* ==========================================================================
+   TAB NAVIGATION STRIP
+   ========================================================================== */
+.sleep-tabs {
+  display: flex;
+  margin-bottom: 54px; 
+  overflow-x: auto;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding-bottom: 12px;
+  gap: 16px;
+}
+
+.sleep-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.sleep-tab {
+  background: none;
+  border: none;
+  padding: 0 0 8px 0;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px; /* Reduced from 24px to stop wrapping titles */
+  line-height: 1.2;
+  text-align: center;
+  color: #1E1E1E;
+  opacity: .4;
+  position: relative;
+  transition: opacity 0.2s ease;
+}
+
+.sleep-tab.active {
+  opacity: 1;
+}
+
+.sleep-tab.active:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -13px;
+  width: 100%;
+  height: 2px;
+  background: #000000;
+}
+
+/* ==========================================================================
+   FLEXIBLE CONTENT GRID PANELS
+   ========================================================================== */
+.sleep-contents {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal fluid columns keep layout structured */
+  column-gap: 64px;
+  align-items: center;
+  min-height: auto;
+  height: auto; /* Killed the rigid 900px layout stretch */
+}
+
+.sleep-left {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sleep-right {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Dynamic Text Block Tuning */
+.sleep-subheading {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.25;
+  color: #3D1B03;
+  margin: 0 0 24px 0;
+}
+
+.sleep-subheading em {
+  font-family: 'PP Editorial New', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.sleep-desc {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #1E1E1E;
+  margin-bottom: 36px;
+}
+
+.sleep-html {
+  margin-bottom: 24px;
+}
+
+/* Balanced Figma Blockquote Container */
+.sleep-quote {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  min-height: 120px;
+  padding: 24px;
+  background: rgba(61, 27, 3, 0.12); 
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  color: #3D1B03;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-family: 'PP Editorial New', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+/* Fluid Proportional Image Aspect Frame */
+.sleep-image {
+  width: 100%;
+  max-width: 560px; /* Constrains the image size nicely */
+  aspect-ratio: 1 / 1; /* Retains clean square framing proportions */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sleep-image .desktop-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   MOBILE COMPRESSION VIEWPORT SYSTEM
+   ========================================================================== */
+.mobile-controls {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .mobile-tag {
+    display: none;
+  }
+}
+
+@media(max-width: 768px) {
+  .sleep-benefits {
+    background: #000;
+    padding: 0;
+  }
+
+  .sleep-panel {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: background-image;
+  }
+
+  .first-mobile-panel {
+    background-image: url('{{ section.blocks.first.settings.mobile_bg_image | image_url: width: 1200 }}');
+  }
+
+  .sleep-benefits::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .sleep-container {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    max-width: 480px;
+  }
+
+  .sleep-contents {
+    display: block;
+    position: relative;
+    height: 90vh;
+  }
+
+  .sleep-right {
+    position: relative;
+    height: 430px;
+    max-width: 100%;
+  }
+
+  .sleep-image {
+    width: 100%;
+    height: 430px;
+    border-radius: 0;
+    aspect-ratio: auto;
+  }
+
+  .sleep-image .desktop-img {
+    opacity: 0;
+  }
+
+  .sleep-benefits:before {
+    display: none;
+  }
+
+  .mobile-btn-benefit {
+    display: block !important;
+  }
+
+  .sleep-top {
+    background: white;
+    flex-direction: column;
+    text-align: center;
+    padding: 50px 30px;
+    display: none;
+  }
+
+  .sleep-heading h2 {
+    font-size: 36px;
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: 0px;
+  }
+
+  .sleep-tabs, .sleep-btn {
+    display: none;
+  }
+
+  .sleep-left {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    padding: 24px 24px 50px;
+    max-width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,.95), rgba(0,0,0,.3), transparent);
+  }
+
+  .mobile-tag {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.55);
+    color: #FFFFFF;
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .mobile-tag-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .mobile-tag-icon img,
+  .mobile-tag-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .sleep-subheading {
+    margin: 0 0 18px;
+    color: #FFFFFF;
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+  }
+
+  .sleep-subheading .sleep-serif {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .sleep-desc {
+    max-width: 335px;
+    margin: 0 0 24px;
+    color: #FFFFFF;
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .sleep-quote {
+    width: 100%;
+    padding: 28px 20px;
+    background: rgba(0,0,0,.50);
+    border-radius: 10px;
+    color: #FFFFFF;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    min-height: auto;
+    border: none;
+  }
+
+  .sleep-html {
+    margin-bottom: 28px;
+  }
+
+  .mobile-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  .sleep-btn.mobile-btn-benefit {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    height: 41px;
+    min-width: 130px;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    color: #1E1E1E !important;
+    border-radius: 33px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: 0;
+    flex-shrink: 0;
+  }
+
+  .mobile-arrows {
+    display: flex;
+    gap: 12px;
+  }
+
+  .mobile-arrow {
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.35);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .mobile-arrow svg {
+    width: 12px;
+    height: 13px;
+    stroke: #FFFFFF;
+    fill: none;
+    stroke-width: 2;
+  }
+}
+</style>
+<section class="sleep-benefits">
+  <div class="sleep-container">
+
+    <!-- TOP CONTAINER BLOCK -->
+    <div class="sleep-top">
+      <div class="sleep-heading">
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="sleep-btn">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- RESPONSIVE TABS BAR -->
+    <div class="sleep-tabs">
+      {% for block in section.blocks %}
+        <button
+          class="sleep-tab {% if forloop.first %}active{% endif %}"
+          data-tab="{{ forloop.index }}"
+        >
+          {{ block.settings.tab_title }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <!-- DYNAMIC CARDS ENGINE PANELS -->
+    {% for block in section.blocks %}
+      <div
+        class="sleep-panel {% if forloop.first %}first-mobile-panel{% endif %}"
+        data-panel="{{ forloop.index }}"
+        {% if block.settings.mobile_bg_image != blank %}
+          data-mobile-bg="{{ block.settings.mobile_bg_image | image_url: width: 1200 }}"
+        {% endif %}
+        {% unless forloop.first %}style="display:none"{% endunless %}
+      >
+        <div class="sleep-contents">
+
+          <!-- COLUMN SIDE LEFT -->
+          <div class="sleep-left">
+            {% assign formatted_subheading = block.settings.heading
+              | replace: '[[', '<span class="sleep-serif">'
+              | replace: ']]', '</span>'
+              | newline_to_br
+            %}
+            <h3 class="sleep-subheading">
+              {{ formatted_subheading }}
+            </h3>
+            
+            <div class="sleep-desc">
+              {{ block.settings.description }}
+            </div>
+
+            {% if block.settings.custom_html != blank %}
+              <div class="sleep-html">
+                {{ block.settings.custom_html }}
+              </div>
+            {% endif %}
+
+            {% if block.settings.quote != blank %}
+              <div class="sleep-quote">
+                {{ block.settings.quote }}
+              </div>
+            {% endif %}
+
+            <div class="mobile-controls">
+              {% if section.settings.button_text != blank %}
+                <a href="{{ section.settings.button_link }}" class="sleep-btn mobile-btn-benefit">
+                  {{ section.settings.button_text }}
+                </a>
+              {% endif %}
+
+              <div class="mobile-arrows">
+                <button class="mobile-arrow prev-slide">
+                  <svg viewBox="0 0 24 24"><path d="M15 5l-8 7 8 7"/></svg>
+                </button>
+                <button class="mobile-arrow next-slide">
+                  <svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUMN SIDE RIGHT -->
+          <div class="sleep-right">
+            <div class="sleep-image">
+              <div class="mobile-tag">
+                {% if block.settings.tag_svg != blank %}
+                  <div class="mobile-tag-icon">{{ block.settings.tag_svg }}</div>
+                {% elsif block.settings.tag_image != blank %}
+                  <div class="mobile-tag-icon">
+                    <img src="{{ block.settings.tag_image | image_url: width: 40 }}" alt="">
+                  </div>
+                {% endif %}
+                {{ block.settings.tab_title }}
+              </div>
+
+              <img
+                src="{{ block.settings.image | image_url: width: 1200 }}" 
+                class="desktop-img"
+                alt="{{ block.settings.heading | escape }}"
+                loading="eager"
+                fetchpriority="high"
+              >
+            </div>
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.sleep-tab');
+  const panels = document.querySelectorAll('.sleep-panel');
+  let current = 0;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const id = tab.dataset.tab;
+      current = parseInt(id) - 1;
+
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      updateMobileBackground(current);
+      panels.forEach(panel => {
+        panel.style.display = panel.dataset.panel === id ? 'grid' : 'none';
+      });
+    });
+  });
+
+  function updateMobileBackground(index){
+    if(window.innerWidth > 768) return;
+    panels.forEach(panel => { panel.style.backgroundImage = ''; });
+    const activePanel = panels[index];
+    const bg = activePanel?.dataset.mobileBg;
+    if(bg && activePanel) {
+      activePanel.style.backgroundImage = `url(${bg})`;
+    }
+  }
+
+  function showSlide(index){
+    if(index < 0) { index = panels.length - 1; }
+    if(index >= panels.length) { index = 0; }
+    current = index;
+    updateMobileBackground(current);
+    
+    panels.forEach((panel, i) => {
+      const displayStyle = window.innerWidth > 768 ? 'grid' : 'block';
+      panel.style.display = i === current ? displayStyle : 'none';
+    });
+
+    tabs.forEach((tab, i) => {
+      if(i === current) { tab.classList.add('active'); } else { tab.classList.remove('active'); }
+    });
+  }
+
+  document.querySelectorAll('.next-slide').forEach(btn => {
+    btn.addEventListener('click', () => { showSlide(current + 1); });
+  });
+
+  document.querySelectorAll('.prev-slide').forEach(btn => {
+    btn.addEventListener('click', () => { showSlide(current - 1); });
+  });
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+  panels.forEach(panel => {
+    panel.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+    panel.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if(diff > 50) { showSlide(current + 1); }
+      if(diff < -50) { showSlide(current - 1); }
+    });
+  });
+
+  updateMobileBackground(0);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Benefits Tabs",
+  "settings": [
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"Heading",
+      "default":"What Better Breathing Feels Like"
+    },
+    {
+      "type":"text",
+      "id":"button_text",
+      "label":"Button Text",
+      "default":"LEARN MORE"
+    },
+    {
+      "type":"url",
+      "id":"button_link",
+      "label":"Button Link"
+    },
+    {
+      "type":"color",
+      "id":"bg_color",
+      "label":"Background Color",
+      "default":"#ffffff"
+    },
+    {
+      "type":"color",
+      "id":"heading_color",
+      "label":"Heading Color",
+      "default":"#3D1B03"
+    },
+    {
+      "type":"color",
+      "id":"subheading_color",
+      "label":"Subheading Color",
+      "default":"#3D1B03"
+    },
+    {
+      "type":"color",
+      "id":"button_bg",
+      "label":"Button Background",
+      "default":"#001755"
+    },
+    {
+      "type":"color",
+      "id":"button_text_color",
+      "label":"Button Text Color",
+      "default":"#ffffff"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"tab",
+      "name":"Tab Item",
+      "settings":[
+        {
+          "type":"html",
+          "id":"tag_svg",
+          "label":"Tag SVG Code"
+        },
+        {
+          "type":"image_picker",
+          "id":"tag_image",
+          "label":"Tag Icon Image"
+        },
+        {
+          "type":"text",
+          "id":"tab_title",
+          "label":"Tab Title",
+          "default":"Brain Health"
+        },
+        {
+          "type":"text",
+          "id":"heading",
+          "label":"Heading",
+          "default":"Clearer Airways, Clearer Thinking"
+        },
+        {
+          "type":"textarea",
+          "id":"description",
+          "label":"Description"
+        },
+        {
+          "type":"textarea",
+          "id":"quote",
+          "label":"Quote"
+        },
+        {
+          "type":"liquid",
+          "id":"custom_html",
+          "label":"Custom HTML"
+        },
+        {
+          "type":"image_picker",
+          "id":"image",
+          "label":"Image"
+        },
+        {
+          "type":"image_picker",
+          "id":"mobile_bg_image",
+          "label":"Mobile Background Image"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"Benefits Tabs"
+    }
+  ]
+}
+{% endschema %}

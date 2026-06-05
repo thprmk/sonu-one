@@ -1,0 +1,399 @@
+{%- liquid
+  assign header_layout = section.settings.header_layout
+  assign sticky_header = section.settings.sticky_header
+  assign menu = section.settings.menu
+  assign menu_mobile = section.settings.menu_mobile
+
+  if menu_mobile == blank
+    assign menu_mobile = menu
+  endif
+
+  assign show_sperator_line = section.settings.show_sperator_line
+  if show_sperator_line
+    assign hide_sperator_line_for_templates = section.settings.hide_sperator_line_for_templates | newline_to_br | strip_newlines | split: '<br />'
+    assign current_template = request.page_type
+    if template.suffix != blank
+      assign current_template = current_template | append: '.' | append: template.suffix
+    endif
+    if hide_sperator_line_for_templates contains current_template
+      assign show_sperator_line = false
+    endif
+  endif
+
+  # REFERENCE ACCURATE TRANSPARENCY CONTROLLER
+  assign is_transparent = false
+  if section.settings.enable_transparent_header_home and template.name == 'index'
+    assign is_transparent = true
+  elsif section.settings.enable_transparent_header_product and template.name == 'product'
+    assign is_transparent = true
+  elsif section.settings.enable_transparent_header_collection and template.name == 'collection'
+    assign is_transparent = true
+  elsif section.settings.enable_transparent_header_global
+    unless template.name == 'product' or template.name == 'cart'
+      assign is_transparent = true
+    endunless
+  endif
+-%}
+
+{%- capture wrapper_class -%}
+  header header--{{ header_layout }} block relative z-5 color-{{ section.settings.color_scheme }}
+  {%- if show_sperator_line %} header--show-sperator-line{%- endif -%}
+  {%- if section.settings.enable_dividers %} header--with-dividers{%- endif -%}
+  {%- if is_transparent %} header--is-transparent-surface{%- endif -%}
+{%- endcapture -%}
+
+{%- capture wrapper_style -%}
+  {% render 'spacing-style', settings: section.settings %}
+{%- endcapture -%}
+
+<style>
+  /* Base structural layout parameters */
+  #shopify-section-{{ section.id }} {
+    width: 100%;
+    z-index: 1000 !important;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .header__top {
+    min-height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 20px 40px !important;
+    transition: padding 0.3s ease;
+  }
+
+  /* Core Layout Rule: Move hero directly beneath transparent headers */
+  {%- if is_transparent -%}
+    #shopify-section-{{ section.id }} {
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      background: transparent !important;
+    }
+
+    .header--is-transparent-surface,
+    .header--is-transparent-surface .header__background,
+    .header--is-transparent-surface .header__background-inner {
+      background: transparent !important;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Set links, text elements, and navigation to absolute white on initial hero load */
+    .header--is-transparent-surface .header__navigation-link,
+    .header--is-transparent-surface .header__icon,
+    .header--is-transparent-surface .header__icon svg,
+    .header--is-transparent-surface .menu-drawer-button svg,
+    .header--is-transparent-surface .search-drawer-button svg,
+    .header--is-transparent-surface .cart-icon svg,
+    .header--is-transparent-surface button,
+    .header--is-transparent-surface a,
+    .header--is-transparent-surface span,
+    .header--is-transparent-surface .desktop-menu__link {
+      color: #ffffff !important;
+      fill: #ffffff !important;
+    }
+
+    /* Force theme content containers up beneath transparent window wrapper */
+    #MainContent .shopify-section:first-child,
+    body .shopify-section:first-child,
+    main .shopify-section:first-child,
+    .shopify-section:first-child .hero,
+    .shopify-section:first-child .slideshow {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+  {%- endif -%}
+
+  /* Premium Sticky Header Interaction (Matching Your Uploaded Reference Material) */
+  .header.is-sticky,
+  sticky-header.is-sticky .header,
+  basic-header.is-sticky .header {
+    background: rgba(15, 15, 15, 0.75) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  sticky-header.is-sticky .header__top,
+  basic-header.is-sticky .header__top {
+    padding: 12px 40px !important;
+  }
+
+  /* Clear line breaks and borders */
+  .header--show-sperator-line::after,
+  .header--with-dividers::before,
+  .header--with-dividers::after {
+    display: none !important;
+    border: none !important;
+  }
+
+  @media screen and (max-width: 989px) {
+    .header__top {
+      padding: 14px 20px !important;
+    }
+    .header__logo-img,
+    .header-logo img {
+      max-height: 32px !important;
+      width: auto !important;
+    }
+  }
+</style>
+
+<header
+  data-section-id="{{ section.id }}"
+  class="{{ wrapper_class }}"
+  {% if sticky_header != 'none' %}
+    is="sticky-header" data-sticky-type="{{ sticky_header }}"
+  {% else %}
+    is="basic-header"
+  {% endif %}
+  style="{{ wrapper_style | strip | strip_newlines }}"
+>
+  <div class="header__background absolute z--1 inset-0 pointer-events-none">
+    <div class="header__background-inner relative color-{{ section.settings.color_scheme }}"></div>
+  </div>
+  
+  <div class="header__top relative items-center page-width">
+    {%- if menu_mobile != blank -%}
+      <div class="header__icons header__icons--left lg:hidden no-js-hidden">
+        <div class="header__buttons flex items-center">
+          <button
+            on:click="#menu-drawer/showDialog"
+            class="menu-drawer-button flex lg:hidden items-center justify-center button-unstyled cursor-pointer"
+            aria-label="{{ 'actions.open_menu_drawer' | t }}"
+            aria-haspopup="dialog"
+            aria-controls="menu-drawer-dialog"
+          >
+            {%- render 'icon', icon: 'list', size: 'large' -%}
+          </button>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="header__logo">
+      <a href="{{ routes.root_url }}" class="header-logo block">
+        {%- if section.settings.custom_logo_image != blank -%}
+          <img 
+            src="{{ section.settings.custom_logo_image | image_url: width: 600 }}" 
+            alt="{{ shop.name }}"
+            class="header__logo-img"
+            style="max-height: 40px; width: auto; display: block;"
+          >
+        {%- else -%}
+          {%- render 'header-logo' -%}
+        {%- endif -%}
+      </a>
+    </div>
+
+    {%- if section.settings.menu != blank -%}
+      <div class="header__navigation hidden lg:flex">
+        {% render 'desktop-menu', menu: section.settings.menu, blocks: section.blocks %}
+      </div>
+    {%- endif -%}
+
+    <div class="header__icons header__icons--right flex justify-end">
+      <div class="header__buttons flex items-center justify-center">
+        {%- if section.settings.enable_search_form -%}
+          {%- liquid
+            assign search_color_scheme = section.settings.color_scheme
+            unless settings.dialog_color_scheme_inherit
+              assign search_color_scheme = settings.dialog_color_scheme
+            endunless
+          -%}
+          <div class="header__search hidden xl:flex items-center">
+            {%- render 'predictive-search', context: 'header', color_scheme: search_color_scheme, form_style: section.settings.search_form_style -%}
+          </div>
+        {%- endif -%}
+  
+        <button
+          on:click="#search-drawer/showDialog"
+          class="search-drawer-button flex xl:hidden items-center justify-center button-unstyled cursor-pointer"
+          aria-label="{{ 'actions.open_search_drawer' | t }}"
+          aria-haspopup="dialog"
+          aria-controls="search-drawer-dialog"
+        >
+          {%- render 'icon', icon: 'search', size: 'large' -%}
+        </button>
+        
+        {%- if shop.customer_accounts_enabled -%}
+          <header-account class="header__account header__icon hidden lg:flex">
+            <shopify-account ref="account" menu="{{ section.settings.customer_account_menu }}" class="w-full h-full flex items-center justify-center">
+              {%- if customer -%}
+                <div class="account-button__fallback" aria-label="{{ 'accessibility.account' | t }}"></div>
+              {%- else -%}
+                <span slot="signed-out-avatar" aria-hidden="true" class="flex items-center justify-center">
+                  {%- render 'icon', icon: 'account', size: 'large' -%}
+                </span>
+              {%- endif -%}
+            </shopify-account>
+          </header-account>
+        {%- endif -%}
+        
+        <a
+          href="{{ routes.cart_url }}"
+          class="cart-drawer-button cart-icon flex items-center justify-center text-decoration-none color-current relative cursor-pointer"
+          {% if request.page_type != 'cart' and settings.cart_type == 'drawer' %}
+            on:click="#CartDrawer/open"
+            aria-haspopup="dialog"
+          {% endif %}
+        >
+          {%- render 'icon', icon: 'cart', size: 'large' -%}
+          {% render 'cart-count', class: 'cart-count--absolute' %}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "t:names.header",
+  "class": "header-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Transparency Controls"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_home",
+      "label": "Enable Transparent Header on Homepage",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_product",
+      "label": "Enable Transparent Header on Product Pages",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_collection",
+      "label": "Enable Transparent Header on Collection Pages",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_global",
+      "label": "Enable Transparent Header Globally",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Header Custom Assets"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_logo_image",
+      "label": "Header Logo Image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:settings.menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_mobile",
+      "label": "t:settings.mobile_menu"
+    },
+    {
+      "type": "select",
+      "id": "header_layout",
+      "label": "t:settings.header_layout",
+      "options": [
+        { "value": "logo-left", "label": "t:options.logo_left" },
+        { "value": "logo-center", "label": "t:options.logo_center" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "sticky_header",
+      "label": "t:settings.header_sticky",
+      "options": [
+        { "value": "none", "label": "t:options.none" },
+        { "value": "always", "label": "t:options.always" },
+        { "value": "on-scroll-up", "label": "t:options.on_scroll_up" }
+      ],
+      "default": "always"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_search_form",
+      "label": "t:settings.enable_search_form",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "search_form_style",
+      "label": "t:settings.search_form_style",
+      "options": [
+        { "value": "solid", "label": "t:options.solid" },
+        { "value": "transparent", "label": "t:options.transparent" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sperator_line",
+      "label": "t:settings.show_sperator_line",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "hide_sperator_line_for_templates",
+      "label": "t:settings.hide_sperator_line_for_templates"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_dividers",
+      "label": "t:settings.enable_header_dividers",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sidebar",
+      "name": "t:names.sidebar",
+      "settings": [
+        {
+          "type": "text",
+          "label": "t:settings.menu_title",
+          "id": "menu_title"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

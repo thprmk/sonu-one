@@ -1,0 +1,257 @@
+<section class="sonu-faq-section image-bg-{{ section.id }}">
+
+  <div class="sonu-faq-container">
+
+    <h2 class="sonu-faq-heading">
+      {{ section.settings.heading }}
+    </h2>
+
+    <div class="sonu-faq-list">
+
+      {% for block in section.blocks %}
+
+        <div class="sonu-faq-item {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+
+          <button class="sonu-faq-question">
+
+            <span>{{ block.settings.question }}</span>
+
+            <span class="sonu-faq-icon">
+              {% if forloop.first %}
+                −
+              {% else %}
+                +
+              {% endif %}
+            </span>
+
+          </button>
+
+          <div class="sonu-faq-answer">
+
+            <div class="sonu-faq-answer-inner">
+              {{ block.settings.answer }}
+            </div>
+
+          </div>
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.sonu-faq-section{
+  background-color:#D7CEC7; /* Fallback color */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding:80px 20px;
+}
+
+/* Dynamic background handling for desktop */
+{% if section.settings.bg_image_desktop != blank %}
+.image-bg-{{ section.id }} {
+  background-image: url('{{ section.settings.bg_image_desktop | image_url: width: 2000 }}');
+}
+{% endif %}
+
+.sonu-faq-container{
+  max-width:780px;
+  margin:0 auto;
+}
+
+.sonu-faq-heading{
+  margin:0 0 55px;
+  text-align:center;
+  font-family:'Instrument Sans',sans-serif;
+  font-weight:400;
+  font-size:60px;
+  line-height:73px;
+  color:#3D1B03;
+}
+
+.sonu-faq-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.sonu-faq-item{
+  overflow:hidden;
+}
+
+.sonu-faq-question{
+  width:100%;
+  border:none;
+  background:rgba(255,255,255,0.22);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 28px;
+  cursor:pointer;
+  font-family:'Instrument Sans',sans-serif;
+  font-weight:500;
+  font-size:18px;
+  line-height:22px;
+  color:#1E1E1E;
+  text-align:left;
+  backdrop-filter: blur(4px); /* Optional: ensures text stays readable over a busy image */
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.sonu-faq-icon{
+  font-size:22px;
+  line-height:1;
+  flex-shrink:0;
+}
+
+.sonu-faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s ease;
+}
+
+.sonu-faq-item.active .sonu-faq-answer{
+  max-height:500px; /* Increased to allow varying rich text heights safely */
+}
+
+.sonu-faq-answer-inner{
+  padding:18px 28px 24px;
+  font-family:'Instrument Sans',sans-serif;
+  font-weight:400;
+  font-size:20px;
+  line-height:30px;
+  color:#1E1E1E;
+  background: rgba(255, 255, 255, 0.1); /* Subtle contrast behind the answer */
+}
+
+/* MOBILE */
+@media(max-width:767px){
+
+  .sonu-faq-section{
+    padding:70px 14px;
+  }
+
+  /* Dynamic background handling for mobile overrides */
+  {% if section.settings.bg_image_mobile != blank %}
+  .image-bg-{{ section.id }} {
+    background-image: url('{{ section.settings.bg_image_mobile | image_url: width: 800 }}');
+  }
+  {% endif %}
+
+  .sonu-faq-container{
+    max-width:336px;
+  }
+
+  .sonu-faq-heading{
+    font-size:32px;
+    line-height:39px;
+    margin-bottom:39px;
+  }
+
+  .sonu-faq-question{
+    min-height:47px;
+    padding:15px 15px;
+    font-size:14px;
+    line-height:17px;
+  }
+
+  .sonu-faq-answer-inner{
+    padding:18px 15px;
+    font-size:14px;
+    line-height:22px;
+  }
+
+  .sonu-faq-icon{
+    font-size:18px;
+  }
+
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  const items = document.querySelectorAll('.sonu-faq-item');
+
+  items.forEach(item => {
+    const button = item.querySelector('.sonu-faq-question');
+
+    button.addEventListener('click', function(){
+      const isActive = item.classList.contains('active');
+
+      items.forEach(i => {
+        i.classList.remove('active');
+        const icon = i.querySelector('.sonu-faq-icon');
+        icon.textContent = '+';
+      });
+
+      if(!isActive){
+        item.classList.add('active');
+        item.querySelector('.sonu-faq-icon').textContent = '−';
+      }
+    });
+  });
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "SONU FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "FAQ"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_desktop",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Mobile Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SONU FAQ",
+      "blocks": [
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" }
+      ]
+    }
+  ]
+}
+{% endschema %}

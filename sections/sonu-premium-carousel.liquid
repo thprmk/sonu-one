@@ -1,0 +1,555 @@
+<style>
+
+
+/* SECTION */
+.premium-carousel {
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+/* INNER (LEFT SPACE 5%) */
+.carousel-wrapper {
+  margin-left: 5%;
+}
+
+/* PROGRESS BAR */
+.carousel-progress {
+  margin-top: 30px;
+  margin-left: 5%;
+  height: 3px;
+  background: #ddd;
+  width: 90%;
+}
+/* ARROWS */
+.carousel-arrows {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 24px;
+  margin-left: 5%;
+  width: 90%;
+}
+
+media (max-width: 768px) {
+  .carousel-arrows {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* HEADING */
+.carousel-heading-wrap{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:50px;
+}
+
+.carousel-heading{
+  max-width:879px; /* matches your desktop reference */
+  width:100%;
+  margin:0 auto;
+  text-align:center;
+  font-family:'Instrument Sans',sans-serif;
+  font-weight:500;
+  font-size:56px;
+  line-height:1.15;
+  color:#001755;
+}
+
+/* ALIGNMENTS */
+.text-left  { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* WRAPPER */
+.carousel-wrapper {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* TRACK */
+.carousel-track {
+  display: flex;
+  gap: 20px;
+}
+
+/* CARD */
+.carousel-card {
+  position: relative;
+  flex: 0 0 calc(100% / 3.2);
+  height: 420px;
+  border-radius: 20px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+/* IMAGE */
+.carousel-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.carousel-card-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* OVERLAY */
+.carousel-card-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  
+}
+
+/* BADGE */
+.card-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: #fff;
+  z-index: 2;
+}
+
+/* ICON */
+.badge-icon {
+  display: flex;
+  align-items: center;
+}
+
+.badge-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.badge-icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.badge-text {
+  white-space: nowrap;
+}
+
+/* CONTENT */
+.card-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: #fff;
+  z-index: 2;
+}
+
+.card-content h3 {
+  font-size: 20px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 500;
+}
+
+.card-content p {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-top: 15px;
+}
+
+.carousel-card:hover img {
+  transform: scale(1.05);
+  transition: 0.6s;
+}
+
+
+.progress-bar-card {
+  height: 100%;
+  width: 0;
+  background: #656AE3;
+  transition: width 0.2s ease;
+}
+.custom-arrow-btn{
+  width:42px;
+  height:42px;
+  padding:0;
+  border:none;
+  background:transparent !important;
+  box-shadow:none !important;
+  outline:none;
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.custom-arrow-btn:hover{
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+.custom-arrow-btn svg{
+  display:block;
+}
+.press-bg,
+.press-bg img {
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+
+@media (max-width: 768px) {
+   .carousel-wrapper ~ .carousel-progress,
+  .carousel-progress {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+
+@media(max-width:768px){
+
+  .carousel-heading{
+    max-width:335px!important;
+    font-family: 'Instrument Sans', sans-serif !important;
+    font-size:32px;
+    line-height:1.15;
+    margin:0 auto;
+  }
+
+}
+/* BLUR ANIMATION */
+.animate-blur {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(20px);
+  animation: blurFade 1s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.3s; }
+
+@keyframes blurFade {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   MOBILE - Figma Pixel-Perfect (Group 12 & 13 layout: 284px cards, 2-col)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+  .premium-carousel {
+    padding: 60px 0 60px 0;
+  }
+
+  .carousel-inner {
+    padding: 0 20px;
+  }
+
+  /* Heading: Exact Figma — 32px / 500 / #001755 / centered */
+  .carousel-heading {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 50px;
+  line-height:1.2;
+  width:335px!important;
+  font-family: 'Instrument Sans', sans-serif !important;
+}
+  /* Wrapper becomes a 2-column scrollable grid */
+  .carousel-wrapper {
+    margin-left: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 4px;
+  }
+
+  .carousel-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 284px); /* Exact Figma card width */
+    grid-auto-flow: column;
+    gap: 15px; /* Figma gap: 336 - 27 - 284 = 25px outer, ~15px inner */
+    width: max-content;
+  }
+
+  /* Card: Exact Figma height = 380.56px */
+  .carousel-card {
+    flex: none;
+    width: 284px; /* Exact Figma */
+    height: 381px; /* Exact Figma 380.56px rounded */
+    border-radius: 20px;
+    scroll-snap-align: start;
+  }
+
+  /* Progress bar: full width on mobile */
+  .carousel-wrapper ~ .carousel-progress,
+  .carousel-progress {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* Arrows: full width, still right-aligned */
+.custom-arrows-wrap {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 4px;
+    box-sizing: border-box;
+    justify-content: flex-end; /* Pushes arrows to right side per Figma */
+    margin-top: 16px;
+  }
+
+}
+
+/* Hide scrollbar */
+.carousel-wrapper::-webkit-scrollbar { display: none; }
+.carousel-wrapper { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* PARALLAX BASE */
+.carousel-card-bg.parallax {
+  overflow: hidden;
+  position: absolute;
+  inset: 0;
+}
+
+.carousel-card-bg.parallax img {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+}
+
+.science-bg-area {
+  position: relative;
+  z-index: 1;
+}
+
+.science-bg-area::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('https://cdn.shopify.com/s/files/your-bg.png');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+.section-shadow {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.card-badge,
+.card-badge .badge-text,
+.card-badge .badge-icon {
+  color: #ffffff !important;
+}
+</style>
+<section class="science-bg-area">
+
+<section 
+  class="premium-carousel section"
+  style="
+    background-color: {{ section.settings.bg_color }};
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+  "
+>
+  <div class="carousel-inner">
+
+    {% if section.settings.heading != blank %}
+      <div class="carousel-heading-wrap text-{{ section.settings.text_align }}">
+        <h2 class="carousel-heading animate-blur" 
+             style="color: {{ section.settings.text_color }}; margin-bottom: 0;">
+          {{ section.settings.heading }}
+        </h2>
+      </div>
+    {% endif %}
+
+    <div class="carousel-wrapper" id="carousel-{{ section.id }}">
+      <div class="carousel-track">
+
+        {% for block in section.blocks %}
+          <div class="carousel-card">
+
+            <div class="carousel-card-bg {% if block.settings.enable_parallax %}parallax{% endif %}">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | image_url: width: 1500 }}" alt="">
+              {% endif %}
+            </div>
+
+            {% if block.settings.badge_text != blank or block.settings.badge_icon != blank or block.settings.badge_svg != blank %}
+              <div class="card-badge">
+                {% if block.settings.badge_svg != blank %}
+                  <span class="badge-icon">{{ block.settings.badge_svg }}</span>
+                {% elsif block.settings.badge_icon != blank %}
+                  <span class="badge-icon"><img src="{{ block.settings.badge_icon | image_url: width: 40 }}" alt=""></span>
+                {% endif %}
+                {% if block.settings.badge_text != blank %}
+                  <span class="badge-text">{{ block.settings.badge_text }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <div class="card-content animate-blur delay-1">
+              <h3>{{ block.settings.title }}</h3>
+              <div class="card-desc">{{ block.settings.description }}</div>
+            </div>
+
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <!-- PROGRESS BAR -->
+    <!-- PROGRESS BAR -->
+    <div class="carousel-progress">
+      <div class="progress-bar-card" id="progress-{{ section.id }}"></div>
+    </div>
+
+    <!-- ARROWS -->
+    <div class="carousel-arrows">
+      <button class="custom-arrow-btn carousel-prev">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23.1797 30.8344C23.3564 31.0465 23.6717 31.0752 23.8839 30.8984C24.096 30.7216 24.1247 30.4063 23.9479 30.1942L23.5638 30.5143L23.1797 30.8344ZM16.0139 21.4544L15.6298 21.1343C15.4753 21.3197 15.4753 21.5891 15.6298 21.7745L16.0139 21.4544ZM23.9479 12.7146C24.1247 12.5025 24.096 12.1872 23.8839 12.0104C23.6717 11.8337 23.3564 11.8623 23.1797 12.0745L23.5638 12.3945L23.9479 12.7146ZM23.5638 30.5143L23.9479 30.1942L16.398 21.1343L16.0139 21.4544L15.6298 21.7745L23.1797 30.8344L23.5638 30.5143ZM16.0139 21.4544L16.398 21.7745L23.9479 12.7146L23.5638 12.3945L23.1797 12.0745L15.6298 21.1343L16.0139 21.4544ZM21 41.5L21 41C9.9543 41 0.999997 32.0457 0.999998 21L0.499998 21L-2.02253e-06 21C-3.03646e-06 32.598 9.40202 42 21 42L21 41.5ZM0.499998 21L0.999998 21C0.999999 9.95431 9.95431 1 21 1L21 0.500002L21 2.02253e-06C9.40202 1.0086e-06 -1.0086e-06 9.40202 -2.02253e-06 21L0.499998 21ZM21 0.500002L21 1C32.0457 1 41 9.95431 41 21L41.5 21L42 21C42 9.40202 32.598 3.03646e-06 21 2.02253e-06L21 0.500002ZM41.5 21L41 21C41 32.0457 32.0457 41 21 41L21 41.5L21 42C32.598 42 42 32.598 42 21L41.5 21Z" fill="currentColor"/>
+        </svg>
+      </button>
+      <button class="custom-arrow-btn carousel-next">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.8203 11.1656C18.6436 10.9535 18.3283 10.9248 18.1161 11.1016C17.904 11.2784 17.8753 11.5937 18.0521 11.8058L18.4362 11.4857L18.8203 11.1656ZM25.9861 20.5456L26.3702 20.8657C26.5247 20.6803 26.5247 20.4109 26.3702 20.2255L25.9861 20.5456ZM18.0521 29.2854C17.8753 29.4975 17.904 29.8128 18.1161 29.9896C18.3283 30.1663 18.6436 30.1377 18.8203 29.9255L18.4362 29.6055L18.0521 29.2854ZM18.4362 11.4857L18.0521 11.8058L25.602 20.8657L25.9861 20.5456L26.3702 20.2255L18.8203 11.1656L18.4362 11.4857ZM25.9861 20.5456L25.602 20.2255L18.0521 29.2854L18.4362 29.6055L18.8203 29.9255L26.3702 20.8657L25.9861 20.5456ZM21 0.5V1C32.0457 1 41 9.9543 41 21H41.5H42C42 9.40202 32.598 0 21 0V0.5ZM41.5 21H41C41 32.0457 32.0457 41 21 41V41.5V42C32.598 42 42 32.598 42 21H41.5ZM21 41.5V41C9.9543 41 1 32.0457 1 21H0.5H0C0 32.598 9.40202 42 21 42V41.5ZM0.5 21H1C1 9.9543 9.9543 1 21 1V0.5V0C9.40202 0 0 9.40202 0 21H0.5Z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+</section>
+</section>
+
+<script>
+document.addEventListener("scroll", function () {
+  const parallaxItems = document.querySelectorAll(".carousel-card-bg.parallax img");
+  parallaxItems.forEach((img) => {
+    const rect = img.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      let offset = (rect.top - windowHeight / 2) * 0.1;
+      offset = Math.max(Math.min(offset, 30), -30);
+      img.style.transform = `translateY(${offset}px)`;
+    }
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const wrapper  = document.getElementById("carousel-{{ section.id }}");
+  const progress = document.getElementById("progress-{{ section.id }}");
+  const nextBtn  = wrapper.parentElement.querySelector(".carousel-next");
+  const prevBtn  = wrapper.parentElement.querySelector(".carousel-prev");
+  const card     = wrapper.querySelector(".carousel-card");
+
+  function updateProgress() {
+    const scrollWidth = wrapper.scrollWidth - wrapper.clientWidth;
+    const percent = scrollWidth > 0 ? (wrapper.scrollLeft / scrollWidth) * 100 : 0;
+    progress.style.width = percent + "%";
+  }
+
+  wrapper.addEventListener("scroll", updateProgress);
+
+  nextBtn.addEventListener("click", function () {
+    wrapper.scrollBy({ left: card.offsetWidth + 20, behavior: "smooth" });
+  });
+
+  prevBtn.addEventListener("click", function () {
+    wrapper.scrollBy({ left: -(card.offsetWidth + 20), behavior: "smooth" });
+  });
+
+  updateProgress();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Premium Carousel",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (HTML allowed)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left",   "label": "Left"   },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right"  }
+      ],
+      "default": "center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "image_picker", "id": "image",        "label": "Image" },
+        { "type": "checkbox",     "id": "enable_parallax", "label": "Enable Parallax", "default": false },
+        { "type": "text",         "id": "badge_text",   "label": "Badge Text" },
+        { "type": "image_picker", "id": "badge_icon",   "label": "Badge Icon (Image)" },
+        { "type": "textarea",     "id": "badge_svg",    "label": "Badge SVG Code" },
+        { "type": "text",         "id": "title",        "label": "Title" },
+        { "type": "richtext",     "id": "description",  "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Carousel",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

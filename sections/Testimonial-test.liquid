@@ -1,0 +1,1170 @@
+<section 
+  class="rv-section section"
+  style="
+    background-color: {{ section.settings.bg_color }};
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | img_url: 'master' }});
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+  "
+>
+<h2 class="rv-heading">
+  {{ section.settings.heading | newline_to_br }}
+</h2>
+  {% if section.settings.description != blank %}
+  <div class="rv-description">
+    {{ section.settings.description }}
+  </div>
+{% endif %}
+
+  <div class="rv-container">
+
+    <!-- LEFT GRID SLIDER -->
+    <div class="rv-left">
+
+      <div class="rv-slider" id="reviewSlider">
+   {% assign review_blocks = section.blocks | where: "type", "review" %}
+
+{% for block in review_blocks %}
+  {% assign index = forloop.index0 %}
+  {% assign mod = index | modulo: 4 %}
+
+  {% if mod == 0 %}
+    <div class="rv-slide">
+  {% endif %}
+
+  <div class="rv-card">
+    <p>{{ block.settings.text }}</p>
+
+    <div class="rv-user">
+{% if block.settings.image != blank %}
+  <img src="{{ block.settings.image | img_url: '80x80' }}">
+{% endif %}      <div>
+   <span class="rv-name">{{ block.settings.name }}</span>
+<span>{{ block.settings.role }}</span>
+{% if block.settings.enable_review %}
+  <div class="rv-stars">
+    {% for i in (1..5) %}
+      <span>★</span>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+      </div>
+    </div>
+  </div>
+
+  {% assign mod_end = forloop.index | modulo: 4 %}
+
+  {% if mod_end == 0 or forloop.last %}
+    </div>
+  {% endif %}
+
+{% endfor %}
+      </div>
+
+      <!-- DOTS -->
+      <div class="rv-dots" id="reviewDots"></div>
+{% if section.settings.mobile_layout == 'slider' %}
+  <div class="rv-mobile-arrows">
+
+    <button class="rv-mobile-arrow rv-mobile-prev">
+  <svg viewBox="0 0 24 24">
+              <path d="M15 5l-7 7 7 7"></path>
+            </svg>   </button>
+
+    <button class="rv-mobile-arrow rv-mobile-next">
+      <svg viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7"></path>
+            </svg>
+    </button>
+
+  </div>
+{% endif %}
+    </div>
+
+    <!-- RIGHT VIDEO -->
+    <div class="rv-right">
+{% assign video_blocks = section.blocks | where: "type", "video" %}
+
+{% if video_blocks.size > 0 %}
+<div class="rv-video-slider {% if section.settings.mobile_video_layout == 'slider' %}rv-video-mobile-slider{% endif %}" id="videoSlider">
+        {% for block in section.blocks %}
+          {% if block.type == 'video' %}
+            <div class="rv-video-slide">
+              <video src="{{ block.settings.video }}" muted autoplay loop playsinline></video>
+            </div>
+          {% endif %}
+        {% endfor %}
+
+      </div>
+      <button class="rv-arrow prev"><svg viewBox="0 0 24 24">
+              <path d="M15 5l-7 7 7 7"></path>
+            </svg></button>
+      <button class="rv-arrow next"><svg viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7"></path>
+            </svg></button>
+{% if section.settings.mobile_video_layout == 'slider' %}
+  <div class="rv-video-mobile-controls">
+
+    <div class="rv-video-progress">
+      <div class="rv-video-progress-bar"></div>
+    </div>
+
+    <div class="rv-mobile-video-arrows">
+
+      <button class="rv-mobile-video-arrow rv-video-prev">
+
+        <svg viewBox="0 0 24 24">
+          <path d="M15 5l-8 7 8 7"/>
+        </svg>
+
+      </button>
+
+      <button class="rv-mobile-video-arrow rv-video-next">
+
+        <svg viewBox="0 0 24 24">
+          <path d="M8 5l8 7-8 7"/>
+        </svg>
+
+      </button>
+
+    </div>
+
+  </div>
+
+{% endif %}
+</div>
+
+  </div>
+</section>
+
+<style>
+  {% comment %} .rv-stars{
+  display:flex;
+  gap:3px;
+  margin:8px 0 6px;
+} {% endcomment %}
+
+.rv-stars span{
+  color:#FFCD0F;
+  font-size:16px;
+  line-height:1;
+}
+
+  .rv-mobile-arrow svg{
+        width: 20px;
+        height: 20px;
+  stroke:#111;
+  fill:none;
+  stroke-width:2.5;
+
+  display:block;
+
+  flex-shrink:0;
+
+  pointer-events:none;
+    }
+
+.rv-section {
+  padding: 80px 20px 0px;
+}
+
+/* ZIG-ZAG EFFECT */
+.rv-slide .rv-card:nth-child(1),
+.rv-slide .rv-card:nth-child(3) {
+  transform: translateY(-20px);
+}
+
+.rv-slide .rv-card:nth-child(2),
+.rv-slide .rv-card:nth-child(4) {
+  transform: translateY(20px);
+}
+
+/* CENTER HEADING */
+.rv-heading {
+  text-align: center;
+  font-size: 36px;
+  color:#001756;
+  line-height:1.4;
+  margin-bottom: 30px;
+}
+.rv-description{
+  text-align:center;
+
+  max-width:700px;
+
+  margin:0 auto 50px;
+
+  font-size:18px;
+  line-height:1.6;
+
+  color:#4b4b4b;
+}
+
+.rv-container {
+  display: grid;
+  grid-template-columns:1.4fr .7fr;
+  gap: 50px;
+  align-items: center;
+    margin: auto;
+    max-width: 90rem;
+}
+
+/* SLIDER */
+.rv-slider {
+  display: flex;
+}
+
+.rv-left{
+overflow:hidden;
+padding-top:100px;
+padding-bottom:50px;
+
+}
+
+.rv-left:empty{
+  display:none;
+}
+.rv-slide {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+/* CARD */
+.rv-card {
+  border: 1px solid #656AE3;
+  padding:40px;
+  border-radius: 20px;
+}
+
+.rv-user {
+  margin-top: 15px;
+    align-items: flex-start;
+        flex-direction: column;
+}
+
+.rv-name{
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    color:#001755;
+    font-size:20px;
+    display:block;
+}
+
+.rv-user img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* DOTS */
+.rv-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  gap: 8px;
+}
+
+.rv-dots span {
+  width: 25px;
+  height: 4px;
+  background: #ccc;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.rv-dots span.active {
+  background: #5a5aff;
+}
+
+/* VIDEO */
+.rv-right {
+  position: relative;
+}
+
+.rv-video-slide {
+  display: none;
+}
+
+.rv-video-slide.active {
+  display: block;
+}
+
+.rv-video-slide video {
+  width: 100%;
+  border-radius: 20px;
+}
+
+/* ARROWS */
+.rv-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: none;
+  width: 40px;
+  justify-content: center;
+          align-items: center;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.rv-arrow svg{
+width: 25px;
+    stroke: #000;
+    fill: none;
+    stroke-width: 2;
+}
+.rv-arrow.prev { left: 10px; }
+.rv-arrow.next { right: 10px; }
+
+.rv-video-mobile-controls{
+display:none;
+}
+
+.rv-left:empty,
+.rv-left.no-reviews{
+  display:none;
+}
+
+@media(min-width:768px){
+.rv-mobile-arrows{
+  display:none;
+}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .rv-section{
+    padding:50px 16px;
+  }
+  .rv-section{
+  overflow:visible;
+  }
+
+   .rv-right{
+  overflow:visible;
+  }
+  .rv-description{
+  font-size:16px;
+  line-height:1.5;
+    text-align: {{ section.settings.mobile_heading_align }};
+  margin-bottom:40px;
+}
+.rv-heading{
+    text-align: {{ section.settings.mobile_heading_align }};
+}
+
+  /* VIDEO TOP */
+  .rv-container{
+    display:flex;
+    flex-direction:column-reverse;
+    gap:30px;
+  }
+
+  .rv-right{
+    width:100%;
+  }
+
+  .rv-video-slide video{
+    border-radius:24px;
+  }
+
+  /* TEXT ALIGN */
+  .rv-card{
+    text-align:{{ section.settings.mobile_text_align }};
+  }
+
+  .rv-user{
+
+    align-items:
+    {% if section.settings.mobile_text_align == 'center' %}
+      center
+    {% elsif section.settings.mobile_text_align == 'right' %}
+      flex-end
+    {% else %}
+      flex-start
+    {% endif %};
+
+  }
+
+  /* =========================
+   MOBILE VIDEO SINGLE
+========================= */
+
+{% if section.settings.mobile_video_layout == 'single' %}
+
+.rv-video-slider{
+  overflow:hidden;
+}
+
+.rv-video-slide{
+  display:none;
+}
+
+.rv-video-slide.active{
+  display:block;
+}
+
+.rv-video-slide video{
+  width:100%;
+  border-radius:24px;
+}
+
+.rv-arrow{
+  display:flex !important;
+}
+
+{% endif %}
+
+  /* VARIATION 1 GRID */
+  {% if section.settings.mobile_layout == 'grid' %}
+
+    .rv-left{
+      padding-top:0;
+      padding-bottom:0;
+    }
+
+    .rv-user img{
+    margin:auto;
+    }
+    .rv-slider{
+      display:block;
+      transform:none !important;
+    }
+
+    .rv-slide{
+      min-width:100%;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:20px;
+    }
+
+    .rv-slide .rv-card:nth-child(1),
+    .rv-slide .rv-card:nth-child(2),
+    .rv-slide .rv-card:nth-child(3),
+    .rv-slide .rv-card:nth-child(4){
+      transform:none;
+    }
+
+    .rv-card{
+      padding:30px 24px;
+    }
+
+    .rv-dots{
+      display:none;
+    }
+
+  {% endif %}
+
+  /* VARIATION 2 SLIDER */
+  {% if section.settings.mobile_layout == 'slider' %}
+
+    .rv-left{
+      overflow:hidden;
+      padding:0;
+    }
+
+ {% if section.settings.mobile_video_layout == 'slider' %}
+.rv-arrow{
+  display:none;
+}
+{% endif %}
+
+.rv-slider{
+  display:flex;
+  width:100%;
+  transition:transform .4s ease;
+  will-change:transform;
+}
+
+.rv-slider *{
+  min-width:0;
+}
+
+.rv-slide{
+  min-width:100%;
+  width:100%;
+  flex:0 0 100%;
+  display:flex;
+  overflow:hidden;
+}
+
+.rv-slide .rv-card{
+  width:100%;
+  flex:0 0 100%;
+  box-sizing:border-box;
+  transform:none !important;
+}
+
+ .rv-section,
+  .rv-container,
+  .rv-left,
+  .rv-slider,
+  .rv-slide,
+  .rv-card{
+    max-width:100%;
+  }
+  .rv-slide .rv-card:nth-child(1),
+  .rv-slide .rv-card:nth-child(2),
+  .rv-slide .rv-card:nth-child(3),
+  .rv-slide .rv-card:nth-child(4){
+    transform:none !important;
+  }
+
+
+.rv-left{
+  width:100%;
+  overflow:hidden;
+}
+.rv-card{
+  overflow:hidden;
+  word-break:break-word;
+}
+
+
+    .rv-card{
+      padding:28px 24px;
+      border-radius:18px;
+    }
+
+    .rv-dots{
+      display:none;
+    }
+
+    /* MOBILE ARROWS */
+    .rv-mobile-arrows{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      margin-top:30px;
+       position:relative;
+  z-index:1;
+  transform:translateZ(0);
+  -webkit-transform:translateZ(0);
+    }
+
+   
+    .rv-mobile-arrow{
+  width:52px;
+  height:52px;
+  min-width:52px;
+  min-height:52px;
+
+  border-radius:50%;
+  border:1px solid #222;
+
+  background:#fff; 
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  -webkit-appearance:none;
+  appearance:none;
+
+  flex-shrink:0;
+
+  position:relative;
+  z-index:20;
+}
+
+    /* =========================
+   MOBILE VIDEO SLIDER
+========================= */
+
+.rv-video-mobile-slider{
+  display:flex;
+
+  overflow-x:auto;
+
+  scroll-snap-type:x mandatory;
+
+  gap:18px;
+
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+
+.rv-video-mobile-slider::-webkit-scrollbar{
+  display:none;
+}
+
+.rv-video-mobile-slider .rv-video-slide{
+  display:block !important;
+
+  min-width:78%;
+
+  flex:0 0 78%;
+
+  scroll-snap-align:start;
+}
+
+.rv-video-mobile-slider .rv-video-slide video{
+  width:100%;
+  height:auto;
+
+  border-radius:24px;
+
+  object-fit:cover;
+}
+
+/* CONTROLS */
+.rv-video-mobile-controls{
+  margin-top:50px;
+  display:block;
+}
+
+/* PROGRESS */
+.rv-video-progress{
+  width:100%;
+  height:2px;
+
+  background:rgba(0,0,0,.12);
+
+  overflow:hidden;
+}
+
+.rv-video-progress-bar{
+  width:0%;
+  height:100%;
+
+  background:#7d6554;
+
+  transition:width .35s ease;
+}
+
+/* ARROWS */
+.rv-mobile-video-arrows{
+  display:flex;
+  justify-content:flex-end;
+
+  gap:14px;
+
+  margin-top:20px;
+}
+
+.rv-mobile-video-arrow{
+  width:52px;
+  height:52px;
+
+  border-radius:50%;
+
+  border:1px solid #222;
+
+  background:transparent;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+}
+
+.rv-mobile-video-arrow svg{
+  width:20px;
+  height:20px;
+    stroke: #000;
+    fill: none;
+    stroke-width: 2;
+}
+
+.rv-video-mobile-slider .rv-video-slide{
+  display:block !important;
+}
+  {% endif %}
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+ let slider = document.getElementById("reviewSlider");
+let slides = slider.querySelectorAll(".rv-slide"); // FIXED
+let dotsContainer = document.getElementById("reviewDots");
+
+let current = 0;
+let total = slides.length;
+
+/* NO REVIEWS */
+if(total === 0){
+
+  const reviewSection =
+    document.querySelector(".rv-left");
+
+  if(reviewSection){
+    reviewSection.classList.add("no-reviews");
+  }
+
+}
+
+if (
+  window.innerWidth <= 768 &&
+  "{{ section.settings.mobile_layout }}" === "slider"
+) {
+
+  const allCards = slider.querySelectorAll(".rv-card");
+
+  slider.innerHTML = "";
+
+  allCards.forEach(card => {
+
+    const singleSlide = document.createElement("div");
+    singleSlide.classList.add("rv-slide");
+
+    singleSlide.appendChild(card);
+
+    slider.appendChild(singleSlide);
+
+  });
+
+  slides = slider.querySelectorAll(".rv-slide");
+  total = slides.length;
+
+}
+
+/* ONLY RUN REVIEW SLIDER IF REVIEWS EXIST */
+if(total > 0){
+
+// Create dots
+slides.forEach((_, i) => {  let dot = document.createElement("span");
+  if (i === 0) dot.classList.add("active");
+
+  dot.addEventListener("click", () => {
+    current = i;
+    updateSlider();
+  });
+
+  dotsContainer.appendChild(dot);
+});
+
+function updateSlider() {
+
+  if(window.innerWidth <= 768 &&
+     "{{ section.settings.mobile_layout }}" === "slider"){
+
+    slider.style.transform =
+      `translateX(-${current * 100}%)`;
+
+  } else {
+
+    slider.style.transform =
+      `translateX(-${current * 100}%)`;
+
+  }
+
+  document.querySelectorAll(".rv-dots span").forEach((d, i) => {
+    d.classList.toggle("active", i === current);
+  });
+
+}
+
+// Auto slide
+setInterval(() => {
+  current = (current + 1) % total;
+  updateSlider();
+}, 5000);
+
+slides[0].classList.add("active");
+
+updateSlider();
+
+window.addEventListener("resize", () => {
+  updateSlider();
+});
+}
+
+/* MOBILE REVIEW SLIDER ARROWS */
+const mobilePrev = document.querySelector(".rv-mobile-prev");
+const mobileNext = document.querySelector(".rv-mobile-next");
+
+if (mobilePrev && mobileNext) {
+
+  mobileNext.addEventListener("click", () => {
+
+    current++;
+
+    if(current >= total){
+      current = 0;
+    }
+
+    updateSlider();
+
+  });
+
+  mobilePrev.addEventListener("click", () => {
+
+    current--;
+
+    if(current < 0){
+      current = total - 1;
+    }
+
+    updateSlider();
+
+  });
+
+}
+
+/* =========================
+   MOBILE VIDEO SLIDER
+========================= */
+const mobileVideoLayout =
+  "{{ section.settings.mobile_video_layout }}";
+  
+const mobileVideoSlider =
+  document.querySelector(".rv-video-mobile-slider");
+
+if(
+  mobileVideoSlider &&
+  mobileVideoLayout === "slider"
+){
+
+  const videoSlides =
+    [...mobileVideoSlider.querySelectorAll(".rv-video-slide")];
+
+  const nextVideo =
+    document.querySelector(".rv-video-next");
+
+  const prevVideo =
+    document.querySelector(".rv-video-prev");
+
+  const progressBar =
+    document.querySelector(".rv-video-progress-bar");
+
+  let currentVideo = 0;
+
+  function updateVideoProgress(){
+
+    const progress =
+      ((currentVideo + 1) / videoSlides.length) * 100;
+
+    progressBar.style.width =
+      progress + "%";
+
+  }
+
+  function goToVideo(index){
+
+    const slideWidth =
+      videoSlides[0].getBoundingClientRect().width + 18;
+
+    mobileVideoSlider.scrollTo({
+      left: slideWidth * index,
+      behavior:"smooth"
+    });
+
+    currentVideo = index;
+
+    updateVideoProgress();
+
+  }
+
+  /* NEXT */
+  if(nextVideo){
+
+    nextVideo.addEventListener("click", function(){
+
+      if(currentVideo < videoSlides.length - 1){
+        currentVideo++;
+      } else {
+        currentVideo = 0;
+      }
+
+      goToVideo(currentVideo);
+
+    });
+
+  }
+
+  /* PREV */
+  if(prevVideo){
+
+    prevVideo.addEventListener("click", function(){
+
+      if(currentVideo > 0){
+        currentVideo--;
+      } else {
+        currentVideo = videoSlides.length - 1;
+      }
+
+      goToVideo(currentVideo);
+
+    });
+
+  }
+
+  /* SWIPE */
+  mobileVideoSlider.addEventListener("scroll", function(){
+
+    const slideWidth =
+      videoSlides[0].getBoundingClientRect().width + 18;
+
+    currentVideo =
+      Math.round(mobileVideoSlider.scrollLeft / slideWidth);
+
+    updateVideoProgress();
+
+  });
+
+  updateVideoProgress();
+
+}
+
+/* =========================
+   DESKTOP VIDEO
+========================= */
+
+if(window.innerWidth > 768){
+
+  let videoSlides =
+    document.querySelectorAll(".rv-video-slide");
+
+  let vIndex = 0;
+
+  function showVideo(i){
+
+    videoSlides.forEach(s =>
+      s.classList.remove("active")
+    );
+
+    if(videoSlides[i]){
+      videoSlides[i].classList.add("active");
+    }
+
+  }
+
+  if(videoSlides.length){
+
+    showVideo(0);
+
+    const next =
+      document.querySelector(".next");
+
+    const prev =
+      document.querySelector(".prev");
+
+    if(next){
+
+      next.onclick = () => {
+
+        vIndex =
+          (vIndex + 1) % videoSlides.length;
+
+        showVideo(vIndex);
+
+      };
+
+    }
+
+    if(prev){
+
+      prev.onclick = () => {
+
+        vIndex =
+          (vIndex - 1 + videoSlides.length) %
+          videoSlides.length;
+
+        showVideo(vIndex);
+
+      };
+
+    }
+
+  }
+
+}
+
+/* DESKTOP VIDEO */
+else{
+
+  let videoSlides =
+    document.querySelectorAll(".rv-video-slide");
+
+  let vIndex = 0;
+
+  function showVideo(i){
+
+    videoSlides.forEach(s =>
+      s.classList.remove("active")
+    );
+
+    videoSlides[i].classList.add("active");
+
+  }
+
+  if(videoSlides.length){
+
+    showVideo(0);
+
+    const next =
+      document.querySelector(".next");
+
+    const prev =
+      document.querySelector(".prev");
+
+    if(next){
+      next.onclick = () => {
+        vIndex = (vIndex + 1) % videoSlides.length;
+        showVideo(vIndex);
+      };
+    }
+
+    if(prev){
+      prev.onclick = () => {
+        vIndex = (vIndex - 1 + videoSlides.length) % videoSlides.length;
+        showVideo(vIndex);
+      };
+    }
+
+  }
+
+}
+});
+
+
+</script>
+{% endif %}
+{% schema %}
+{
+  "name": "Review Video Slider",
+  "settings": [
+{
+  "type": "textarea",
+  "id": "heading",
+  "default": "Real Patients,\nReal Results",
+  "label": "Heading"
+},
+{
+  "type": "textarea",
+  "id": "description",
+  "label": "Description",
+  "default": "Add your section description here."
+},
+    {
+  "type": "color",
+  "id": "bg_color",
+  "label": "Background Color",
+  "default": "#f6f7fb"
+},
+{
+  "type": "image_picker",
+  "id": "bg_image",
+  "label": "Background Image"
+},
+{
+  "type": "select",
+  "id": "mobile_video_layout",
+  "label": "Mobile Video Layout",
+  "options": [
+    {
+      "value": "single",
+      "label": "Variation 1 - Single Video"
+    },
+    {
+      "value": "slider",
+      "label": "Variation 2 - Slider with progress bar"
+    }
+  ],
+  "default": "single"
+},
+{
+  "type": "select",
+  "id": "mobile_layout",
+  "label": "Mobile Review Card Layout",
+  "options": [
+    {
+      "value": "grid",
+      "label": "Variation 1 - Grid"
+    },
+    {
+      "value": "slider",
+      "label": "Variation 2 - Slider"
+    }
+  ],
+  "default": "grid"
+},
+{
+  "type": "select",
+  "id": "mobile_heading_align",
+  "label": "Mobile Heading Alignment",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "center"
+},
+{
+  "type": "select",
+  "id": "mobile_text_align",
+  "label": "Mobile Text Alignment",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "center"
+}
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "role", "label": "Role" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+  "type": "checkbox",
+  "id": "enable_review",
+  "label": "Enable Review Stars",
+  "default": true
+}
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        { "type": "url", "id": "video", "label": "Video URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review Test "
+    }
+  ]
+}
+{% endschema %}
