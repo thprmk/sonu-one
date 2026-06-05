@@ -1,0 +1,259 @@
+
+{{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' | stylesheet_tag }}
+{{ 'sonu-product-section.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'sonu-product-section.js' | asset_url }}" defer="defer"></script>
+
+{%- assign product = all_products[section.settings.product] -%}
+
+<section class="product-section">
+  <div class="page-width">
+    <div class="product-grid">
+      <!-- LEFT: Product Images -->
+      <div class="product-gallery">
+        <div class="main-image">
+          {% if product.selected_or_first_available_variant.featured_image %}
+            <img src="{{ product.selected_or_first_available_variant.featured_image | img_url: 'master' }}" 
+                 alt="{{ product.title }}"
+                 id="ProductMainImage"
+                 loading="lazy">
+          {% elsif product.featured_image %}
+            <img src="{{ product.featured_image | img_url: 'master' }}" 
+                 alt="{{ product.title }}"
+                 id="ProductMainImage"
+                 loading="lazy">
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+        
+        {% if product.images.size > 1 %}
+          <div class="thumbnail-list">
+            {% for image in product.images limit: 4 %}
+              <div class="thumbnail-item {% if forloop.first %}active{% endif %}" data-image="{{ image.src | img_url: 'master' }}">
+                <img src="{{ image.src | img_url: '150x150' }}" alt="{{ product.title }}" loading="lazy">
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- RIGHT: Product Info -->
+      <div class="product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+        
+        <div class="product-description">
+          {{ product.description }}
+        </div>
+        
+        <div class="product-price">
+          <span class="current-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+          {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+            <span class="compare-price">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+          {% endif %}
+        </div>
+        
+        {% if section.settings.fsa_hsa_text != blank %}
+          <div class="fsa-hsa-info">
+            <span class="fsa-badge">{{ section.settings.fsa_hsa_text }}</span>
+          </div>
+        {% endif %}
+        
+        <!-- COLOR & QUANTITY -->
+<div class="options-row">
+
+  <!-- Color -->
+  <div class="color-option-box">
+
+    <div class="option-label">Color</div>
+
+    <div class="color-swatches" data-option-index="{{ color_option_index }}">
+      {% if color_option_index != false %}
+
+        {% assign shown_colors = '' %}
+
+        {% for variant in product.variants %}
+          {% assign color_value = variant.options[color_option_index] %}
+
+          {% unless shown_colors contains color_value %}
+            {% assign shown_colors = shown_colors | append: color_value | append: ',' %}
+
+            <div
+              class="color-swatch {% if variant.id == product.selected_or_first_available_variant.id %}active{% endif %}"
+              data-value="{{ color_value }}"
+              data-variant-id="{{ variant.id }}"
+              data-price="{{ variant.price | money }}"
+              data-compare-price="{{ variant.compare_at_price | money }}"
+              data-image="{{ variant.featured_image | default: product.featured_image | img_url: 'master' }}"
+              data-available="{{ variant.available }}"
+            >
+              <span class="swatch-color" style="background:#43345B;"></span>
+            </div>
+
+          {% endunless %}
+        {% endfor %}
+
+      {% else %}
+
+        <!-- Default Single Color -->
+        <div class="color-swatch active">
+          <span
+            class="swatch-color"
+            style="background:#4b3b8f;"
+          ></span>
+        </div>
+
+      {% endif %}
+    </div>
+
+  </div>
+
+  <!-- Quantity -->
+  <div class="quantity-option-box">
+
+    <div class="option-label">Quantity</div>
+
+    <div class="quantity-selector">
+
+      <button
+        type="button"
+        class="quantity-btn minus"
+        aria-label="Decrease quantity"
+      >
+        âˆ’
+      </button>
+
+      <span class="quantity-number">1</span>
+
+      <button
+        type="button"
+        class="quantity-btn plus"
+        aria-label="Increase quantity"
+      >
+        +
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+        
+        <!-- Stock Status -->
+        <div class="stock-status">
+          {% if product.selected_or_first_available_variant.available %}
+            <span class="in-stock">In stock, ready to ship</span>
+          {% else %}
+            <span class="out-of-stock">âœ— Out of stock</span>
+          {% endif %}
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button type="button" 
+                  class="btn btn-primary buy-now" 
+                  data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                  {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+            {{ section.settings.buy_now_text | default: 'BUY NOW' }}
+          </button>
+          <button type="button" class="btn btn-secondary try-risk-free">
+            {{ section.settings.try_free_text | default: 'TRY RISK FREE FOR 45 DAYS' }}
+          </button>
+        </div>
+        
+        <!-- Features List -->
+        {% if section.settings.feature_heading != blank %}
+          <div class="features-list">
+            <h3 class="features-heading">{{ section.settings.feature_heading }}</h3>
+            <ul>
+              {% if section.settings.feature_1 != blank %}
+                <li>{{ section.settings.feature_1 }}</li>
+              {% endif %}
+              {% if section.settings.feature_2 != blank %}
+                <li>{{ section.settings.feature_2 }}</li>
+              {% endif %}
+              {% if section.settings.feature_3 != blank %}
+                <li>{{ section.settings.feature_3 }}</li>
+              {% endif %}
+              {% if section.settings.feature_4 != blank %}
+                <li>{{ section.settings.feature_4 }}</li>
+              {% endif %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+
+{% schema %}
+{
+  "name": "Product Section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product",
+      "info": "Choose the product to display"
+    },
+    {
+      "type": "text",
+      "id": "fsa_hsa_text",
+      "label": "FSA/HSA Badge Text",
+      "default": "FSA/HSA Eligible"
+    },
+    {
+      "type": "text",
+      "id": "buy_now_text",
+      "label": "Buy Now Button Text",
+      "default": "BUY NOW"
+    },
+    {
+      "type": "text",
+      "id": "try_free_text",
+      "label": "Try Risk Free Button Text",
+      "default": "TRY RISK FREE FOR 45 DAYS"
+    },
+    {
+      "type": "header",
+      "content": "Features List"
+    },
+    {
+      "type": "text",
+      "id": "feature_heading",
+      "label": "Features Heading",
+      "default": "Can't Sleep?"
+    },
+    {
+      "type": "text",
+      "id": "feature_1",
+      "label": "Feature 1",
+      "default": "Drug-free solution"
+    },
+    {
+      "type": "text",
+      "id": "feature_2",
+      "label": "Feature 2",
+      "default": "Acoustic resonance therapy"
+    },
+    {
+      "type": "text",
+      "id": "feature_3",
+      "label": "Feature 3",
+      "default": "Clinically tested"
+    },
+    {
+      "type": "text",
+      "id": "feature_4",
+      "label": "Feature 4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Section",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

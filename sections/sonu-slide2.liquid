@@ -1,0 +1,263 @@
+<section class="sonu-therapy-mobile">
+  <div class="sonu-therapy-mobile-container">
+    
+    <h2 class="sonu-therapy-mobile-heading">
+      {% if section.settings.heading contains "Your Nose" %}
+        {{ section.settings.heading | replace: "Your Nose", "<span class='sonu-serif-italic'>Your Nose</span>" }}
+      {% else %}
+        {{ section.settings.heading }}
+      {% endif %}
+    </h2>
+
+    <div class="sonu-therapy-mobile-grid">
+      {% for block in section.blocks %}
+        <div class="sonu-therapy-mobile-card" {{ block.shopify_attributes }}>
+
+          {% if block.settings.image %}
+            <div class="sonu-therapy-image-wrapper">
+              <img
+                src="{{ block.settings.image | image_url: width: 1000 }}"
+                alt="{{ block.settings.title }}"
+                class="sonu-therapy-mobile-image"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+
+          <div class="sonu-therapy-mobile-content">
+            <h3 class="sonu-therapy-mobile-title">
+              {{ block.settings.title }}
+            </h3>
+
+            <div class="sonu-therapy-mobile-description">
+              {{ block.settings.description }}
+            </div>
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.video_link_text != blank %}
+      <div class="sonu-therapy-action-wrapper">
+        <a href="{{ section.settings.video_link_url | default: '#' }}" class="sonu-therapy-film-btn">
+          {{ section.settings.video_link_text }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+/* Base Reset and Hidden States */
+.sonu-therapy-mobile-card {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all .8s ease;
+}
+
+.sonu-therapy-mobile-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sonu-therapy-mobile {
+  display: none;
+}
+
+/* Mobile Layout Activation */
+@media screen and (max-width: 768px) {
+  .sonu-therapy-mobile {
+    display: block;
+    padding: 40px 20px;
+    background: #ffffff;
+  }
+}
+
+.sonu-therapy-mobile-container {
+  max-width: 336px;
+  margin: 0 auto;
+}
+
+/* Main Section Heading Box Style */
+.sonu-therapy-mobile-heading {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 39px;
+  text-align: center;
+  color: #3D1B03;
+  margin: 0 auto 34px;
+  max-width: 320px;
+}
+
+/* Inline styling for "Your Nose" phrase inside the heading */
+.sonu-therapy-mobile-heading .sonu-serif-italic {
+  display: block; /* Forces it to drop to its own line just like the Figma mockup */
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 48px;
+  color: #3D1B03;
+  margin-top: 4px;
+}
+
+.sonu-therapy-mobile-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.sonu-therapy-image-wrapper {
+  width: 100%;
+  height: 252px;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #000000;
+}
+
+.sonu-therapy-mobile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sonu-therapy-mobile-content {
+  padding: 24px 0 0 0; 
+  text-align: left;
+}
+
+.sonu-therapy-mobile-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #3D1B03;
+  margin: 0 0 12px 0;
+}
+
+.sonu-therapy-mobile-description {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #1E1E1E;
+  max-width: 297px;
+}
+
+.sonu-therapy-action-wrapper {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.sonu-therapy-film-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  width: 297px;
+  height: 70px;
+  background: #000000;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 31px;
+  
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+  padding: 0 20px;
+  transition: background 0.3s ease;
+}
+
+.sonu-therapy-film-btn:hover {
+  background: #1a1a1a;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const cards = document.querySelectorAll('.sonu-therapy-mobile-card');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  cards.forEach(card => {
+    observer.observe(card);
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Sonu Therapy Mobile",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Personalized Sound Therapy precisely tailored to your anatomy so you can breathe through Your Nose"
+    },
+    {
+      "type": "text",
+      "id": "video_link_text",
+      "label": "Video Button Text",
+      "default": "Watch the Acoustic Resonance Therapy Film"
+    },
+    {
+      "type": "url",
+      "id": "video_link_url",
+      "label": "Video Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sonu Therapy Mobile"
+    }
+  ]
+}
+{% endschema %}

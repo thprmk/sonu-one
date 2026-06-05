@@ -1,0 +1,521 @@
+{% comment %}
+  Tech Specifications Section 
+{% endcomment %}
+
+<section class="tech-specs section"
+  style="
+    background-color: {{ section.settings.bg_color }};
+    {% if section.settings.bg_image != blank %}
+      background-image:url('{{ section.settings.bg_image | image_url: width: 2400 }}');
+    {% endif %}
+  ">
+
+  <div class="page-width">
+
+    <div class="tech-grid">
+
+      <!-- LEFT IMAGE -->
+      <div class="tech-left animate-blur">
+
+    {% if section.settings.left_image != blank %}
+  <img
+    src="{{ section.settings.left_image | image_url: width: 1800 }}"
+    alt=""
+    class="tech-image"
+    loading="lazy"
+  >
+{% endif %}
+
+
+      </div>
+
+      <!-- RIGHT CONTENT -->
+    <div class="tech-right">
+
+        <!-- HEADING -->
+        {% if section.settings.heading != blank %}
+
+          {% assign formatted_heading = section.settings.heading
+            | replace: '[[', '<span class="highlight">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+
+          <h2 class="tech-heading animate-blur delay-1">
+            {{ formatted_heading }}
+          </h2>
+
+        {% endif %}
+
+        <!-- SPEC GRID -->
+        <div class="tech-specs-grid">
+
+          {% for block in section.blocks %}
+
+            <div class="tech-item animate-blur delay-{{ forloop.index }}">
+
+              <!-- TOP -->
+              <div class="tech-item-top">
+
+                <!-- ICON -->
+                {% if block.settings.icon_svg != blank
+                  or block.settings.icon_image != blank %}
+
+                  <div class="tech-icon">
+
+                    {% if block.settings.icon_svg != blank %}
+
+                      {{ block.settings.icon_svg }}
+
+                    {% elsif block.settings.icon_image != blank %}
+
+                      <img
+                        src="{{ block.settings.icon_image | image_url: width: 100 }}"
+                        alt=""
+                        loading="lazy"
+                      >
+
+                    {% endif %}
+
+                  </div>
+
+                {% endif %}
+
+                <!-- TITLE -->
+                <h3 class="tech-item-heading">
+                  {{ block.settings.heading }}
+                </h3>
+
+              </div>
+
+              <!-- TEXT -->
+              <div class="tech-item-text">
+                {{ block.settings.text }}
+              </div>
+
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+    </div>
+      {% if section.settings.note_text != blank %}
+        <div class="tech-note">
+          {{ section.settings.note_text }}
+        </div>
+      {% endif %}
+
+  </div>
+
+</section>
+
+<style>
+
+/* SECTION */
+.tech-specs {
+  position: relative;
+  padding: 90px 0;
+  background-size: cover !important;
+  background-position: center;
+  background-repeat: no-repeat !important;
+border-radius:0px 0px 100px 100px;
+  overflow: hidden;
+}
+
+.tech-note{
+  grid-column:1;
+  margin-top:24px;
+  color:#fff;
+  font-size:14px;
+  line-height:1.7;
+  opacity:.85;
+  max-width:520px;
+}
+.tech-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+    }
+
+        .tech-icon img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+    }
+@media(max-width:768px){
+
+  .tech-specs {
+
+    {% if section.settings.mobile_bg_image != blank %}
+      background-image:url('{{ section.settings.mobile_bg_image | image_url: width: 1200 }}') !important;
+    {% endif %}
+
+    background-size: cover;
+    background-position: center;
+    border-radius:0px;
+}
+
+.tech-note{
+  grid-column:1/-1;
+  margin-top:40px!important;
+  text-align:left;
+  font-size:12px;
+  max-width:100%;
+}
+
+}
+/* OVERLAY */
+.tech-specs::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }});
+
+  z-index: 1;
+}
+
+/* CONTAINER */
+.tech-specs .page-width {
+  position: relative;
+  z-index: 2;
+}
+
+/* GRID */
+.tech-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+
+  gap: 80px;
+
+  align-items: start;
+}
+
+/* LEFT */
+.tech-left {
+  position: relative;
+}
+
+.tech-image {
+  width: 100%;
+  display: block;
+}
+
+/* RIGHT */
+.tech-right {
+  color: {{ section.settings.text_color }};
+}
+
+/* HEADING */
+.tech-heading {
+  font-size: 56px;
+  line-height: 1.08;
+
+  letter-spacing: -2px;
+
+  font-weight: 400;
+
+  margin-bottom: 50px;
+}
+
+/* [[TEXT]] */
+.tech-heading .highlight {
+  font-family: "Times New Roman", serif;
+  font-style: italic;
+}
+
+/* GRID */
+.tech-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 40px 50px;
+}
+
+/* ITEM */
+.tech-item {
+  position: relative;
+}
+
+/* TOP */
+.tech-item-top {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+}
+
+/* ICON */
+.tech-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  flex-shrink: 0;
+}
+
+.tech-icon svg {
+  width: 22px;
+  height: 22px;
+
+  fill: currentColor;
+}
+
+.tech-icon img {
+  width: 18px;
+  height: 18px;
+
+  object-fit: contain;
+}
+
+/* TITLE */
+.tech-item-heading {
+  font-size: 26px;
+  line-height: 1.3;
+
+  font-weight: 400;
+
+  margin: 0;
+}
+
+/* TEXT */
+.tech-item-text {
+  font-size: 18px;
+  line-height: 1.8;
+
+  opacity: .88;
+}
+
+.tech-item-text ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.tech-item-text li {
+  margin-bottom: 8px;
+}
+
+/* =========================
+   LOAD ANIMATION
+========================= */
+
+.animate-blur {
+  opacity: 0;
+
+  filter: blur(10px);
+
+  transform: translateY(20px);
+
+  animation: blurFade 1s ease forwards;
+}
+
+.delay-1 { animation-delay: .1s; }
+.delay-2 { animation-delay: .2s; }
+.delay-3 { animation-delay: .3s; }
+.delay-4 { animation-delay: .4s; }
+.delay-5 { animation-delay: .5s; }
+.delay-6 { animation-delay: .6s; }
+
+@keyframes blurFade {
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:1100px){
+
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .tech-left {
+    max-width: 720px;
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .tech-specs {
+    padding: 70px 0;
+  }
+
+  .tech-grid {
+    gap: 40px;
+  }
+
+  .tech-heading {
+    font-size: 36px;
+text-align:center;
+    letter-spacing: -1px;
+
+    margin-bottom: 36px;
+  }
+
+  .tech-specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .tech-item-heading {
+    font-size: 18px;
+  }
+
+  .tech-item-text {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+}
+
+
+@media (max-width: 768px) {
+  .tech-right {
+    margin-top:490px !important;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Tech Specifications",
+  "settings": [
+
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (Use [[text]] for serif italic)",
+      "default": "Tech Specifications"
+    },
+    {
+  "type": "textarea",
+  "id": "note_text",
+  "label": "Bottom Note"
+},
+
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Image"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+  "type": "image_picker",
+  "id": "mobile_bg_image",
+  "label": "Mobile Background Image"
+},
+
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#4a235e"
+    },
+
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 20
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    }
+
+  ],
+
+  "blocks": [
+
+    {
+      "type": "spec",
+      "name": "Specification",
+      "settings": [
+
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "SVG Icon Code"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "What's Included"
+        },
+
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+
+      ]
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Tech Specifications",
+      "blocks": [
+        {
+          "type": "spec"
+        },
+        {
+          "type": "spec"
+        },
+        {
+          "type": "spec"
+        },
+        {
+          "type": "spec"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

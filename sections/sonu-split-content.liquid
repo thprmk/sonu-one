@@ -1,0 +1,415 @@
+<style>
+
+/* =========================
+   SECTION
+   ========================= */
+
+.split-content{
+  padding:120px 0;
+  background:#EAF3FD;
+}
+
+.page-width{
+  max-width:1700px;
+  margin:0 auto;
+  padding:0 80px;
+}
+
+/* =========================
+   DESKTOP
+   ========================= */
+
+.split-grid{
+  display:grid;
+  grid-template-columns:minmax(500px,650px) minmax(450px,580px);
+  justify-content:space-between;
+  align-items:start;
+  gap:100px;
+}
+
+/* LEFT */
+
+.split-left{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  text-align:left;
+}
+
+.small-heading{
+  font-family:'Instrument Sans',sans-serif !important;
+  font-size:24px !important;
+  line-height:29px !important;
+  font-weight:500 !important;
+  text-transform:uppercase !important;
+  color:#000 !important;
+  margin:0 0 30px !important;
+}
+
+.main-heading{
+  font-family:'Instrument Sans',sans-serif !important;
+  font-size:72px !important;
+  line-height:86px !important;
+  font-weight:500 !important;
+  color:#001755 !important;
+
+  max-width:650px !important;
+  margin:0 0 40px !important;
+
+  text-align:left !important;
+}
+
+.main-heading .highlight{
+  font-family:'pp-editorial','Times New Roman',serif !important;
+  font-style:italic !important;
+  font-weight:400 !important;
+}
+
+/* Powered by AI */
+
+.subheading{
+  font-family:'Instrument Sans',sans-serif !important;
+  font-size:28px !important;
+  line-height:36px !important;
+  font-weight:400 !important;
+  color:#001755 !important;
+
+  margin:0 !important;
+  text-align:left !important;
+}
+
+.subheading .highlight{
+  font-family:'pp-editorial','Times New Roman',serif !important;
+  font-style:italic !important;
+  font-weight:400 !important;
+  font-size:36px !important;
+  line-height:42px !important;
+}
+
+/* RIGHT */
+
+.split-right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+/* DESCRIPTION */
+
+.description,
+.description p{
+  font-family:'Instrument Sans',sans-serif !important;
+  font-size:24px !important;
+  line-height:34px !important;
+  font-weight:400 !important;
+  color:#000 !important;
+
+  text-align:left !important;
+
+  max-width:580px !important;
+  margin:0 0 70px !important;
+}
+
+/* FEATURES */
+
+.features{
+  display:flex;
+  align-items:flex-start;
+  gap:60px;
+
+  width:100%;
+  max-width:none;
+  margin:0;
+}
+
+.feature-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.feature-item .icon{
+  width:70px !important;
+  height:70px !important;
+  margin-bottom:16px;
+}
+
+.feature-item .icon svg,
+.feature-item .icon img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+}
+
+.feature-item p{
+  font-family:'Instrument Sans',sans-serif !important;
+  font-size:24px !important;
+  line-height:29px !important;
+  font-weight:500 !important;
+  color:#000 !important;
+  margin:0 !important;
+}
+
+/* =========================
+   BLUR ANIMATION
+   ========================= */
+
+.animate-blur{
+  opacity:0;
+  filter:blur(10px);
+  transform:translateY(20px);
+  animation:blurFade 1s ease forwards;
+}
+
+.delay-1{
+  animation-delay:.2s;
+}
+
+@keyframes blurFade{
+  to{
+    opacity:1;
+    filter:blur(0);
+    transform:translateY(0);
+  }
+}
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width:1200px){
+
+  .split-grid{
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+  }
+
+  .main-heading{
+    font-size:58px !important;
+    line-height:68px !important;
+  }
+
+  .description,
+  .description p{
+    font-size:20px !important;
+    line-height:30px !important;
+  }
+
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width:768px){
+
+  .split-content{
+    padding:60px 20px;
+  }
+
+  .page-width{
+    padding:0;
+  }
+
+  .split-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .split-left{
+    align-items:center;
+    text-align:center;
+  }
+
+  .small-heading{
+    font-size:14px !important;
+    line-height:17px !important;
+    margin-bottom:20px !important;
+  }
+
+  .main-heading{
+    max-width:335px !important;
+    font-size:32px !important;
+    line-height:39px !important;
+    text-align:center !important;
+    margin:0 auto 20px !important;
+  }
+
+  .subheading{
+    font-size:14px !important;
+    line-height:17px !important;
+    text-align:center !important;
+  }
+
+  .subheading .highlight{
+    font-size:18px !important;
+    line-height:21px !important;
+  }
+
+  .split-right{
+    align-items:center;
+  }
+
+  .description,
+  .description p{
+    max-width:350px !important;
+    font-size:14px !important;
+    line-height:22px !important;
+    text-align:center !important;
+    margin:0 auto 40px !important;
+  }
+
+  .features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    row-gap:40px;
+    column-gap:50px;
+
+    max-width:320px;
+    margin:0 auto;
+  }
+
+  .feature-item .icon{
+    width:55px !important;
+    height:55px !important;
+  }
+
+  .feature-item p{
+    font-size:14px !important;
+    line-height:17px !important;
+  }
+
+}
+
+</style>
+<section class="split-content section">
+  <div class="page-width">
+    <div class="split-grid">
+
+      <!-- LEFT -->
+      <div class="split-left animate-blur">
+
+        {% if section.settings.small_heading != blank %}
+          <p class="small-heading">
+            {{ section.settings.small_heading }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          {% assign formatted_heading = section.settings.heading
+            | replace: '[[', '<span class="highlight">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+          <h2 class="main-heading" style="color: {{ section.settings.heading_color }}">
+            {{ formatted_heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          {% assign formatted_subheading = section.settings.subheading
+            | replace: '[[', '<span class="highlight">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+          <p class="subheading">
+            {{ formatted_subheading }}
+          </p>
+        {% endif %}
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="split-right animate-blur delay-1">
+
+        {% if section.settings.description != blank %}
+          <div class="description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+
+        <div class="features">
+          {% for block in section.blocks %}
+            <div class="feature-item">
+
+              {% if block.settings.icon_svg != blank %}
+                <div class="icon">
+                  {{ block.settings.icon_svg }}
+                </div>
+              {% endif %}
+
+              <p>{{ block.settings.text }}</p>
+
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Split Content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "small_heading",
+      "label": "Small Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (Use [[text]] for italic serif)"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#001755"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "SVG Icon"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split Content",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

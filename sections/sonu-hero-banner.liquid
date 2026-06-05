@@ -1,0 +1,182 @@
+{% schema %}
+{
+  "name": "SONU Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_bg",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "id": "top_text",
+      "label": "Top Small Text",
+      "default": "Featured in TIME's 2025 Best Inventions"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Clear & Free\nNasal Breathing"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "No Drugs. No Side Effects. No Compromises."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "The world's first FDA 510-K cleared wearable that uses personalized vibro-acoustic therapy to relieve nasal congestion in minutes."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "Bottom Badge Image"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Desktop Button Background",
+      "default": "#656AE3"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SONU Hero Banner"
+    }
+  ]
+}
+{% endschema %}
+
+{{ 'sonu-hero-banner.css' | asset_url | stylesheet_tag }}
+
+<section class="sonuh-wrapper" style="--button-bg: {{ section.settings.button_bg }}; --button-text-color: {{ section.settings.button_text_color }};">
+  <div class="sonuh-hero">
+
+    <div class="sonuh-bg">
+      {% if section.settings.desktop_bg != blank %}
+        <img
+          class="sonuh-desktop-bg"
+          src="{{ section.settings.desktop_bg | image_url: width: 2500 }}"
+          alt=""
+        >
+      {% endif %}
+
+      {% if section.settings.mobile_bg != blank %}
+        <img
+          class="sonuh-mobile-bg"
+          src="{{ section.settings.mobile_bg | image_url: width: 1200 }}"
+          alt=""
+        >
+      {% endif %}
+    </div>
+
+    <div class="sonuh-overlay"></div>
+
+    <div class="sonuh-content">
+
+      <div class="sonuh-text-wrap">
+    
+    {% if section.settings.logo != blank %}
+      <div class="sonu-logo">
+        <img 
+          src="{{ section.settings.logo | image_url: width: 400 }}" 
+          alt="Logo"
+          loading="lazy"
+        >
+      </div>
+    {% endif %}
+
+    {% if section.settings.top_text != blank %}
+      <p class="sonu-top-text">
+        {{ section.settings.top_text }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+  {% assign sonu_heading = section.settings.heading
+    | replace: '[[', '<span class="sonu-highlight">'
+    | replace: ']]', '</span>'
+    | newline_to_br
+  %}
+
+  <h1 class="sonu-heading">
+    {{ sonu_heading }}
+  </h1>
+{% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <div class="sonu-subheading">
+        {{ section.settings.subheading | newline_to_br }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="sonu-description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
+    {% comment %} {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_link }}" class="sonu-btn">
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %} {% endcomment %}
+
+       </div>
+
+      <div class="sonuh-btn-wrap">
+
+        {% if section.settings.button_text != blank %}
+          <a href="{{ section.settings.button_link }}" class="sonuh-btn">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.badge_image != blank %}
+          <div class="sonuh-badge">
+            <img
+              src="{{ section.settings.badge_image | image_url: width: 500 }}"
+              alt="Badge"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+     
+</section>

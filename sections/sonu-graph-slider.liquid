@@ -1,0 +1,823 @@
+{% comment %}
+  Research Graph Slider
+  Premium Oura Style
+{% endcomment %}
+
+<section class="research-graphs section">
+
+  <div class="page-width mg">
+
+    <!-- TOP -->
+    <div class="research-top">
+
+      {% if section.settings.heading != blank %}
+
+        {% assign formatted_heading = section.settings.heading
+          | replace: '[[', '<span class="research-serif">'
+          | replace: ']]', '</span>'
+          | newline_to_br
+        %}
+
+        <h2 class="research-heading animate-blur">
+          {{ formatted_heading }}
+        </h2>
+
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+
+        <div class="research-desc animate-blur delay-1">
+          {{ section.settings.description }}
+        </div>
+
+      {% endif %}
+
+    </div>
+
+    <!-- SLIDER -->
+    <div class="research-slider-wrapper">
+
+      <div class="research-slider" id="researchSlider-{{ section.id }}">
+
+        {% for block in section.blocks %}
+
+          <div class="research-card">
+
+            <div class="research-card-inner">
+
+              <!-- TITLE -->
+              <h3 class="research-card-title">
+                {{ block.settings.heading }}
+              </h3>
+
+              <!-- IMAGE -->
+              {% if block.settings.graph_image != blank %}
+
+                <div class="research-image-wrap">
+
+                  <img
+                    src="{{ block.settings.graph_image | image_url: width: 1200 }}"
+                    alt=""
+                    class="research-image"
+                    loading="lazy"
+                  >
+
+                </div>
+
+              {% endif %}
+
+            </div>
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="research-bottom">
+
+      <!-- PROGRESS -->
+      <div class="research-progress">
+
+        <div class="research-progress-bar">
+          <span class="research-progress-fill"></span>
+        </div>
+
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="research-controls">
+
+        {% if section.settings.button_text != blank %}
+
+          <a href="{{ section.settings.button_link }}"
+             class="research-btn">
+
+            {{ section.settings.button_text }}
+
+          </a>
+
+        {% endif %}
+
+        <!-- ARROWS -->
+        <div class="research-arrows">
+
+          <button class="research-arrow prev">
+
+            <svg viewBox="0 0 24 24">
+              <path d="M15 5l-7 7 7 7"/>
+            </svg>
+
+          </button>
+
+          <button class="research-arrow next">
+
+            <svg viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7"/>
+            </svg>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    @media (min-width:768px){
+    .mg{
+    margin-left:6%;
+    }
+    }
+/* SECTION */
+.research-graphs{
+  position:relative;
+
+  overflow:hidden;
+
+  padding:0px 0px 10px;
+
+  background:{{ section.settings.bg_color }};
+}
+
+/* TOP */
+.research-top{
+  margin-bottom:60px;
+}
+
+/* HEADING */
+.research-heading{
+  margin:0 0 20px;
+
+  color:{{ section.settings.heading_color }};
+
+  font-size:72px;
+  line-height:1.05;
+
+  letter-spacing:-3px;
+
+  font-weight:400;
+}
+
+.research-heading .research-serif{
+  font-family:"Times New Roman", serif;
+  font-style:italic;
+}
+
+/* DESC */
+.research-desc{
+  max-width:760px;
+
+  color:{{ section.settings.text_color }};
+
+  font-size:20px;
+  line-height:1.8;
+}
+
+/* SLIDER */
+.research-slider-wrapper{
+  overflow:hidden;
+}
+
+.research-slider{
+  display:flex;
+
+  gap:36px;
+
+  overflow-x:auto;
+
+  scroll-behavior:smooth;
+
+  scrollbar-width:none;
+
+  padding-bottom:10px;
+}
+
+.research-slider::-webkit-scrollbar{
+  display:none;
+}
+
+/* CARD */
+.research-card{
+  flex:0 0 calc(45% - 18px);
+}
+
+/* INNER */
+.research-card-inner{
+  height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  background:transparent;
+
+  border:1px solid rgba(84,54,32,.35);
+
+  border-radius:24px;
+
+  padding:40px;
+
+  transition:.35s ease;
+}
+
+{% comment %} .research-card-inner:hover{
+  transform:translateY(-4px);
+} {% endcomment %}
+
+/* TITLE */
+.research-card-title{
+  margin:0 0 35px;
+
+  color:{{ section.settings.card_heading_color }};
+
+  font-size:26px;
+  line-height:1.08;
+
+  font-weight:400;
+
+  letter-spacing:0px;
+}
+
+/* IMAGE */
+.research-image-wrap{
+  position:relative;
+}
+
+.research-image{
+  width:100%;
+  display:block;
+
+  object-fit:contain;
+}
+
+/* BOTTOM */
+.research-bottom{
+  margin-top:45px;
+}
+
+/* PROGRESS */
+.research-progress{
+  margin-bottom:35px;
+}
+
+.research-progress-bar{
+  position:relative;
+
+  height:2px;
+
+  background:rgba(0,0,0,.12);
+
+  overflow:hidden;
+}
+
+.research-progress-fill{
+  position:absolute;
+  left:0;
+  top:0;
+
+  width:30%;
+  height:100%;
+
+  background:#8e8479;
+
+  transition:width .3s ease,
+             transform .3s ease;
+}
+
+/* CONTROLS */
+.research-controls{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:30px;
+}
+
+/* BUTTON */
+.research-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-width:180px;
+
+  padding:18px 34px;
+
+  border-radius:999px;
+
+  background:{{ section.settings.button_bg }};
+
+  color:{{ section.settings.button_text_color }};
+
+  text-decoration:none;
+
+  font-size:15px;
+  font-weight:500;
+
+  transition:.3s ease;
+}
+
+.research-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* ARROWS */
+.research-arrows{
+  display:flex;
+  gap:16px;
+}
+
+.research-arrow{
+  width:64px;
+  height:64px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(0,0,0,.35);
+
+  background:transparent;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  transition:.3s ease;
+}
+
+.research-arrow:hover{
+  background:#000;
+  border-color:#000;
+}
+
+.research-arrow:hover svg{
+  stroke:#fff;
+}
+
+.research-arrow svg{
+  width:22px;
+  height:22px;
+
+  fill:none;
+  stroke:#111;
+  stroke-width:1.8;
+
+  transition:.3s ease;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+.animate-blur{
+  opacity:0;
+
+  filter:blur(10px);
+
+  transform:translateY(20px);
+
+  animation:blurFade 1s ease forwards;
+}
+
+.delay-1{
+  animation-delay:.15s;
+}
+
+@keyframes blurFade{
+
+  to{
+    opacity:1;
+    filter:blur(0);
+    transform:translateY(0);
+  }
+
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:1100px){
+
+  .research-card{
+    flex:0 0 70%;
+  }
+
+  .research-heading{
+    font-size:54px;
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .research-graphs{
+    padding:0px 0px 60px;
+  }
+
+  /* TOP */
+  .research-top{
+    margin-bottom:40px;
+  }
+
+  /* HEADING */
+  .research-heading{
+    font-size:42px;
+
+    line-height:1.1;
+
+    letter-spacing:0px;
+  }
+
+  /* DESC */
+  .research-desc{
+    font-size:16px;
+    line-height:1.7;
+  }
+
+  /* SLIDER */
+  .research-slider{
+    gap:0px;
+
+  scroll-snap-type:x mandatory;
+
+  padding-right:30px;
+  }
+
+  /* CARD */
+  .research-card{
+  flex:0 0 100%;
+}
+
+  /* INNER */
+  .research-card-inner{
+    padding:28px;
+    border-radius:20px;
+    border:none;
+  }
+
+  /* TITLE */
+  .research-card-title{
+    font-size:26px;
+
+    margin-bottom:28px;
+  }
+
+  /* BOTTOM */
+  .research-bottom{
+    margin-top:28px;
+  }
+
+  /* CONTROLS */
+  .research-controls{
+    margin-top:30px;
+  }
+
+  /* BUTTON */
+  .research-btn{
+    min-width:160px;
+
+    padding:16px 24px;
+
+    font-size:14px;
+  }
+
+  /* ARROWS */
+  .research-arrow{
+    width:56px;
+    height:56px;
+  }
+
+}
+
+/* ====================================
+   FIGMA TYPOGRAPHY OVERRIDE
+==================================== */
+
+/* Entire Section */
+.research-graphs,
+.research-graphs *{
+  font-family:'Instrument Sans',sans-serif !important;
+}
+
+/* Card Title */
+.research-card-title{
+  margin:0 0 35px !important;
+
+  font-family:'Instrument Sans',sans-serif !important;
+  font-style:normal !important;
+  font-weight:400 !important;
+
+  font-size:24px !important;
+  line-height:29px !important;
+
+  color:#3D1B03 !important;
+
+  letter-spacing:0 !important;
+}
+
+/* Section Heading (if used) */
+.research-heading{
+  font-family:'Instrument Sans',sans-serif !important;
+  font-style:normal !important;
+  font-weight:400 !important;
+  color:#3D1B03 !important;
+}
+
+/* Description */
+.research-desc{
+  font-family:'Instrument Sans',sans-serif !important;
+  font-style:normal !important;
+  font-weight:400 !important;
+
+  font-size:14px !important;
+  line-height:22px !important;
+
+  color:#1E1E1E !important;
+}
+
+/* Learn More Button */
+.research-btn{
+  font-family:'Instrument Sans',sans-serif !important;
+  font-style:normal !important;
+  font-weight:600 !important;
+
+  font-size:14px !important;
+  line-height:17px !important;
+
+  color:#FFFFFF !important;
+
+  background:#000 !important;
+
+  border-radius:33px !important;
+
+  width:130px !important;
+  min-width:130px !important;
+  height:41px !important;
+
+  padding:0 24px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  text-decoration:none !important;
+}
+
+/* Arrow Buttons */
+.research-arrow{
+  width:42px !important;
+  height:42px !important;
+
+  border-radius:50% !important;
+
+  border:1px solid #1E1E1E !important;
+
+  background:transparent !important;
+}
+
+.research-arrow svg{
+  width:18px !important;
+  height:18px !important;
+
+  stroke:#1E1E1E !important;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+  .research-card-title{
+    font-size:24px !important;
+    line-height:29px !important;
+  }
+
+  .research-desc{
+    font-size:14px !important;
+    line-height:22px !important;
+  }
+
+  .research-btn{
+    width:130px !important;
+    min-width:130px !important;
+    height:41px !important;
+    font-size:14px !important;
+  }
+
+  .research-controls{
+    align-items:center !important;
+  }
+
+  .research-arrows{
+    gap:12px !important;
+  }
+
+  .research-arrow{
+    width:42px !important;
+    height:42px !important;
+  }
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const slider =
+    document.getElementById("researchSlider-{{ section.id }}");
+
+  if(!slider) return;
+
+  const prevBtn =
+    slider.parentElement.parentElement.querySelector(".prev");
+
+  const nextBtn =
+    slider.parentElement.parentElement.querySelector(".next");
+
+  const progressFill =
+    slider.parentElement.parentElement.querySelector(".research-progress-fill");
+
+  /* UPDATE PROGRESS */
+/* UPDATE PROGRESS */
+function updateProgress(){
+
+  const maxScroll =
+    slider.scrollWidth - slider.clientWidth;
+
+  if(maxScroll <= 0){
+    progressFill.style.width = "100%";
+    progressFill.style.transform = "translateX(0)";
+    return;
+  }
+
+  /* CURRENT PROGRESS */
+  const progress =
+    slider.scrollLeft / maxScroll;
+
+  /* VISIBLE WIDTH */
+  const visibleWidth =
+    slider.clientWidth / slider.scrollWidth;
+
+  /* FINAL WIDTH */
+  const fillWidth =
+    visibleWidth + (1 - visibleWidth) * progress;
+
+  progressFill.style.width =
+    `${fillWidth * 100}%`;
+
+}
+
+  updateProgress();
+
+  slider.addEventListener("scroll", updateProgress);
+
+  /* SLIDE AMOUNT */
+  function getSlideAmount(){
+
+    if(window.innerWidth <= 768){
+      return slider.clientWidth * 0.9;
+    }
+
+    return slider.clientWidth * 0.48;
+
+  }
+
+  /* NEXT */
+  nextBtn.addEventListener("click", function(){
+
+    slider.scrollBy({
+      left:getSlideAmount(),
+      behavior:"smooth"
+    });
+
+  });
+
+  /* PREV */
+  prevBtn.addEventListener("click", function(){
+
+    slider.scrollBy({
+      left:-getSlideAmount(),
+      behavior:"smooth"
+    });
+
+  });
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Graph Slider",
+  "settings": [
+
+   
+
+    {
+      "type":"textarea",
+      "id":"description",
+      "label":"Description"
+    },
+
+    {
+      "type":"color",
+      "id":"bg_color",
+      "label":"Background Color",
+      "default":"#f4f1ee"
+    },
+
+    {
+      "type":"color",
+      "id":"heading_color",
+      "label":"Heading Color",
+      "default":"#3d1d12"
+    },
+
+    {
+      "type":"color",
+      "id":"text_color",
+      "label":"Text Color",
+      "default":"#3d1d12"
+    },
+
+    {
+      "type":"color",
+      "id":"card_heading_color",
+      "label":"Card Heading Color",
+      "default":"#3d1d12"
+    },
+
+    {
+      "type":"text",
+      "id":"button_text",
+      "label":"Button Text",
+      "default":"Learn More"
+    },
+
+    {
+      "type":"url",
+      "id":"button_link",
+      "label":"Button Link"
+    },
+
+    {
+      "type":"color",
+      "id":"button_bg",
+      "label":"Button Background",
+      "default":"#000000"
+    },
+
+    {
+      "type":"color",
+      "id":"button_text_color",
+      "label":"Button Text Color",
+      "default":"#ffffff"
+    }
+
+  ],
+
+  "blocks":[
+
+    {
+      "type":"graph",
+      "name":"Graph Card",
+      "settings":[
+
+        {
+          "type":"text",
+          "id":"heading",
+          "label":"Heading",
+          "default":"Reduction in Nasal Congestion"
+        },
+
+        {
+          "type":"image_picker",
+          "id":"graph_image",
+          "label":"Graph Image"
+        }
+
+      ]
+    }
+
+  ],
+
+  "presets":[
+    {
+      "name":"Graph Slider"
+    }
+  ]
+}
+{% endschema %}
