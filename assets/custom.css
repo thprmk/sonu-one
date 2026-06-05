@@ -635,7 +635,10 @@
 
 /* Custom Comparison Table Section */
 .custom-comp-wrapper {
-  padding: 80px 40px;
+  padding-top: var(--padding-top, 80px);
+  padding-bottom: var(--padding-bottom, 80px);
+  padding-left: 40px;
+  padding-right: 40px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -821,7 +824,10 @@
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .custom-comp-wrapper {
-    padding: 60px 20px;
+    padding-top: var(--padding-top-mobile, 60px);
+    padding-bottom: var(--padding-bottom-mobile, 60px);
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .custom-comp-table-row {
@@ -878,7 +884,10 @@
 
 /* Custom Video Slider Section */
 .custom-vid-wrapper {
-  padding: 80px 40px;
+  padding-top: var(--padding-top, 80px);
+  padding-bottom: var(--padding-bottom, 80px);
+  padding-left: 40px;
+  padding-right: 40px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -1063,7 +1072,10 @@
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .custom-vid-wrapper {
-    padding: 60px 20px;
+    padding-top: var(--padding-top-mobile, 60px);
+    padding-bottom: var(--padding-bottom-mobile, 60px);
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .custom-vid-heading {

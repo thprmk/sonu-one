@@ -1,4 +1,4 @@
-import Swiper from '@theme/swiper';
+import { Swiper, Navigation, Pagination } from '@theme/swiper';
 
 function initCustomFeaturedProduct(container) {
   const swiperEl = container.querySelector('.custom-prod-gallery');
@@ -10,6 +10,7 @@ function initCustomFeaturedProduct(container) {
 
   // 1. Initialize Swiper Gallery
   new Swiper(swiperEl, {
+    modules: [Navigation, Pagination],
     loop: true,
     navigation: {
       nextEl: nextBtn,
@@ -105,6 +106,7 @@ function initCustomComparison(container) {
   const nextBtn = container.querySelector('.custom-comp-nav-btn--next');
 
   new Swiper(swiperEl, {
+    modules: [Navigation],
     slidesPerView: 'auto',
     spaceBetween: 24,
     loop: false,
@@ -132,6 +134,7 @@ function initCustomVideoSlider(container) {
   const progressbarEl = container.querySelector('.custom-vid-progressbar');
 
   new Swiper(swiperEl, {
+    modules: [Navigation, Pagination],
     slidesPerView: 'auto',
     spaceBetween: 24,
     loop: false,
@@ -154,14 +157,19 @@ function initCustomVideoSlider(container) {
   });
 }
 
-// Initial load
-document.addEventListener('DOMContentLoaded', () => {
+function initAll() {
   document.querySelectorAll('.shopify-section').forEach(section => {
     initCustomFeaturedProduct(section);
     initCustomComparison(section);
     initCustomVideoSlider(section);
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
+}
 
 // Theme Editor load
 document.addEventListener('shopify:section:load', (event) => {
