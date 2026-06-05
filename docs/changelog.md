@@ -14,6 +14,13 @@ This changelog documents the complete commit history on the active development b
 
 ### June 6, 2026
 
+* **8a2566c** - *Feat: Create custom step slider section and integrate into product template* (by Jay)
+  - **Files modified:**
+    - [sections/custom-step-slider.liquid](file:///Users/jay/Downloads/getsonu/sections/custom-step-slider.liquid) (Created new section file)
+    - [assets/custom.css](file:///Users/jay/Downloads/getsonu/assets/custom.css) (Added layout and responsive rules for step slider)
+    - [assets/custom.js](file:///Users/jay/Downloads/getsonu/assets/custom.js) (Added Swiper initialization logic)
+    - [templates/product.sonu-product-page.json](file:///Users/jay/Downloads/getsonu/templates/product.sonu-product-page.json) (Rendered section below video slider)
+
 * **fc41f82** - *Fix Swiper progress bar layout styling and class targets* (by Jay)
   - **Files modified:**
     - [sections/custom-video-slider.liquid](file:///Users/jay/Downloads/getsonu/sections/custom-video-slider.liquid) (Added `swiper-pagination` class)

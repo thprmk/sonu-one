@@ -157,11 +157,44 @@ function initCustomVideoSlider(container) {
   });
 }
 
+function initCustomStepSlider(container) {
+  const swiperEl = container.querySelector('.custom-step-swiper');
+  if (!swiperEl) return;
+
+  const prevBtn = container.querySelector('.custom-step-nav-btn--prev');
+  const nextBtn = container.querySelector('.custom-step-nav-btn--next');
+  const progressbarEl = container.querySelector('.custom-step-progressbar');
+
+  new Swiper(swiperEl, {
+    modules: [Navigation, Pagination],
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    loop: false,
+    navigation: {
+      nextEl: nextBtn,
+      prevEl: prevBtn,
+    },
+    pagination: {
+      el: progressbarEl,
+      type: 'progressbar',
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 16,
+      },
+      768: {
+        spaceBetween: 24,
+      }
+    }
+  });
+}
+
 function initAll() {
   document.querySelectorAll('.shopify-section').forEach(section => {
     initCustomFeaturedProduct(section);
     initCustomComparison(section);
     initCustomVideoSlider(section);
+    initCustomStepSlider(section);
   });
 }
 
@@ -176,4 +209,5 @@ document.addEventListener('shopify:section:load', (event) => {
   initCustomFeaturedProduct(event.target);
   initCustomComparison(event.target);
   initCustomVideoSlider(event.target);
+  initCustomStepSlider(event.target);
 });

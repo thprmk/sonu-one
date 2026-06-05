@@ -1,0 +1,206 @@
+{%- liquid
+  assign bg_color = section.settings.bg_color
+  assign text_color = section.settings.text_color
+-%}
+
+<div id="shopify-section-{{ section.id }}" class="custom-step-wrapper" style="
+  background-color: {{ bg_color }}; 
+  --text-color: {{ text_color }}; 
+  --padding-top: {{ section.settings.padding_top }}px; 
+  --padding-bottom: {{ section.settings.padding_bottom }}px;
+  --padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+  --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+">
+  <div class="custom-step-container">
+    
+    <div class="custom-step-header">
+      {% if section.settings.heading != blank %}
+        <h2 class="custom-step-heading" style="color: {{ text_color }};">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <div class="custom-step-desc" style="color: {{ text_color }};">{{ section.settings.description | newline_to_br }}</div>
+      {% endif %}
+    </div>
+
+    <div class="custom-step-slider-row">
+      <div class="swiper custom-step-swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide custom-step-slide" {{ block.shopify_attributes }}>
+              
+              <div class="custom-step-image-wrap">
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy" class="custom-step-img">
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'custom-step-img placeholder-svg' }}
+                {% endif %}
+              </div>
+
+              {% if block.settings.title != blank %}
+                <h3 class="custom-step-slide-title" style="color: {{ text_color }};">{{ block.settings.title }}</h3>
+              {% endif %}
+
+              {% if block.settings.description != blank %}
+                <p class="custom-step-slide-desc" style="color: {{ text_color }};">{{ block.settings.description }}</p>
+              {% endif %}
+
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation & Progress bar row -->
+    <div class="custom-step-controls-row">
+      <div class="custom-step-progressbar swiper-pagination"></div>
+      
+      <div class="custom-step-arrows">
+        <button class="custom-step-nav-btn custom-step-nav-btn--prev" aria-label="Previous">
+          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 17L1 9L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="custom-step-nav-btn custom-step-nav-btn--next" aria-label="Next">
+          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 17L9 9L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Step Slider",
+  "tag": "section",
+  "class": "custom-step-slider-section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F9F6F0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Mobile Padding Bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step_slide",
+      "name": "Step Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Select Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Scan Your Face"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Step Description",
+          "default": "The SONU app creates a 3D map of your sinus anatomy using AI."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Step Slider",
+      "blocks": [
+        {
+          "type": "step_slide",
+          "settings": {
+            "title": "Scan Your Face",
+            "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
+          }
+        },
+        {
+          "type": "step_slide",
+          "settings": {
+            "title": "Acoustic Mapping",
+            "description": "Find the resonant frequencies of your unique nasal passages."
+          }
+        },
+        {
+          "type": "step_slide",
+          "settings": {
+            "title": "Breathe Naturally",
+            "description": "Wear the headband for 15 minutes a day to clear congestion."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -204,11 +204,16 @@
         "desktop_slide_width": 340,
         "mobile_slide_width": 240
       }
+    },
+    "step_slider": {
+      "type": "custom-step-slider",
+      "settings": {}
     }
   },
   "order": [
     "main",
     "comparison",
-    "video_slider"
+    "video_slider",
+    "step_slider"
   ]
 }
