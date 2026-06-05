@@ -80,6 +80,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "center",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>Breathe Better.<br/>Sleep Deeper. <br/>Thrive.</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -114,6 +116,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>FDA 510-K Cleared Nasal Congestion Relief<br/><br/></p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -213,6 +217,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>Breathe Better. <br/>Sleep Deeper. Thrive.</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -247,6 +253,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>FDA 510-K Cleared Nasal Congestion Relief<br/><br/></p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -745,6 +753,32 @@
       "name": "Testimonials Video sonu",
       "settings": {
         "heading": "Real Patients, Real Results",
+        "section_bg_color": "#ffffff",
+        "heading_color": "#001755",
+        "heading_font_size": 56,
+        "heading_line_height": 68,
+        "heading_font_weight": "500",
+        "card_bg_color": "rgba(0,0,0,0)",
+        "card_border_color": "#b8b7ff",
+        "desktop_review_text_color": "#1e2a3e",
+        "desktop_review_font_size": 16,
+        "desktop_review_line_height": 26,
+        "desktop_author_name_color": "#001755",
+        "desktop_author_name_size": 24,
+        "desktop_author_role_color": "#5a6874",
+        "desktop_author_role_size": 13,
+        "mobile_card_bg_color": "rgba(0,0,0,0)",
+        "mobile_card_border_color": "#b8b7ff",
+        "mobile_review_text_color": "#000000",
+        "mobile_review_font_size": 14,
+        "mobile_review_line_height": 22,
+        "mobile_author_name_color": "#3d1b03",
+        "mobile_author_name_size": 24,
+        "mobile_author_role_color": "#5a6874",
+        "mobile_author_role_size": 13,
+        "star_color": "#ffcd0f",
+        "nav_arrow_color": "#1f428a",
+        "nav_border_color": "#001755",
         "container_width": "contained"
       }
     },
@@ -767,6 +801,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Calm & Balance Within</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -801,6 +837,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Your microbiome begins to rebalance, helping reduce internal stressors that can affect skin clarity and texture.</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -851,6 +889,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Visible Skin Boost</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -885,6 +925,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>As digestion improves, skin may appear smoother, more even, and less prone to dullness.</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -935,6 +977,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Radiance From Within</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -969,6 +1013,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Continued support promotes lasting clarity, balanced hydration, and a naturally healthy glow.</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -1019,6 +1065,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>The future of skin health</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -1053,6 +1101,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Glow that builds over time.</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -1181,6 +1231,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Fresh & Light</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -1231,6 +1283,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Vitamins & Minerals</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -1281,6 +1335,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Prebiotics</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -1331,6 +1387,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Antioxidants</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -1472,6 +1530,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Snackable, Packable</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -1506,6 +1566,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Formulated to really work</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -1601,6 +1663,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>of users report falling asleep faster within first few weeks.</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -1679,6 +1743,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>noticed better well-being and reduced daily stress.</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -1757,6 +1823,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>experienced better, more regular digestion.*</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -1835,6 +1903,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>wake up feeling more refreshed and energized.</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -1902,6 +1972,8 @@
           "settings": {
             "text_transform": "none",
             "custom_text_alignment": "left",
+            "custom_text_color": "#000000",
+            "custom_font_weight": "",
             "text": "<p>*Following over 15 years of research, groundbreaking discoveries and numerous <br/>clinical trials, we have developed a powerful ingredient.</p>",
             "highlight_style": "none",
             "highlight_font_style": "italic",
@@ -2021,6 +2093,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>24-strain probiotic formula designed to support gut balance.</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -2189,6 +2263,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>Designed to support endurance, recovery & resilience.</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -2357,6 +2433,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>Advanced multi-strain formula to restore balance gut performance.</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -2491,6 +2569,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>our collections</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -3166,6 +3246,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Before & After</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -3200,6 +3282,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Experience powerful transformation</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -3420,6 +3504,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>happy reviews</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -3454,6 +3540,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Real Glow Journeys</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -3755,6 +3843,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Featured in Press, <br/>Art Communities</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -3864,6 +3954,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>Research-Led Ingredients</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -3898,6 +3990,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>Built for complexity. <br/><em>Designed for you.</em></p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -3995,6 +4089,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>Advanced Gut Science</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -4029,6 +4125,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>Formulated with precision.<br/>Crafted for <em>real life.</em></p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -4126,6 +4224,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>Personalized Support</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -4160,6 +4260,8 @@
                   "settings": {
                     "text_transform": "none",
                     "custom_text_alignment": "left",
+                    "custom_text_color": "#000000",
+                    "custom_font_weight": "",
                     "text": "<p>Balance your system. <br/>Transform <em>your routine.</em></p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
@@ -4248,6 +4350,8 @@
           "settings": {
             "text_transform": "none",
             "custom_text_alignment": "left",
+            "custom_text_color": "#000000",
+            "custom_font_weight": "",
             "text": "<p>Our Wellness Journal</p>",
             "highlight_style": "none",
             "highlight_font_style": "italic",
@@ -4392,6 +4496,8 @@
               "settings": {
                 "text_transform": "none",
                 "custom_text_alignment": "left",
+                "custom_text_color": "#000000",
+                "custom_font_weight": "",
                 "text": "<p>Subscribe for updates, tips & exclusive offers</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
@@ -4754,6 +4860,8 @@
           "settings": {
             "text_transform": "none",
             "custom_text_alignment": "left",
+            "custom_text_color": "#000000",
+            "custom_font_weight": "",
             "text": "<p>Featured Article</p>",
             "highlight_style": "none",
             "highlight_font_style": "italic",
@@ -4908,6 +5016,23 @@
         "advisor_heading": "",
         "advisor_description": ""
       }
+    },
+    "sonu_hero_banner_UmcVXj": {
+      "type": "sonu-hero-banner",
+      "name": "SONU Hero Banner",
+      "settings": {
+        "desktop_bg": "shopify://shop_images/Screenshot_2026-04-24_at_6.45.04_PM_1_db880964-e922-4739-ae91-92c00345c7e3.png",
+        "mobile_bg": "shopify://shop_images/Screenshot_2026-04-24_at_6.45.04_PM_1_db880964-e922-4739-ae91-92c00345c7e3.png",
+        "top_text": "Featured in TIME's 2025 Best Inventions",
+        "heading": "Clear & Free\nNasal Breathing",
+        "subheading": "No Drugs. No Side Effects. No Compromises.",
+        "description": "The world's first FDA 510-K cleared wearable that uses personalized vibro-acoustic therapy to relieve nasal congestion in minutes.",
+        "button_text": "SHOP NOW",
+        "button_link": "",
+        "badge_image": "shopify://shop_images/Layer_1_4.png",
+        "button_bg": "#656AE3",
+        "button_text_color": "#FFFFFF"
+      }
     }
   },
   "order": [
@@ -4934,6 +5059,7 @@
     "testimonials_split_slider_qFJkz7",
     "sonu_flex_banner_GLf6Y9",
     "blog_posts_qncGyC",
-    "sonu_press_rPmNdj"
+    "sonu_press_rPmNdj",
+    "sonu_hero_banner_UmcVXj"
   ]
 }
