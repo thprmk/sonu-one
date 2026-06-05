@@ -160,6 +160,16 @@
     "video_slider": {
       "type": "custom-video-slider",
       "blocks": {
+        "video_slide_MXUViw": {
+          "type": "video_slide",
+          "settings": {
+            "video": "shopify://files/videos/vertical-animation.mp4",
+            "video_url": "",
+            "overlay_text": "",
+            "overlay_pos": "center",
+            "badge_width": 100
+          }
+        },
         "video_slide_ciTmtU": {
           "type": "video_slide",
           "settings": {
@@ -182,6 +192,7 @@
         }
       },
       "block_order": [
+        "video_slide_MXUViw",
         "video_slide_ciTmtU",
         "video_slide_HNcPBi"
       ],
