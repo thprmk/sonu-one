@@ -1,0 +1,1116 @@
+<section class="v2-testimonial-video-section {% if section.settings.full_width %}v2-full-width{% else %}v2-contained{% endif %}">
+  <div class="v2-page-width">
+    {%- capture heading_style -%}color: {{ section.settings.heading_color }}; font-size: {{ section.settings.heading_font_size }}px; line-height: {{ section.settings.heading_line_height }}px; font-weight: {{ section.settings.heading_font_weight }};{%- endcapture -%}
+    {% render 'sonu-section-header',
+      heading: section.settings.heading,
+      heading_tag: section.settings.heading_tag,
+      heading_class: 'v2-section-title',
+      heading_style: heading_style,
+      text_align: 'center',
+      animate: true
+    %}
+
+    <div class="v2-desktop-layout">
+      <div class="v2-desktop-dual-slider">
+        <div class="v2-desktop-reviews-container">
+          <div class="swiper v2-reviews-swiper" id="v2-reviewsSwiperDesktop">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                <div class="swiper-slide">
+                  <div class="v2-review-grid v2-offset-grid">
+                    {% for i in (1..4) %}
+                      {% assign review_key = 'review_' | append: i %}
+                      {% assign name_key = 'name_' | append: i %}
+                      {% assign role_key = 'role_' | append: i %}
+                      <div class="v2-review-card v2-review-card-{{ i }}" style="border-color: {{ section.settings.card_border_color }};">
+                        <div class="v2-review-text" style="color: {{ section.settings.desktop_review_text_color }}; font-size: {{ section.settings.desktop_review_font_size }}px; line-height: {{ section.settings.desktop_review_line_height }}px;">
+                          {{ block.settings[review_key] }}
+                        </div>
+                        <div class="v2-review-author">
+                          <h4 style="color: {{ section.settings.desktop_author_name_color }}; font-size: {{ section.settings.desktop_author_name_size }}px;">
+                            {{ block.settings[name_key] }}
+                          </h4>
+                          <span style="color: {{ section.settings.desktop_author_role_color }}; font-size: {{ section.settings.desktop_author_role_size }}px;">
+                            {{ block.settings[role_key] }}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="v2-mobile-rating-stars" style="color: {{ section.settings.star_color }};">
+                        ★★★★★
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="v2-reviews-pagination swiper-pagination"></div>
+          </div>
+        </div>
+
+        <div class="v2-desktop-video-container">
+          <div class="swiper v2-video-swiper" id="v2-videoSwiperDesktop">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                <div class="swiper-slide v2-video-slide">
+                  {{ block.settings.video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true }}
+                </div>
+              {% endfor %}
+            </div>
+            <div class="swiper-button-prev v2-desktop-video-prev"></div>
+            <div class="swiper-button-next v2-desktop-video-next"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="v2-mobile-layout">
+      <div class="v2-mobile-video-section">
+        <div class="swiper v2-mobile-video-swiper" id="v2-mobileVideoSwiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              <div class="swiper-slide v2-mobile-video-slide">
+                {{ block.settings.video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true }}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="v2-mobile-video-prev">
+            <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+              <path d="M6.5 1.5L1.5 6L6.5 10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div class="v2-mobile-video-next">
+            <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+              <path d="M1.5 1.5L6.5 6L1.5 10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="v2-mobile-reviews-section">
+        <div class="swiper v2-mobile-reviews-swiper" id="v2-mobileReviewsSwiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              <div class="swiper-slide">
+                <div class="v2-mobile-review-card" style="border-color: {{ section.settings.mobile_card_border_color }};">
+                  <div class="v2-review-text" style="color: {{ section.settings.mobile_review_text_color }}; font-size: {{ section.settings.mobile_review_font_size }}px; line-height: {{ section.settings.mobile_review_line_height }}px;">
+                    {{ block.settings.review_1 }}
+                  </div>
+
+                  <div class="v2-review-author-name">
+                    <h4 style="color: {{ section.settings.mobile_author_name_color }}; font-size: {{ section.settings.mobile_author_name_size }}px;">
+                      {{ block.settings.name_1 }}
+                    </h4>
+                    <span style="color: {{ section.settings.mobile_author_role_color }}; font-size: {{ section.settings.mobile_author_role_size }}px;">
+                      {{ block.settings.role_1 }}
+                    </span>
+
+                    <div class="v2-mobile-rating-stars" style="color: {{ section.settings.star_color }};">
+                      ★★★★★
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="v2-mobile-reviews-nav">
+          <div class="v2-mobile-reviews-prev">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="{{ section.settings.nav_arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="v2-mobile-reviews-next">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="{{ section.settings.nav_arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Hide by default (Mobile-first fallback / global hide) */
+.v2-testimonial-video-section{
+  background:{{ section.settings.section_bg_color }};
+  padding:100px 20px;
+  display: none !important; 
+}
+
+/* ONLY display the entire section on desktop layouts */
+@media screen and (min-width: 768px) {
+  .v2-testimonial-video-section {
+    display: block !important;
+  }
+}
+
+/* Container width styles */
+.v2-testimonial-video-section.v2-contained .v2-page-width {
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.v2-testimonial-video-section.v2-full-width {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.v2-testimonial-video-section.v2-full-width .v2-page-width {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* =======================
+   HEADING
+======================= */
+
+.v2-section-title{
+  font-family: var(--sonu-font-primary);
+  font-style:normal;
+  text-align:center;
+  margin:0 0 70px;
+  padding-bottom:30px;
+}
+
+/* Full width heading adjustment */
+.v2-full-width .v2-section-title {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* =======================
+   DESKTOP
+======================= */
+
+.v2-desktop-layout{
+  display:block;
+}
+
+.v2-desktop-dual-slider{
+  display:flex;
+  gap:50px;
+  align-items:flex-start;
+}
+
+/* Full width adjustment for desktop slider */
+.v2-full-width .v2-desktop-dual-slider {
+  gap: 60px;
+}
+
+.v2-desktop-reviews-container{
+  flex:1;
+  min-width:0;
+}
+
+.v2-reviews-swiper{
+  overflow:hidden;
+  width:100%;
+}
+
+/* staggered layout */
+
+.v2-offset-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:28px;
+  align-items:start;
+  padding-top:20px;
+}
+
+.v2-review-card-1,
+.v2-review-card-3{
+  transform:translateY(-25px);
+}
+
+.v2-review-card-2,
+.v2-review-card-4{
+  transform:translateY(25px);
+}
+
+.v2-review-card{
+  border-width:1px;
+  border-style:solid;
+  border-radius:16px;
+  padding:32px;
+  min-height:300px;
+  background:{{ section.settings.card_bg_color }};
+}
+
+.v2-review-text{
+  font-family: var(--sonu-font-primary);
+}
+
+.v2-review-author{
+  margin-top:24px;
+}
+
+.v2-review-author h4{
+  margin:0;
+  line-height:28px;
+  font-style:italic;
+  font-weight:700;
+}
+
+.v2-review-author span{
+  display:block;
+  margin-top:6px;
+}
+
+/* CENTERED DESKTOP PAGINATION FIXED RULES */
+.v2-reviews-pagination.swiper-pagination-bullets.swiper-pagination-horizontal,
+.v2-reviews-pagination{
+  margin-top:50px !important;
+  position:relative !important;
+  bottom:0 !important;
+  left:0 !important;
+  width:100% !important;
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:8px;
+}
+
+.v2-reviews-pagination .swiper-pagination-bullet{
+  width:42px;
+  height:3px;
+  border-radius:999px;
+  background:#C9C2E8;
+  opacity:1;
+  margin:0 !important;
+  cursor:pointer;
+}
+
+.v2-reviews-pagination .swiper-pagination-bullet-active{
+  background:#656AE3;
+}
+
+/* =======================
+   VIDEO
+======================= */
+
+.v2-desktop-video-container{
+  width:420px;
+  flex-shrink:0;
+}
+
+.v2-video-swiper{
+  width:420px;
+  margin:0 auto;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+}
+
+.v2-video-slide video{
+  width:420px;
+  height:750px;
+  object-fit:cover;
+  border-radius:20px;
+  display:block;
+}
+
+/* arrows */
+
+.v2-video-swiper .swiper-button-prev,
+.v2-video-swiper .swiper-button-next{
+  width:48px;
+  height:48px;
+  border:1.5px solid #fff;
+  border-radius:50%;
+  background:transparent;
+}
+
+.v2-video-swiper .swiper-button-prev:after,
+.v2-video-swiper .swiper-button-next:after{
+  color:#fff;
+  font-size:18px;
+}
+
+.v2-video-swiper .swiper-button-prev{
+  left:24px;
+}
+
+.v2-video-swiper .swiper-button-next{
+  right:24px;
+}
+
+/* =======================
+   MOBILE
+======================= */
+
+.v2-mobile-layout{
+  display:none;
+}
+
+.v2-mobile-video-section{
+  margin-bottom:20px;
+}
+
+.v2-mobile-video-swiper{
+  width:100%;
+  margin:0 auto;
+  overflow:hidden;
+  border-radius:20px;
+  position:relative;
+}
+
+.v2-mobile-video-slide video{
+  width:150%;
+  height:453px;
+  object-fit:cover;
+  border-radius:20px;
+  display:block;
+}
+
+/* mobile arrows */
+
+.v2-mobile-video-swiper .swiper-button-prev{
+  left:18px;
+}
+
+.v2-mobile-video-swiper .swiper-button-next{
+  right:18px;
+}
+
+/* review card */
+
+.v2-mobile-reviews-section{
+  margin-top:18px;
+}
+
+.v2-mobile-reviews-swiper{
+  width:100%;
+  overflow:hidden;
+  padding:0;
+}
+
+.v2-mobile-review-card{
+  border-width:1px;
+  border-style:solid;
+  border-radius:16px;
+  padding:28px 22px;
+  background:{{ section.settings.mobile_card_bg_color }};
+  text-align:center;
+}
+
+.v2-mobile-review-card .v2-review-text{
+  margin-bottom:20px;
+  text-align:center;
+}
+
+.v2-mobile-review-card h4{
+  margin:0 0 4px;
+  font-style:italic;
+  font-weight:700;
+  text-align:center;
+}
+
+.v2-mobile-review-card span{
+  text-align:center;
+}
+
+/* mobile bottom nav */
+
+.v2-mobile-reviews-nav{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:22px;
+}
+
+.v2-mobile-reviews-prev,
+.v2-mobile-reviews-next{
+  width:52px;
+  height:52px;
+  border:1.5px solid {{ section.settings.nav_border_color }};
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+}
+
+/* =======================
+   TABLET
+======================= */
+
+@media(max-width:1300px){
+  .v2-desktop-video-container{
+    width:450px;
+  }
+
+  .v2-video-slide video{
+    width:450px;
+    height:720px;
+  }
+}
+
+/* =======================
+   MOBILE MEDIA OVERRIDES
+======================= */
+
+@media(max-width:767px){
+  .v2-testimonial-video-section{
+    padding:50px 10px!important;
+  }
+
+  .v2-section-title{
+    width:211px;
+    margin:0 auto 18px;
+    font-family: var(--sonu-font-primary);
+    font-style: normal;
+    text-align:center;
+  }
+
+  .v2-desktop-layout{
+    display:none;
+  }
+
+  /* Keep layout hidden since section is desktop-only */
+  .v2-mobile-layout{
+    display:block; 
+  }
+
+  .v2-review-card-1,
+  .v2-review-card-2,
+  .v2-review-card-3,
+  .v2-review-card-4{
+    transform:none;
+  }
+
+  .v2-mobile-video-swiper{
+    width:254px;
+    margin:0 auto;
+    overflow:hidden;
+    border-radius:20px;
+    position:relative;
+  }
+
+  .v2-mobile-video-slide{
+    position:relative;
+    z-index:1;
+  }
+
+  .v2-mobile-video-slide video{
+    width:254px;
+    height:453px;
+    object-fit:cover;
+    border-radius:20px;
+    display:block;
+  }
+
+  /* MOBILE VIDEO ARROWS */
+  .v2-mobile-video-prev,
+  .v2-mobile-video-next{
+    width:28px !important;
+    height:28px !important;
+    background:rgba(255,255,255,.08) !important;
+    backdrop-filter:blur(4px);
+    border:1px solid rgba(255,255,255,.85) !important;
+    border-radius:50%;
+    z-index:9999 !important;
+    top:50% !important;
+    transform:translateY(-50%);
+  }
+
+  .v2-mobile-video-prev{
+    left:10px !important;
+  }
+
+  .v2-mobile-video-next{
+    right:10px !important;
+  }
+
+  .v2-mobile-video-prev:after,
+  .v2-mobile-video-next:after{
+    color:#fff !important;
+    font-size:12px !important;
+    font-weight:700 !important;
+  }
+
+  .v2-mobile-video-prev.swiper-button-disabled,
+  .v2-mobile-video-next.swiper-button-disabled{
+    opacity:.4;
+  }
+  
+  .v2-mobile-video-prev,
+  .v2-mobile-video-next{
+    display:flex !important;
+  }
+
+  .v2-mobile-video-prev.swiper-button-lock,
+  .v2-mobile-video-next.swiper-button-lock{
+    display:flex !important;
+  }
+
+  .v2-mobile-video-swiper{
+    position:relative;
+  }
+
+  .v2-mobile-video-prev,
+  .v2-mobile-video-next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:24px;
+    height:24px;
+    border:1px solid rgba(255,255,255,.9);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(4px);
+    z-index:99999;
+    cursor:pointer;
+  }
+
+  .v2-mobile-video-prev{
+    left:12px;
+  }
+
+  .v2-mobile-video-next{
+    right:12px;
+  }
+
+  .v2-mobile-video-prev svg,
+  .v2-mobile-video-next svg{
+    width:8px;
+    height:12px;
+  }
+
+  .v2-mobile-review-card .v2-review-text {
+    font-family: var(--sonu-font-primary);
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .v2-mobile-review-card h4 {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .v2-mobile-rating-stars{
+    display:block;
+    margin-top:14px;
+    font-family: var(--sonu-font-primary);
+    font-size:18px;
+    line-height:1;
+    text-align:center;
+    letter-spacing:3px;
+  }
+}
+
+/* make sure arrows stay above video */
+.v2-mobile-video-prev,
+.v2-mobile-video-next{
+  z-index: 99999 !important;
+  cursor: pointer;
+}
+
+.v2-mobile-rating-stars{
+  display:none;
+}
+
+@media(max-width:767px){
+  .v2-mobile-rating-stars{
+    display:block;
+  }
+}.v2-review-card {
+margin-top:10px!important;
+}
+</style>
+
+{{ 'swiper.css' | asset_url | stylesheet_tag }}
+{{ 'swiper.js' | asset_url | script_tag }}
+
+<script>
+(function() {
+  function initSwipers() {
+    // ========= DESKTOP: Sync Reviews Swiper and Video Swiper =========
+    const reviewsSwiperDesktop = document.getElementById('v2-reviewsSwiperDesktop');
+    const videoSwiperDesktop = document.getElementById('v2-videoSwiperDesktop');
+    
+    let desktopReviewsSwiper = null;
+    let desktopVideoSwiper = null;
+    
+    if (reviewsSwiperDesktop && videoSwiperDesktop) {
+      desktopReviewsSwiper = new Swiper(reviewsSwiperDesktop, {
+        loop: true,
+        slidesPerView: 1,
+        pagination: {
+          el: '.v2-reviews-pagination',
+          clickable: true,
+        },
+        on: {
+          slideChange: function() {
+            if (desktopVideoSwiper && desktopVideoSwiper.activeIndex !== this.activeIndex) {
+              desktopVideoSwiper.slideToLoop(this.activeIndex);
+            }
+          }
+        }
+      });
+      
+      desktopVideoSwiper = new Swiper(videoSwiperDesktop, {
+        loop: true,
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.v2-desktop-video-next',
+          prevEl: '.v2-desktop-video-prev',
+        },
+        on: {
+          slideChange: function() {
+            if (desktopReviewsSwiper && desktopReviewsSwiper.activeIndex !== this.activeIndex) {
+              desktopReviewsSwiper.slideToLoop(this.activeIndex);
+            }
+          }
+        }
+      });
+    }
+    
+    const mobileVideoSwiperEl = document.getElementById('v2-mobileVideoSwiper');
+
+    if (mobileVideoSwiperEl) {
+      const mobileVideoSwiper = new Swiper(
+        mobileVideoSwiperEl,
+        {
+          loop:true,
+          slidesPerView:1,
+          allowTouchMove:true
+        }
+      );
+
+      const prevBtn = mobileVideoSwiperEl.querySelector('.v2-mobile-video-prev');
+      const nextBtn = mobileVideoSwiperEl.querySelector('.v2-mobile-video-next');
+
+      if(prevBtn){
+        prevBtn.addEventListener('click', function(e){
+          e.preventDefault();
+          mobileVideoSwiper.slidePrev();
+        });
+      }
+
+      if(nextBtn){
+        nextBtn.addEventListener('click', function(e){
+          e.preventDefault();
+          mobileVideoSwiper.slideNext();
+        });
+      }
+    }
+
+    // ========= MOBILE: Review Slider =========
+    const mobileReviewsSwiperEl = document.getElementById('v2-mobileReviewsSwiper');
+    const mobileReviewsPrev = document.querySelector('.v2-mobile-reviews-prev');
+    const mobileReviewsNext = document.querySelector('.v2-mobile-reviews-next');
+    
+    if (mobileReviewsSwiperEl) {
+      const mobileReviewsSwiper = new Swiper(mobileReviewsSwiperEl, {
+        loop: true,
+        slidesPerView: 1,
+        allowTouchMove: true,
+      });
+      
+      if (mobileReviewsPrev) {
+        mobileReviewsPrev.addEventListener('click', function(e) {
+          e.preventDefault();
+          mobileReviewsSwiper.slidePrev();
+        });
+      }
+      
+      if (mobileReviewsNext) {
+        mobileReviewsNext.addEventListener('click', function(e) {
+          e.preventDefault();
+          mobileReviewsSwiper.slideNext();
+        });
+      }
+    }
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwipers);
+  } else {
+    initSwipers();
+  }
+  
+  setTimeout(function() {
+    const allVideos = document.querySelectorAll('.v2-testimonial-video-section video');
+    allVideos.forEach(function(video) {
+      video.setAttribute('playsinline', 'true');
+      video.muted = true;
+      video.play().catch(function(e) {
+        console.log('Video autoplay prevented:', e);
+      });
+    });
+  }, 100);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Real Patients, Real Results"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "header",
+      "content": "Section Background"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Heading Styling"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#001755"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size (px)",
+      "default": 56,
+      "min": 24,
+      "max": 80,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Heading Line Height (px)",
+      "default": 68,
+      "min": 30,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra Bold (800)" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Testimonial Card"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border Color",
+      "default": "#B8B7FF"
+    },
+    {
+      "type": "color",
+      "id": "desktop_review_text_color",
+      "label": "Review Text Color",
+      "default": "#1E2A3E"
+    },
+    {
+      "type": "range",
+      "id": "desktop_review_font_size",
+      "label": "Review Font Size (px)",
+      "default": 16,
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_review_line_height",
+      "label": "Review Line Height (px)",
+      "default": 26,
+      "min": 18,
+      "max": 40,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "desktop_author_name_color",
+      "label": "Author Name Color",
+      "default": "#001755"
+    },
+    {
+      "type": "range",
+      "id": "desktop_author_name_size",
+      "label": "Author Name Font Size (px)",
+      "default": 24,
+      "min": 16,
+      "max": 36,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "desktop_author_role_color",
+      "label": "Author Role Color",
+      "default": "#5A6874"
+    },
+    {
+      "type": "range",
+      "id": "desktop_author_role_size",
+      "label": "Author Role Font Size (px)",
+      "default": 13,
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Testimonial Card"
+    },
+    {
+      "type": "color",
+      "id": "mobile_card_bg_color",
+      "label": "Mobile Card Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "mobile_card_border_color",
+      "label": "Mobile Card Border Color",
+      "default": "#B8B7FF"
+    },
+    {
+      "type": "color",
+      "id": "mobile_review_text_color",
+      "label": "Mobile Review Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "mobile_review_font_size",
+      "label": "Mobile Review Font Size (px)",
+      "default": 14,
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_review_line_height",
+      "label": "Mobile Review Line Height (px)",
+      "default": 22,
+      "min": 16,
+      "max": 36,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "mobile_author_name_color",
+      "label": "Mobile Author Name Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "range",
+      "id": "mobile_author_name_size",
+      "label": "Mobile Author Name Font Size (px)",
+      "default": 24,
+      "min": 16,
+      "max": 32,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "mobile_author_role_color",
+      "label": "Mobile Author Role Color",
+      "default": "#5A6874"
+    },
+    {
+      "type": "range",
+      "id": "mobile_author_role_size",
+      "label": "Mobile Author Role Font Size (px)",
+      "default": 13,
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Star Ratings & Navigation"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Rating Color",
+      "default": "#FFCD0F"
+    },
+    {
+      "type": "color",
+      "id": "nav_arrow_color",
+      "label": "Mobile Nav Arrow Color",
+      "default": "#1f428a"
+    },
+    {
+      "type": "color",
+      "id": "nav_border_color",
+      "label": "Mobile Nav Border Color",
+      "default": "#001755"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container Width",
+      "options": [
+        {
+          "value": "contained",
+          "label": "Contained"
+        },
+        {
+          "value": "full_width",
+          "label": "Full Width"
+        }
+      ],
+      "default": "contained"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Video + Reviews",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "textarea",
+          "id": "review_1",
+          "label": "Review 1",
+          "default": "Before using Spatial Sleep, I would wake up several times a night and never felt truly rested. After a few weeks of wearing it regularly, I started sleeping in long, uninterrupted stretches. For the first time in years, I wake up feeling refreshed and energized."
+        },
+        {
+          "type": "text",
+          "id": "name_1",
+          "label": "Name 1",
+          "default": "Jay G"
+        },
+        {
+          "type": "text",
+          "id": "role_1",
+          "label": "Role 1",
+          "default": "Corporate Vice President @ Fortune 500 Company"
+        },
+        {
+          "type": "textarea",
+          "id": "review_2",
+          "label": "Review 2",
+          "default": "As a physician on call, quality sleep is rare. With Spatial Sleep, I finally get deep, restorative rest."
+        },
+        {
+          "type": "text",
+          "id": "name_2",
+          "label": "Name 2",
+          "default": "Ram G MD"
+        },
+        {
+          "type": "text",
+          "id": "role_2",
+          "label": "Role 2",
+          "default": "Radiologist"
+        },
+        {
+          "type": "textarea",
+          "id": "review_3",
+          "label": "Review 3",
+          "default": "Spatial Sleep has been a real game changer for me. I fall asleep so much faster and actually wake up feeling refreshed. I noticed a difference the very first night. Fell asleep faster, slept deeper. I used to toss and turn for hours, but with Spatial I'm out in minutes and I wake up rested."
+        },
+        {
+          "type": "text",
+          "id": "name_3",
+          "label": "Name 3",
+          "default": "Julie K"
+        },
+        {
+          "type": "text",
+          "id": "role_3",
+          "label": "Role 3",
+          "default": "Retired RN"
+        },
+        {
+          "type": "textarea",
+          "id": "review_4",
+          "label": "Review 4",
+          "default": "I love the color and the comfort. It's subtle yet powerful. My REM sleep increased dramatically."
+        },
+        {
+          "type": "text",
+          "id": "name_4",
+          "label": "Name 4",
+          "default": "Lindsay M"
+        },
+        {
+          "type": "text",
+          "id": "role_4",
+          "label": "Role 4",
+          "default": "Clinical Psychologist"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Video sonu"
+    }
+  ]
+}
+{% endschema %}

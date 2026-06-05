@@ -1,0 +1,836 @@
+<section class="testimonial-video-section">
+  <div class="page-width">
+    <h2 class="section-title">{{ section.settings.heading }}</h2>
+
+    <!-- DESKTOP LAYOUT: Separate Review Slider + Video Slider (side by side, synced) -->
+    <div class="desktop-layout">
+      <div class="desktop-dual-slider">
+        <!-- LEFT: Reviews Swiper (2x2 grid per slide with offset alignment) -->
+        <div class="desktop-reviews-container">
+          <div class="swiper reviews-swiper" id="reviewsSwiperDesktop">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                <div class="swiper-slide">
+                  <div class="review-grid offset-grid">
+                    {% for i in (1..4) %}
+                      {% assign review_key = 'review_' | append: i %}
+                      {% assign name_key = 'name_' | append: i %}
+                      {% assign role_key = 'role_' | append: i %}
+                      <div class="review-card review-card-{{ i }}">
+                        <div class="review-text">{{ block.settings[review_key] }}</div>
+                        <div class="review-author">
+                          <h4>{{ block.settings[name_key] }}</h4>
+                          <span>{{ block.settings[role_key] }}</span>
+                        </div>
+                      </div>
+
+                      <div class="mobile-rating-stars">
+    ★★★★★
+  </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="reviews-pagination swiper-pagination"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Video Swiper -->
+        <div class="desktop-video-container">
+          <div class="swiper video-swiper" id="videoSwiperDesktop">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                <div class="swiper-slide video-slide">
+                  {{ block.settings.video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true }}
+                </div>
+              {% endfor %}
+            </div>
+            <div class="swiper-button-prev desktop-video-prev"></div>
+            <div class="swiper-button-next desktop-video-next"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE LAYOUT: Separate Video Slider & Review Slider (NO SYNC) -->
+    <div class="mobile-layout">
+      <!-- Mobile Video Section -->
+      <div class="mobile-video-section">
+        <div class="swiper mobile-video-swiper" id="mobileVideoSwiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              <div class="swiper-slide mobile-video-slide">
+                {{ block.settings.video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true }}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="mobile-video-prev">
+  <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+    <path d="M6.5 1.5L1.5 6L6.5 10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+
+<div class="mobile-video-next">
+  <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+    <path d="M1.5 1.5L6.5 6L1.5 10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+        </div>
+      </div>
+
+      <!-- Mobile Reviews Section -->
+      <div class="mobile-reviews-section">
+        <div class="swiper mobile-reviews-swiper" id="mobileReviewsSwiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              <div class="swiper-slide">
+                <div class="mobile-review-card">
+  <div class="review-text">{{ block.settings.review_1 }}</div>
+
+  <div class="review-author-name">
+    <h4>{{ block.settings.name_1 }}</h4>
+    <span>{{ block.settings.role_1 }}</span>
+
+    <div class="mobile-rating-stars">
+      ★★★★★
+    </div>
+  </div>
+</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="mobile-reviews-nav">
+          <div class="mobile-reviews-prev">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="#1f428a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="mobile-reviews-next">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="#1f428a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+
+.testimonial-video-section{
+  background:#F4EFFA;
+  padding:100px 20px;
+}
+
+.testimonial-video-section .page-width{
+  max-width:1720px;
+  margin:0 auto;
+}
+
+/* =======================
+   HEADING
+======================= */
+
+.section-title{
+  font-family:'Instrument Sans',sans-serif;
+  font-style:normal;
+  font-weight:500;
+  font-size:56px;
+  line-height:68px;
+  text-align:center;
+  color:#001755;
+  margin:0 0 70px;
+  padding-bottom:30px;
+}
+
+/* =======================
+   DESKTOP
+======================= */
+
+.desktop-layout{
+  display:block;
+}
+
+.desktop-dual-slider{
+  display:flex;
+  gap:50px;
+  align-items:flex-start;
+}
+
+.desktop-reviews-container{
+  flex:1;
+  min-width:0;
+}
+
+.reviews-swiper{
+  overflow:hidden;
+  width:100%;
+}
+
+/* staggered layout */
+
+.offset-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:28px;
+  align-items:start;
+  padding-top:20px;
+}
+
+.review-card-1,
+.review-card-3{
+  transform:translateY(-25px);
+}
+
+.review-card-2,
+.review-card-4{
+  transform:translateY(25px);
+}
+
+.review-card{
+  border:1px solid #B8B7FF;
+  border-radius:16px;
+  padding:32px;
+  min-height:300px;
+  background:transparent;
+}
+
+.review-text{
+  font-family:'Instrument Sans',sans-serif;
+  font-size:16px;
+  line-height:26px;
+  color:#1E2A3E;
+  
+
+}
+
+.review-author{
+  margin-top:24px;
+}
+
+.review-author h4{
+  margin:0;
+  font-size:24px;
+  line-height:28px;
+  color:#001755;
+  font-style:italic;
+  font-weight:700;
+}
+
+.review-author span{
+  display:block;
+  margin-top:6px;
+  font-size:13px;
+  color:#5A6874;
+}
+
+.reviews-pagination{
+  margin-top:50px !important;
+  text-align:center;
+  position:relative !important;
+}
+
+.reviews-pagination .swiper-pagination-bullet{
+  width:42px;
+  height:3px;
+  border-radius:999px;
+  background:#C9C2E8;
+  opacity:1;
+}
+
+.reviews-pagination .swiper-pagination-bullet-active{
+  background:#656AE3;
+}
+
+/* =======================
+   VIDEO
+======================= */
+
+.desktop-video-container{
+  width:420px;
+  flex-shrink:0;
+}
+
+.video-swiper{
+  width:420px;
+  margin:0 auto;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+}
+
+.video-slide video{
+  width:420px;
+  height:750px;
+  object-fit:cover;
+  border-radius:20px;
+  display:block;
+}
+
+/* arrows */
+
+.video-swiper .swiper-button-prev,
+.video-swiper .swiper-button-next{
+  width:48px;
+  height:48px;
+  border:1.5px solid #fff;
+  border-radius:50%;
+  background:transparent;
+}
+
+.video-swiper .swiper-button-prev:after,
+.video-swiper .swiper-button-next:after{
+  color:#fff;
+  font-size:18px;
+}
+
+.video-swiper .swiper-button-prev{
+  left:24px;
+}
+
+.video-swiper .swiper-button-next{
+  right:24px;
+}
+
+/* =======================
+   MOBILE
+======================= */
+
+.mobile-layout{
+  display:none;
+}
+
+.mobile-video-section{
+  margin-bottom:20px;
+}
+
+.mobile-video-swiper{
+  width:100%;
+  margin:0 auto;
+  overflow:hidden;
+  border-radius:20px;
+  position:relative;
+}
+
+.mobile-video-slide video{
+  width:150%;
+  height:453px;
+  object-fit:cover;
+  border-radius:20px;
+  display:block;
+}
+
+/* mobile arrows */
+
+
+.mobile-video-swiper .swiper-button-prev{
+  left:18px;
+}
+
+.mobile-video-swiper .swiper-button-next{
+  right:18px;
+}
+
+/* review card */
+
+.mobile-reviews-section{
+  margin-top:18px;
+}
+
+.mobile-reviews-swiper{
+  width:100%;
+  overflow:hidden;
+  padding:0;
+}
+
+.mobile-review-card{
+  border:1px solid #B8B7FF;
+  border-radius:16px;
+  padding:28px 22px;
+  background:transparent;
+  text-align:center;
+}
+
+.mobile-review-card .review-text{
+  font-size:16px;
+  line-height:25px;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+.mobile-review-card h4{
+  margin:0 0 4px;
+  font-size:24px;
+  color:#001755;
+  font-style:italic;
+  font-weight:700;
+  text-align:center;
+}
+
+.mobile-review-card span{
+  font-size:13px;
+  color:#5A6874;
+  text-align:center;
+}
+
+/* mobile bottom nav */
+
+.mobile-reviews-nav{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:22px;
+}
+
+.mobile-reviews-prev,
+.mobile-reviews-next{
+  width:52px;
+  height:52px;
+  border:1.5px solid #001755;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+}
+
+/* =======================
+   TABLET
+======================= */
+
+@media(max-width:1300px){
+
+  .desktop-video-container{
+    width:450px;
+  }
+
+  .video-slide video{
+    width:450px;
+    height:720px;
+  }
+
+}
+
+/* =======================
+   MOBILE
+======================= */
+
+@media(max-width:767px){
+
+  .testimonial-video-section{
+    padding:50px 10px!important;
+  }
+
+  .section-title{
+    width:211px;
+    margin:0 auto 18px;
+
+    font-family:'Instrument Sans',sans-serif;
+    font-weight:500;
+    font-size:32px;
+    line-height:39px;
+    text-align:center;
+    color:#001755;
+  }
+
+  .desktop-layout{
+    display:none;
+  }
+
+  .mobile-layout{
+    display:block;
+  }
+
+  .review-card-1,
+  .review-card-2,
+  .review-card-3,
+  .review-card-4{
+    transform:none;
+  }
+
+.mobile-video-swiper{
+  width:254px;
+  margin:0 auto;
+  overflow:hidden;
+  border-radius:20px;
+  position:relative;
+}
+
+.mobile-video-slide{
+  position:relative;
+  z-index:1;
+}
+
+.mobile-video-slide video{
+  width:254px;
+  height:453px;
+  object-fit:cover;
+  border-radius:20px;
+  display:block;
+}
+
+/* MOBILE VIDEO ARROWS */
+
+.mobile-video-prev,
+.mobile-video-next{
+  width:28px !important;
+  height:28px !important;
+
+  background:rgba(255,255,255,.08) !important;
+  backdrop-filter:blur(4px);
+
+  border:1px solid rgba(255,255,255,.85) !important;
+  border-radius:50%;
+
+  z-index:9999 !important;
+
+  top:50% !important;
+  transform:translateY(-50%);
+}
+
+.mobile-video-prev{
+  left:10px !important;
+}
+
+.mobile-video-next{
+  right:10px !important;
+}
+
+.mobile-video-prev:after,
+.mobile-video-next:after{
+  color:#fff !important;
+  font-size:12px !important;
+  font-weight:700 !important;
+}
+
+.mobile-video-prev.swiper-button-disabled,
+.mobile-video-next.swiper-button-disabled{
+  opacity:.4;
+}
+.mobile-video-prev,
+.mobile-video-next{
+  display:flex !important;
+}
+
+.mobile-video-prev.swiper-button-lock,
+.mobile-video-next.swiper-button-lock{
+  display:flex !important;
+}
+
+
+.mobile-video-swiper{
+  position:relative;
+}
+
+.mobile-video-prev,
+.mobile-video-next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+
+  width:24px;
+  height:24px;
+
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(4px);
+
+  z-index:99999;
+  cursor:pointer;
+}
+
+.mobile-video-prev{
+  left:12px;
+}
+
+.mobile-video-next{
+  right:12px;
+}
+
+.mobile-video-prev svg,
+.mobile-video-next svg{
+  width:8px;
+  height:12px;
+}
+
+.mobile-rating-stars{
+  display:block;
+  margin-top:14px;
+
+  font-family:'Instrument Sans',sans-serif;
+  font-size:18px;
+  line-height:1;
+
+  color:#F5C400;
+  text-align:center;
+  letter-spacing:3px;
+}
+}
+
+
+/* FORCE MOBILE VIDEO ARROW ICONS */
+
+
+
+/* make sure arrows stay above video */
+.mobile-video-prev,
+.mobile-video-next{
+  z-index: 99999 !important;
+  cursor: pointer;
+}
+
+.mobile-rating-stars{
+  display:none;
+}
+
+@media(max-width:767px){
+  .mobile-rating-stars{
+    display:block;
+  }
+}
+@media(max-width:767px){
+
+  .testimonial-video-section{
+    background-image:url('https://cdn.shopify.com/s/files/1/0722/0507/4691/files/bg_1_dc9c5bde-f607-415c-9228-6fc69decce20.png?v=1780144562');
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+  }
+
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+(function() {
+  function initSwipers() {
+    // ========= DESKTOP: Sync Reviews Swiper and Video Swiper =========
+    const reviewsSwiperDesktop = document.getElementById('reviewsSwiperDesktop');
+    const videoSwiperDesktop = document.getElementById('videoSwiperDesktop');
+    
+    let desktopReviewsSwiper = null;
+    let desktopVideoSwiper = null;
+    
+    if (reviewsSwiperDesktop && videoSwiperDesktop) {
+      desktopReviewsSwiper = new Swiper(reviewsSwiperDesktop, {
+        loop: true,
+        slidesPerView: 1,
+        pagination: {
+          el: '.reviews-pagination',
+          clickable: true,
+        },
+        on: {
+          slideChange: function() {
+            if (desktopVideoSwiper && desktopVideoSwiper.activeIndex !== this.activeIndex) {
+              desktopVideoSwiper.slideToLoop(this.activeIndex);
+            }
+          }
+        }
+      });
+      
+      desktopVideoSwiper = new Swiper(videoSwiperDesktop, {
+        loop: true,
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.desktop-video-next',
+          prevEl: '.desktop-video-prev',
+        },
+        on: {
+          slideChange: function() {
+            if (desktopReviewsSwiper && desktopReviewsSwiper.activeIndex !== this.activeIndex) {
+              desktopReviewsSwiper.slideToLoop(this.activeIndex);
+            }
+          }
+        }
+      });
+    }
+    
+const mobileVideoSwiperEl = document.getElementById('mobileVideoSwiper');
+
+if (mobileVideoSwiperEl) {
+
+  const mobileVideoSwiper = new Swiper(
+    mobileVideoSwiperEl,
+    {
+      loop:true,
+      slidesPerView:1,
+      allowTouchMove:true
+    }
+  );
+
+  const prevBtn = mobileVideoSwiperEl.querySelector('.mobile-video-prev');
+  const nextBtn = mobileVideoSwiperEl.querySelector('.mobile-video-next');
+
+  if(prevBtn){
+    prevBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      mobileVideoSwiper.slidePrev();
+    });
+  }
+
+  if(nextBtn){
+    nextBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      mobileVideoSwiper.slideNext();
+    });
+  }
+}
+    // ========= MOBILE: Review Slider =========
+    const mobileReviewsSwiperEl = document.getElementById('mobileReviewsSwiper');
+    const mobileReviewsPrev = document.querySelector('.mobile-reviews-prev');
+    const mobileReviewsNext = document.querySelector('.mobile-reviews-next');
+    
+    if (mobileReviewsSwiperEl) {
+      const mobileReviewsSwiper = new Swiper(mobileReviewsSwiperEl, {
+        loop: true,
+        slidesPerView: 1,
+        allowTouchMove: true,
+      });
+      
+      if (mobileReviewsPrev) {
+        mobileReviewsPrev.addEventListener('click', function(e) {
+          e.preventDefault();
+          mobileReviewsSwiper.slidePrev();
+        });
+      }
+      
+      if (mobileReviewsNext) {
+        mobileReviewsNext.addEventListener('click', function(e) {
+          e.preventDefault();
+          mobileReviewsSwiper.slideNext();
+        });
+      }
+    }
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwipers);
+  } else {
+    initSwipers();
+  }
+  
+  setTimeout(function() {
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach(function(video) {
+      video.setAttribute('playsinline', 'true');
+      video.muted = true;
+      video.play().catch(function(e) {
+        console.log('Video autoplay prevented:', e);
+      });
+    });
+  }, 100);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Real Patients, Real Results"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Video + Reviews",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "textarea",
+          "id": "review_1",
+          "label": "Review 1",
+          "default": "Before using Spatial Sleep, I would wake up several times a night and never felt truly rested. After a few weeks of wearing it regularly, I started sleeping in long, uninterrupted stretches. For the first time in years, I wake up feeling refreshed and energized."
+        },
+        {
+          "type": "text",
+          "id": "name_1",
+          "label": "Name 1",
+          "default": "Jay G"
+        },
+        {
+          "type": "text",
+          "id": "role_1",
+          "label": "Role 1",
+          "default": "Corporate Vice President @ Fortune 500 Company"
+        },
+        {
+          "type": "textarea",
+          "id": "review_2",
+          "label": "Review 2",
+          "default": "As a physician on call, quality sleep is rare. With Spatial Sleep, I finally get deep, restorative rest."
+        },
+        {
+          "type": "text",
+          "id": "name_2",
+          "label": "Name 2",
+          "default": "Ram G MD"
+        },
+        {
+          "type": "text",
+          "id": "role_2",
+          "label": "Role 2",
+          "default": "Radiologist"
+        },
+        {
+          "type": "textarea",
+          "id": "review_3",
+          "label": "Review 3",
+          "default": "Spatial Sleep has been a real game changer for me. I fall asleep so much faster and actually wake up feeling refreshed. I noticed a difference the very first night. Fell asleep faster, slept deeper. I used to toss and turn for hours, but with Spatial I'm out in minutes and I wake up rested."
+        },
+        {
+          "type": "text",
+          "id": "name_3",
+          "label": "Name 3",
+          "default": "Julie K"
+        },
+        {
+          "type": "text",
+          "id": "role_3",
+          "label": "Role 3",
+          "default": "Retired RN"
+        },
+        {
+          "type": "textarea",
+          "id": "review_4",
+          "label": "Review 4",
+          "default": "I love the color and the comfort. It's subtle yet powerful. My REM sleep increased dramatically."
+        },
+        {
+          "type": "text",
+          "id": "name_4",
+          "label": "Name 4",
+          "default": "Lindsay M"
+        },
+        {
+          "type": "text",
+          "id": "role_4",
+          "label": "Role 4",
+          "default": "Clinical Psychologist"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Video"
+    }
+  ]
+}
+{% endschema %}

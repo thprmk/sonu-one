@@ -1,0 +1,344 @@
+<section class="unique-science-bg-area">
+<section class="unique-logo-section unique-section">
+
+  {% if section.settings.heading != blank %}
+<h2 class="unique-logo-heading animate-blur delay-1">
+        {{ section.settings.heading }}
+    </h2>
+  {% endif %}
+
+  {% if section.settings.description != blank %}
+    <div class="unique-logo-description animate-blur delay-2">
+      {{ section.settings.description }}
+    </div>
+  {% endif %}
+
+  <div class="unique-logo-container animate-blur delay-3">
+
+    <div class="unique-logo-track" id="logoTrack-{{ section.id }}">
+
+      {% for block in section.blocks %}
+        <div class="unique-logo-item">
+
+          {% if block.settings.logo != blank %}
+            <img
+              src="{{ block.settings.logo | image_url: width: 300 }}"
+              alt=""
+              loading="lazy"
+            >
+          {% endif %}
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+  {% if section.settings.button_text != blank %}
+    <div class="unique-logo-button-wrap">
+
+      <a href="{{ section.settings.button_link }}"
+         class="unique-logo-btn"
+         style="
+           background: {{ section.settings.button_bg }};
+           color: {{ section.settings.button_text_color }};
+         ">
+        {{ section.settings.button_text }}
+      </a>
+
+    </div>
+  {% endif %}
+
+</section>
+</section>
+<style>
+.unique-science-bg-area {
+  position: relative;
+  z-index: 1;
+}
+
+.unique-science-bg-area::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url('https://cdn.shopify.com/s/files/your-bg.png');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+.unique-section-shadow {
+  box-shadow: 0px 4px 4px rgba(232, 229, 229, 0.25);
+}
+/* SECTION */
+.unique-logo-section {
+  padding: 40px 20px !important;
+
+  background: #ffff;
+}
+
+/* HEADING */
+.unique-logo-heading {
+  text-align: center;
+  margin-bottom: 46px!important;
+  font-family:'Instrument Sans';
+  color: #001755;
+
+  font-size: 42px;
+  line-height: 1.1;
+
+  font-weight: 700;
+
+  letter-spacing: -1px;
+}
+
+/* DESCRIPTION */
+.unique-logo-description {
+  max-width: 720px;
+
+  margin: 0 auto 45px;
+
+  text-align: center;
+
+  font-size: 18px;
+  line-height: 1.7;
+
+  color: rgba(0,0,0,0.75);
+}
+
+/* LOGO CONTAINER */
+.unique-logo-container {
+  overflow: hidden;
+}
+
+/* TRACK */
+.unique-logo-track {
+  display: flex;
+  gap: 40px;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+}
+
+/* LOGO ITEM */
+.unique-logo-item {
+  max-width: 16%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* IMAGE */
+.unique-logo-item img {
+  max-height: 50px;
+  max-width: 100%;
+
+  object-fit: contain;
+
+  transition: all 0.3s ease;
+}
+
+.unique-logo-item img:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* SLIDER MODE */
+.unique-logo-track.slider {
+  flex-wrap: nowrap;
+  animation: uniqueScrollLogos 20s linear infinite;
+}
+
+.unique-logo-track.slider .unique-logo-item {
+  flex: 0 0 auto;
+}
+
+@keyframes uniqueScrollLogos {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+
+}
+
+/* CTA BUTTON */
+.unique-logo-button-wrap {
+  text-align: center;
+  margin-top: 45px;
+}
+
+.unique-logo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 16px 34px;
+
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  font-size: 17px;
+  font-weight: 500;
+
+  transition: all 0.35s ease;
+}
+
+.unique-logo-btn:hover {
+  transform: translateY(-3px);
+  opacity: 0.92;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .unique-logo-section {
+    padding: 0px;
+  }
+
+  .unique-logo-heading {
+    font-size: 32px;
+  }
+
+  .unique-logo-description {
+    font-size: 16px;
+    margin-bottom: 35px;
+  }
+
+  .unique-logo-track {
+    flex-wrap: nowrap !important;
+    animation: uniqueScrollLogos 15s linear infinite;
+
+    justify-content: flex-start;
+  }
+
+  .unique-logo-item {
+    flex: 0 0 31%;
+    max-width: 31%;
+  }
+
+  .unique-logo-btn {
+    width: 100%;
+  }
+
+}
+
+/* Slightly bigger phones */
+@media (min-width: 480px) and (max-width: 768px) {
+
+  .unique-logo-item {
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const isMobile = window.innerWidth <= 768;
+
+  document.querySelectorAll('[id^="logoTrack-"]').forEach(track => {
+
+    let items = track.children;
+    let count = items.length;
+
+    // MOBILE → always slider
+    if (isMobile || count > 5) {
+
+      track.classList.add("slider");
+
+      // duplicate once only
+      if (!track.classList.contains("duplicated")) {
+
+        track.innerHTML += track.innerHTML;
+
+        track.classList.add("duplicated");
+
+      }
+
+    }
+
+  });
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Logo Carousel",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f5f6fb"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Partners"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo Carousel"
+    }
+  ]
+}
+{% endschema %}

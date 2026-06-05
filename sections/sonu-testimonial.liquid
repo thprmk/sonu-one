@@ -1,0 +1,495 @@
+<style>
+  .split-video-testimonial-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: 0;
+    margin: 0;
+    display: none; /* Hidden on desktop by default */
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Display only on mobile screens (768px wide and below) */
+  @media screen and (max-width: 768px) {
+    .split-video-testimonial-{{ section.id }} {
+      display: flex;
+    }
+  }
+
+  /* Main Slider Architecture Grid/Wrapper */
+  .split-video-testimonial-{{ section.id }} .testimonial-slider-container {
+    display: flex;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+  }
+
+  .split-video-testimonial-{{ section.id }} .testimonial-slider-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+
+  .split-video-testimonial-{{ section.id }} .testimonial-slide {
+    width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  /* Left Side Media Panel Box styling */
+.split-video-testimonial-{{ section.id }} .media-panel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: {{ section.settings.video_bg_color }};
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+  /* Contained Video Frame Wrapper Box */
+  .split-video-testimonial-{{ section.id }} .video-wrapper-box {
+    position: relative;
+    width: 100%;
+    max-width: 320px; 
+    aspect-ratio: 9 / 16; 
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.12);
+    line-height: 0;
+    background-color: #000000;
+  }
+
+  .split-video-testimonial-{{ section.id }} .video-wrapper-box video,
+  .split-video-testimonial-{{ section.id }} .video-wrapper-box iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+  }
+
+  /* Right Side Content Container */
+  .split-video-testimonial-{{ section.id }} .content-panel {
+  width: 100%;
+  padding: 40px 30px 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  background-color: {{ section.settings.content_bg_color }};
+}
+
+  .split-video-testimonial-{{ section.id }} .subheading {
+    font-family: var(--sonu-font-primary);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #3D1B03;
+    margin-bottom: 24px;
+  }
+
+  .split-video-testimonial-{{ section.id }} .main-quote {
+    font-family: var(--sonu-font-serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 38px;
+    color: #000000;
+    max-width: 500px;
+    margin: 0 auto 24px auto;
+  }
+
+  .split-video-testimonial-{{ section.id }} .author-name {
+    font-family: var(--sonu-font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    color: #3D1B03;
+    margin-bottom: 6px;
+  }
+
+  .split-video-testimonial-{{ section.id }} .author-bio {
+    font-family: var(--sonu-font-primary);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #4A5568;
+    margin-bottom: 20px;
+  }
+
+  /* Star Rating Elements */
+  .split-video-testimonial-{{ section.id }} .star-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 30px;
+  }
+
+  .split-video-testimonial-{{ section.id }} .star-wrapper svg {
+    width: 15px;
+    height: 15px;
+    fill: #FFCD0F;
+  }
+
+  /* Fixed Stationary Navigation Control Footer Block */
+  .split-video-testimonial-{{ section.id }} .carousel-indicator-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 40px auto;
+    font-family: var(--sonu-font-primary);
+    font-size: 16px;
+    color: #000000;
+    user-select: none;
+    position: relative;
+    z-index: 10;
+  }
+
+  .split-video-testimonial-{{ section.id }} .slide-counter-label {
+    min-width: 45px;
+    text-align: left;
+    letter-spacing: 0.05em;
+  }
+
+  .split-video-testimonial-{{ section.id }} .indicator-line-track {
+    flex: 1;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.15);
+    margin: 0 20px;
+    position: relative;
+    border-radius: 2px;
+  }
+
+  .split-video-testimonial-{{ section.id }} .indicator-line-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%; 
+    background-color: #000000;
+    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 2px;
+  }
+
+  .split-video-testimonial-{{ section.id }} .nav-arrows {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .split-video-testimonial-{{ section.id }} .nav-arrow {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    transition: transform 0.2s ease;
+  }
+  
+  .split-video-testimonial-{{ section.id }} .nav-arrow:active {
+    transform: scale(0.85);
+  }
+
+  /* Responsive split layout logic (Kept for mobile-tablet transition structure) */
+  @media screen and (min-width: 769px) {
+    .split-video-testimonial-{{ section.id }} .testimonial-slide {
+      flex-direction: row;
+    }
+
+    .split-video-testimonial-{{ section.id }} .media-panel {
+      width: 50%;
+      padding: 60px 40px;
+    }
+
+    .split-video-testimonial-{{ section.id }} .video-wrapper-box {
+      max-width: 360px; 
+    }
+
+    .split-video-testimonial-{{ section.id }} .content-panel {
+      width: 50%;
+      padding: 80px 60px 140px 60px;
+    }
+    
+    .split-video-testimonial-{{ section.id }} .main-quote {
+      font-size: 36px;
+      line-height: 46px;
+    }
+
+    .split-video-testimonial-{{ section.id }} .carousel-indicator-bar {
+      position: absolute;
+      bottom: 50px;
+      left: 75%; 
+      transform: translateX(-50%);
+      margin: 0;
+    }
+  }
+</style>
+
+<div class="split-video-testimonial-{{ section.id }}" id="TestimonialSection-{{ section.id }}">
+  <div class="testimonial-slider-container">
+    <div class="testimonial-slider-track">
+      {%- for block in section.blocks -%}
+        <div class="testimonial-slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          
+          <div class="media-panel">
+            <div class="video-wrapper-box">
+              {%- if block.settings.video != blank -%}
+                {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+              {%- elsif block.settings.video_url != blank -%}
+                {%- if block.settings.video_url.type == 'youtube' -%}
+                  <iframe src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ block.settings.video_url.id }}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {%- else -%}
+                  <iframe src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?autoplay=1&muted=1&loop=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {%- endif -%}
+              {%- else -%}
+                <div style="width: 100%; height: 100%; background: #eaeaea; display: flex; align-items: center; justify-content: center; font-family: sans-serif; color: #999; line-height: normal; padding: 20px; text-align: center;">
+                  Upload Video Asset
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+
+          <div class="content-panel">
+            {%- if block.settings.subheading != blank -%}
+              <div class="subheading">{{ block.settings.subheading | escape }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.quote != blank -%}
+              {%- assign quote_tag = block.settings.heading_tag | default: 'h2' -%}
+              <{{ quote_tag }} class="main-quote">
+                “{{ block.settings.quote | replace: '"', '' | replace: '“', '' }}”
+              </{{ quote_tag }}>
+            {%- endif -%}
+
+            {%- if block.settings.author_name != blank -%}
+              <div class="author-name">{{ block.settings.author_name | escape }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.author_bio != blank -%}
+              <div class="author-bio">{{ block.settings.author_bio | escape }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.show_stars -%}
+              <div class="star-wrapper" aria-label="5 star rating">
+                {%- for i in (1..5) -%}
+                  <svg viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.415 0L9.58 4.793L14.83 5.174L10.806 8.572L12.062 13.682L7.415 10.913L2.768 13.682L4.024 8.572L0 5.174L5.25 4.793L7.415 0Z"/>
+                  </svg>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.blocks.size > 1 -%}
+      <div class="carousel-indicator-bar">
+        <span class="slide-counter-label">
+          <span class="current-index">1</span> / {{ section.blocks.size }}
+        </span>
+        <div class="indicator-line-track">
+          <div class="indicator-line-fill"></div>
+        </div>
+        <div class="nav-arrows">
+          <button class="nav-arrow prev-slide" aria-label="Previous Slide">
+            <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 2L2 8L8 14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+          </button>
+          <button class="nav-arrow next-slide" aria-label="Next Slide">
+            <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 2L8 8L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionContainer = document.querySelector('#TestimonialSection-{{ section.id }}');
+    if (!sectionContainer) return;
+
+    const track = sectionContainer.querySelector('.testimonial-slider-track');
+    const slides = sectionContainer.querySelectorAll('.testimonial-slide');
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+
+    const counterDisplay = sectionContainer.querySelector('.current-index');
+    const progressFill = sectionContainer.querySelector('.indicator-line-fill');
+
+    function updateSlider() {
+      if (totalSlides === 0) return;
+      
+      const translateXValue = -(currentIndex * 100);
+      track.style.transform = `translateX(${translateXValue}%)`;
+      
+      const fillPercentage = ((currentIndex + 1) / totalSlides) * 100;
+      
+      if (counterDisplay) counterDisplay.textContent = currentIndex + 1;
+      if (progressFill) progressFill.style.width = fillPercentage + '%';
+    }
+
+    function showSlide(index) {
+      if (index >= totalSlides) currentIndex = 0;
+      else if (index < 0) currentIndex = totalSlides - 1;
+      else currentIndex = index;
+
+      updateSlider();
+    }
+
+    sectionContainer.addEventListener('click', function(e) {
+      if (e.target.closest('.next-slide')) {
+        e.preventDefault();
+        showSlide(currentIndex + 1);
+      }
+      if (e.target.closest('.prev-slide')) {
+        e.preventDefault();
+        showSlide(currentIndex - 1);
+      }
+    });
+
+    updateSlider();
+
+    if (Shopify.designMode) {
+      document.addEventListener('shopify:block:select', function(e) {
+        if (e.target.classList.contains('testimonial-slide')) {
+          const targetIndex = parseInt(e.target.getAttribute('data-index'));
+          showSlide(targetIndex);
+        }
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Contained Video Slider",
+  "max_blocks": 8,
+  "settings": [
+  {
+    "type": "header",
+    "content": "Section Colors"
+  },
+  {
+    "type": "color",
+    "id": "bg_color",
+    "label": "Section Background",
+    "default": "#E2F0EC"
+  },
+  {
+    "type": "color",
+    "id": "video_bg_color",
+    "label": "Video Area Background",
+    "default": "#F5F5F5"
+  },
+  {
+    "type": "color",
+    "id": "content_bg_color",
+    "label": "Content Area Background",
+    "default": "#E2F0EC"
+  }
+],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial Block",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Media Source Settings"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Shopify Native Video File Upload"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "External Video Link Override",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "header",
+          "content": "Text Element Fields"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Section Tag Heading Line",
+          "default": "OUR FAVORITE PRODUCTS"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Core Content Review Quote",
+          "default": "As an airway patient I am always looking for ways to improve my nasal breathing."
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading type",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" }
+          ],
+          "default": "h2"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author First Name",
+          "default": "Zach"
+        },
+        {
+          "type": "text",
+          "id": "author_bio",
+          "label": "Author Job Subtitle Description",
+          "default": "College counselor"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_stars",
+          "label": "Render Star Rating Row Layout UI",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contained Video Slider",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

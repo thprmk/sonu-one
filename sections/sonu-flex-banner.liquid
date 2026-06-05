@@ -1,0 +1,285 @@
+<section id="sonu-sound-banner-{{ section.id }}" class="sonu-sound-banner">
+
+  <div class="sonu-sound-banner__wrapper">
+
+    <div class="sonu-sound-banner__image-wrapper">
+
+      {% if section.settings.desktop_image != blank %}
+        <img
+          src="{{ section.settings.desktop_image | image_url: width: 2000 }}"
+          alt="{{ section.settings.heading }}"
+          class="sonu-sound-banner__image sonu-sound-banner__desktop-image"
+          loading="lazy"
+        >
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg sonu-sound-banner__image sonu-sound-banner__desktop-image' }}
+      {% endif %}
+
+      {% if section.settings.mobile_image != blank %}
+        <img
+          src="{{ section.settings.mobile_image | image_url: width: 1000 }}"
+          alt="{{ section.settings.heading }}"
+          class="sonu-sound-banner__image sonu-sound-banner__mobile-image"
+          loading="lazy"
+        >
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg sonu-sound-banner__image sonu-sound-banner__mobile-image' }}
+      {% endif %}
+
+    </div>
+
+    <div class="sonu-sound-banner__content">
+
+      {%- assign heading_tag = section.settings.heading_tag | default: 'h2' -%}
+      <{{ heading_tag }} class="sonu-sound-banner__heading">
+        {{ section.settings.heading }}
+      </{{ heading_tag }}>
+
+      <div class="sonu-sound-banner__buttons">
+
+        {% if section.settings.button_1_text != blank %}
+          <a href="{{ section.settings.button_1_link | default: '#' }}" class="sonu-sound-banner__button sonu-sound-banner__button--one">
+            {{ section.settings.button_1_text }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.button_2_text != blank %}
+          <a href="{{ section.settings.button_2_link | default: '#' }}" class="sonu-sound-banner__button sonu-sound-banner__button--two">
+            {{ section.settings.button_2_text }}
+          </a>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+#sonu-sound-banner-{{ section.id }}{
+  width:100%;
+  padding:40px 20px 80px!important;
+}
+
+#sonu-sound-banner-{{ section.id }} .sonu-sound-banner__wrapper{
+  max-width:1520px;
+  margin:0 auto;
+  position:relative;
+}
+
+#sonu-sound-banner-{{ section.id }} .sonu-sound-banner__image{
+  display:block;
+  width:100%;
+  border-radius:8px;
+}
+
+#sonu-sound-banner-{{ section.id }} .sonu-sound-banner__mobile-image{
+  display:none;
+}
+
+/* =====================
+   DESKTOP
+===================== */
+
+#sonu-sound-banner-{{ section.id }} .sonu-sound-banner__content{
+  position:absolute;
+  top:50%;
+  right:80px;
+  transform:translateY(-50%);
+  width:406px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+}
+
+#sonu-sound-banner-{{ section.id }} .sonu-sound-banner__heading{
+  margin:0;
+
+  font-family: var(--sonu-font-primary);
+  font-weight:500;
+  font-size:36px;
+  line-height:44px;
+  color: {{ section.settings.heading_color | default: '#001755' }};
+  text-align:right;
+  margin-bottom:24px;
+}
+
+#sonu-sound-banner-{{ section.id }} .sonu-sound-banner__buttons{
+  margin-top:35px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+#sonu-sound-banner-{{ section.id }} .sonu-sound-banner__button{
+  width:244px;
+  height:52px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background: {{ section.settings.btn_bg_color | default: '#ffffff' }};
+  border-radius:33px;
+
+  text-decoration:none;
+
+  font-family: var(--sonu-font-primary);
+  font-weight:600;
+  font-size:18px;
+  line-height:22px;
+  color: {{ section.settings.btn_text_color | default: '#001755' }};
+
+  transition:all .3s ease;
+}
+
+#sonu-sound-banner-{{ section.id }} .sonu-sound-banner__button:hover{
+  transform:translateY(-2px);
+}
+
+/* =====================
+   MOBILE
+===================== */
+
+@media screen and (max-width:768px){
+
+  #sonu-sound-banner-{{ section.id }}{
+    padding:20px;
+  }
+
+  #sonu-sound-banner-{{ section.id }} .sonu-sound-banner__desktop-image{
+    display:none;
+  }
+
+  #sonu-sound-banner-{{ section.id }} .sonu-sound-banner__mobile-image{
+    display:block;
+    width:100%;
+  }
+
+  #sonu-sound-banner-{{ section.id }} .sonu-sound-banner__content{
+    position:absolute;
+    top:40px;
+    left:36px;
+    right:auto;
+    transform:none;
+    width:244px;
+    align-items:flex-start;
+  }
+
+  #sonu-sound-banner-{{ section.id }} .sonu-sound-banner__heading{
+    width:244px;
+    font-size:24px;
+    line-height:29px;
+    text-align:left;
+  }
+
+  #sonu-sound-banner-{{ section.id }} .sonu-sound-banner__buttons{
+    margin-top:18px;
+    flex-direction:row;
+    gap:10px;
+  }
+
+  #sonu-sound-banner-{{ section.id }} .sonu-sound-banner__button--one{
+    width:114px;
+    height:35px;
+
+    font-size:12px;
+    line-height:15px;
+  }
+
+  #sonu-sound-banner-{{ section.id }} .sonu-sound-banner__button--two{
+    width:148px;
+    height:35px;
+
+    font-size:12px;
+    line-height:15px;
+  }
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "SONU Sound Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Experience the future of personalized sound therapeutics."
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Buttons Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Buttons Text Color",
+      "default": "#001755"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "Explore SONU"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "Explore Spatial Sleep"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SONU Sound Banner"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,73 @@
+{% liquid
+  assign announcement_text = section.settings.announcement_text
+%}
+
+<div id="announcement-bar-{{ section.id }}" class="custom-announcement-bar">
+  <div class="custom-announcement-bar__inner">
+    {{ announcement_text }}
+  </div>
+</div>
+
+<style>
+#announcement-bar-{{ section.id }} {
+  width: 100%;
+  background: #FFFFFF;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+  position: relative;
+  z-index: 10;
+}
+
+#announcement-bar-{{ section.id }} .custom-announcement-bar__inner {
+  max-width: 1920px;
+  margin: 0 auto;
+  min-height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 20px!important;
+
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+
+  color: #001755;
+  letter-spacing: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #announcement-bar-{{ section.id }} .custom-announcement-bar__inner {
+    min-height: 40px;
+    padding: 8px 16px!important;
+
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Announcement Bar",
+  "tag": "section",
+  "class": "custom-announcement-bar-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "SONU is one of TIME's 2025 Best Inventions"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

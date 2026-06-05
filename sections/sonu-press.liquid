@@ -1,0 +1,1139 @@
+<style>
+/* =========================
+   PRESS FEATURE SECTION
+========================= */
+
+.press-feature {
+  position: relative;
+  /* Use shorthand to explicitly set all padding, with 0 on the bottom and sides */
+  padding: 80px 0 0;
+  overflow: hidden;
+  z-index: 1;
+  /* Retain the rounded corners */
+  border-radius: 0 0 40px 40px !important;
+}
+
+/* BACKGROUND */
+.press-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+}
+.press-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+/* GRID */
+.press-grid {
+  display: flex;
+  gap: 40px;
+  align-items: start;
+  justify-content: center;
+}
+
+/* LEFT SIDE */
+.press-left {
+  width: 42%;
+}
+
+.press-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 505px;
+}
+
+.press-card-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.press-card-bg img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+}
+
+.press-card-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
+}
+
+.press-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background:rgb(0 0 0 / 52%);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 7px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+}
+
+.press-content {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 30px;
+  color: #fff;
+}
+
+.press-content h1,
+.press-content h2,
+.press-content h3,
+.press-content h4,
+.press-content h5,
+.press-content h6 {
+  font-size: 38px;
+  line-height: 1.2;
+  margin-bottom: 18px;
+  font-family: var(--sonu-font-primary);
+  font-weight: 500;
+  margin-top: 0;
+}
+
+.press-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: #231F20;
+  color: #fff;
+  gap:15px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: .3px;
+}
+
+/* RIGHT */
+.press-right {
+  flex: 1;
+  width:100%;
+  min-width:0;
+  overflow:hidden;
+}
+
+.press-item {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  transition: .3s ease;
+}
+
+.press-item.clickable {
+  text-decoration: none;
+  color: inherit;
+}
+
+.press-item.clickable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.08);
+}
+
+.press-source-logo img {
+    max-height: 35px;
+    margin-bottom: 6px;
+    object-fit: contain;
+    object-position: left;
+}
+
+.press-source-text {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.press-item-content p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--sonu-navy);
+  font-weight: 500;
+  max-width: 420px;
+  margin: 0;
+}
+
+.press-arrow {
+  font-size: 24px;
+  color: #000;
+  transition: .3s ease;
+}
+
+.press-item:hover .press-arrow {
+  transform: translateX(4px);
+}
+
+.press-item.clickable:hover .press-arrow {
+  transform: translateX(5px);
+}
+
+/* PARALLAX */
+.parallax img {
+  will-change: transform;
+}
+
+.mobile-press-footer{
+  display:none;
+}
+
+
+/* =========================
+   MOBILE PRESS SLIDER
+========================= */
+
+@media(max-width:768px){
+
+  .press-arrow {
+    width:25%;
+    margin-left:10px;
+    margin-top:20px;
+  }
+
+  .mobile-press-slider {
+    display:flex;
+    overflow-x:auto;
+    gap:18px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-bottom:0px;
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+  }
+  .mobile-press-slider .press-item:last-child{
+    margin-right: -25px;
+  }
+
+  .mobile-press-slider .press-item {
+    flex:0 0 78%;
+    min-width:78%;
+    box-sizing:border-box;
+    margin-bottom:0;
+    scroll-snap-align:start;
+  }
+
+   .mobile-press-slider::-webkit-scrollbar{
+    display:none;
+  }
+
+  .mobile-press-slider::after{
+    content:"";
+    flex:0 0 18px;
+  }
+
+  /* FOOTER */
+  .mobile-press-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:100%;
+    margin-top: 0px;
+    padding: 15px 0; /* Updated: Added padding for positioning */
+  }
+
+  /* COUNT */
+  .mobile-press-count {
+    color: #fff;
+    font-size: 18px;
+  }
+
+  /* DOTS */
+  .mobile-press-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .mobile-press-dots .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.35);
+    transition: .3s ease;
+  }
+
+  .mobile-press-dots .dot.active {
+    background: #fff;
+  }
+
+}
+/* =========================
+   MEDICAL ADVISORS
+========================= */
+
+.medical-advisors {
+  margin-top: 110px;
+}
+
+.advisor-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  align-items: flex-start;
+  margin-bottom: 50px;
+}
+
+.advisor-heading h1,
+.advisor-heading h2,
+.advisor-heading h3,
+.advisor-heading h4,
+.advisor-heading h5,
+.advisor-heading h6 {
+  color: #fff;
+  font-size: 72px;
+  line-height: 1.05;
+  font-weight: 500;
+  margin: 0;
+  max-width: 600px;
+  font-family: var(--sonu-font-primary);
+}
+
+.advisor-description {
+  color: #fff;
+  max-width: 520px;
+  font-size: 18px;
+  line-height: 1.8;
+  opacity: .92;
+}
+
+/* SLIDER */
+
+.advisor-slider-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.advisor-slider {
+  display: flex;
+  gap: 24px;
+  transition: transform .5s ease;
+}
+
+.advisor-card {
+  position: relative;
+  min-width: 340px;
+  flex: 0 0 280px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.advisor-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+
+.advisor-card:hover img {
+  transform: scale(1.05);
+}
+
+.advisor-plus {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  backdrop-filter: blur(10px);
+  font-size: 22px;
+  z-index: 2;
+}
+
+.advisor-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 22px;
+  background: linear-gradient(to top, rgba(0,0,0,.7), transparent);
+  color: #fff;
+}
+
+.advisor-info h4 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.advisor-info p {
+  margin: 0;
+  font-size: 14px;
+  opacity: .85;
+}
+
+/* NAVIGATION */
+
+.advisor-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.advisor-progress {
+  position: relative;
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,.2);
+  overflow: hidden;
+}
+
+.advisor-progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 35%;
+  height: 100%;
+  background: var(--sonu-accent);
+  transition: transform .5s ease;
+}
+
+.advisor-arrows {
+  display: flex;
+  gap: 14px;
+}
+
+.advisor-arrow.sonu-arrow-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff !important;
+  cursor: pointer;
+  transition: .3s ease;
+  user-select: none;
+}
+
+.advisor-arrow.sonu-arrow-btn:hover {
+  background: rgba(255,255,255,.1) !important;
+  transform: none;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .press-grid {
+    flex-direction: column;
+  }
+
+  .press-left {
+    width: 100%;
+  }
+
+  .press-card {
+    height: 430px;
+  }
+
+  .press-content h1,
+  .press-content h2,
+  .press-content h3,
+  .press-content h4,
+  .press-content h5,
+  .press-content h6 {
+    font-size: 28px;
+  }
+
+  .advisor-top {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .advisor-heading h1,
+  .advisor-heading h2,
+  .advisor-heading h3,
+  .advisor-heading h4,
+  .advisor-heading h5,
+  .advisor-heading h6 {
+    font-size: 44px;
+    max-width: 100%;
+  }
+
+  .advisor-description {
+    font-size: 16px;
+  }
+
+  .advisor-card {
+    min-width: 220px;
+    flex: 0 0 220px;
+  }
+
+  .advisor-card img {
+    height: 260px;
+  }
+  .press-source-logo img{
+    margin-bottom:40px;
+  }
+
+  .medical-advisors {
+    margin-top: 0px; /* Updated: Remove margin top on adjacent section */
+  }
+
+}
+
+.press-feature .section-new,
+.press-feature .page-width {
+  border-radius: inherit;
+}
+
+@media (max-width: 768px) {
+  .press-feature,
+  .press-bg,
+  .press-bg img {
+    border-radius: 0 0 30px 30px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .press-feature {
+    border-radius: 0 0 35px 35px !important;
+    margin-bottom: 0px; 
+    position: relative;
+    z-index: 20!important;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .press-grid {
+    margin-bottom: 0 !important;
+  }
+
+  .press-right {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .mobile-press-slider {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    align-items: flex-start !important;
+  }
+
+  .mobile-press-footer {
+    position: relative;
+    z-index: 2;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .mobile-press-slider {
+    height: auto !important;
+    min-height: unset !important;
+  }
+
+  .mobile-press-slider .press-item {
+    height: auto !important;
+    align-self: flex-start !important;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .press-feature {
+    border-radius: 0 0 35px 35px !important;
+    margin-bottom: 0px; 
+    position: relative;
+    z-index: 20 !important;
+    /* ADD THIS: Gives left and right breathing room to the whole section */
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+</style>
+
+<section id="sonu-press-{{ section.id }}" class="press-feature">
+
+  <!-- BACKGROUND -->
+  <div class="press-bg">
+    {% if section.settings.bg_image != blank %}
+      <img
+        src="{{ section.settings.bg_image | image_url: width: 2200 }}"
+        alt=""
+        width="{{ section.settings.bg_image.width }}"
+        height="{{ section.settings.bg_image.height }}"
+      >
+    {% endif %}
+  </div>
+
+  <section class="section section-new">
+    <div class="page-width">
+
+      <!-- PRESS GRID -->
+      <div class="press-grid">
+
+        <!-- LEFT FEATURE -->
+        <div class="press-left">
+
+          <div class="press-card">
+
+            <div class="press-card-bg parallax">
+              {% if section.settings.feature_image != blank %}
+                <img
+                  src="{{ section.settings.feature_image | image_url: width: 1600 }}"
+                  alt=""
+                  width="{{ section.settings.feature_image.width }}"
+                  height="{{ section.settings.feature_image.height }}"
+                >
+              {% endif %}
+            </div>
+
+            {% if section.settings.badge != blank %}
+              <div class="press-badge">
+                {{ section.settings.badge }}
+              </div>
+            {% endif %}
+
+            <div class="press-content sonu-blur-in">
+              {%- assign title_tag = section.settings.title_tag | default: 'h3' -%}
+              <{{ title_tag }} class="press-title-text">
+                {{ section.settings.title }}
+              </{{ title_tag }}>
+
+              <a href="{{ section.settings.button_link }}" class="press-btn">
+                {{ section.settings.button_text }} <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.2015 5.72074C6.92649 5.69574 6.68329 5.89841 6.65829 6.17342C6.63329 6.44843 6.83596 6.69163 7.11097 6.71663L7.15623 6.21869L7.2015 5.72074ZM12.3125 6.68744L12.8105 6.64217C12.7886 6.4018 12.5982 6.21135 12.3578 6.18949L12.3125 6.68744ZM12.2833 11.889C12.3083 12.164 12.5515 12.3667 12.8265 12.3417C13.1015 12.3167 13.3042 12.0735 13.2792 11.7985L12.7813 11.8437L12.2833 11.889ZM6.33393 11.9589C6.13867 12.1542 6.13867 12.4708 6.33393 12.666C6.52919 12.8613 6.84577 12.8613 7.04103 12.666L6.68748 12.3125L6.33393 11.9589ZM7.15623 6.21869L7.11097 6.71663L12.2673 7.18539L12.3125 6.68744L12.3578 6.18949L7.2015 5.72074L7.15623 6.21869ZM12.3125 6.68744L11.8146 6.73271L12.2833 11.889L12.7813 11.8437L13.2792 11.7985L12.8105 6.64217L12.3125 6.68744ZM12.3125 6.68744L11.959 6.33389L6.33393 11.9589L6.68748 12.3125L7.04103 12.666L12.6661 7.04099L12.3125 6.68744ZM18.5 9.5H18C18 14.1944 14.1944 18 9.5 18V18.5V19C14.7467 19 19 14.7467 19 9.5H18.5ZM9.5 18.5V18C4.80558 18 1 14.1944 1 9.5H0.5H0C0 14.7467 4.25329 19 9.5 19V18.5ZM0.5 9.5H1C1 4.80558 4.80558 1 9.5 1V0.5V0C4.25329 0 0 4.25329 0 9.5H0.5ZM9.5 0.5V1C14.1944 1 18 4.80558 18 9.5H18.5H19C19 4.25329 14.7467 0 9.5 0V0.5Z" fill="#DAF2FF"/>
+</svg>
+
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- RIGHT ITEMS -->
+        <div class="press-right {% if section.settings.mobile_press_layout == 'slider' %}mobile-press-slider{% endif %}">
+          {% for block in section.blocks %}
+            {% if block.type == 'press' %}
+
+              {% assign is_link = false %}
+
+              {% if block.settings.enable_link and block.settings.link != blank %}
+                {% assign is_link = true %}
+              {% endif %}
+
+              {% if is_link %}
+                <a href="{{ block.settings.link }}" class="press-item clickable">
+              {% else %}
+                <div class="press-item">
+              {% endif %}
+
+                <div class="press-item-content">
+
+                  {% if block.settings.source_logo != blank %}
+                    <div class="press-source-logo">
+                      <img
+                        src="{{ block.settings.source_logo | image_url: width: 120 }}"
+                        alt=""
+                        width="{{ block.settings.source_logo.width }}"
+                        height="{{ block.settings.source_logo.height }}"
+                      >
+                    </div>
+                  {% elsif block.settings.source != blank %}
+                    <strong class="press-source-text">
+                      {{ block.settings.source }}
+                    </strong>
+                  {% endif %}
+
+                  <p>{{ block.settings.text }}</p>
+
+                </div>
+
+                {% if is_link %}
+                  <div class="press-arrow">
+                    <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.4548 8.1302C14.1013 7.70592 13.4707 7.6486 13.0464 8.00216C12.6221 8.35573 12.5648 8.98629 12.9184 9.41057L13.6866 8.77039L14.4548 8.1302ZM19.0268 15.1786L19.795 15.8188C20.104 15.4479 20.104 14.9092 19.795 14.5384L19.0268 15.1786ZM12.9184 20.9466C12.5648 21.3709 12.6221 22.0014 13.0464 22.355C13.4707 22.7086 14.1013 22.6512 14.4548 22.227L13.6866 21.5868L12.9184 20.9466ZM13.6866 8.77039L12.9184 9.41057L18.2585 15.8188L19.0268 15.1786L19.795 14.5384L14.4548 8.1302L13.6866 8.77039ZM19.0268 15.1786L18.2585 14.5384L12.9184 20.9466L13.6866 21.5868L14.4548 22.227L19.795 15.8188L19.0268 15.1786ZM15.5 1V2C22.9558 2 29 8.04415 29 15.5H30H31C31 6.93959 24.0604 -3.57628e-07 15.5 0V1ZM30 15.5H29C29 22.9558 22.9558 29 15.5 29V30V31C24.0604 31 31 24.0604 31 15.5H30ZM15.5 30V29C8.04416 29 2 22.9558 2 15.5H1H0C3.57628e-07 24.0604 6.93959 31 15.5 31V30ZM1 15.5H2C2 8.04416 8.04415 2 15.5 2V1V0C6.93959 3.57628e-07 -3.57628e-07 6.93959 0 15.5H1Z" fill="black"/>
+                    </svg>
+                  </div>
+                {% endif %}
+
+              {% if is_link %}
+                </a>
+              {% else %}
+                </div>
+              {% endif %}
+
+            {% endif %}
+          {% endfor %}
+
+        </div>
+        {% if section.settings.mobile_press_layout == 'slider' %}
+
+          <div class="mobile-press-footer">
+
+            <div class="mobile-press-count">
+              <span id="mobilePressCurrent-{{ section.id }}">1</span>/
+              {% assign press_count = 0 %}
+              {% for block in section.blocks %}
+                {% if block.type == 'press' %}
+                  {% assign press_count = press_count | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              <span id="mobilePressTotal-{{ section.id }}">
+                {{ press_count }}
+              </span>
+            </div>
+
+            <div class="mobile-press-dots" id="mobilePressDots-{{ section.id }}">
+              {% for block in section.blocks %}
+                {% if block.type == 'press' %}
+                  <span class="dot {% if forloop.first %}active{% endif %}"></span>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+          </div>
+
+        {% endif %}
+
+      </div>
+
+      <!-- MEDICAL ADVISORS -->
+      {% if section.settings.enable_advisors %}
+
+        <div class="medical-advisors">
+
+          <div class="advisor-top">
+
+            <div class="advisor-heading sonu-blur-in">
+              {%- assign advisor_tag = section.settings.advisor_heading_tag | default: 'h2' -%}
+              <{{ advisor_tag }} class="advisor-heading-text">
+                {{ section.settings.advisor_heading }}
+              </{{ advisor_tag }}>
+            </div>
+
+            <div class="advisor-description sonu-blur-in">
+              {{ section.settings.advisor_description }}
+            </div>
+
+          </div>
+
+          <!-- SLIDER -->
+          <div class="advisor-slider-wrapper">
+
+            <div class="advisor-slider" id="advisorSlider-{{ section.id }}">
+
+              {% for block in section.blocks %}
+                {% if block.type == 'advisor' %}
+
+                  <div class="advisor-card">
+
+                    {% if block.settings.image != blank %}
+                      <img
+                        src="{{ block.settings.image | image_url: width: 700 }}"
+                        alt="{{ block.settings.name }}"
+                        width="{{ block.settings.image.width }}"
+                        height="{{ block.settings.image.height }}"
+                      >
+                    {% endif %}
+
+                    <div class="advisor-plus">
+                      +
+                    </div>
+
+                    <div class="advisor-info">
+                      <h4>{{ block.settings.name }}</h4>
+                      <p>{{ block.settings.designation }}</p>
+                    </div>
+
+                  </div>
+
+                {% endif %}
+              {% endfor %}
+
+            </div>
+
+          </div>
+
+          <!-- NAVIGATION -->
+          <div class="advisor-navigation">
+            {% render 'sonu-progress-bar',
+              progress_id: 'advisorProgress-' | append: section.id,
+              container_class: 'advisor-progress',
+              bar_class: 'advisor-progress-bar'
+            %}
+            
+            <div class="advisor-arrows">
+              {% render 'sonu-nav-arrows',
+                prev_id: 'advisorPrev-' | append: section.id,
+                next_id: 'advisorNext-' | append: section.id,
+                prev_class: 'advisor-arrow',
+                next_class: 'advisor-arrow'
+              %}
+            </div>
+          </div>
+
+        </div>
+
+      {% endif %}
+
+    </div>
+  </section>
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const section = document.getElementById("sonu-press-{{ section.id }}");
+  if (!section) return;
+  const slider = section.querySelector(".mobile-press-slider");
+
+  if (!slider || window.innerWidth > 768) return;
+
+  const current =
+    document.getElementById("mobilePressCurrent-{{ section.id }}");
+
+  const dots =
+    document.querySelectorAll("#mobilePressDots-{{ section.id }} .dot");
+
+  function updateMobilePressSlider() {
+    const cards = slider.querySelectorAll(".press-item");
+    if (!cards.length) return;
+
+    const cardWidth = cards[0].offsetWidth + 18;
+    let index = Math.round(slider.scrollLeft / cardWidth);
+    index = Math.max(0, Math.min(index, cards.length - 1));
+
+    if (current) {
+      current.textContent = index + 1;
+    }
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+    });
+  }
+
+  slider.addEventListener("scroll", updateMobilePressSlider);
+});
+</script>
+
+<script>
+/* PARALLAX */
+document.addEventListener("scroll", function () {
+  const items = document.querySelectorAll("#sonu-press-{{ section.id }} .parallax img");
+  items.forEach((img) => {
+    const rect = img.getBoundingClientRect();
+    const offset = (rect.top - window.innerHeight / 2) * 0.1;
+    const limited = Math.max(Math.min(offset, 30), -30);
+    img.style.transform = `translateY(${limited}px)`;
+  });
+});
+
+/* ADVISOR SLIDER */
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.getElementById("advisorSlider-{{ section.id }}");
+  const next = document.getElementById("advisorNext-{{ section.id }}");
+  const prev = document.getElementById("advisorPrev-{{ section.id }}");
+  const progress = document.getElementById("advisorProgress-{{ section.id }}");
+
+  if (!slider) return;
+
+  const cards = slider.querySelectorAll(".advisor-card");
+  let currentIndex = 0;
+
+  function visibleCards() {
+    return window.innerWidth < 768 ? 1 : 4;
+  }
+
+  function maxIndex() {
+    return Math.max(cards.length - visibleCards(), 0);
+  }
+
+  function updateSlider(smooth = true) {
+    if (!cards.length) return;
+    const cardWidth = cards[0].offsetWidth + 24;
+
+    slider.style.transition = smooth ? "transform .45s ease" : "none";
+    slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+    /* PROGRESS */
+    const total = maxIndex();
+    let progressPercent = 0;
+
+    if (total > 0) {
+      progressPercent = ((currentIndex + 1) / (total + 1)) * 100;
+    } else {
+      progressPercent = 100;
+    }
+
+    if (progress) {
+      progress.style.width = `${progressPercent}%`;
+    }
+  }
+
+  /* NEXT */
+  if (next) {
+    next.addEventListener("click", () => {
+      if (currentIndex < maxIndex()) {
+        currentIndex++;
+        updateSlider();
+      }
+    });
+  }
+
+  /* PREV */
+  if (prev) {
+    prev.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
+    });
+  }
+
+  /* ======================
+     TOUCH / SWIPE SUPPORT
+  ====================== */
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+
+  slider.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+
+  slider.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener("touchend", () => {
+    if (!isDragging) return;
+    const diff = startX - currentX;
+
+    /* SWIPE LEFT */
+    if (diff > 50 && currentIndex < maxIndex()) {
+      currentIndex++;
+      updateSlider();
+    }
+
+    /* SWIPE RIGHT */
+    if (diff < -50 && currentIndex > 0) {
+      currentIndex--;
+      updateSlider();
+    }
+
+    isDragging = false;
+  });
+
+  window.addEventListener("resize", () => {
+    updateSlider(false);
+  });
+
+  updateSlider(false);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Press Feature Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Feature Image"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "mobile_press_layout",
+      "label": "Mobile Press Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "slider",
+          "label": "Slider"
+        }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_advisors",
+      "label": "Enable Medical Advisors",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "advisor_heading",
+      "label": "Advisor Heading",
+      "default": "Meet the Medical Advisors"
+    },
+    {
+      "type": "select",
+      "id": "advisor_heading_tag",
+      "label": "Advisor Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "textarea",
+      "id": "advisor_description",
+      "label": "Advisor Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "press",
+      "name": "Press Item",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "enable_link",
+          "label": "Enable Link",
+          "default": true
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "source_logo",
+          "label": "Source Logo"
+        },
+        {
+          "type": "text",
+          "id": "source",
+          "label": "Source Name"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "advisor",
+      "name": "Medical Advisor",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Advisor Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Advisor Name"
+        },
+        {
+          "type": "text",
+          "id": "designation",
+          "label": "Designation"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press Feature",
+      "blocks": [
+        {
+          "type": "press"
+        },
+        {
+          "type": "press"
+        },
+        {
+          "type": "press"
+        },
+        {
+          "type": "advisor"
+        },
+        {
+          "type": "advisor"
+        },
+        {
+          "type": "advisor"
+        },
+        {
+          "type": "advisor"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

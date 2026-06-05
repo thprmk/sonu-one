@@ -1,0 +1,16 @@
+{%- comment -%}
+  Renders a reusable progress bar indicator for sliders/carousels.
+  
+  Usage:
+    render 'sonu-progress-bar',
+      progress_id: 'progress-id',
+      container_class: 'carousel-progress',
+      bar_class: 'progress-bar-card'
+{%- endcomment -%}
+
+<div class="sonu-progress {{ container_class }}">
+  <div 
+    class="sonu-progress__fill {{ bar_class }}" 
+    id="{{ progress_id | default: 'progress-' | append: section.id }}"
+  ></div>
+</div>

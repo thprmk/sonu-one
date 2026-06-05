@@ -1,0 +1,515 @@
+<style>
+  .doctor-section {
+    padding: 40px 0px!important; /* Removed side padding so cards can scroll edge-to-edge on mobile */
+    background: linear-gradient(
+      180deg,
+      {{ section.settings.grad_color_1 | default: '#DAF2FF' }} 0%,
+      {{ section.settings.grad_color_2 | default: '#EAF8FF' }} 40%,
+      {{ section.settings.grad_color_3 | default: '#F7FCFF' }} 70%,
+      {{ section.settings.grad_color_4 | default: '#FFFFFF' }} 100%
+    );
+    overflow: hidden;
+  }
+
+  .doctor-section h1,
+  .doctor-section h2,
+  .doctor-section h3,
+  .doctor-section h4,
+  .doctor-section h5,
+  .doctor-section h6 {
+    text-align: center;
+    margin: 0 auto 50px;
+    font-family: var(--sonu-font-primary), sans-serif !important;
+    color: #001755 !important;
+    font-size: 58px !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+  }
+
+  /* BASE */ 
+  .doctor-wrapper {
+    display: flex;
+    gap: 20px;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+  }
+  .doctor-wrapper::-webkit-scrollbar{
+    display: none; /* Hide scrollbar Chrome/Safari */
+  }
+
+  /* CARD - EXACT FIGMA SPECS */
+  .doctor-card {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 244px !important; /* Exact width */
+    width: 244px !important;
+    cursor: pointer;
+  }
+
+  /* IMAGE */
+  .img-wrap {
+    position: relative;
+    width: 244px;
+    height: 270px; /* Exact height */
+    border-radius: 14px; /* Exact border radius */
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  
+  .doctor-card:hover .img-wrap img {
+    transform: scale(1.05);
+  }
+
+  /* OVERLAY */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+  }
+
+  /* TEXT ON IMAGE */
+ .img-content {
+    position: absolute;
+    bottom: 20px;
+    left: 16.5px; /* Perfectly centers the 211px text box inside the 244px card */
+    width: 211px !important; /* EXACT Figma text box width */
+    color: #fff;
+    z-index: 2;
+  }
+
+  .img-content h4 {
+    margin: 0 0 6px 0 !important; /* EXACT 6px gap from Figma */
+    font-family: 'Instrument Sans', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 20px !important;
+    color: #FFFFFF !important;
+  }
+
+
+  .img-content p {
+    margin: 0 !important;
+    font-family: 'Instrument Sans', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 18px !important; /* 150% line height from Figma */
+    color: #FFFFFF !important;
+  }
+
+  /* DESCRIPTION (201px wide, 21px inset per Figma) */
+  .desc {
+    font-family: 'Instrument Sans', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 22px !important;
+    color: #000000 !important;
+    margin: 0 0 0 21px !important; /* Indents text exactly like Figma */
+    width: 201px !important;       /* Exact Figma width */
+  }
+
+  /* MOBILE SLIDER STYLES */
+  @media (max-width: 768px) {
+    .doctor-section {
+      padding: 60px 0;
+      padding-left:30px;
+    }
+
+    .mobile-slider .doctor-wrapper {
+      justify-content: flex-start;
+      padding: 0 20px;
+      gap: 15px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+
+    .mobile-slider .doctor-card {
+      scroll-snap-align: start;
+      padding-left:20px;
+    }
+
+     .doctor-section h2 {
+    
+    font-size: 32px !important;
+
+  }
+
+  }
+
+  /* DESKTOP GRID/SLIDER STYLES */
+  @media (min-width: 769px) {
+    .desktop-slider .doctor-wrapper,
+    .desktop-grid .doctor-wrapper {
+      justify-content: center;
+      max-width: 1400px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+    
+    .hide-desktop {
+      display: none !important;
+    }
+  }
+
+  /* MODAL */
+  .modal {
+    z-index: 999;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 900px;
+    width: 90%;
+  }
+
+  .modal-inner {
+    display: flex;
+    gap: 30px;
+  }
+
+  .modal-inner img {
+    width: 260px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .close {
+    cursor: pointer;
+    float: right;
+    font-size: 28px;
+    margin-top: -10px;
+  }
+
+  @media(max-width:768px){
+    .modal-inner {
+      flex-direction: column;
+    }
+    .modal-inner img{
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  /* ==========================================================================
+     TEAM SLIDER CONTROLS (Identical structure to premium-carousel)
+     ========================================================================== */
+  .team-slider-container {
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  /* PROGRESS BAR */
+  .team-progress {
+    margin-top: 30px;
+    height: 3px;
+    background: #ddd;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .team-progress-bar-card {
+    height: 100%;
+    width: 20%;
+    background: #656AE3;
+    border-radius: 20px;
+    transition: width 0.2s ease;
+  }
+
+  /* ARROWS */
+  .team-arrows {
+    display: flex;
+    justify-content: flex-end; /* Pushes arrows to the right */
+    gap: 14px;
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .team-arrow-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+
+  .team-arrow-btn:hover {
+    transform: scale(1.05);
+  }
+</style>
+
+<section 
+  id="doctor-section-{{ section.id }}"
+  class="doctor-section 
+  desktop-{{ section.settings.desktop_layout }} 
+  mobile-{{ section.settings.mobile_layout }}"
+>
+  {% render 'sonu-section-header',
+    heading: section.settings.heading,
+    heading_tag: section.settings.heading_tag,
+    heading_class: '',
+    text_align: 'center',
+    animate: true
+  %}
+
+  <div class="doctor-wrapper">
+
+    {% for block in section.blocks %}
+      {% assign words = block.settings.desc | split: ' ' %}
+      {% assign trimmed = words | slice: 0, section.settings.trim_words | join: ' ' %}
+
+      <div class="doctor-card">
+
+        <!-- EXACT 244x270 IMAGE -->
+        <div class="img-wrap">
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 500 }}" alt="{{ block.settings.name }}" />
+          {% else %}
+            <div style="width: 100%; height: 100%; background: #ccc;"></div>
+          {% endif %}
+
+          <div class="overlay"></div>
+
+          <div class="img-content">
+            <h4>{{ block.settings.name }}</h4>
+            <p>{{ block.settings.role }}</p>
+          </div>
+        </div>
+
+        <!-- INDENTED DESCRIPTION -->
+        <p class="desc">{{ trimmed }}...</p>
+
+        <!-- MODAL DATA (HIDDEN) -->
+        <div class="modal-data" hidden>
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.name }}">
+          {% endif %}
+          <h3>{{ block.settings.name }}</h3>
+          <p class="role">{{ block.settings.role }}</p>
+          <p>{{ block.settings.desc }}</p>
+        </div>
+
+      </div>
+    {% endfor %}
+
+  </div>
+
+  {% if section.settings.mobile_layout == 'slider' %}
+    <div class="team-slider-container hide-desktop">
+      
+      <!-- PROGRESS BAR (FULL WIDTH) -->
+      {% render 'sonu-progress-bar',
+        progress_id: 'team-progress-bar-' | append: section.id,
+        container_class: 'team-progress',
+        bar_class: 'team-progress-bar-card'
+      %}
+
+      <!-- ARROWS (RIGHT ALIGNED) -->
+      <div class="team-arrows">
+        {% render 'sonu-nav-arrows',
+          prev_class: 'team-arrow-btn team-prev-btn',
+          next_class: 'team-arrow-btn team-next-btn'
+        %}
+      </div>
+
+    </div>
+  {% endif %}
+
+  <!-- MODAL -->
+  <div class="modal" id="sonu-modal-{{ section.id }}">
+    <div class="modal-box">
+      <span class="close sonu-close-{{ section.id }}">&times;</span>
+      <div class="modal-inner">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sectionWrapper = document.getElementById("doctor-section-{{ section.id }}");
+  if (!sectionWrapper) return;
+
+  const modal = sectionWrapper.querySelector('#sonu-modal-{{ section.id }}');
+  const closeBtn = sectionWrapper.querySelector('.sonu-close-{{ section.id }}');
+
+  sectionWrapper.querySelectorAll('.doctor-card').forEach(card => {
+    card.onclick = () => {
+      const data = card.querySelector('.modal-data');
+      if (!modal || !data) return;
+
+      modal.style.display = 'flex';
+      
+      // Safety check in case image is missing
+      const imgHtml = data.querySelector('img') ? data.querySelector('img').outerHTML : '';
+      modal.querySelector('.left').innerHTML = imgHtml;
+      
+      modal.querySelector('.right').innerHTML = `
+        <h3>${data.querySelector('h3').innerText}</h3>
+        <p style="font-weight:500; color:#666; margin-bottom: 20px;">${data.querySelector('.role').innerText}</p>
+        <p style="line-height:1.6;">${data.querySelector('p:last-child').innerText}</p>
+      `;
+    }
+  });
+
+  if (closeBtn && modal) {
+    closeBtn.onclick = () => {
+      modal.style.display = 'none';
+    };
+  }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sectionWrapper = document.getElementById("doctor-section-{{ section.id }}");
+  if (!sectionWrapper) return;
+
+  const slider = sectionWrapper.querySelector('.mobile-slider .doctor-wrapper') || sectionWrapper.querySelector('.doctor-wrapper');
+  const progressBar = sectionWrapper.querySelector('#team-progress-bar-{{ section.id }}');
+  const nextBtn = sectionWrapper.querySelector('.team-next-btn');
+  const prevBtn = sectionWrapper.querySelector('.team-prev-btn');
+
+  if(!slider || !progressBar) return;
+
+  const updateProgress = () => {
+    const maxScroll = slider.scrollWidth - slider.clientWidth;
+    if(maxScroll <= 0){
+      progressBar.style.width = '100%';
+      return;
+    }
+    const percent = (slider.scrollLeft / maxScroll) * 100;
+    progressBar.style.width = `${percent}%`;
+  };
+
+  slider.addEventListener('scroll', updateProgress);
+
+  nextBtn?.addEventListener('click', () => {
+    const card = slider.querySelector('.doctor-card');
+    slider.scrollBy({ left: card.offsetWidth + 15, behavior: 'smooth' });
+  });
+
+  prevBtn?.addEventListener('click', () => {
+    const card = slider.querySelector('.doctor-card');
+    slider.scrollBy({ left: -(card.offsetWidth + 15), behavior: 'smooth' });
+  });
+
+  // Small timeout ensures everything is loaded before first calculation
+  setTimeout(updateProgress, 100);
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Team Section",
+  "settings": [
+    { "type": "text", "id": "heading", "default": "Trusted by doctors", "label": "Heading" },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "color",
+      "id": "grad_color_1",
+      "label": "Gradient Color 1 (Top)",
+      "default": "#daf2ff"
+    },
+    {
+      "type": "color",
+      "id": "grad_color_2",
+      "label": "Gradient Color 2",
+      "default": "#eaf8ff"
+    },
+    {
+      "type": "color",
+      "id": "grad_color_3",
+      "label": "Gradient Color 3",
+      "default": "#f7fcff"
+    },
+    {
+      "type": "color",
+      "id": "grad_color_4",
+      "label": "Gradient Color 4 (Bottom)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "Desktop Layout",
+      "options": [
+        { "value": "grid", "label": "Grid" },
+        { "value": "slider", "label": "Slider" }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile Layout",
+      "options": [
+        { "value": "grid", "label": "Grid" },
+        { "value": "slider", "label": "Slider" }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "range",
+      "id": "trim_words",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "default": 20,
+      "label": "Trim words"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "doctor",
+      "name": "Doctor",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "role", "label": "Profession" },
+        { "type": "textarea", "id": "desc", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "sonu Team Section" }
+  ]
+}
+{% endschema %}

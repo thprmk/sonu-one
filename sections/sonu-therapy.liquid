@@ -1,0 +1,359 @@
+<section id="therapy-{{ section.id }}" class="therapy-section">
+
+  <div class="therapy-backgrounds">
+    {% for block in section.blocks %}
+      <div class="therapy-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+        {% if block.settings.image %}
+          <img
+            src="{{ block.settings.image | image_url: width: 2500 }}"
+            alt="{{ block.settings.title }}"
+            class="therapy-bg-image"
+          >
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="therapy-overlay"></div>
+
+  <div class="therapy-content page-width">
+
+    <h2 class="therapy-heading">
+      {{ section.settings.heading }}
+    </h2>
+
+    <div class="therapy-nav">
+
+      {% for block in section.blocks %}
+        <div class="therapy-item">
+
+          <button
+            class="therapy-nav-item {% if forloop.first %}active{% endif %}"
+            data-index="{{ forloop.index0 }}"
+            type="button"
+          >
+            {{ block.settings.title }}
+          </button>
+
+          <div
+            class="therapy-desc {% if forloop.first %}active{% endif %}"
+            data-index="{{ forloop.index0 }}"
+          >
+            <p>{{ block.settings.description }}</p>
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+#therapy-{{ section.id }}{
+  position:relative;
+  min-height:650px;
+  overflow:hidden;
+  border-radius:0px 0px 40px 40px;
+  margin:0px;
+}
+
+#therapy-{{ section.id }} .therapy-backgrounds{
+  position:absolute;
+  inset:0;
+}
+
+#therapy-{{ section.id }} .therapy-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  visibility:hidden;
+  transform:scale(1.12);
+  transition:
+    transform 1.8s cubic-bezier(.22,.61,.36,1),
+    opacity .4s ease;
+}
+
+#therapy-{{ section.id }} .therapy-slide.active{
+  opacity:1;
+  visibility:visible;
+  transform:scale(1);
+  z-index:2;
+}
+
+#therapy-{{ section.id }} .therapy-bg-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.15);
+  transition:transform 4s ease;
+}
+
+#therapy-{{ section.id }} .therapy-slide.active .therapy-bg-image{
+  transform:scale(1);
+}
+
+#therapy-{{ section.id }} .therapy-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,.65) 0%,
+    rgba(0,0,0,.35) 45%,
+    rgba(0,0,0,.15) 100%
+  );
+}
+
+#therapy-{{ section.id }} .therapy-content{
+  position:relative;
+  z-index:5;
+  padding:80px 80px 80px 80px;
+}
+
+#therapy-{{ section.id }} .therapy-heading{
+  color:#fff;
+  font-size:56px;
+  line-height:1.05;
+  font-weight:400;
+  max-width:500px;
+  margin:0 0 100px;
+  letter-spacing:-1px;
+}
+
+#therapy-{{ section.id }} .therapy-nav{
+  max-width:500px;
+  margin-left:10px;
+}
+
+#therapy-{{ section.id }} .therapy-item{
+  margin-bottom:18px;
+}
+
+#therapy-{{ section.id }} .therapy-nav-item{
+  background:none;
+  border:none;
+  padding:0 0 0 0px;
+  position:relative;
+  color:rgba(255,255,255,.5);
+  font-size:26px;
+  line-height:1.3;
+  cursor:pointer;
+  text-align:left;
+  transition:.3s;
+}
+
+#therapy-{{ section.id }} .therapy-nav-item::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:6px;
+  width:0px;
+  height:0px;
+  background:rgba(255,255,255,.3);
+  transition:.3s;
+}
+
+#therapy-{{ section.id }} .therapy-nav-item.active{
+  color:#fff;
+}
+
+.therapy-item{
+  position:relative;
+  padding-left:24px;
+  margin-bottom:22px;
+}
+
+/* Default grey line */
+.therapy-item::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:rgba(255,255,255,.25);
+  border-radius:20px;
+}
+
+/* Active white line */
+.therapy-item.active::after{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  width:3px;
+  height:100%;
+  background:#fff;
+  border-radius:20px;
+}
+
+.therapy-item.active::after{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  width:3px;
+  background:#fff;
+  border-radius:20px;
+  animation:fillLine 3s linear forwards;
+}
+
+@keyframes fillLine{
+  from{
+    height:0%;
+  }
+  to{
+    height:100%;
+  }
+}
+
+#therapy-{{ section.id }} .therapy-desc{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(20px);
+  transition:
+    max-height .6s ease,
+    opacity .6s ease,
+    transform .6s ease;
+}
+
+#therapy-{{ section.id }} .therapy-desc.active{
+  max-height:180px;
+  opacity:1;
+  transform:translateY(0);
+  margin-top:14px;
+}
+
+#therapy-{{ section.id }} .therapy-desc p{
+  color:#fff;
+  font-size:18px;
+  line-height:1.8;
+  margin-left:0px;
+  max-width:500px;
+}
+
+@media screen and (max-width: 768px){
+
+  #therapy-{{ section.id }}{
+    display:none !important;
+  }
+
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  const section = document.querySelector('#therapy-{{ section.id }}');
+
+  if(!section) return;
+
+  const slides = section.querySelectorAll('.therapy-slide');
+  const navItems = section.querySelectorAll('.therapy-nav-item');
+  const descriptions = section.querySelectorAll('.therapy-desc');
+  const items = section.querySelectorAll('.therapy-item');
+
+  let current = 0;
+
+  function showSlide(index){
+
+    slides.forEach(slide => {
+      slide.classList.remove('active');
+    });
+
+    navItems.forEach(item => {
+      item.classList.remove('active');
+    });
+
+    descriptions.forEach(desc => {
+      desc.classList.remove('active');
+    });
+
+    items.forEach(item => {
+      item.classList.remove('active');
+    });
+
+    slides[index].classList.add('active');
+    navItems[index].classList.add('active');
+    descriptions[index].classList.add('active');
+    items[index].classList.add('active');
+
+    current = index;
+  }
+
+  function nextSlide(){
+
+    let next = current + 1;
+
+    if(next >= slides.length){
+      next = 0;
+    }
+
+    showSlide(next);
+  }
+
+  let autoplay = setInterval(nextSlide, 3000);
+
+  navItems.forEach((item, index) => {
+
+    item.addEventListener('click', function(){
+
+      showSlide(index);
+
+      clearInterval(autoplay);
+
+      autoplay = setInterval(nextSlide, 3000);
+
+    });
+
+  });
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Therapy Slider",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Personalized to you. No guesswork."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Therapy Slider"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,130 @@
+{% liquid
+  assign image = block.settings.image
+  assign product = block.settings.product
+
+  assign featured_media = product.featured_media
+  assign featured_media_type = featured_media.media_type
+  if featured_media_type == 'model' or featured_media_type == 'video'
+    assign featured_media = product.featured_media.preview_image
+  endif
+
+  assign image_wrap_tag = 'div'
+  if product != blank
+    assign image_wrap_tag = 'a'
+  endif
+
+  assign loading = 'lazy'
+  assign fetchpriority = 'low'
+  if block.settings.image_preload
+    assign loading = 'eager'
+    assign fetchpriority = 'high'
+  endif
+
+  assign button_label = 'content.shop' | t
+  assign product_overlay_tag = 'div'
+  if settings.animations_enabled
+    assign product_overlay_tag = 'motion-component'
+  endif
+%}
+
+<div class="testimonial-split flex items-start flex-nowrap flex-col md:flex-row">
+  <!-- @testimonialInner/split -->
+  <div class="testimonial-split__media relative overflow-hidden h-full">
+   {% if block.settings.video != blank %}
+  {{
+    block.settings.video
+    | video_tag:
+      autoplay: true,
+      loop: true,
+      muted: true,
+      controls: false,
+      playsinline: true,
+      class: 'testimonial-split__video'
+  }}
+{% else %}
+  {% render 'responsive-image',
+    mode: 'js',
+    image: image,
+    image_mobile: block.settings.image_mobile,
+    image_ratio: 'adapt',
+    loading: loading,
+    fetchpriority: fetchpriority,
+    class: 'testimonial-split__media-image',
+    img_class: 'w-full'
+  %}
+{% endif %}
+    
+    <!-- Product Overlay Removed From Here -->
+
+  </div>
+  <!-- @testimonialInner/split -->
+  <div
+    class="testimonial-split__content reset-text-alignment flex flex-col flex-1 h-full"
+    data-color-scheme="{{ block.settings.color_scheme }}"
+    {{ block.shopify_attributes }}
+  >
+    {% content_for 'block', type: '_simple-text', id: 'static-testimonial-text', classes: 'testimonial-split__text flex-1' %}
+    {% content_for 'block', type: '_author-info', id: 'static-testimonial-info', classes: 'flex gap-x-3 items-center' %}
+  </div>
+  <!-- @testimonialInner/split -->
+</div>
+<!-- @testimonialFeature/split -->
+
+{% schema %}
+{
+  "name": "t:names.testimonial",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:content.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:settings.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "t:settings.image_mobile"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "header",
+      "content": "t:content.product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:settings.product"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "media_color_scheme",
+      "label": "Media color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.testimonial",
+      "category": "t:categories.basic"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,597 @@
+<style>
+
+
+/* SECTION */
+.premium-carousel {
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+/* INNER (LEFT SPACE 5%) */
+.carousel-wrapper {
+  margin-left: 5%;
+}
+
+/* PROGRESS BAR */
+.carousel-progress {
+  margin-top: 30px;
+  margin-left: 5%;
+  height: 3px;
+  background: #ddd;
+  width: 90%;
+}
+/* ARROWS */
+.carousel-arrows {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 24px;
+  margin-left: 5%;
+  width: 90%;
+}
+
+@media (max-width: 768px) {
+  .carousel-arrows {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* HEADING */
+.carousel-heading-wrap{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:50px;
+}
+
+.carousel-heading{
+  max-width:879px; /* matches your desktop reference */
+  width:100%;
+  margin:0 auto;
+  text-align:center;
+  font-family: var(--sonu-font-primary);
+  font-weight:500;
+  font-size:56px;
+  line-height:1.15;
+  color:#001755;
+}
+
+/* ALIGNMENTS */
+.text-left  { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* WRAPPER */
+.carousel-wrapper {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* TRACK */
+.carousel-track {
+  display: flex;
+  gap: 20px;
+}
+
+/* CARD */
+.carousel-card {
+  position: relative;
+  flex: 0 0 calc(100% / 3.2);
+  height: 420px;
+  border-radius: 20px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+/* IMAGE */
+.carousel-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.carousel-card-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* OVERLAY */
+.carousel-card-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  
+}
+
+/* BADGE */
+.card-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: #fff;
+  z-index: 2;
+}
+
+/* ICON */
+.badge-icon {
+  display: flex;
+  align-items: center;
+}
+
+.badge-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.badge-icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.badge-text {
+  white-space: nowrap;
+}
+
+/* CONTENT */
+.card-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: #fff;
+  z-index: 2;
+}
+
+.card-content h3 {
+  font-size: 20px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 500;
+}
+
+.card-content p {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-top: 15px;
+}
+
+.carousel-card:hover img {
+  transform: scale(1.05);
+  transition: 0.6s;
+}
+
+
+.progress-bar-card {
+  height: 100%;
+  width: 0;
+  background: #656AE3;
+  transition: width 0.2s ease;
+}
+.custom-arrow-btn{
+  width:42px;
+  height:42px;
+  padding:0;
+  border:none;
+  background:transparent !important;
+  box-shadow:none !important;
+  outline:none;
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.custom-arrow-btn:hover{
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+.custom-arrow-btn svg{
+  display:block;
+}
+.press-bg,
+.press-bg img {
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+
+@media (max-width: 768px) {
+   .carousel-wrapper ~ .carousel-progress,
+  .carousel-progress {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+
+@media(max-width:768px){
+
+  .carousel-heading{
+    max-width:335px!important;
+    font-family: 'Instrument Sans', sans-serif !important;
+    font-size:32px;
+    line-height:1.15;
+    margin:0 auto;
+    margin-bottom: 0px !important;
+  }
+
+}
+/* BLUR ANIMATION */
+.animate-blur {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(20px);
+  animation: blurFade 1s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.3s; }
+
+@keyframes blurFade {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   MOBILE - Figma Pixel-Perfect (Group 12 & 13 layout: 284px cards, 2-col)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+  .premium-carousel {
+    padding: 60px 0 60px 0;
+  }
+
+  .carousel-inner {
+    padding: 0 20px;
+  }
+
+  /* Heading: Exact Figma — 32px / 500 / #001755 / centered */
+  .carousel-heading {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 0px !important;
+  line-height:1.2;
+  width:335px!important;
+  font-family: 'Instrument Sans', sans-serif !important;
+}
+  /* Wrapper becomes a 2-column scrollable grid */
+  .carousel-wrapper {
+    margin-left: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 4px;
+  }
+
+  .carousel-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 284px); /* Exact Figma card width */
+    grid-auto-flow: column;
+    gap: 15px; /* Figma gap: 336 - 27 - 284 = 25px outer, ~15px inner */
+    width: max-content;
+  }
+
+  /* Card: Exact Figma height = 380.56px */
+  .carousel-card {
+    flex: none;
+    width: 284px; /* Exact Figma */
+    height: 381px; /* Exact Figma 380.56px rounded */
+    border-radius: 20px;
+    scroll-snap-align: start;
+  }
+
+  /* Progress bar: full width on mobile */
+  .carousel-wrapper ~ .carousel-progress,
+  .carousel-progress {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* Arrows: full width, still right-aligned */
+.custom-arrows-wrap {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 4px;
+    box-sizing: border-box;
+    justify-content: flex-end; /* Pushes arrows to right side per Figma */
+    margin-top: 16px;
+  }
+
+}
+
+/* Hide scrollbar */
+.carousel-wrapper::-webkit-scrollbar { display: none; }
+.carousel-wrapper { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* PARALLAX BASE */
+.carousel-card-bg.parallax {
+  overflow: hidden;
+  position: absolute;
+  inset: 0;
+}
+
+.carousel-card-bg.parallax img {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+}
+
+.science-bg-area {
+  position: relative;
+  z-index: 1;
+}
+
+.science-bg-area::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+.section-shadow {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.card-badge,
+.card-badge .badge-text,
+.card-badge .badge-icon {
+  color: #ffffff !important;
+}
+</style>
+<section class="science-bg-area">
+
+<section
+  id="premium-carousel-{{ section.id }}"
+  class="premium-carousel section"
+  style="
+    background-color: {{ section.settings.bg_color }};
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+  "
+>
+  <div class="carousel-inner">
+
+    {% if section.settings.heading != blank %}
+      <div class="carousel-heading-wrap text-{{ section.settings.text_align }}">
+        {%- assign heading_style = 'color: ' | append: section.settings.text_color | append: '; margin-bottom: 0;' -%}
+        {% render 'sonu-section-header',
+          heading: section.settings.heading,
+          heading_tag: section.settings.heading_tag,
+          heading_class: 'carousel-heading',
+          heading_style: heading_style,
+          text_align: section.settings.text_align,
+          animate: true
+        %}
+      </div>
+    {% endif %}
+
+    <div class="carousel-wrapper" id="carousel-{{ section.id }}">
+      <div class="carousel-track">
+
+        {% for block in section.blocks %}
+          <div class="carousel-card">
+
+            <div class="carousel-card-bg {% if block.settings.enable_parallax %}parallax{% endif %}">
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 1500 }}"
+                  alt=""
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                >
+              {% endif %}
+            </div>
+
+            {% if block.settings.badge_text != blank or block.settings.badge_icon != blank or block.settings.badge_svg != blank %}
+              <div class="card-badge">
+                {% if block.settings.badge_svg != blank %}
+                  <span class="badge-icon">{{ block.settings.badge_svg }}</span>
+                {% elsif block.settings.badge_icon != blank %}
+                  <span class="badge-icon">
+                    <img
+                      src="{{ block.settings.badge_icon | image_url: width: 40 }}"
+                      alt=""
+                      width="{{ block.settings.badge_icon.width }}"
+                      height="{{ block.settings.badge_icon.height }}"
+                    >
+                  </span>
+                {% endif %}
+                {% if block.settings.badge_text != blank %}
+                  <span class="badge-text">{{ block.settings.badge_text }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <div class="card-content sonu-blur-in sonu-blur-in--d1">
+              {%- assign card_heading = block.settings.heading_tag | default: 'h3' -%}
+              <{{ card_heading }}>{{ block.settings.title }}</{{ card_heading }}>
+              <div class="card-desc">{{ block.settings.description }}</div>
+            </div>
+
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <!-- PROGRESS BAR -->
+    {% render 'sonu-progress-bar',
+      progress_id: 'progress-' | append: section.id,
+      container_class: 'carousel-progress',
+      bar_class: 'progress-bar-card'
+    %}
+
+    <!-- ARROWS -->
+    <div class="carousel-arrows">
+      {% render 'sonu-nav-arrows',
+        prev_class: 'custom-arrow-btn carousel-prev',
+        next_class: 'custom-arrow-btn carousel-next'
+      %}
+    </div>
+
+  </div>
+
+</section>
+</section>
+
+<script>
+document.addEventListener("scroll", function () {
+  const parallaxItems = document.querySelectorAll("#premium-carousel-{{ section.id }} .carousel-card-bg.parallax img");
+  parallaxItems.forEach((img) => {
+    const rect = img.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      let offset = (rect.top - windowHeight / 2) * 0.1;
+      offset = Math.max(Math.min(offset, 30), -30);
+      img.style.transform = `translateY(${offset}px)`;
+    }
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const wrapper  = document.getElementById("carousel-{{ section.id }}");
+  const progress = document.getElementById("progress-{{ section.id }}");
+  const nextBtn  = wrapper.parentElement.querySelector(".carousel-next");
+  const prevBtn  = wrapper.parentElement.querySelector(".carousel-prev");
+  const card     = wrapper.querySelector(".carousel-card");
+
+  function updateProgress() {
+    const scrollWidth = wrapper.scrollWidth - wrapper.clientWidth;
+    const percent = scrollWidth > 0 ? (wrapper.scrollLeft / scrollWidth) * 100 : 0;
+    progress.style.width = percent + "%";
+  }
+
+  wrapper.addEventListener("scroll", updateProgress);
+
+  nextBtn.addEventListener("click", function () {
+    wrapper.scrollBy({ left: card.offsetWidth + 20, behavior: "smooth" });
+  });
+
+  prevBtn.addEventListener("click", function () {
+    wrapper.scrollBy({ left: -(card.offsetWidth + 20), behavior: "smooth" });
+  });
+
+  updateProgress();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Premium Carousel",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (HTML allowed)"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left",   "label": "Left"   },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right"  }
+      ],
+      "default": "center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "image_picker", "id": "image",        "label": "Image" },
+        { "type": "checkbox",     "id": "enable_parallax", "label": "Enable Parallax", "default": false },
+        { "type": "text",         "id": "badge_text",   "label": "Badge Text" },
+        { "type": "image_picker", "id": "badge_icon",   "label": "Badge Icon (Image)" },
+        { "type": "textarea",     "id": "badge_svg",    "label": "Badge SVG Code" },
+        { "type": "text",         "id": "title",        "label": "Title" },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading type",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" }
+          ],
+          "default": "h3"
+        },
+        { "type": "richtext",     "id": "description",  "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Carousel",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
