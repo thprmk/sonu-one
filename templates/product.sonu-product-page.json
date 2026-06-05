@@ -147,6 +147,10 @@
       "settings": {
         "heading": "How SONU Compares",
         "bg_color": "#f9f6f0",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
         "label_1": "Efficacy",
         "label_2": "Side Effects",
         "label_3": "Personalization",
@@ -202,12 +206,37 @@
         "bg_color": "#f9f6f0",
         "text_color": "#3d1b03",
         "desktop_slide_width": 340,
-        "mobile_slide_width": 240
+        "mobile_slide_width": 240,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
       }
     },
     "step_slider": {
       "type": "custom-step-slider",
-      "settings": {}
+      "blocks": {
+        "step_slide_GNjCq7": {
+          "type": "step_slide",
+          "settings": {
+            "title": "Scan Your Face",
+            "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
+          }
+        }
+      },
+      "block_order": [
+        "step_slide_GNjCq7"
+      ],
+      "settings": {
+        "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>",
+        "description": "",
+        "bg_color": "#f9f6f0",
+        "text_color": "#3d1b03",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
     }
   },
   "order": [
