@@ -219,6 +219,7 @@
         "step_slide_GNjCq7": {
           "type": "step_slide",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_105.png",
             "title": "Scan Your Face",
             "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
           }
