@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "custom-featured-product",
+      "settings": {}
+    },
+    "comparison": {
+      "type": "custom-comparison",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "comparison"
+  ]
+}
