@@ -1,4 +1,4 @@
-{% comment %} {%- liquid
+{%- liquid
   assign should_show = section.settings.enable
   if section.settings.show_for_visitors_only and customer
     assign should_show = false
@@ -207,6 +207,9 @@
     },
     {
       "type": "_popup-newsletter"
+    },
+    {
+      "type": "_popup-image"
     }
   ],
   "presets": [
@@ -269,4 +272,4 @@
     }
   ]
 }
-{% endschema %} {% endcomment %}
+{% endschema %}
