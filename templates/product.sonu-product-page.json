@@ -156,10 +156,15 @@
         "label_7": "",
         "label_8": ""
       }
+    },
+    "video_slider": {
+      "type": "custom-video-slider",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "comparison"
+    "comparison",
+    "video_slider"
   ]
 }
