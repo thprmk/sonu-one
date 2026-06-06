@@ -304,3 +304,78 @@
     --f-column-gap: 0px !important;
   }
 }
+/* --- Fix Slider Controls and Navigation Layout (image_0f68e3.jpg) --- */
+
+/* Fix missing arrow icons inside circular buttons */
+.v2-desktop-video-container .swiper-button-prev::after,
+.v2-desktop-video-container .swiper-button-next::after {
+  font-family: swiper-icons;
+  font-size: 18px !important;
+  color: #ffffff !important;
+  font-weight: bold;
+}
+.v2-desktop-video-container .swiper-button-prev::after {
+  content: 'prev';
+}
+.v2-desktop-video-container .swiper-button-next::after {
+  content: 'next';
+}
+
+/* Position arrows over the left and right edges of the video container */
+.v2-desktop-video-container {
+  position: relative;
+}
+
+.v2-desktop-video-container .swiper-button-prev,
+.v2-desktop-video-container .swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  margin: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2); /* Soft backing so arrows pop on any video */
+  backdrop-filter: blur(4px);
+}
+
+.v2-desktop-video-container .swiper-button-prev {
+  left: 24px !important;
+  right: auto !important;
+}
+
+.v2-desktop-video-container .swiper-button-next {
+  right: 24px !important;
+  left: auto !important;
+}
+
+/* Fix progress lines / pagination bar alignment */
+.v2-desktop-reviews-container {
+  position: relative;
+}
+
+.v2-reviews-pagination.swiper-pagination-bullets {
+  bottom: -40px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  gap: 8px !important;
+  justify-content: center;
+  width: auto !important;
+}
+
+.v2-reviews-pagination .swiper-pagination-bullet {
+  width: 40px !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+  background: rgba(0, 23, 85, 0.2) !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease;
+}
+
+.v2-reviews-pagination .swiper-pagination-bullet-active {
+  background: #001755 !important; /* Active indicator line tracking color */
+  width: 60px !important;
+}
