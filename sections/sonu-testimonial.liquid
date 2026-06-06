@@ -1,6 +1,13 @@
 <style>
   .split-video-testimonial-{{ section.id }} {
+    /* Updated to support both background color and background image from settings */
     background-color: {{ section.settings.bg_color }};
+    {%- if section.settings.bg_image != blank -%}
+      background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {%- endif -%}
     padding: 0;
     margin: 0;
     display: none; /* Hidden on desktop by default */
@@ -406,12 +413,17 @@
   "settings": [
   {
     "type": "header",
-    "content": "Section Colors"
+    "content": "Section Colors & Media"
+  },
+  {
+    "type": "image_picker",
+    "id": "bg_image",
+    "label": "Section Background Image"
   },
   {
     "type": "color",
     "id": "bg_color",
-    "label": "Section Background",
+    "label": "Section Background Color Fallback",
     "default": "#E2F0EC"
   },
   {
