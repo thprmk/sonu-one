@@ -673,7 +673,7 @@
       "name": "sonu Team Section",
       "settings": {
         "heading": "Trusted by doctors",
-        "heading_tag": "h2",
+        "heading_tag": "h1",
         "grad_color_1": "#daf2ff",
         "grad_color_2": "#eaf8ff",
         "grad_color_3": "#f7fcff",
