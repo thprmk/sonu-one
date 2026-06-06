@@ -8,22 +8,7 @@
     let desktopVideoSwiper = null;
     
     if (reviewsSwiperDesktop && videoSwiperDesktop) {
-      desktopReviewsSwiper = new Swiper(reviewsSwiperDesktop, {
-        loop: true,
-        slidesPerView: 1,
-        pagination: {
-          el: '.v2-reviews-pagination',
-          clickable: true,
-        },
-        on: {
-          slideChange: function() {
-            if (desktopVideoSwiper && desktopVideoSwiper.activeIndex !== this.activeIndex) {
-              desktopVideoSwiper.slideToLoop(this.activeIndex);
-            }
-          }
-        }
-      });
-      
+      // Create the video swiper first so the layout targets the custom arrow elements cleanly
       desktopVideoSwiper = new Swiper(videoSwiperDesktop, {
         loop: true,
         slidesPerView: 1,
@@ -33,38 +18,57 @@
         },
         on: {
           slideChange: function() {
-            if (desktopReviewsSwiper && desktopReviewsSwiper.activeIndex !== this.activeIndex) {
-              desktopReviewsSwiper.slideToLoop(this.activeIndex);
+            // Use realIndex to match loop configurations safely without shifting bugs
+            if (desktopReviewsSwiper && desktopReviewsSwiper.realIndex !== this.realIndex) {
+              desktopReviewsSwiper.slideToLoop(this.realIndex);
+            }
+          }
+        }
+      });
+
+      // Create the reviews swiper second now that desktopVideoSwiper safely exists in memory
+      desktopReviewsSwiper = new Swiper(reviewsSwiperDesktop, {
+        loop: true,
+        slidesPerView: 1,
+        pagination: {
+          el: '.v2-reviews-pagination',
+          clickable: true,
+        },
+        on: {
+          slideChange: function() {
+            if (desktopVideoSwiper && desktopVideoSwiper.realIndex !== this.realIndex) {
+              desktopVideoSwiper.slideToLoop(this.realIndex);
             }
           }
         }
       });
     }
     
+    // ========= MOBILE: Video Slider =========
     const mobileVideoSwiperEl = document.getElementById('v2-mobileVideoSwiper');
 
     if (mobileVideoSwiperEl) {
       const mobileVideoSwiper = new Swiper(
         mobileVideoSwiperEl,
         {
-          loop:true,
-          slidesPerView:1,
-          allowTouchMove:true
+          loop: true,
+          slidesPerView: 1,
+          allowTouchMove: true
         }
       );
 
       const prevBtn = mobileVideoSwiperEl.querySelector('.v2-mobile-video-prev');
       const nextBtn = mobileVideoSwiperEl.querySelector('.v2-mobile-video-next');
 
-      if(prevBtn){
-        prevBtn.addEventListener('click', function(e){
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function(e) {
           e.preventDefault();
           mobileVideoSwiper.slidePrev();
         });
       }
 
-      if(nextBtn){
-        nextBtn.addEventListener('click', function(e){
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function(e) {
           e.preventDefault();
           mobileVideoSwiper.slideNext();
         });
