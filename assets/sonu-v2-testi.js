@@ -100,7 +100,36 @@
   }
   
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSwipers);
+    document.addEventListener('DOMContentLoaded', function() {
+  // 1. Initialize Desktop Video Swiper
+  const videoSwiperDesktop = new Swiper('#v2-videoSwiperDesktop', {
+    slicePerView: 1,
+    loop: true,
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    navigation: {
+      nextEl: '.v2-desktop-video-next',
+      prevEl: '.v2-desktop-video-prev',
+    },
+  });
+
+  // 2. Initialize Desktop Reviews Swiper
+  const reviewsSwiperDesktop = new Swiper('#v2-reviewsSwiperDesktop', {
+    slidesPerView: 1,
+    loop: true,
+    spaceBetween: 30,
+    pagination: {
+      el: '.v2-reviews-pagination',
+      clickable: true,
+    },
+  });
+
+  // 3. Dual Slider controller link sync binding
+  if(videoSwiperDesktop && reviewsSwiperDesktop) {
+    videoSwiperDesktop.controller.control = reviewsSwiperDesktop;
+    reviewsSwiperDesktop.controller.control = videoSwiperDesktop;
+  }
+});
   } else {
     initSwipers();
   }
