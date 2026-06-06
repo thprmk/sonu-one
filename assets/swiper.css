@@ -351,31 +351,3 @@
   left: auto !important;
 }
 
-/* Fix progress lines / pagination bar alignment */
-.v2-desktop-reviews-container {
-  position: relative;
-}
-
-.v2-reviews-pagination.swiper-pagination-bullets {
-  bottom: -40px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  display: flex !important;
-  gap: 8px !important;
-  justify-content: center;
-  width: auto !important;
-}
-
-.v2-reviews-pagination .swiper-pagination-bullet {
-  width: 40px !important;
-  height: 4px !important;
-  border-radius: 2px !important;
-  background: rgba(0, 23, 85, 0.2) !important;
-  opacity: 1 !important;
-  transition: all 0.3s ease;
-}
-
-.v2-reviews-pagination .swiper-pagination-bullet-active {
-  background: #001755 !important; /* Active indicator line tracking color */
-  width: 60px !important;
-}
