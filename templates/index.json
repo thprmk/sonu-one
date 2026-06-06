@@ -368,6 +368,7 @@
         "card_nUf3xa",
         "card_RcrGTz"
       ],
+      "disabled": true,
       "name": "Product Cards",
       "settings": {
         "columns": "2",
