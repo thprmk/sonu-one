@@ -752,7 +752,7 @@
       }
     },
     "spatial_spec_pEiJEK": {
-      "type": "spatial-spec",
+      "type": "custom-specification",
       "blocks": {
         "spec_PxwDrF": {
           "type": "spec",
