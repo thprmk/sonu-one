@@ -788,7 +788,7 @@
         "heading": "Real Patients, Real Results",
         "heading_tag": "h2",
         "bg_image": "shopify://shop_images/bg_2_2.png",
-        "section_bg_color": "#ffffff",
+        "section_bg_color": "rgba(0,0,0,0)",
         "heading_color": "#001755",
         "heading_font_size": 56,
         "heading_line_height": 68,
