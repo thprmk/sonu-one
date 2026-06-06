@@ -1,264 +1,18 @@
-<style>
-  .doctor-section {
-    padding: 40px 0px!important; /* Removed side padding so cards can scroll edge-to-edge on mobile */
-    background: linear-gradient(
-  180deg,
-  #DAF2FF 0%,
-  #EAF8FF 40%,
-  #F7FCFF 70%,
-  #FFFFFF 100%
-);
-    overflow: hidden;
-  }
-
-  .doctor-section h2 {
-    text-align: center;
-    margin: 0 auto 50px;
-    font-family: 'Instrument Sans', sans-serif !important;
-    color: #001755 !important;
-    font-size: 58px !important;
-    font-weight: 500 !important;
-    line-height: 39px !important;
-  }
-
-  /* BASE */ 
-  .doctor-wrapper {
-    display: flex;
-    gap: 20px;
-    scrollbar-width: none; /* Hide scrollbar Firefox */
-  }
-  .doctor-wrapper::-webkit-scrollbar{
-    display: none; /* Hide scrollbar Chrome/Safari */
-  }
-
-  /* CARD - EXACT FIGMA SPECS */
-  .doctor-card {
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 244px !important; /* Exact width */
-    width: 244px !important;
-    cursor: pointer;
-  }
-
-  /* IMAGE */
-  .img-wrap {
-    position: relative;
-    width: 244px;
-    height: 270px; /* Exact height */
-    border-radius: 14px; /* Exact border radius */
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-
-  .img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-  
-  .doctor-card:hover .img-wrap img {
-    transform: scale(1.05);
-  }
-
-  /* OVERLAY */
-  .overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
-  }
-
-  /* TEXT ON IMAGE */
- .img-content {
-    position: absolute;
-    bottom: 20px;
-    left: 16.5px; /* Perfectly centers the 211px text box inside the 244px card */
-    width: 211px !important; /* EXACT Figma text box width */
-    color: #fff;
-    z-index: 2;
-  }
-
-  .img-content h4 {
-    margin: 0 0 6px 0 !important; /* EXACT 6px gap from Figma */
-    font-family: 'Instrument Sans', sans-serif !important;
-    font-size: 16px !important;
-    font-weight: 500 !important;
-    line-height: 20px !important;
-    color: #FFFFFF !important;
-  }
-
-
-  .img-content p {
-    margin: 0 !important;
-    font-family: 'Instrument Sans', sans-serif !important;
-    font-size: 12px !important;
-    font-weight: 400 !important;
-    line-height: 18px !important; /* 150% line height from Figma */
-    color: #FFFFFF !important;
-  }
-
-  /* DESCRIPTION (201px wide, 21px inset per Figma) */
-  .desc {
-    font-family: 'Instrument Sans', sans-serif !important;
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    line-height: 22px !important;
-    color: #000000 !important;
-    margin: 0 0 0 21px !important; /* Indents text exactly like Figma */
-    width: 201px !important;       /* Exact Figma width */
-  }
-
-  /* MOBILE SLIDER STYLES */
-  @media (max-width: 768px) {
-    .doctor-section {
-      padding: 60px 0;
-      padding-left:30px;
-    }
-
-    .mobile-slider .doctor-wrapper {
-      justify-content: flex-start;
-      padding: 0 20px;
-      gap: 15px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-    }
-
-    .mobile-slider .doctor-card {
-      scroll-snap-align: start;
-      padding-left:20px;
-    }
-
-     .doctor-section h2 {
-    
-    font-size: 32px !important;
-
-  }
-
-  }
-
-  /* DESKTOP GRID/SLIDER STYLES */
-  @media (min-width: 769px) {
-    .desktop-slider .doctor-wrapper,
-    .desktop-grid .doctor-wrapper {
-      justify-content: center;
-      max-width: 1400px;
-      margin: auto;
-      flex-wrap: wrap;
-    }
-    
-    .hide-desktop {
-      display: none !important;
-    }
-  }
-
-  /* MODAL */
-  .modal {
-    z-index: 999;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    display: none;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .modal-box {
-    background: #fff;
-    border-radius: 20px;
-    padding: 30px;
-    max-width: 900px;
-    width: 90%;
-  }
-
-  .modal-inner {
-    display: flex;
-    gap: 30px;
-  }
-
-  .modal-inner img {
-    width: 260px;
-    border-radius: 12px;
-    object-fit: cover;
-  }
-
-  .close {
-    cursor: pointer;
-    float: right;
-    font-size: 28px;
-    margin-top: -10px;
-  }
-
-  @media(max-width:768px){
-    .modal-inner {
-      flex-direction: column;
-    }
-    .modal-inner img{
-      width: 100%;
-      height: auto;
-    }
-  }
-
-  /* ==========================================================================
-     TEAM SLIDER CONTROLS (Identical structure to premium-carousel)
-     ========================================================================== */
-  .team-slider-container {
-    padding: 0 20px;
-    width: 100%;
-  }
-
-  /* PROGRESS BAR */
-  .team-progress {
-    margin-top: 30px;
-    height: 3px;
-    background: #ddd;
-    width: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-
-  .team-progress-bar-card {
-    height: 100%;
-    width: 20%;
-    background: #656AE3;
-    border-radius: 20px;
-    transition: width 0.2s ease;
-  }
-
-  /* ARROWS */
-  .team-arrows {
-    display: flex;
-    justify-content: flex-end; /* Pushes arrows to the right */
-    gap: 14px;
-    margin-top: 24px;
-    width: 100%;
-  }
-
-  .team-arrow-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #000;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-  }
-
-  .team-arrow-btn:hover {
-    transform: scale(1.05);
-  }
-</style>
+{{ 'sonu-custom.css' | asset_url | stylesheet_tag }}
 
 <section 
+  id="doctor-section-{{ section.id }}"
   class="doctor-section 
   desktop-{{ section.settings.desktop_layout }} 
   mobile-{{ section.settings.mobile_layout }}"
 >
-  <h2>{{ section.settings.heading }}</h2>
+  {% render 'sonu-section-header',
+    heading: section.settings.heading,
+    heading_tag: section.settings.heading_tag,
+    heading_class: '',
+    text_align: 'center',
+    animate: true
+  %}
 
   <div class="doctor-wrapper">
 
@@ -306,27 +60,27 @@
     <div class="team-slider-container hide-desktop">
       
       <!-- PROGRESS BAR (FULL WIDTH) -->
-      <div class="team-progress">
-        <div class="team-progress-bar-card"></div>
-      </div>
+      {% render 'sonu-progress-bar',
+        progress_id: 'team-progress-bar-' | append: section.id,
+        container_class: 'team-progress',
+        bar_class: 'team-progress-bar-card'
+      %}
 
       <!-- ARROWS (RIGHT ALIGNED) -->
       <div class="team-arrows">
-        <button class="team-arrow-btn team-prev-btn" aria-label="Previous">
-          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.1797 30.8344C23.3564 31.0465 23.6717 31.0752 23.8839 30.8984C24.096 30.7216 24.1247 30.4063 23.9479 30.1942L23.5638 30.5143L23.1797 30.8344ZM16.0139 21.4544L15.6298 21.1343C15.4753 21.3197 15.4753 21.5891 15.6298 21.7745L16.0139 21.4544ZM23.9479 12.7146C24.1247 12.5025 24.096 12.1872 23.8839 12.0104C23.6717 11.8337 23.3564 11.8623 23.1797 12.0745L23.5638 12.3945L23.9479 12.7146ZM23.5638 30.5143L23.9479 30.1942L16.398 21.1343L16.0139 21.4544L15.6298 21.7745L23.1797 30.8344L23.5638 30.5143ZM16.0139 21.4544L16.398 21.7745L23.9479 12.7146L23.5638 12.3945L23.1797 12.0745L15.6298 21.1343L16.0139 21.4544ZM21 41.5L21 41C9.9543 41 0.999997 32.0457 0.999998 21L0.499998 21L-2.02253e-06 21C-3.03646e-06 32.598 9.40202 42 21 42L21 41.5ZM0.499998 21L0.999998 21C0.999999 9.95431 9.95431 1 21 1L21 0.500002L21 2.02253e-06C9.40202 1.0086e-06 -1.0086e-06 9.40202 -2.02253e-06 21L0.499998 21ZM21 0.500002L21 1C32.0457 1 41 9.95431 41 21L41.5 21L42 21C42 9.40202 32.598 3.03646e-06 21 2.02253e-06L21 0.500002ZM41.5 21L41 21C41 32.0457 32.0457 41 21 41L21 41.5L21 42C32.598 42 42 32.598 42 21L41.5 21Z" fill="currentColor"/></svg>
-        </button>
-        <button class="team-arrow-btn team-next-btn" aria-label="Next">
-          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.8203 11.1656C18.6436 10.9535 18.3283 10.9248 18.1161 11.1016C17.904 11.2784 17.8753 11.5937 18.0521 11.8058L18.4362 11.4857L18.8203 11.1656ZM25.9861 20.5456L26.3702 20.8657C26.5247 20.6803 26.5247 20.4109 26.3702 20.2255L25.9861 20.5456ZM18.0521 29.2854C17.8753 29.4975 17.904 29.8128 18.1161 29.9896C18.3283 30.1663 18.6436 30.1377 18.8203 29.9255L18.4362 29.6055L18.0521 29.2854ZM18.4362 11.4857L18.0521 11.8058L25.602 20.8657L25.9861 20.5456L26.3702 20.2255L18.8203 11.1656L18.4362 11.4857ZM25.9861 20.5456L25.602 20.2255L18.0521 29.2854L18.4362 29.6055L18.8203 29.9255L26.3702 20.8657L25.9861 20.5456ZM21 0.5V1C32.0457 1 41 9.9543 41 21H41.5H42C42 9.40202 32.598 0 21 0V0.5ZM41.5 21H41C41 32.0457 32.0457 41 21 41V41.5V42C32.598 42 42 32.598 42 21H41.5ZM21 41.5V41C9.9543 41 1 32.0457 1 21H0.5H0C0 32.598 9.40202 42 21 42V41.5ZM0.5 21H1C1 9.9543 9.9543 1 21 1V0.5V0C9.40202 0 0 9.40202 0 21H0.5Z" fill="currentColor"/></svg>
-        </button>
+        {% render 'sonu-nav-arrows',
+          prev_class: 'team-arrow-btn team-prev-btn',
+          next_class: 'team-arrow-btn team-next-btn'
+        %}
       </div>
 
     </div>
   {% endif %}
 
   <!-- MODAL -->
-  <div class="modal">
+  <div class="modal" id="sonu-modal-{{ section.id }}">
     <div class="modal-box">
-      <span class="close">&times;</span>
+      <span class="close sonu-close-{{ section.id }}">&times;</span>
       <div class="modal-inner">
         <div class="left"></div>
         <div class="right"></div>
@@ -336,71 +90,54 @@
 
 </section>
 
-<script>
-document.querySelectorAll('.doctor-card').forEach(card => {
-  card.onclick = () => {
-    const data = card.querySelector('.modal-data');
-    const modal = document.querySelector('.modal');
 
-    modal.style.display = 'flex';
-    
-    // Safety check in case image is missing
-    const imgHtml = data.querySelector('img') ? data.querySelector('img').outerHTML : '';
-    modal.querySelector('.left').innerHTML = imgHtml;
-    
-    modal.querySelector('.right').innerHTML = `
-      <h3>${data.querySelector('h3').innerText}</h3>
-      <p style="font-weight:500; color:#666; margin-bottom: 20px;">${data.querySelector('.role').innerText}</p>
-      <p style="line-height:1.6;">${data.querySelector('p:last-child').innerText}</p>
-    `;
-  }
-});
 
-document.querySelector('.close').onclick = () => {
-  document.querySelector('.modal').style.display = 'none';
-};
 
-/* MOBILE SLIDER */
-document.addEventListener('DOMContentLoaded', () => {
-  const slider = document.querySelector('.mobile-slider .doctor-wrapper');
-  const progressBar = document.querySelector('.team-progress-bar-card');
-  const nextBtn = document.querySelector('.team-next-btn');
-  const prevBtn = document.querySelector('.team-prev-btn');
 
-  if(!slider || !progressBar) return;
-
-  const updateProgress = () => {
-    const maxScroll = slider.scrollWidth - slider.clientWidth;
-    if(maxScroll <= 0){
-      progressBar.style.width = '100%';
-      return;
-    }
-    const percent = (slider.scrollLeft / maxScroll) * 100;
-    progressBar.style.width = `${percent}%`;
-  };
-
-  slider.addEventListener('scroll', updateProgress);
-
-  nextBtn?.addEventListener('click', () => {
-    const card = slider.querySelector('.doctor-card');
-    slider.scrollBy({ left: card.offsetWidth + 15, behavior: 'smooth' });
-  });
-
-  prevBtn?.addEventListener('click', () => {
-    const card = slider.querySelector('.doctor-card');
-    slider.scrollBy({ left: -(card.offsetWidth + 15), behavior: 'smooth' });
-  });
-
-  // Small timeout ensures everything is loaded before first calculation
-  setTimeout(updateProgress, 100);
-});
-</script>
 
 {% schema %}
 {
   "name": "Team Section",
   "settings": [
     { "type": "text", "id": "heading", "default": "Trusted by doctors", "label": "Heading" },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "color",
+      "id": "grad_color_1",
+      "label": "Gradient Color 1 (Top)",
+      "default": "#daf2ff"
+    },
+    {
+      "type": "color",
+      "id": "grad_color_2",
+      "label": "Gradient Color 2",
+      "default": "#eaf8ff"
+    },
+    {
+      "type": "color",
+      "id": "grad_color_3",
+      "label": "Gradient Color 3",
+      "default": "#f7fcff"
+    },
+    {
+      "type": "color",
+      "id": "grad_color_4",
+      "label": "Gradient Color 4 (Bottom)",
+      "default": "#ffffff"
+    },
     {
       "type": "select",
       "id": "desktop_layout",
@@ -448,3 +185,5 @@ document.addEventListener('DOMContentLoaded', () => {
   ]
 }
 {% endschema %}
+
+<script src="{{ 'doctors-testimonials.js' | asset_url }}" defer="defer"></script>

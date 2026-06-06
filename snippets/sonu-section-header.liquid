@@ -1,0 +1,72 @@
+{%- comment -%}
+  Renders a standardized section header with dynamic tags and formatting.
+  
+  Usage:
+    render 'sonu-section-header',
+      heading: section.settings.heading,
+      heading_tag: section.settings.heading_tag,
+      heading_class: 'main-heading',
+      heading_style: heading_style,
+      small_heading: section.settings.small_heading,
+      subheading: section.settings.subheading,
+      text_align: section.settings.text_align,
+      animate: true
+{%- endcomment -%}
+
+{%- liquid
+  assign tag = heading_tag | default: 'h2'
+  assign class = heading_class | default: 'sonu-section-heading'
+  assign align_class = 'text-left'
+  if text_align == 'center'
+    assign align_class = 'text-center'
+  elsif text_align == 'right'
+    assign align_class = 'text-right'
+  endif
+-%}
+{%- capture newline -%}
+{%- endcapture -%}
+{%- capture double_br -%}<br />
+<br />{%- endcapture -%}
+{%- capture double_br_short -%}<br>
+<br>{%- endcapture -%}
+{%- capture single_br -%}<br />{%- endcapture -%}
+
+<div class="sonu-section-header {{ align_class }} {% if animate %}sonu-blur-in{% endif %}">
+  {%- if small_heading != blank -%}
+    <p class="sonu-section-header__small-heading">
+      {{ small_heading | escape }}
+    </p>
+  {%- endif -%}
+
+  {%- if heading != blank -%}
+    {%- assign formatted_heading = heading 
+      | replace: '<br>', newline 
+      | replace: '<br/>', newline 
+      | replace: '<br />', newline 
+      | replace: '[[', '<span class="highlight">' 
+      | replace: ']]', '</span>' 
+      | newline_to_br 
+      | replace: double_br, single_br
+      | replace: double_br_short, single_br
+    -%}
+    <{{ tag }} class="{{ class }}" style="{{ heading_style }}">
+      {{ formatted_heading }}
+    </{{ tag }}>
+  {%- endif -%}
+
+  {%- if subheading != blank -%}
+    {%- assign formatted_subheading = subheading 
+      | replace: '<br>', newline 
+      | replace: '<br/>', newline 
+      | replace: '<br />', newline 
+      | replace: '[[', '<span class="highlight">' 
+      | replace: ']]', '</span>' 
+      | newline_to_br 
+      | replace: double_br, single_br
+      | replace: double_br_short, single_br
+    -%}
+    <div class="sonu-section-header__subheading">
+      {{ formatted_subheading }}
+    </div>
+  {%- endif -%}
+</div>

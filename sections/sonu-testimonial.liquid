@@ -1,6 +1,12 @@
 <style>
   .split-video-testimonial-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
+    {%- if section.settings.bg_image != blank -%}
+      background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {%- endif -%}
     padding: 0;
     margin: 0;
     display: none; /* Hidden on desktop by default */
@@ -42,15 +48,16 @@
   }
 
   /* Left Side Media Panel Box styling */
-.split-video-testimonial-{{ section.id }} .media-panel {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: {{ section.settings.video_bg_color }};
-  padding: 30px 20px;
-  box-sizing: border-box;
-}
+  .split-video-testimonial-{{ section.id }} .media-panel {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Becomes transparent if a background image is present */
+    background-color: {% if section.settings.bg_image != blank %}transparent{% else %}{{ section.settings.video_bg_color }}{% endif %};
+    padding: 30px 20px;
+    box-sizing: border-box;
+  }
 
   /* Contained Video Frame Wrapper Box */
   .split-video-testimonial-{{ section.id }} .video-wrapper-box {
@@ -75,19 +82,34 @@
 
   /* Right Side Content Container */
   .split-video-testimonial-{{ section.id }} .content-panel {
-  width: 100%;
-  padding: 40px 30px 40px 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-sizing: border-box;
-  background-color: {{ section.settings.content_bg_color }};
-}
+    width: 100%;
+    padding: 40px 20px; /* Adjusted to accommodate card border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    /* Becomes transparent if a background image is present so the image shows through */
+    background-color: {% if section.settings.bg_image != blank %}transparent{% else %}{{ section.settings.content_bg_color }}{% endif %};
+  }
+
+  /* Bordered Review Card from image_1cf8ac.png */
+  .split-video-testimonial-{{ section.id }} .review-card {
+    border: 1px solid #7C81E7;
+    border-radius: 25px;
+    padding: 40px 25px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+  }
 
   .split-video-testimonial-{{ section.id }} .subheading {
-    font-family: 'Instrument Sans', sans-serif;
+    font-family: var(--sonu-font-primary);
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -99,7 +121,7 @@
   }
 
   .split-video-testimonial-{{ section.id }} .main-quote {
-    font-family: 'Times New Roman', serif;
+    font-family: var(--sonu-font-serif);
     font-style: normal;
     font-weight: 400;
     font-size: 28px;
@@ -110,7 +132,7 @@
   }
 
   .split-video-testimonial-{{ section.id }} .author-name {
-    font-family: 'Times New Roman', serif;
+    font-family: var(--sonu-font-serif);
     font-style: italic;
     font-weight: 400;
     font-size: 22px;
@@ -120,7 +142,7 @@
   }
 
   .split-video-testimonial-{{ section.id }} .author-bio {
-    font-family: 'Instrument Sans', sans-serif;
+    font-family: var(--sonu-font-primary);
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -134,7 +156,7 @@
     display: flex;
     justify-content: center;
     gap: 4px;
-    margin-bottom: 30px;
+    margin-bottom: 0; /* Removed margin to sit at bottom of card */
   }
 
   .split-video-testimonial-{{ section.id }} .star-wrapper svg {
@@ -150,8 +172,8 @@
     justify-content: space-between;
     width: 100%;
     max-width: 320px;
-    margin: 0 auto 40px auto;
-    font-family: 'Instrument Sans', sans-serif;
+    margin: 20px auto 40px auto;
+    font-family: var(--sonu-font-primary);
     font-size: 16px;
     color: #000000;
     user-select: none;
@@ -207,7 +229,7 @@
     transform: scale(0.85);
   }
 
-  /* Responsive split layout logic (Kept for mobile-tablet transition structure) */
+  /* Responsive split layout logic */
   @media screen and (min-width: 769px) {
     .split-video-testimonial-{{ section.id }} .testimonial-slide {
       flex-direction: row;
@@ -267,33 +289,36 @@
           </div>
 
           <div class="content-panel">
-            {%- if block.settings.subheading != blank -%}
-              <div class="subheading">{{ block.settings.subheading | escape }}</div>
-            {%- endif -%}
+            <div class="review-card">
+              {%- if block.settings.subheading != blank -%}
+                <div class="subheading">{{ block.settings.subheading | escape }}</div>
+              {%- endif -%}
 
-            {%- if block.settings.quote != blank -%}
-              <h2 class="main-quote">
-                “{{ block.settings.quote | replace: '"', '' | replace: '“', '' | replace: ' Bars ', '' }}”
-              </h2>
-            {%- endif -%}
+              {%- if block.settings.quote != blank -%}
+                {%- assign quote_tag = block.settings.heading_tag | default: 'h2' -%}
+                <{{ quote_tag }} class="main-quote">
+                  “{{ block.settings.quote | replace: '"', '' | replace: '“', '' }}”
+                </{{ quote_tag }}>
+              {%- endif -%}
 
-            {%- if block.settings.author_name != blank -%}
-              <div class="author-name">{{ block.settings.author_name | escape }}</div>
-            {%- endif -%}
+              {%- if block.settings.author_name != blank -%}
+                <div class="author-name">{{ block.settings.author_name | escape }}</div>
+              {%- endif -%}
 
-            {%- if block.settings.author_bio != blank -%}
-              <div class="author-bio">{{ block.settings.author_bio | escape }}</div>
-            {%- endif -%}
+              {%- if block.settings.author_bio != blank -%}
+                <div class="author-bio">{{ block.settings.author_bio | escape }}</div>
+              {%- endif -%}
 
-            {%- if block.settings.show_stars -%}
-              <div class="star-wrapper" aria-label="5 star rating">
-                {%- for i in (1..5) -%}
-                  <svg viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7.415 0L9.58 4.793L14.83 5.174L10.806 8.572L12.062 13.682L7.415 10.913L2.768 13.682L4.024 8.572L0 5.174L5.25 4.793L7.415 0Z"/>
-                  </svg>
-                {%- endfor -%}
-              </div>
-            {%- endif -%}
+              {%- if block.settings.show_stars -%}
+                <div class="star-wrapper" aria-label="5 star rating">
+                  {%- for i in (1..5) -%}
+                    <svg viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7.415 0L9.58 4.793L14.83 5.174L10.806 8.572L12.062 13.682L7.415 10.913L2.768 13.682L4.024 8.572L0 5.174L5.25 4.793L7.415 0Z"/>
+                    </svg>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
           </div>
         </div>
       {%- endfor -%}
@@ -389,12 +414,17 @@
   "settings": [
   {
     "type": "header",
-    "content": "Section Colors"
+    "content": "Section Colors & Media"
+  },
+  {
+    "type": "image_picker",
+    "id": "bg_image",
+    "label": "Section Background Image"
   },
   {
     "type": "color",
     "id": "bg_color",
-    "label": "Section Background",
+    "label": "Section Background Color Fallback",
     "default": "#E2F0EC"
   },
   {
@@ -445,6 +475,20 @@
           "id": "quote",
           "label": "Core Content Review Quote",
           "default": "As an airway patient I am always looking for ways to improve my nasal breathing."
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading type",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" }
+          ],
+          "default": "h2"
         },
         {
           "type": "text",

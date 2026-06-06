@@ -1,965 +1,16 @@
-{% comment %} <style>
-    /* SECTION */
-.press-feature {
-  position: relative;
-  padding: 80px 0;
-  overflow: hidden;
-}
+{{ 'sonu-custom.css' | asset_url | stylesheet_tag }}
 
-/* BACKGROUND */
-.press-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-}
-
-.press-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-}
-
-/* GRID */
-.press-grid {
-display: flex;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
-    align-items: start;
-    justify-content: center;
-}
-
-/* LEFT CARD */
-.press-card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  height: 505px;
-}
-
-.press-card-bg {
-  position: absolute;
-  inset: 0;
-}
-
-.press-card-bg img {
-  width: 100%;
-  height: 120%;
-  object-fit: cover;
-}
-
-/* OVERLAY */
-.press-card-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-}
-
-/* BADGE */
-.press-badge {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background: rgba(255,255,255,0.2);
-  padding: 6px 12px;
-  border-radius: 20px;
-  color: #fff;
-}
-
-/* CONTENT */
-.press-content {
-  position: absolute;
-  bottom: 30px;
-  left: 20px;
-  right: 20px;
-  color: #fff;
-}
-
-.press-content h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-/* BUTTON */
-.press-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #0a2a66;
-  color: #fff;
-  border-radius: 25px;
-  text-decoration: none;
-}
-
-/* RIGHT ITEMS */
-.press-item {
-  background: #fff;
-  padding: 20px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
-}
-
-.press-item:hover {
-  transform: translateY(-3px);
-}
-
-/* TEXT */
-.press-item-content strong {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.press-item-content p {
-  font-size: 18px;
-color: #001755;
-    line-height: 1.5;
-    font-weight: 500;
-    max-width:400px;
-}
-
-
-/* CLICKABLE */
-.press-item.clickable {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-/* HOVER EFFECT */
-.press-item.clickable:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-/* SOURCE LOGO */
-.press-source-logo img {
-      max-height: 35px;
-    margin-bottom: 6px;
-    object-fit: contain;
-    object-position: left;
-}
-
-/* SOURCE TEXT */
-.press-source-text {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-
-/* ARROW */
-.press-arrow {
-  font-size: 20px;
-  transition: transform 0.3s ease;
-}
-
-.press-item.clickable:hover .press-arrow {
-  transform: translateX(5px);
-}
-
-/* BLUR ANIMATION */
-.animate-blur {
-  opacity: 0;
-  filter: blur(10px);
-  transform: translateY(20px);
-  animation: blurFade 1s ease forwards;
-}
-
-@keyframes blurFade {
-  to {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
-}
-
-/* PARALLAX */
-.parallax img {
-  will-change: transform;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .press-grid {
-    grid-template-columns: 1fr;
-    flex-direction:column;
-  }
-  .press-left{
-  width:100% !important;
-  }
-
-  .press-card {
-    height: 420px;
-  }
-}
-
-.press-item svg{
-
-width:26px;
-height:26px;
-}
-
-.press-left{
-width:42%;
-}
-</style>
-
-<section class="press-feature">
-
-  <div class="press-bg">
-    {% if section.settings.bg_image != blank %}
-      <img src="{{ section.settings.bg_image | image_url: width: 2000 }}" alt="">
-    {% endif %}
-  </div>
-
-  <section class="section section-new">
-  <div class="page-width">
-
-    <div class="press-grid">
-
-      <!-- LEFT FEATURE -->
-      <div class="press-left">
-
-        <div class="press-card">
-
-          <div class="press-card-bg parallax">
-            {% if section.settings.feature_image != blank %}
-              <img src="{{ section.settings.feature_image | image_url: width: 1500 }}" alt="">
-            {% endif %}
-          </div>
-
-          {% if section.settings.badge != blank %}
-            <div class="press-badge">
-              {{ section.settings.badge }}
-            </div>
-          {% endif %}
-
-          <div class="press-content animate-blur">
-            <h3>{{ section.settings.title }}</h3>
-
-            <a href="{{ section.settings.button_link }}" class="press-btn">
-              {{ section.settings.button_text }}
-            </a>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- RIGHT LIST -->
-      <div class="press-right">
-
-        {% for block in section.blocks %}
-
-{% assign is_link = false %}
-
-{% if block.settings.enable_link and block.settings.link != blank %}
-  {% assign is_link = true %}
-{% endif %}
-  {% if is_link %}
-    <a href="{{ block.settings.link }}" class="press-item clickable">
-  {% else %}
-    <div class="press-item">
-  {% endif %}
-
-      <div class="press-item-content">
-
-        <!-- SOURCE LOGO -->
-        {% if block.settings.source_logo != blank %}
-          <div class="press-source-logo">
-            <img src="{{ block.settings.source_logo | image_url: width: 120 }}" alt="">
-          </div>
-        {% elsif block.settings.source != blank %}
-          <strong class="press-source-text">
-            {{ block.settings.source }}
-          </strong>
-        {% endif %}
-
-        <p>{{ block.settings.text }}</p>
-
-      </div>
-
-      {% if is_link %}
-        <div class="press-arrow">
-          <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.4548 8.1302C14.1013 7.70592 13.4707 7.6486 13.0464 8.00216C12.6221 8.35573 12.5648 8.98629 12.9184 9.41057L13.6866 8.77039L14.4548 8.1302ZM19.0268 15.1786L19.795 15.8188C20.104 15.4479 20.104 14.9092 19.795 14.5384L19.0268 15.1786ZM12.9184 20.9466C12.5648 21.3709 12.6221 22.0014 13.0464 22.355C13.4707 22.7086 14.1013 22.6512 14.4548 22.227L13.6866 21.5868L12.9184 20.9466ZM13.6866 8.77039L12.9184 9.41057L18.2585 15.8188L19.0268 15.1786L19.795 14.5384L14.4548 8.1302L13.6866 8.77039ZM19.0268 15.1786L18.2585 14.5384L12.9184 20.9466L13.6866 21.5868L14.4548 22.227L19.795 15.8188L19.0268 15.1786ZM15.5 1V2C22.9558 2 29 8.04415 29 15.5H30H31C31 6.93959 24.0604 -3.57628e-07 15.5 0V1ZM30 15.5H29C29 22.9558 22.9558 29 15.5 29V30V31C24.0604 31 31 24.0604 31 15.5H30ZM15.5 30V29C8.04416 29 2 22.9558 2 15.5H1H0C3.57628e-07 24.0604 6.93959 31 15.5 31V30ZM1 15.5H2C2 8.04416 8.04415 2 15.5 2V1V0C6.93959 3.57628e-07 -3.57628e-07 6.93959 0 15.5H1Z" fill="black"/>
-</svg>
-
-        </div>
-      {% endif %}
-
-  {% if is_link %}
-    </a>
-  {% else %}
-    </div>
-  {% endif %}
-
-{% endfor %}
-
-      </div>
-
-    </div>
-  </div>
-</section>
-</section>
-<script>
-document.addEventListener("scroll", function () {
-  const items = document.querySelectorAll(".parallax img");
-
-  items.forEach((img) => {
-    const rect = img.getBoundingClientRect();
-    const offset = (rect.top - window.innerHeight / 2) * 0.1;
-
-    const limited = Math.max(Math.min(offset, 30), -30);
-
-    img.style.transform = `translateY(${limited}px)`;
-  });
-});
-</script>
-
-{% schema %}
-{
-  "name": "Press Feature Section",
-  "settings": [
-    { "type": "image_picker", "id": "bg_image", "label": "Background Image" },
-
-    { "type": "image_picker", "id": "feature_image", "label": "Left Image" },
-    { "type": "text", "id": "badge", "label": "Badge" },
-    { "type": "text", "id": "title", "label": "Title" },
-
-    { "type": "text", "id": "button_text", "label": "Button Text", "default": "Read More" },
-    { "type": "url", "id": "button_link", "label": "Button Link" }
-  ],
-  "blocks": [
-    {
-  "type": "press",
-  "name": "Press Item",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "enable_link",
-      "label": "Enable Link",
-      "default": true
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Link"
-    },
-    {
-      "type": "image_picker",
-      "id": "source_logo",
-      "label": "Source Logo"
-    },
-    {
-      "type": "text",
-      "id": "source",
-      "label": "Source Name"
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "Text"
-    }
-  ]
-}
-  ],
-  "presets": [
-    {
-      "name": "Press Feature",
-      "blocks": [
-        { "type": "press" },
-        { "type": "press" },
-        { "type": "press" }
-      ]
-    }
-  ]
-}
-{% endschema %} {% endcomment %}
-
-
-<style>
-/* =========================
-   PRESS FEATURE SECTION
-========================= */
-
-.press-feature {
-  position: relative;
-  /* Use shorthand to explicitly set all padding, with 0 on the bottom and sides */
-  padding: 80px 0 0;
-  overflow: hidden;
-  z-index: 1;
-  /* Retain the rounded corners */
-  border-radius: 0 0 40px 40px !important;
-}
-
-/* BACKGROUND */
-.press-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  border-radius: inherit;
-}
-.press-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: inherit;
-}
-/* GRID */
-.press-grid {
-  display: flex;
-  gap: 40px;
-  align-items: start;
-  justify-content: center;
-}
-
-/* LEFT SIDE */
-.press-left {
-  width: 42%;
-}
-
-.press-card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  height: 505px;
-}
-
-.press-card-bg {
-  position: absolute;
-  inset: 0;
-}
-
-.press-card-bg img {
-  width: 100%;
-  height: 120%;
-  object-fit: cover;
-}
-
-.press-card-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
-}
-
-.press-badge {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background:rgb(0 0 0 / 52%);
-  backdrop-filter: blur(10px);
-  color: #fff;
-  padding: 7px 14px;
-  border-radius: 30px;
-  font-size: 13px;
-}
-
-.press-content {
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 30px;
-  color: #fff;
-}
-
-.press-content h3 {
-  font-size: 38px;
-  line-height: 1.2;
-  margin-bottom: 18px;
-  font-family:'Instrument sans';
-  font-weight: 500;
-}
-
-.press-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  background: #231F20;
-  color: #fff;
-  gap:15px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 13px;
-  letter-spacing: .3px;
-}
-
-/* RIGHT */
-.press-right {
-  flex: 1;
-  width:100%;
-  min-width:0;
-  overflow:hidden;
-}
-
-.press-item {
-  background: #fff;
-  border-radius: 18px;
-  padding: 28px;
-  margin-bottom: 22px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  transition: .3s ease;
-}
-
-.press-item.clickable {
-  text-decoration: none;
-  color: inherit;
-}
-
-.press-item.clickable:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(0,0,0,.08);
-}
-
-.press-source-logo img {
-    max-height: 35px;
-    margin-bottom: 6px;
-    object-fit: contain;
-    object-position: left;
-}
-
-.press-source-text {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-}
-
-.press-item-content p {
-  font-size: 18px;
-  line-height: 1.5;
-  color: #001755;
-  font-weight: 500;
-  max-width: 420px;
-  margin: 0;
-}
-
-.press-arrow {
-  font-size: 24px;
-  color: #000;
-  transition: .3s ease;
-}
-
-.press-item:hover .press-arrow {
-  transform: translateX(4px);
-}
-
-.press-item.clickable:hover .press-arrow {
-  transform: translateX(5px);
-}
-
-/* BLUR ANIMATION */
-.animate-blur {
-  opacity: 0;
-  filter: blur(10px);
-  transform: translateY(20px);
-  animation: blurFade 1s ease forwards;
-}
-
-@keyframes blurFade {
-  to {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
-}
-
-/* PARALLAX */
-.parallax img {
-  will-change: transform;
-}
-
-.mobile-press-footer{
-display:none;
-}
-
-
-/* =========================
-   MOBILE PRESS SLIDER
-========================= */
-
-@media(max-width:768px){
-
-  .press-arrow {
-  width:25%;
-  margin-left:10px;
-  margin-top:20px;
-}
-
-.mobile-press-slider {
-  display:flex;
-  overflow-x:auto;
-  gap:18px;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-  padding-bottom:0px;
-  width:100%;
-  max-width:100%;
-  box-sizing:border-box;
-}
-.mobile-press-slider .press-item:last-child{
-        margin-right: -25px;
-      }
-
-.mobile-press-slider .press-item {
-  flex:0 0 78%;
-  min-width:78%;
-  box-sizing:border-box;
-  margin-bottom:0;
-  scroll-snap-align:start;
-}
-
- .mobile-press-slider::-webkit-scrollbar{
-  display:none;
-}
-
-.mobile-press-slider::after{
-  content:"";
-  flex:0 0 18px;
-}
-
-  /* FOOTER */
-  .mobile-press-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width:100%;
-    margin-top: 0px;
-    padding: 15px 0; /* Updated: Added padding for positioning */
-  }
-
-  /* COUNT */
-  .mobile-press-count {
-    color: #fff;
-    font-size: 18px;
-  }
-
-  /* DOTS */
-  .mobile-press-dots {
-    display: flex;
-    gap: 8px;
-  }
-
-  .mobile-press-dots .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.35);
-    transition: .3s ease;
-  }
-
-  .mobile-press-dots .dot.active {
-    background: #fff;
-  }
-
-}
-/* =========================
-   MEDICAL ADVISORS
-========================= */
-
-.medical-advisors {
-  margin-top: 110px;
-}
-
-.advisor-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 60px;
-  align-items: flex-start;
-  margin-bottom: 50px;
-}
-
-.advisor-heading h2 {
-  color: #fff;
-  font-size: 72px;
-  line-height: 1.05;
-  font-weight: 500;
-  margin: 0;
-  max-width: 600px;
-}
-
-.advisor-description {
-  color: #fff;
-  max-width: 520px;
-  font-size: 18px;
-  line-height: 1.8;
-  opacity: .92;
-}
-
-/* SLIDER */
-
-.advisor-slider-wrapper {
-  overflow: hidden;
-  position: relative;
-}
-
-.advisor-slider {
-  display: flex;
-  gap: 24px;
-  transition: transform .5s ease;
-}
-
-.advisor-card {
-  position: relative;
-  min-width: 340px;
-  flex: 0 0 280px;
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.advisor-card img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  display: block;
-  transition: transform .5s ease;
-}
-
-.advisor-card:hover img {
-  transform: scale(1.05);
-}
-
-.advisor-plus {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  backdrop-filter: blur(10px);
-  font-size: 22px;
-  z-index: 2;
-}
-
-.advisor-info {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 22px;
-  background: linear-gradient(to top, rgba(0,0,0,.7), transparent);
-  color: #fff;
-}
-
-.advisor-info h4 {
-  margin: 0 0 6px;
-  font-size: 22px;
-  font-weight: 500;
-}
-
-.advisor-info p {
-  margin: 0;
-  font-size: 14px;
-  opacity: .85;
-}
-
-/* NAVIGATION */
-
-.advisor-navigation {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  margin-top: 36px;
-}
-
-.advisor-progress {
-  position: relative;
-  flex: 1;
-  height: 3px;
-  background: rgba(255,255,255,.2);
-  overflow: hidden;
-}
-
-.advisor-progress-bar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 35%;
-  height: 100%;
-  background: #656AE3;
-  transition: transform .5s ease;
-}
-
-.advisor-arrows {
-  display: flex;
-  gap: 14px;
-}
-
-.advisor-arrow {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  cursor: pointer;
-  transition: .3s ease;
-  user-select: none;
-}
-
-.advisor-arrow:hover {
-  background: rgba(255,255,255,.1);
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-  .press-grid {
-    flex-direction: column;
-  }
-
-  .press-left {
-    width: 100%;
-  }
-
-  .press-card {
-    height: 430px;
-  }
-
-  .press-content h3 {
-    font-size: 28px;
-  }
-
-  .advisor-top {
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .advisor-heading h2 {
-    font-size: 44px;
-    max-width: 100%;
-  }
-
-  .advisor-description {
-    font-size: 16px;
-  }
-
-  .advisor-card {
-    min-width: 220px;
-    flex: 0 0 220px;
-  }
-
-  .advisor-card img {
-    height: 260px;
-  }
-  .press-source-logo img{
-  margin-bottom:40px;}
-
-  .medical-advisors {
-    margin-top: 0px; /* Updated: Remove margin top on adjacent section */
-  }
-
-}
-
-.press-feature .section-new,
-.press-feature .page-width {
-  border-radius: inherit;
-}
-
-@media (max-width: 768px) {
-  .press-feature,
-  .press-bg,
-  .press-bg img {
-    border-radius: 0 0 30px 30px;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .press-feature {
-    border-radius: 0 0 35px 35px !important;
-    margin-bottom: 0px; 
-    position: relative;
-    z-index: 20!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-
-  /* REMOVED: Re-applying padding was creating the gap. */
-  /*
-  .press-feature {
-    padding-bottom: 0 !important;
-  }
-  */
-
-  .press-grid {
-    margin-bottom: 0 !important;
-  }
-
-  .press-right {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
-  .mobile-press-slider {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-    align-items: flex-start !important;
-  }
-
-  .mobile-press-footer {
-    /* REMOVED: Negative margin is problematic */
-    /* margin-top: -20px !important; */
-    position: relative;
-    z-index: 2;
-  }
-
-}
-
-@media (max-width: 768px) {
-
-  .mobile-press-slider {
-    height: auto !important;
-    min-height: unset !important;
-  }
-
-  .mobile-press-slider .press-item {
-    height: auto !important;
-    align-self: flex-start !important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .press-feature {
-    border-radius: 0 0 35px 35px !important;
-    margin-bottom: 0px; 
-    position: relative;
-    z-index: 20 !important;
-    /* ADD THIS: Gives left and right breathing room to the whole section */
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-}
-</style>
-
-<section class="press-feature">
+<section id="sonu-press-{{ section.id }}" class="press-feature">
 
   <!-- BACKGROUND -->
   <div class="press-bg">
     {% if section.settings.bg_image != blank %}
-      <img src="{{ section.settings.bg_image | image_url: width: 2200 }}" alt="">
+      <img
+        src="{{ section.settings.bg_image | image_url: width: 2200 }}"
+        alt=""
+        width="{{ section.settings.bg_image.width }}"
+        height="{{ section.settings.bg_image.height }}"
+      >
     {% endif %}
   </div>
 
@@ -976,7 +27,12 @@ display:none;
 
             <div class="press-card-bg parallax">
               {% if section.settings.feature_image != blank %}
-                <img src="{{ section.settings.feature_image | image_url: width: 1600 }}" alt="">
+                <img
+                  src="{{ section.settings.feature_image | image_url: width: 1600 }}"
+                  alt=""
+                  width="{{ section.settings.feature_image.width }}"
+                  height="{{ section.settings.feature_image.height }}"
+                >
               {% endif %}
             </div>
 
@@ -986,8 +42,11 @@ display:none;
               </div>
             {% endif %}
 
-            <div class="press-content animate-blur">
-              <h3>{{ section.settings.title }}</h3>
+            <div class="press-content sonu-blur-in">
+              {%- assign title_tag = section.settings.title_tag | default: 'h3' -%}
+              <{{ title_tag }} class="press-title-text">
+                {{ section.settings.title }}
+              </{{ title_tag }}>
 
               <a href="{{ section.settings.button_link }}" class="press-btn">
                 {{ section.settings.button_text }} <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1002,7 +61,7 @@ display:none;
         </div>
 
         <!-- RIGHT ITEMS -->
-    <div class="press-right {% if section.settings.mobile_press_layout == 'slider' %}mobile-press-slider{% endif %}">
+        <div class="press-right {% if section.settings.mobile_press_layout == 'slider' %}mobile-press-slider{% endif %}">
           {% for block in section.blocks %}
             {% if block.type == 'press' %}
 
@@ -1022,7 +81,12 @@ display:none;
 
                   {% if block.settings.source_logo != blank %}
                     <div class="press-source-logo">
-                      <img src="{{ block.settings.source_logo | image_url: width: 120 }}" alt="">
+                      <img
+                        src="{{ block.settings.source_logo | image_url: width: 120 }}"
+                        alt=""
+                        width="{{ block.settings.source_logo.width }}"
+                        height="{{ block.settings.source_logo.height }}"
+                      >
                     </div>
                   {% elsif block.settings.source != blank %}
                     <strong class="press-source-text">
@@ -1036,11 +100,10 @@ display:none;
 
                 {% if is_link %}
                   <div class="press-arrow">
-          <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.4548 8.1302C14.1013 7.70592 13.4707 7.6486 13.0464 8.00216C12.6221 8.35573 12.5648 8.98629 12.9184 9.41057L13.6866 8.77039L14.4548 8.1302ZM19.0268 15.1786L19.795 15.8188C20.104 15.4479 20.104 14.9092 19.795 14.5384L19.0268 15.1786ZM12.9184 20.9466C12.5648 21.3709 12.6221 22.0014 13.0464 22.355C13.4707 22.7086 14.1013 22.6512 14.4548 22.227L13.6866 21.5868L12.9184 20.9466ZM13.6866 8.77039L12.9184 9.41057L18.2585 15.8188L19.0268 15.1786L19.795 14.5384L14.4548 8.1302L13.6866 8.77039ZM19.0268 15.1786L18.2585 14.5384L12.9184 20.9466L13.6866 21.5868L14.4548 22.227L19.795 15.8188L19.0268 15.1786ZM15.5 1V2C22.9558 2 29 8.04415 29 15.5H30H31C31 6.93959 24.0604 -3.57628e-07 15.5 0V1ZM30 15.5H29C29 22.9558 22.9558 29 15.5 29V30V31C24.0604 31 31 24.0604 31 15.5H30ZM15.5 30V29C8.04416 29 2 22.9558 2 15.5H1H0C3.57628e-07 24.0604 6.93959 31 15.5 31V30ZM1 15.5H2C2 8.04416 8.04415 2 15.5 2V1V0C6.93959 3.57628e-07 -3.57628e-07 6.93959 0 15.5H1Z" fill="black"/>
-</svg>
-
-        </div>
+                    <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.4548 8.1302C14.1013 7.70592 13.4707 7.6486 13.0464 8.00216C12.6221 8.35573 12.5648 8.98629 12.9184 9.41057L13.6866 8.77039L14.4548 8.1302ZM19.0268 15.1786L19.795 15.8188C20.104 15.4479 20.104 14.9092 19.795 14.5384L19.0268 15.1786ZM12.9184 20.9466C12.5648 21.3709 12.6221 22.0014 13.0464 22.355C13.4707 22.7086 14.1013 22.6512 14.4548 22.227L13.6866 21.5868L12.9184 20.9466ZM13.6866 8.77039L12.9184 9.41057L18.2585 15.8188L19.0268 15.1786L19.795 14.5384L14.4548 8.1302L13.6866 8.77039ZM19.0268 15.1786L18.2585 14.5384L12.9184 20.9466L13.6866 21.5868L14.4548 22.227L19.795 15.8188L19.0268 15.1786ZM15.5 1V2C22.9558 2 29 8.04415 29 15.5H30H31C31 6.93959 24.0604 -3.57628e-07 15.5 0V1ZM30 15.5H29C29 22.9558 22.9558 29 15.5 29V30V31C24.0604 31 31 24.0604 31 15.5H30ZM15.5 30V29C8.04416 29 2 22.9558 2 15.5H1H0C3.57628e-07 24.0604 6.93959 31 15.5 31V30ZM1 15.5H2C2 8.04416 8.04415 2 15.5 2V1V0C6.93959 3.57628e-07 -3.57628e-07 6.93959 0 15.5H1Z" fill="black"/>
+                    </svg>
+                  </div>
                 {% endif %}
 
               {% if is_link %}
@@ -1055,119 +118,111 @@ display:none;
         </div>
         {% if section.settings.mobile_press_layout == 'slider' %}
 
-  <div class="mobile-press-footer">
+          <div class="mobile-press-footer">
 
-    <div class="mobile-press-count">
-      <span id="mobilePressCurrent-{{ section.id }}">1</span>/
-     {% assign press_count = 0 %}
+            <div class="mobile-press-count">
+              <span id="mobilePressCurrent-{{ section.id }}">1</span>/
+              {% assign press_count = 0 %}
+              {% for block in section.blocks %}
+                {% if block.type == 'press' %}
+                  {% assign press_count = press_count | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              <span id="mobilePressTotal-{{ section.id }}">
+                {{ press_count }}
+              </span>
+            </div>
 
-{% for block in section.blocks %}
-  {% if block.type == 'press' %}
-    {% assign press_count = press_count | plus: 1 %}
-  {% endif %}
-{% endfor %}
+            <div class="mobile-press-dots" id="mobilePressDots-{{ section.id }}">
+              {% for block in section.blocks %}
+                {% if block.type == 'press' %}
+                  <span class="dot {% if forloop.first %}active{% endif %}"></span>
+                {% endif %}
+              {% endfor %}
+            </div>
 
-<span id="mobilePressTotal-{{ section.id }}">
-  {{ press_count }}
-</span>
-    </div>
+          </div>
 
-    <div class="mobile-press-dots" id="mobilePressDots-{{ section.id }}">
-
-      {% for block in section.blocks %}
-        {% if block.type == 'press' %}
-          <span class="dot {% if forloop.first %}active{% endif %}"></span>
         {% endif %}
-      {% endfor %}
-
-    </div>
-
-  </div>
-
-{% endif %}
 
       </div>
 
       <!-- MEDICAL ADVISORS -->
       {% if section.settings.enable_advisors %}
 
-      <div class="medical-advisors">
+        <div class="medical-advisors">
 
-        <div class="advisor-top">
+          <div class="advisor-top">
 
-          <div class="advisor-heading animate-blur">
-            <h2>{{ section.settings.advisor_heading }}</h2>
-          </div>
-
-          <div class="advisor-description animate-blur">
-            {{ section.settings.advisor_description }}
-          </div>
-
-        </div>
-
-        <!-- SLIDER -->
-        <div class="advisor-slider-wrapper">
-
-          <div class="advisor-slider" id="advisorSlider">
-
-            {% for block in section.blocks %}
-              {% if block.type == 'advisor' %}
-
-                <div class="advisor-card">
-
-                  {% if block.settings.image != blank %}
-                    <img
-                      src="{{ block.settings.image | image_url: width: 700 }}"
-                      alt="{{ block.settings.name }}"
-                    >
-                  {% endif %}
-
-                  <div class="advisor-plus">
-                    +
-                  </div>
-
-                  <div class="advisor-info">
-                    <h4>{{ block.settings.name }}</h4>
-                    <p>{{ block.settings.designation }}</p>
-                  </div>
-
-                </div>
-
-              {% endif %}
-            {% endfor %}
-
-          </div>
-
-        </div>
-
-        <!-- NAVIGATION -->
-        {% comment %} <div class="advisor-navigation">
-
-          <div class="advisor-progress">
-            <div class="advisor-progress-bar" id="advisorProgress"></div>
-          </div>
-
-          <div class="advisor-arrows">
-
-            <div class="advisor-arrow" id="advisorPrev">
-              <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M30.0459 40.4391C30.3995 40.8634 31.0301 40.9207 31.4543 40.5672C31.8786 40.2136 31.9359 39.583 31.5824 39.1588L30.8142 39.7989L30.0459 40.4391ZM21.0545 28.0874L20.2863 27.4472C19.9773 27.8181 19.9773 28.3567 20.2863 28.7276L21.0545 28.0874ZM31.5824 17.0161C31.9359 16.5918 31.8786 15.9612 31.4543 15.6076C31.0301 15.2541 30.3995 15.3114 30.0459 15.7357L30.8142 16.3759L31.5824 17.0161ZM30.8142 39.7989L31.5824 39.1588L21.8228 27.4472L21.0545 28.0874L20.2863 28.7276L30.0459 40.4391L30.8142 39.7989ZM21.0545 28.0874L21.8228 28.7276L31.5824 17.0161L30.8142 16.3759L30.0459 15.7357L20.2863 27.4472L21.0545 28.0874ZM27.5 54L27.5 53C13.4167 53 2 41.5833 2 27.5L1 27.5L2.3167e-06 27.5C9.88941e-07 42.6878 12.3122 55 27.5 55L27.5 54ZM1 27.5L2 27.5C2 13.4167 13.4167 2 27.5 2L27.5 0.999998L27.5 -2.3167e-06C12.3122 -3.64447e-06 3.64447e-06 12.3122 2.3167e-06 27.5L1 27.5ZM27.5 0.999998L27.5 2C41.5833 2 53 13.4167 53 27.5L54 27.5L55 27.5C55 12.3122 42.6878 -9.88941e-07 27.5 -2.3167e-06L27.5 0.999998ZM54 27.5L53 27.5C53 41.5833 41.5833 53 27.5 53L27.5 54L27.5 55C42.6878 55 55 42.6878 55 27.5L54 27.5Z" fill="white" />
-</svg>
-
+            <div class="advisor-heading sonu-blur-in">
+              {%- assign advisor_tag = section.settings.advisor_heading_tag | default: 'h2' -%}
+              <{{ advisor_tag }} class="advisor-heading-text">
+                {{ section.settings.advisor_heading }}
+              </{{ advisor_tag }}>
             </div>
 
-            <div class="advisor-arrow" id="advisorNext">
-              <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M24.9541 14.5609C24.6005 14.1366 23.9699 14.0793 23.5457 14.4328C23.1214 14.7864 23.0641 15.417 23.4176 15.8412L24.1859 15.201L24.9541 14.5609ZM33.9455 26.9126L34.7137 27.5528C35.0227 27.1819 35.0227 26.6432 34.7137 26.2724L33.9455 26.9126ZM23.4176 37.9839C23.0641 38.4082 23.1214 39.0388 23.5457 39.3923C23.9699 39.7459 24.6005 39.6886 24.9541 39.2643L24.1858 38.6241L23.4176 37.9839ZM24.1859 15.201L23.4176 15.8412L33.1772 27.5528L33.9455 26.9126L34.7137 26.2724L24.9541 14.5609L24.1859 15.201ZM33.9455 26.9126L33.1772 26.2724L23.4176 37.9839L24.1858 38.6241L24.9541 39.2643L34.7137 27.5528L33.9455 26.9126ZM27.5 1V2C41.5833 2 53 13.4167 53 27.5H54H55C55 12.3122 42.6878 -7.15256e-07 27.5 0V1ZM54 27.5H53C53 41.5833 41.5833 53 27.5 53V54V55C42.6878 55 55 42.6878 55 27.5H54ZM27.5 54V53C13.4167 53 2 41.5833 2 27.5H1H0C6.55651e-07 42.6878 12.3122 55 27.5 55V54ZM1 27.5H2C2 13.4167 13.4167 2 27.5 2V1V0C12.3122 6.55651e-07 -7.15256e-07 12.3122 0 27.5H1Z" fill="white"/>
-</svg> {% endcomment %}
+            <div class="advisor-description sonu-blur-in">
+              {{ section.settings.advisor_description }}
+            </div>
+
+          </div>
+
+          <!-- SLIDER -->
+          <div class="advisor-slider-wrapper">
+
+            <div class="advisor-slider" id="advisorSlider-{{ section.id }}">
+
+              {% for block in section.blocks %}
+                {% if block.type == 'advisor' %}
+
+                  <div class="advisor-card">
+
+                    {% if block.settings.image != blank %}
+                      <img
+                        src="{{ block.settings.image | image_url: width: 700 }}"
+                        alt="{{ block.settings.name }}"
+                        width="{{ block.settings.image.width }}"
+                        height="{{ block.settings.image.height }}"
+                      >
+                    {% endif %}
+
+                    <div class="advisor-plus">
+                      +
+                    </div>
+
+                    <div class="advisor-info">
+                      <h4>{{ block.settings.name }}</h4>
+                      <p>{{ block.settings.designation }}</p>
+                    </div>
+
+                  </div>
+
+                {% endif %}
+              {% endfor %}
 
             </div>
 
           </div>
 
-        </div>
+          {% comment %} <!-- NAVIGATION -->
+          <div class="advisor-navigation">
+            {% render 'sonu-progress-bar',
+              progress_id: 'advisorProgress-' | append: section.id,
+              container_class: 'advisor-progress',
+              bar_class: 'advisor-progress-bar'
+            %}
+            
+            <div class="advisor-arrows">
+              {% render 'sonu-nav-arrows',
+                prev_id: 'advisorPrev-' | append: section.id,
+                next_id: 'advisorNext-' | append: section.id,
+                prev_class: 'advisor-arrow',
+                next_class: 'advisor-arrow'
+              %}
+            </div>
+          </div> {% endcomment %}
 
-      </div>
+        </div>
 
       {% endif %}
 
@@ -1176,356 +231,162 @@ display:none;
 
 </section>
 
-<script>
 
-document.addEventListener("DOMContentLoaded", function() {
 
-  const slider =
-    document.querySelector(".mobile-press-slider");
 
-  if (!slider || window.innerWidth > 768) return;
-
-  const current =
-    document.getElementById("mobilePressCurrent-{{ section.id }}");
-
-  const dots =
-    document.querySelectorAll("#mobilePressDots-{{ section.id }} .dot");
-
-  function updateMobilePressSlider() {
-
-    const cards =
-      slider.querySelectorAll(".press-item");
-
-    if (!cards.length) return;
-
-    const cardWidth =
-      cards[0].offsetWidth + 18;
-
-    let index =
-      Math.round(slider.scrollLeft / cardWidth);
-
-    index =
-      Math.max(0, Math.min(index, cards.length - 1));
-
-    if (current) {
-      current.textContent = index + 1;
-    }
-
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === index);
-    });
-
-  }
-
-  slider.addEventListener(
-    "scroll",
-    updateMobilePressSlider
-  );
-
-});
-
-</script>
-<script>
-/* PARALLAX */
-document.addEventListener("scroll", function () {
-
-  const items = document.querySelectorAll(".parallax img");
-
-  items.forEach((img) => {
-
-    const rect = img.getBoundingClientRect();
-
-    const offset =
-      (rect.top - window.innerHeight / 2) * 0.1;
-
-    const limited =
-      Math.max(Math.min(offset, 30), -30);
-
-    img.style.transform =
-      `translateY(${limited}px)`;
-
-  });
-
-});
-
-/* ADVISOR SLIDER */
-document.addEventListener("DOMContentLoaded", () => {
-
-  const slider = document.getElementById("advisorSlider");
-  const next = document.getElementById("advisorNext");
-  const prev = document.getElementById("advisorPrev");
-  const progress = document.getElementById("advisorProgress");
-
-  if (!slider) return;
-
-  const cards = slider.querySelectorAll(".advisor-card");
-
-  let currentIndex = 0;
-
-  function visibleCards() {
-    return window.innerWidth < 768 ? 1 : 4;
-  }
-
-  function maxIndex() {
-    return Math.max(cards.length - visibleCards(), 0);
-  }
-
-  function updateSlider(smooth = true) {
-
-    const cardWidth = cards[0].offsetWidth + 24;
-
-    slider.style.transition =
-      smooth ? "transform .45s ease" : "none";
-
-    slider.style.transform =
-      `translateX(-${currentIndex * cardWidth}px)`;
-
-    /* PROGRESS */
-    const total = maxIndex();
-
-    let progressPercent = 0;
-
-    if (total > 0) {
-      progressPercent =
-        ((currentIndex + 1) / (total + 1)) * 100;
-    }
-
-    progress.style.width = `${progressPercent}%`;
-
-  }
-
-  /* NEXT */
-  next.addEventListener("click", () => {
-
-    if (currentIndex < maxIndex()) {
-
-      currentIndex++;
-      updateSlider();
-
-    }
-
-  });
-
-  /* PREV */
-  prev.addEventListener("click", () => {
-
-    if (currentIndex > 0) {
-
-      currentIndex--;
-      updateSlider();
-
-    }
-
-  });
-
-  /* ======================
-     TOUCH / SWIPE SUPPORT
-  ====================== */
-
-  let startX = 0;
-  let currentX = 0;
-  let isDragging = false;
-
-  slider.addEventListener("touchstart", (e) => {
-
-    startX = e.touches[0].clientX;
-    isDragging = true;
-
-  });
-
-  slider.addEventListener("touchmove", (e) => {
-
-    if (!isDragging) return;
-
-    currentX = e.touches[0].clientX;
-
-  });
-
-  slider.addEventListener("touchend", () => {
-
-    if (!isDragging) return;
-
-    const diff = startX - currentX;
-
-    /* SWIPE LEFT */
-    if (diff > 50 && currentIndex < maxIndex()) {
-
-      currentIndex++;
-      updateSlider();
-
-    }
-
-    /* SWIPE RIGHT */
-    if (diff < -50 && currentIndex > 0) {
-
-      currentIndex--;
-      updateSlider();
-
-    }
-
-    isDragging = false;
-
-  });
-
-  window.addEventListener("resize", () => {
-    updateSlider(false);
-  });
-
-  updateSlider(false);
-
-});
-</script>
 
 {% schema %}
 {
   "name": "Press Feature Section",
   "settings": [
-
     {
       "type": "image_picker",
       "id": "bg_image",
       "label": "Background Image"
     },
-
     {
       "type": "image_picker",
       "id": "feature_image",
       "label": "Feature Image"
     },
-
     {
       "type": "text",
       "id": "badge",
       "label": "Badge"
     },
-
     {
       "type": "text",
       "id": "title",
       "label": "Title"
     },
-
+    {
+      "type": "select",
+      "id": "title_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h3"
+    },
     {
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
       "default": "Read More"
     },
-
     {
       "type": "url",
       "id": "button_link",
       "label": "Button Link"
     },
-
     {
-  "type": "select",
-  "id": "mobile_press_layout",
-  "label": "Mobile Press Layout",
-  "options": [
-    {
-      "value": "grid",
-      "label": "Grid"
+      "type": "select",
+      "id": "mobile_press_layout",
+      "label": "Mobile Press Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "slider",
+          "label": "Slider"
+        }
+      ],
+      "default": "slider"
     },
-    {
-      "value": "slider",
-      "label": "Slider"
-    }
-  ],
-  "default": "slider"
-},
-
     {
       "type": "checkbox",
       "id": "enable_advisors",
       "label": "Enable Medical Advisors",
       "default": true
     },
-
     {
       "type": "text",
       "id": "advisor_heading",
       "label": "Advisor Heading",
       "default": "Meet the Medical Advisors"
     },
-
+    {
+      "type": "select",
+      "id": "advisor_heading_tag",
+      "label": "Advisor Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
     {
       "type": "textarea",
       "id": "advisor_description",
       "label": "Advisor Description"
     }
-
   ],
-
   "blocks": [
-
     {
       "type": "press",
       "name": "Press Item",
       "settings": [
-
         {
           "type": "checkbox",
           "id": "enable_link",
           "label": "Enable Link",
           "default": true
         },
-
         {
           "type": "url",
           "id": "link",
           "label": "Link"
         },
-
         {
           "type": "image_picker",
           "id": "source_logo",
           "label": "Source Logo"
         },
-
         {
           "type": "text",
           "id": "source",
           "label": "Source Name"
         },
-
         {
           "type": "textarea",
           "id": "text",
           "label": "Text"
         }
-
       ]
     },
-
     {
       "type": "advisor",
       "name": "Medical Advisor",
       "settings": [
-
         {
           "type": "image_picker",
           "id": "image",
           "label": "Advisor Image"
         },
-
         {
           "type": "text",
           "id": "name",
           "label": "Advisor Name"
         },
-
         {
           "type": "text",
           "id": "designation",
           "label": "Designation"
         }
-
       ]
     }
-
   ],
-
   "presets": [
     {
       "name": "Press Feature",
@@ -1556,3 +417,4 @@ document.addEventListener("DOMContentLoaded", () => {
   ]
 }
 {% endschema %}
+<script src="{{ 'sonu-press.js' | asset_url }}" defer="defer"></script>

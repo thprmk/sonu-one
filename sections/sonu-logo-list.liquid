@@ -1,19 +1,22 @@
 <section class="science-bg-area">
-<section class="logo-section section">
-
-  <!-- HEADING -->
-  {% if section.settings.heading != blank %}
-<h2 class="logo-heading animate-blur delay-1">
-        {{ section.settings.heading }}
-    </h2>
+<section class="logo-section section" style="
+  background: {{ section.settings.bg_color | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
+  {% if section.settings.bg_image != blank %}
+    background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   {% endif %}
+">
 
-  <!-- DESCRIPTION -->
-  {% if section.settings.description != blank %}
-    <div class="logo-description animate-blur delay-2">
-      {{ section.settings.description }}
-    </div>
-  {% endif %}
+  {% render 'sonu-section-header',
+    heading: section.settings.heading,
+    heading_tag: section.settings.heading_tag,
+    heading_class: 'logo-heading',
+    subheading: section.settings.description,
+    text_align: 'center',
+    animate: true
+  %}
 
   <!-- LOGOS -->
   <div class="logo-container animate-blur delay-3">
@@ -28,6 +31,8 @@
               src="{{ block.settings.logo | image_url: width: 300 }}"
               alt=""
               loading="lazy"
+              width="{{ block.settings.logo.width }}"
+              height="{{ block.settings.logo.height }}"
             >
           {% endif %}
 
@@ -56,241 +61,21 @@
 
 </section>
 </section>
-<style>
-.science-bg-area {
-  position: relative;
-  z-index: 1;
-}
-
-.science-bg-area::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url('https://cdn.shopify.com/s/files/your-bg.png');
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-}
-.section-shadow {
-  box-shadow: 0px 4px 4px rgba(232, 229, 229, 0.25);
-}
-/* SECTION */
-.logo-section {
-  padding: 40px 20px !important;
-
-  background: linear-gradient(
-    90deg,
-    #F2EDF4 0%,
-    #EEF1FA 45%,
-    #E8F2FF 100%
-  );
-}
-
-/* HEADING */
-.logo-heading {
-  text-align: center;
-  margin-bottom: 46px!important;
-  font-family:'Instrument Sans';
-  color: #001755;
-
-  font-size: 42px;
-  line-height: 1.1;
-
-  font-weight: 700;
-
-  letter-spacing: -1px;
-}
-
-/* DESCRIPTION */
-.logo-description {
-  max-width: 720px;
-
-  margin: 0 auto 45px;
-
-  text-align: center;
-
-  font-size: 18px;
-  line-height: 1.7;
-
-  color: rgba(0,0,0,0.75);
-}
-
-/* LOGO CONTAINER */
-.logo-container {
-  overflow: hidden;
-}
-
-/* TRACK */
-.logo-track {
-  display: flex;
-  gap: 40px;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-wrap: wrap;
-}
-
-/* LOGO ITEM */
-.logo-item {
-  max-width: 16%;
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* IMAGE */
-.logo-item img {
-  max-height: 50px;
-  max-width: 100%;
-
-  object-fit: contain;
-
-  transition: all 0.3s ease;
-}
-
-.logo-item img:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-}
-
-/* SLIDER MODE */
-.logo-track.slider {
-  flex-wrap: nowrap;
-  animation: scrollLogos 20s linear infinite;
-}
-
-.logo-track.slider .logo-item {
-  flex: 0 0 auto;
-}
-
-@keyframes scrollLogos {
-
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-
-}
-
-/* CTA BUTTON */
-.logo-button-wrap {
-  text-align: center;
-  margin-top: 45px;
-}
-
-.logo-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 16px 34px;
-
-  border-radius: 999px;
-
-  text-decoration: none;
-
-  font-size: 17px;
-  font-weight: 500;
-
-  transition: all 0.35s ease;
-}
-
-.logo-btn:hover {
-  transform: translateY(-3px);
-  opacity: 0.92;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-  .logo-section {
-    padding: 0px;
-  }
-
-  .logo-heading {
-    font-size: 32px;
-  }
-
-  .logo-description {
-    font-size: 16px;
-    margin-bottom: 35px;
-  }
-
-  .logo-track {
-    flex-wrap: nowrap !important;
-    animation: scrollLogos 15s linear infinite;
-
-    justify-content: flex-start;
-  }
-
-  .logo-item {
-    flex: 0 0 31%;
-    max-width: 31%;
-  }
-
-  .logo-btn {
-    width: 100%;
-  }
-
-}
-
-/* Slightly bigger phones */
-@media (min-width: 480px) and (max-width: 768px) {
-
-  .logo-item {
-    flex: 0 0 30%;
-    max-width: 30%;
-  }
-
-}
-
-</style>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const isMobile = window.innerWidth <= 768;
-
-  document.querySelectorAll('[id^="logoTrack-"]').forEach(track => {
-
-    let items = track.children;
-    let count = items.length;
-
-    // MOBILE → always slider
-    if (isMobile || count > 5) {
-
-      track.classList.add("slider");
-
-      // duplicate once only
-      if (!track.classList.contains("duplicated")) {
-
-        track.innerHTML += track.innerHTML;
-
-        track.classList.add("duplicated");
-
-      }
-
-    }
-
-  });
-
-});
-</script>
+{{ 'sonu-custom.css' | asset_url | stylesheet_tag }}
 
 {% schema %}
 {
   "name": "Logo Carousel",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
       "type": "color",
       "id": "bg_color",
-      "label": "Background Color",
+      "label": "Background Color Fallback",
       "default": "#f5f6fb"
     },
     {
@@ -300,11 +85,24 @@ document.addEventListener("DOMContentLoaded", function () {
       "default": "Our Partners"
     },
     {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
       "type": "richtext",
       "id": "description",
       "label": "Description"
     },
-
     {
       "type": "text",
       "id": "button_text",
@@ -328,7 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
       "label": "Button Text Color",
       "default": "#ffffff"
     }
-
   ],
   "blocks": [
     {
@@ -350,3 +147,4 @@ document.addEventListener("DOMContentLoaded", function () {
   ]
 }
 {% endschema %}
+<script src="{{ 'sonu-logo-list.js' | asset_url }}" defer="defer"></script>
