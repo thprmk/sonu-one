@@ -2763,16 +2763,68 @@ margin-top:10px!important;
 }
 
 
-/* --- Background Image Additions for Testimonials Video Section --- */
-.v2-testimonial-video-section {
-  background-image: var(--section-bg-image, none);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+/* --- Modern Custom SVG Arrows to Replace Text Icons (image_0e7166.png) --- */
+
+/* Hide any previous Swiper text font fallbacks entirely */
+.v2-desktop-video-container .swiper-button-prev::after,
+.v2-desktop-video-container .swiper-button-next::after {
+  display: none !important;
+  content: "" !important;
 }
 
-/* Ensure review grids don't cover the background when an image is active */
-.v2-testimonial-video-section[style*="--section-bg-image"] .v2-desktop-reviews-container,
-.v2-testimonial-video-section[style*="--section-bg-image"] .v2-mobile-reviews-section {
-  background-color: transparent !important;
+/* Position and style the main button housings uniformly */
+.v2-desktop-video-container .swiper-button-prev,
+.v2-desktop-video-container .swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0;
+  z-index: 10;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #ffffff !important;
+  border-radius: 50% !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.v2-desktop-video-container .swiper-button-prev:hover,
+.v2-desktop-video-container .swiper-button-next:hover {
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+.v2-desktop-video-container .swiper-button-prev {
+  left: 24px !important;
+  right: auto !important;
+}
+
+.v2-desktop-video-container .swiper-button-next {
+  right: 24px !important;
+  left: auto !important;
+}
+
+/* Inject crisp modern inline vector arrows */
+.v2-desktop-video-container .swiper-button-prev::before,
+.v2-desktop-video-container .swiper-button-next::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Left Arrow Vector Graphic */
+.v2-desktop-video-container .swiper-button-prev::before {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 18' fill='none'%3E%3Cpath d='M8.5 1.5L1.5 9L8.5 16.5' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Right Arrow Vector Graphic */
+.v2-desktop-video-container .swiper-button-next::before {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 18' fill='none'%3E%3Cpath d='M1.5 1.5L8.5 9L1.5 16.5' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
