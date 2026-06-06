@@ -1,5 +1,13 @@
 <section class="science-bg-area">
-<section class="logo-section section" style="background: {{ section.settings.bg_color | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};">
+<section class="logo-section section" style="
+  background: {{ section.settings.bg_color | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
+  {% if section.settings.bg_image != blank %}
+    background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  {% endif %}
+">
 
   {% render 'sonu-section-header',
     heading: section.settings.heading,
@@ -55,16 +63,19 @@
 </section>
 {{ 'sonu-custom.css' | asset_url | stylesheet_tag }}
 
-
-
 {% schema %}
 {
   "name": "Logo Carousel",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
       "type": "color",
       "id": "bg_color",
-      "label": "Background Color",
+      "label": "Background Color Fallback",
       "default": "#f5f6fb"
     },
     {
@@ -92,7 +103,6 @@
       "id": "description",
       "label": "Description"
     },
-
     {
       "type": "text",
       "id": "button_text",
@@ -116,7 +126,6 @@
       "label": "Button Text Color",
       "default": "#ffffff"
     }
-
   ],
   "blocks": [
     {
