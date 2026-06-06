@@ -712,11 +712,24 @@
             "author_bio": "College counselor",
             "show_stars": true
           }
+        },
+        "testimonial_8W7ymt": {
+          "type": "testimonial",
+          "settings": {
+            "video_url": "",
+            "subheading": "OUR FAVORITE PRODUCTS",
+            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing.",
+            "heading_tag": "h2",
+            "author_name": "Zach",
+            "author_bio": "College counselor",
+            "show_stars": true
+          }
         }
       },
       "block_order": [
         "testimonial_ciki7d",
-        "testimonial_VTcy7W"
+        "testimonial_VTcy7W",
+        "testimonial_8W7ymt"
       ],
       "name": "Contained Video Slider",
       "settings": {
@@ -747,7 +760,25 @@
             "role_4": "Clinical Psychologist"
           }
         },
-        "slide_t8z8Xf": {
+        "slide_YMp6cF": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/vertical-animation.mp4",
+            "review_1": "Before using Spatial Sleep, I would wake up several times a night and never felt truly rested. After a few weeks of wearing it regularly, I started sleeping in long, uninterrupted stretches. For the first time in years, I wake up feeling refreshed and energized.",
+            "name_1": "Jay G",
+            "role_1": "Corporate Vice President @ Fortune 500 Company",
+            "review_2": "As a physician on call, quality sleep is rare. With Spatial Sleep, I finally get deep, restorative rest.",
+            "name_2": "Ram G MD",
+            "role_2": "Radiologist",
+            "review_3": "Spatial Sleep has been a real game changer for me. I fall asleep so much faster and actually wake up feeling refreshed. I noticed a difference the very first night. Fell asleep faster, slept deeper. I used to toss and turn for hours, but with Spatial I'm out in minutes and I wake up rested.",
+            "name_3": "Julie K",
+            "role_3": "Retired RN",
+            "review_4": "I love the color and the comfort. It's subtle yet powerful. My REM sleep increased dramatically.",
+            "name_4": "Lindsay M",
+            "role_4": "Clinical Psychologist"
+          }
+        },
+        "slide_wXUa9x": {
           "type": "slide",
           "settings": {
             "video": "shopify://files/videos/vertical-animation.mp4",
@@ -768,7 +799,8 @@
       },
       "block_order": [
         "slide_NCYPrX",
-        "slide_t8z8Xf"
+        "slide_YMp6cF",
+        "slide_wXUa9x"
       ],
       "name": "Testimonials Video sonu",
       "settings": {
