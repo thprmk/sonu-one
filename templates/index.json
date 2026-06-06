@@ -676,9 +676,9 @@
         "heading": "Trusted by doctors",
         "heading_tag": "h1",
         "grad_color_1": "#daf2ff",
-        "grad_color_2": "#eaf8ff",
-        "grad_color_3": "#f7fcff",
-        "grad_color_4": "#ffffff",
+        "grad_color_2": "#daf2ff",
+        "grad_color_3": "#daf2ff",
+        "grad_color_4": "#daf2ff",
         "desktop_layout": "grid",
         "mobile_layout": "slider",
         "trim_words": 20
