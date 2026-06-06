@@ -927,16 +927,4 @@
   ]
 }
 {% endschema %}
-<style>/* Desktop only */
-@media screen and (min-width: 990px) {
-  .section-slideshow {
-    padding: 25px 55px 15px 55px;
-  }
-
-  .section-slideshow .swiper,
-  .section-slideshow .swiper-slide,
-  .section-slideshow .border-style {
-    border-radius: 20px;
-    overflow: hidden;
-  }
-}</style>
+{{ 'sonu-custom.css' | asset_url | stylesheet_tag }}

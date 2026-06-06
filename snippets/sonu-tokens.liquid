@@ -1,6 +1,18 @@
 {%- comment -%}
+  ==========================================================================
   SONU Design Tokens & Shared Components
-  Rendered once in theme.liquid head.
+  ==========================================================================
+  * SINGLE SOURCE OF TRUTH *
+  
+  WARNING TO DEVELOPERS:
+  This file is the central source of truth for all custom brand tokens, 
+  CSS variables, and global custom styles. 
+  
+  Do NOT add custom styling for these sections inside the core theme.css 
+  or global.css files. Keeping styles here ensures that core Shopify theme 
+  updates will not overwrite your custom layouts in the future.
+  
+  Rendered once in the <head> of layout/theme.liquid.
 {%- endcomment -%}
 
 <style>
