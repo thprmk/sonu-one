@@ -1,6 +1,5 @@
 <style>
   .split-video-testimonial-{{ section.id }} {
-    /* Updated to support both background color and background image from settings */
     background-color: {{ section.settings.bg_color }};
     {%- if section.settings.bg_image != blank -%}
       background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
@@ -54,7 +53,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: {{ section.settings.video_bg_color }};
+    /* Becomes transparent if a background image is present */
+    background-color: {% if section.settings.bg_image != blank %}transparent{% else %}{{ section.settings.video_bg_color }}{% endif %};
     padding: 30px 20px;
     box-sizing: border-box;
   }
@@ -90,7 +90,8 @@
     justify-content: center;
     text-align: center;
     box-sizing: border-box;
-    background-color: {{ section.settings.content_bg_color }};
+    /* Becomes transparent if a background image is present so the image shows through */
+    background-color: {% if section.settings.bg_image != blank %}transparent{% else %}{{ section.settings.content_bg_color }}{% endif %};
   }
 
   /* Bordered Review Card from image_1cf8ac.png */
