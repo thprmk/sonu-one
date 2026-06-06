@@ -2761,3 +2761,18 @@ margin-top:10px!important;
     text-align:center;
   }
 }
+
+
+/* --- Background Image Additions for Testimonials Video Section --- */
+.v2-testimonial-video-section {
+  background-image: var(--section-bg-image, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Ensure review grids don't cover the background when an image is active */
+.v2-testimonial-video-section[style*="--section-bg-image"] .v2-desktop-reviews-container,
+.v2-testimonial-video-section[style*="--section-bg-image"] .v2-mobile-reviews-section {
+  background-color: transparent !important;
+}
