@@ -500,8 +500,8 @@
 }
 /* SECTION */
 .logo-section {
-  padding-top: 20px!important;
-  padding-bottom:20px!important;
+  padding-top: 0px!important;
+  padding-bottom:40px!important;
 
   background: linear-gradient(
     90deg,
