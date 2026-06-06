@@ -132,8 +132,11 @@
     padding-left:20px;
   }
 
-  .doctor-section h2, .doctor-section h1, .doctor-section h3, .doctor-section h4, .doctor-section h5, .doctor-section h6 {
+  .doctor-section h2, .doctor-section h1, .doctor-section h3, .doctor-section h5, .doctor-section h6 {
     font-size: 32px !important;
+  }
+  .doctor-section h4{
+    font-size:16px;
   }
 }
 
