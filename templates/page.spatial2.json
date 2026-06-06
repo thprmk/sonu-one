@@ -1468,7 +1468,7 @@
       }
     },
     "sonu_specification_rRabMH": {
-      "type": "sonu-specification",
+      "type": "custom-specification",
       "blocks": {
         "spec_qjpHzK": {
           "type": "spec",
