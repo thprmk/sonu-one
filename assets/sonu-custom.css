@@ -2756,3 +2756,8 @@ margin-top:10px!important;
     padding-right: 20px !important;
   }
 }
+@media (max-width: 768px) {
+  .sonu-section-header__subheading{
+    text-align:center;
+  }
+}
