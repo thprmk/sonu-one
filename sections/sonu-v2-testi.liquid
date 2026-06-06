@@ -1,16 +1,8 @@
 <section class="v2-testimonial-video-section {% if section.settings.full_width %}v2-full-width{% else %}v2-contained{% endif %}" style="
+  --section-bg: {{ section.settings.section_bg_color }};
   --card-bg: {{ section.settings.card_bg_color }};
   --mobile-card-bg: {{ section.settings.mobile_card_bg_color }};
   --nav-border: {{ section.settings.nav_border_color }};
-  {% if section.settings.bg_image != blank %}
-    --section-bg: transparent;
-    background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  {% else %}
-    --section-bg: {{ section.settings.section_bg_color }};
-  {% endif %}
 ">
   <div class="v2-page-width">
     {%- capture heading_style -%}color: {{ section.settings.heading_color }}; font-size: {{ section.settings.heading_font_size }}px; line-height: {{ section.settings.heading_line_height }}px; font-weight: {{ section.settings.heading_font_weight }};{%- endcapture -%}
@@ -150,6 +142,8 @@
 {{ 'swiper.css' | asset_url | stylesheet_tag }}
 {{ 'swiper.js' | asset_url | script_tag }}
 
+
+
 {% schema %}
 {
   "name": "Testimonials Video",
@@ -177,11 +171,6 @@
     {
       "type": "header",
       "content": "Section Background"
-    },
-    {
-      "type": "image_picker",
-      "id": "bg_image",
-      "label": "Section Background Image"
     },
     {
       "type": "color",
