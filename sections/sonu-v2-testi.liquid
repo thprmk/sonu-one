@@ -1,10 +1,15 @@
 <section class="v2-testimonial-video-section {% if section.settings.full_width %}v2-full-width{% else %}v2-contained{% endif %}" style="
-  --section-bg: {{ section.settings.section_bg_color }};
   --card-bg: {{ section.settings.card_bg_color }};
   --mobile-card-bg: {{ section.settings.mobile_card_bg_color }};
   --nav-border: {{ section.settings.nav_border_color }};
   {% if section.settings.bg_image != blank %}
-    --section-bg-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+    --section-bg: transparent;
+    background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  {% else %}
+    --section-bg: {{ section.settings.section_bg_color }};
   {% endif %}
 ">
   <div class="v2-page-width">
