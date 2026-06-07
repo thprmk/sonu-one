@@ -1152,7 +1152,6 @@
       ],
       "name": "Team Section",
       "settings": {
-        "heading": "",
         "bg_color": "#ffffff",
         "desktop_layout": "grid",
         "desktop_columns": 5,
