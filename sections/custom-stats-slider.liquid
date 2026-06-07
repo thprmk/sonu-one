@@ -3,7 +3,7 @@
   assign text_color = section.settings.text_color
 -%}
 
-<div id="shopify-section-{{ section.id }}" class="custom-stats-wrapper" style="
+<div id="shopify-section-{{ section.id }}" class="custom-stats-wrapper ste-section-wrapper {% if section.settings.hide_mobile %}ste-hide-mobile{% endif %}" style="
   background-color: {{ bg_color }}; 
   --text-color: {{ text_color }}; 
   --padding-top: {{ section.settings.padding_top }}px; 
@@ -11,68 +11,515 @@
   --padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
   --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
 ">
-  <div class="custom-stats-container">
-    
-    {% if section.settings.heading != blank %}
-      <div class="custom-stats-header">
-        <h2 class="custom-stats-section-heading" style="color: {{ text_color }};">{{ section.settings.heading }}</h2>
-      </div>
-    {% endif %}
 
-    <div class="custom-stats-slider-row">
-      <div class="swiper custom-stats-swiper">
-        <div class="swiper-wrapper">
+  {% if section.settings.enable_top_gradient %}
+  <div class="ste-gradient-overlay" style="
+    background: linear-gradient(to bottom, {{ section.settings.gradient_color }} {{ section.settings.gradient_stop }}%, transparent {{ section.settings.gradient_fade_end }}%);
+    pointer-events: none;
+  "></div>
+  {% endif %}
+
+  <!-- DESKTOP VERSION -->
+  <div class="ste-desktop-only">
+    <div class="ste-media-canvas-wrap ste-animate-blur">
+      {% if section.settings.desktop_image != blank %}
+        <img
+          src="{{ section.settings.desktop_image | image_url: width: 1600 }}"
+          alt=""
+          class="ste-responsive-img"
+          loading="lazy"
+          style="object-position: {{ section.settings.desktop_image_position }};"
+        >
+      {% endif %}
+    </div>
+
+    <div class="ste-page-container">
+      <div class="ste-layout-grid">
+        
+        <!-- Column 1: Editorial Content -->
+        <div class="ste-main-editorial-content ste-animate-blur ste-delay-4">
+          {% if section.settings.heading != blank %}
+            {% capture highlight_span %}<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color | default: text_color }};">{% endcapture %}
+            {% assign ste_formatted_heading = section.settings.heading
+              | replace: '[[', highlight_span
+              | replace: ']]', '</span>'
+              | newline_to_br
+            %}
+            <h2 class="ste-main-title" style="color: {{ section.settings.heading_color | default: text_color }};">
+              {{ ste_formatted_heading }}
+            </h2>
+          {% endif %}
+
+          {% if section.settings.description != blank %}
+            <div class="ste-body-description" style="color: {{ section.settings.description_color | default: text_color }};">
+              {{ section.settings.description }}
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Column 2: Center Spacer for the background face -->
+        <div class="ste-grid-spacer"></div>
+
+        <!-- Column 3: Metrics Sidebar (Stats Cards) -->
+        <div class="ste-metrics-sidebar">
           {% for block in section.blocks %}
-            <div class="swiper-slide custom-stats-slide" {{ block.shopify_attributes }}>
+            {%- liquid
+              assign stat_num = block.settings.stat_number | default: block.settings.number
+              assign stat_lab = block.settings.stat_label | default: block.settings.heading
+              assign stat_desc = block.settings.description | default: block.settings.text
+              assign block_prefix = block.settings.prefix
+              assign block_postfix = block.settings.postfix
+            -%}
+            <div class="ste-metric-card ste-animate-blur ste-delay-{{ forloop.index }}" style="background: {{ block.settings.card_bg_color }}; border-color: {{ block.settings.card_border_color }};" {{ block.shopify_attributes }}>
               
-              <div class="custom-stats-image-wrap">
-                {% if block.settings.image != blank %}
-                  <img src="{{ block.settings.image | image_url: width: 1000 }}" alt="{{ block.settings.stat_label | escape }}" loading="lazy" class="custom-stats-img">
-                {% else %}
-                  {{ 'image' | placeholder_svg_tag: 'custom-stats-img placeholder-svg' }}
+              <div class="ste-metric-card-header">
+                <div class="ste-metric-num-display" style="color: {{ block.settings.number_color | default: text_color }};">
+                  {% if block_prefix != blank %}
+                    <span class="ste-metric-prefix" style="color: {{ block.settings.number_color | default: text_color }};">{{ block_prefix }}</span>
+                  {% endif %}
+
+                  {%- liquid
+                    assign number_clean = stat_num | replace: 'x', '' | replace: 'X', '' | replace: '%', '' | replace: 'k+', '' | replace: 'K+', '' | replace: '+', ''
+                  -%}
+                  <span class="ste-metric-counter" data-target="{{ number_clean }}" style="color: {{ block.settings.number_color | default: text_color }};">0</span>
+
+                  {% if block_postfix != blank %}
+                    <span class="ste-metric-postfix" style="color: {{ block.settings.number_color | default: text_color }};">{{ block_postfix }}</span>
+                  {% else %}
+                    {% if stat_num contains 'x' or stat_num contains 'X' %}
+                      <span class="ste-metric-postfix" style="color: {{ block.settings.number_color | default: text_color }};">X</span>
+                    {% elsif stat_num contains '%' %}
+                      <span class="ste-metric-postfix" style="color: {{ block.settings.number_color | default: text_color }};">%</span>
+                      {% elsif stat_num contains 'k+' or stat_num contains 'K+' %}
+                      <span class="ste-metric-postfix" style="color: {{ block.settings.number_color | default: text_color }};">k+</span>
+                    {% endif %}
+                  {% endif %}
+                </div>
+
+                {% if stat_lab != blank %}
+                  <h3 class="ste-metric-label" style="color: {{ block.settings.label_color | default: text_color }};">
+                    {{ stat_lab }}
+                  </h3>
                 {% endif %}
               </div>
 
-              <div class="custom-stats-content">
-                {% if block.settings.stat_number != blank %}
-                  <div class="custom-stats-number" style="color: {{ text_color }};">{{ block.settings.stat_number }}</div>
-                {% endif %}
-
-                {% if block.settings.stat_label != blank %}
-                  <div class="custom-stats-label" style="color: {{ text_color }};">{{ block.settings.stat_label }}</div>
-                {% endif %}
-
-                {% if block.settings.description != blank %}
-                  <p class="custom-stats-desc" style="color: {{ text_color }};">{{ block.settings.description }}</p>
-                {% endif %}
-              </div>
+              {% if stat_desc != blank %}
+                <div class="ste-metric-caption" style="color: {{ block.settings.caption_color | default: text_color }};">
+                  {{ stat_desc }}
+                </div>
+              {% endif %}
 
             </div>
           {% endfor %}
         </div>
+
       </div>
     </div>
+  </div>
 
-    <!-- Bottom Navigation & Progress bar row -->
-    <div class="custom-stats-controls-row">
-      <div class="custom-stats-progressbar swiper-pagination"></div>
+  <!-- MOBILE VERSION -->
+  <div class="ste-mobile-only" style="width: 100%;">
+    <div class="custom-stats-container">
       
-      <div class="custom-stats-arrows">
-        <button class="custom-stats-nav-btn custom-stats-nav-btn--prev" aria-label="Previous">
-          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 17L1 9L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <button class="custom-stats-nav-btn custom-stats-nav-btn--next" aria-label="Next">
-          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 17L9 9L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    </div>
+      {% if section.settings.heading != blank %}
+        <div class="custom-stats-header">
+          {% capture highlight_span %}<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color | default: text_color }};">{% endcapture %}
+          {% assign ste_formatted_heading = section.settings.heading
+            | replace: '[[', highlight_span
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+          <h2 class="custom-stats-section-heading" style="color: {{ text_color }};">{{ ste_formatted_heading }}</h2>
+        </div>
+      {% endif %}
 
+      <div class="custom-stats-slider-row">
+        <div class="swiper custom-stats-swiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              {%- liquid
+                assign stat_num = block.settings.stat_number | default: block.settings.number
+                assign stat_lab = block.settings.stat_label | default: block.settings.heading
+                assign stat_desc = block.settings.description | default: block.settings.text
+                assign block_prefix = block.settings.prefix
+                assign block_postfix = block.settings.postfix
+              -%}
+              <div class="swiper-slide custom-stats-slide" {{ block.shopify_attributes }}>
+                
+                <div class="custom-stats-image-wrap">
+                  {% if block.settings.image != blank %}
+                    <img src="{{ block.settings.image | image_url: width: 1000 }}" alt="{{ stat_lab | escape }}" loading="lazy" class="custom-stats-img">
+                  {% elsif section.settings.mobile_image != blank %}
+                    <img src="{{ section.settings.mobile_image | image_url: width: 1000 }}" alt="{{ stat_lab | escape }}" loading="lazy" class="custom-stats-img">
+                  {% elsif section.settings.desktop_image != blank %}
+                    <img src="{{ section.settings.desktop_image | image_url: width: 1000 }}" alt="{{ stat_lab | escape }}" loading="lazy" class="custom-stats-img">
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'custom-stats-img placeholder-svg' }}
+                  {% endif %}
+                </div>
+
+                <div class="custom-stats-content">
+                  {% if stat_num != blank %}
+                    <div class="custom-stats-number" style="color: {{ text_color }};">
+                      {% if block_prefix != blank %}{{ block_prefix }}{% endif %}{{ stat_num }}{% if block_postfix != blank %}{{ block_postfix }}{% endif %}
+                    </div>
+                  {% endif %}
+
+                  {% if stat_lab != blank %}
+                    <div class="custom-stats-label" style="color: {{ text_color }};">{{ stat_lab }}</div>
+                  {% endif %}
+
+                  {% if stat_desc != blank %}
+                    <p class="custom-stats-desc" style="color: {{ text_color }};">{{ stat_desc }}</p>
+                  {% endif %}
+                </div>
+
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation & Progress bar row -->
+      <div class="custom-stats-controls-row">
+        <div class="custom-stats-progressbar swiper-pagination"></div>
+        
+        <div class="custom-stats-arrows">
+          <button class="custom-stats-nav-btn custom-stats-nav-btn--prev" aria-label="Previous">
+            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17L1 9L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="custom-stats-nav-btn custom-stats-nav-btn--next" aria-label="Next">
+            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 17L9 9L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-Regular.otf" | asset_url }}') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-Regular.otf" | asset_url }}') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   DESKTOP GLOBAL & LAYOUT SYSTEM
+   ========================================================================== */
+.ste-section-wrapper {
+  padding-top: var(--padding-top, 100px);
+  padding-bottom: var(--padding-bottom, 100px);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* Gradient Overlay Styles */
+.ste-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  z-index: 2;
+}
+
+.ste-page-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 3;
+}
+
+.ste-layout-grid {
+  display: grid;
+  grid-template-columns: 460px 1fr 395px;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+}
+
+/* ==========================================================================
+   LEFT COMPONENT PIECE: EDITORIAL TEXT
+   ========================================================================== */
+.ste-main-editorial-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ste-main-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.1;
+  margin: 0 0 32px 0;
+  letter-spacing: -1.5px;
+  text-align: left;
+}
+
+.ste-serif-highlight {
+  font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+  font-style: italic;
+}
+
+.ste-body-description {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(30, 30, 30, 0.85);
+}
+
+.ste-body-description p {
+  margin: 0 0 16px 0;
+}
+
+.ste-body-description p:last-child {
+  margin-bottom: 0;
+}
+
+.ste-body-description p strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E1E1E;
+  margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   MIDDLE COMPONENT PIECE: BACKGROUND MEDIA CANVAS
+   ========================================================================== */
+.ste-media-canvas-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ste-media-canvas-wrap .ste-responsive-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 0;
+}
+
+.ste-responsive-img {
+  display: block;
+  max-width: 100%;
+}
+
+.ste-desktop-only { display: block !important; }
+.ste-mobile-only { display: none !important; }
+
+/* ==========================================================================
+   RIGHT COMPONENT PIECE: METRIC CARDS
+   ========================================================================== */
+.ste-metrics-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ste-metric-card {
+  box-sizing: border-box;
+  width: 100%;
+  background: #FAF6F0 !important;
+  border-radius: 16px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(61, 27, 3, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ste-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(61, 27, 3, 0.05);
+}
+
+.ste-metric-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ste-metric-num-display,
+.ste-metric-num-display * {
+  font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 54px;
+  line-height: 1;
+}
+
+.ste-metric-counter,
+.ste-metric-prefix,
+.ste-metric-postfix {
+  font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+  font-weight: 200;
+}
+
+.ste-metric-label {
+  font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 0;
+  color: #3D1B03 !important;
+}
+
+.ste-metric-caption {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(30, 30, 30, 0.8) !important;
+  text-align: left;
+}
+
+/* ==========================================================================
+   ANIMATION MODULE ENGINE
+   ========================================================================== */
+.ste-animate-blur {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(15px);
+  animation: steBlurFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.ste-delay-1 { animation-delay: .10s; }
+.ste-delay-2 { animation-delay: .20s; }
+.ste-delay-3 { animation-delay: .30s; }
+.ste-delay-4 { animation-delay: .40s; }
+
+@keyframes steBlurFadeIn {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   TABLET RESPONSIVE INTERMEDIARY MODIFICATIONS
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .ste-page-container { padding: 0 40px; }
+  .ste-layout-grid { grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
+  .ste-main-editorial-content { grid-column: span 2; }
+  .ste-main-title { font-size: 46px; }
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE SYSTEM
+   ========================================================================== */
+@media (max-width: 768px) {
+  .ste-section-wrapper {
+    padding-top: var(--padding-top-mobile, 60px);
+    padding-bottom: var(--padding-bottom-mobile, 60px);
+    min-height: auto;
+  }
+
+  .ste-desktop-only { display: none !important; }
+  .ste-mobile-only { display: block !important; }
+}
+
+@media screen and (max-width: 768px) {
+  .ste-hide-mobile {
+    display: none !important;
+  }
+}
+</style>
+
+<script>
+(function() {
+  function initCounters(container) {
+    const steCounters = container.querySelectorAll(".ste-metric-counter[data-target]");
+    
+    function animateCounter(counter, target) {
+      let current = 0;
+      const duration = 1400;
+      const increment = target / (duration / 16);
+
+      function updateCounter() {
+        current += increment;
+        if (current < target) {
+          counter.innerText = Math.floor(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.innerText = target;
+        }
+      }
+      updateCounter();
+    }
+
+    if ('IntersectionObserver' in window) {
+      const steObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = parseFloat(counter.dataset.target);
+            if (!isNaN(target)) {
+              animateCounter(counter, target);
+            }
+            observer.unobserve(counter);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      steCounters.forEach(counter => steObserver.observe(counter));
+    } else {
+      steCounters.forEach(counter => {
+        const target = parseFloat(counter.dataset.target);
+        if (!isNaN(target)) animateCounter(counter, target);
+      });
+    }
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", () => initCounters(document));
+  } else {
+    initCounters(document);
+  }
+
+  // Run on Shopify theme editor load
+  document.addEventListener('shopify:section:load', (event) => {
+    initCounters(event.target);
+  });
+})();
+</script>
 
 {% schema %}
 {
@@ -81,9 +528,48 @@
   "class": "custom-stats-slider-section",
   "settings": [
     {
-      "type": "text",
-      "id": "heading",
-      "label": "Section Heading (Optional)"
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide on Mobile",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Top Gradient Fade"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_top_gradient",
+      "label": "Enable Top Gradient Fade",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "gradient_color",
+      "label": "Gradient Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "gradient_stop",
+      "label": "Gradient Start Opacity %",
+      "default": 100,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "gradient_fade_end",
+      "label": "Fade Completion %",
+      "default": 100,
+      "min": 20,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Background & Colors"
     },
     {
       "type": "color",
@@ -94,8 +580,97 @@
     {
       "type": "color",
       "id": "text_color",
-      "label": "Text Color",
+      "label": "Default Text Color",
       "default": "#3D1B03"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_position",
+      "label": "Desktop Image Position",
+      "default": "center center",
+      "options": [
+        { "value": "top left", "label": "Top Left" },
+        { "value": "top center", "label": "Top Center" },
+        { "value": "top right", "label": "Top Right" },
+        { "value": "center left", "label": "Center Left" },
+        { "value": "center center", "label": "Center Center" },
+        { "value": "center right", "label": "Center Right" },
+        { "value": "bottom left", "label": "Bottom Left" },
+        { "value": "bottom center", "label": "Bottom Center" },
+        { "value": "bottom right", "label": "Bottom Right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Mobile Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_position",
+      "label": "Mobile Image Position",
+      "default": "center center",
+      "options": [
+        { "value": "top left", "label": "Top Left" },
+        { "value": "top center", "label": "Top Center" },
+        { "value": "top right", "label": "Top Right" },
+        { "value": "center left", "label": "Center Left" },
+        { "value": "center center", "label": "Center Center" },
+        { "value": "center right", "label": "Center Right" },
+        { "value": "bottom left", "label": "Bottom Left" },
+        { "value": "bottom center", "label": "Bottom Center" },
+        { "value": "bottom right", "label": "Bottom Right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Text & Copy"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Acoustic Resonance Therapy"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Text Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Text Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#1E1E1E"
     },
     {
       "type": "header",
@@ -105,7 +680,7 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 120,
+      "max": 200,
       "step": 4,
       "default": 80,
       "unit": "px",
@@ -115,7 +690,7 @@
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 120,
+      "max": 200,
       "step": 4,
       "default": 80,
       "unit": "px",
@@ -129,7 +704,7 @@
       "type": "range",
       "id": "padding_top_mobile",
       "min": 0,
-      "max": 120,
+      "max": 200,
       "step": 4,
       "default": 60,
       "unit": "px",
@@ -139,7 +714,7 @@
       "type": "range",
       "id": "padding_bottom_mobile",
       "min": 0,
-      "max": 120,
+      "max": 200,
       "step": 4,
       "default": 60,
       "unit": "px",
@@ -148,19 +723,110 @@
   ],
   "blocks": [
     {
+      "type": "stat",
+      "name": "Stat Card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Card Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Select Slide Image (Mobile)"
+        },
+        {
+          "type": "text",
+          "id": "prefix",
+          "label": "Prefix"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "2"
+        },
+        {
+          "type": "text",
+          "id": "postfix",
+          "label": "Postfix",
+          "default": "X"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Card Mini Title",
+          "default": "Better Sleep"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Card Description Line"
+        },
+        {
+          "type": "header",
+          "content": "Card Colors"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card Background Color",
+          "default": "rgba(255, 255, 255, 0.4)"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card Border Color",
+          "default": "rgba(255, 255, 255, 0.4)"
+        },
+        {
+          "type": "color",
+          "id": "number_color",
+          "label": "Number/Prefix/Postfix Color",
+          "default": "#001755"
+        },
+        {
+          "type": "color",
+          "id": "label_color",
+          "label": "Card Label Color",
+          "default": "#001755"
+        },
+        {
+          "type": "color",
+          "id": "caption_color",
+          "label": "Caption Text Color",
+          "default": "#1E1E1E"
+        }
+      ]
+    },
+    {
       "type": "stat_slide",
       "name": "Stat Slide",
       "settings": [
         {
+          "type": "header",
+          "content": "Card Content"
+        },
+        {
           "type": "image_picker",
           "id": "image",
-          "label": "Select Slide Image"
+          "label": "Select Slide Image (Mobile)"
+        },
+        {
+          "type": "text",
+          "id": "prefix",
+          "label": "Prefix"
         },
         {
           "type": "text",
           "id": "stat_number",
           "label": "Stat Number/Percentage",
           "default": "2x"
+        },
+        {
+          "type": "text",
+          "id": "postfix",
+          "label": "Postfix"
         },
         {
           "type": "text",
@@ -171,8 +837,41 @@
         {
           "type": "textarea",
           "id": "description",
-          "label": "Stat Description",
-          "default": "SONU patients showed a 2X improvement in nasal congestion symptoms compared to placebo."
+          "label": "Stat Description"
+        },
+        {
+          "type": "header",
+          "content": "Card Colors"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card Background Color",
+          "default": "rgba(255, 255, 255, 0.4)"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card Border Color",
+          "default": "rgba(255, 255, 255, 0.4)"
+        },
+        {
+          "type": "color",
+          "id": "number_color",
+          "label": "Number/Prefix/Postfix Color",
+          "default": "#001755"
+        },
+        {
+          "type": "color",
+          "id": "label_color",
+          "label": "Card Label Color",
+          "default": "#001755"
+        },
+        {
+          "type": "color",
+          "id": "caption_color",
+          "label": "Caption Text Color",
+          "default": "#1E1E1E"
         }
       ]
     }
@@ -182,19 +881,13 @@
       "name": "Custom Stats Slider",
       "blocks": [
         {
-          "type": "stat_slide",
+          "type": "stat",
           "settings": {
-            "stat_number": "2x",
-            "stat_label": "Improvement",
-            "description": "SONU patients showed a 2X improvement in nasal congestion symptoms compared to placebo."
-          }
-        },
-        {
-          "type": "stat_slide",
-          "settings": {
-            "stat_number": "90%",
-            "stat_label": "Satisfaction",
-            "description": "Over 90% of active users reported highly satisfying levels of overnight relief."
+            "prefix": ">",
+            "number": "2",
+            "postfix": "X",
+            "heading": "Better Sleep",
+            "text": "Clinical trial participants reported 2X improvement in sleep quality after 2 weeks' use."
           }
         }
       ]

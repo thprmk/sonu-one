@@ -559,6 +559,52 @@
         "heading": "Revolutionary personalized,\n[[non-invasive Therapeutics]]",
         "description": "<p><strong>Acoustic Resonance Therapy</strong><br/><br/>SONU generates resonant frequencies — calibrated to your unique facial and sinus anatomy via a smartphone facial scan and machine learning — that (a) reduce mucosal inflammation, (b) increase mucociliary clearance (the nose's natural self-cleaning system), and (c) mechanically open the nasal airway. This is drug-free, relying entirely on the physics of sound and the body's natural response to resonance.</p>"
       }
+    },
+    "card_slider": {
+      "type": "custom-card-slider",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "top_badge": "How it Works",
+            "title": "Gentle sound, delivered through bone",
+            "description": "The Spatial Sleep band rests on your forehead and sends soft acoustic vibrations through your skull — no earbuds needed. Each ear receives a slightly different frequency, and your brain naturally blends them into a calming rhythm that guides you toward sleep.",
+            "bottom_badge": "No effort required · Works while you rest"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "top_badge": "Why it Takes Time",
+            "title": "Think of pushing a swing",
+            "description": "One push barely moves it. But small, steady pushes — timed just right — build into a deep, effortless rhythm. That's how neural entrainment works. Each night, Spatial Sleep gives your brain another gentle push toward its natural sleep frequency.",
+            "bottom_badge": "2–4 weeks to build momentum"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "top_badge": "Consistency Matters",
+            "title": "Every night counts",
+            "description": "In clinical studies, participants who used the band nightly saw the strongest results — insomnia severity dropped by nearly 50% over four weeks, with three-quarters no longer qualifying as having insomnia.",
+            "bottom_badge": "Lin et al., Journal of Sleep Medicine, 2025 · Consistent with broader acoustic entrainment research"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "bg_color": "#EAE6F4",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
     }
   },
   "order": [
@@ -569,6 +615,7 @@
     "patient_testimonials",
     "step_slider",
     "spatial_therapy",
+    "card_slider",
     "app_banner",
     "faq",
     "tech_specs"

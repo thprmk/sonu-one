@@ -317,7 +317,29 @@ display:flex;
 }
 
 </style>
-<section class="flex-banner section">
+<section class="flex-banner section" style="
+  {% if section.settings.bg_gradient != blank %}
+    background: {{ section.settings.bg_gradient }};
+  {% elsif section.settings.bg_color != blank %}
+    background-color: {{ section.settings.bg_color }};
+  {% endif %}
+  --padding-top: {{ section.settings.padding_top | default: 50 }}px;
+  --padding-bottom: {{ section.settings.padding_bottom | default: 50 }}px;
+  --padding-top-mobile: {{ section.settings.padding_top_mobile | default: 40 }}px;
+  --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile | default: 40 }}px;
+">
+  <style>
+    #shopify-section-{{ section.id }} .flex-banner {
+      margin-top: var(--padding-top, 50px) !important;
+      margin-bottom: var(--padding-bottom, 50px) !important;
+    }
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{ section.id }} .flex-banner {
+        margin-top: var(--padding-top-mobile, 40px) !important;
+        margin-bottom: var(--padding-bottom-mobile, 40px) !important;
+      }
+    }
+  </style>
 <div class="page-width">
  <div class="banner-flex section">
   <div class="banner-bg">
@@ -340,9 +362,9 @@ display:flex;
     | newline_to_br
   %}
 
-  <h2 class="banner-heading">
+  <{{ section.settings.heading_tag | default: 'h2' }} class="banner-heading">
     {{ styled_heading }}
-  </h2>
+  </{{ section.settings.heading_tag | default: 'h2' }}>
 
 {% endif %}
 
@@ -383,9 +405,83 @@ display:flex;
   "settings": [
     { "type": "image_picker", "id": "bg_image", "label": "Background Image (Desktop)" },
     { "type": "image_picker", "id": "mobile_bg_image", "label": "Background Image (Mobile)" },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient"
+    },
 
     { "type": "textarea", "id": "heading", "label": "Heading" },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" }
+      ],
+      "default": "h2"
+    },
     { "type": "richtext", "id": "subtext", "label": "Subtext" },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "default": 50,
+      "unit": "px",
+      "label": "Desktop Margin Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "default": 50,
+      "unit": "px",
+      "label": "Desktop Margin Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40,
+      "unit": "px",
+      "label": "Mobile Margin Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40,
+      "unit": "px",
+      "label": "Mobile Margin Bottom"
+    },
     {
   "type": "color",
   "id": "heading_color",

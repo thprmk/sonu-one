@@ -8,8 +8,28 @@
 
     <div class="sonu-therapy-grid">
 
-      <div class="sonu-therapy-image-wrap sonu-therapy-animate-blur">
+      <!-- LEFT COLUMN: Editorial Content -->
+      <div class="sonu-therapy-editorial-content sonu-therapy-animate-blur sonu-therapy-delay-4">
+        {% if section.settings.heading != blank %}
+          {% assign formatted_heading = section.settings.heading
+            | replace: '[[', '<span class="sonu-therapy-highlight">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+          <h2 class="sonu-therapy-heading">
+            {{ formatted_heading }}
+          </h2>
+        {% endif %}
 
+        {% if section.settings.description != blank %}
+          <div class="sonu-therapy-description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- MIDDLE COLUMN: Image Wrap -->
+      <div class="sonu-therapy-image-wrap sonu-therapy-animate-blur">
         {% if section.settings.desktop_image != blank %}
           <img
             src="{{ section.settings.desktop_image | image_url: width: 1400 }}"
@@ -27,19 +47,15 @@
             loading="lazy"
           >
         {% endif %}
-
       </div>
 
-      <div class="sonu-therapy-content">
+      <!-- RIGHT COLUMN: Stats Cards -->
+      <div class="sonu-therapy-stats">
+        {% for block in section.blocks %}
+          <div class="sonu-therapy-stat sonu-therapy-animate-blur sonu-therapy-delay-{{ forloop.index }}">
 
-        <div class="sonu-therapy-stats">
-
-          {% for block in section.blocks %}
-
-            <div class="sonu-therapy-stat sonu-therapy-animate-blur sonu-therapy-delay-{{ forloop.index }}">
-
+            <div class="sonu-therapy-stat-top">
               <div class="sonu-therapy-number">
-
                 {% if block.settings.prefix != blank %}
                   <span class="sonu-therapy-prefix">
                     {{ block.settings.prefix }}
@@ -56,7 +72,6 @@
                     {{ block.settings.postfix }}
                   </span>
                 {% endif %}
-
               </div>
 
               {% if block.settings.heading != blank %}
@@ -64,43 +79,16 @@
                   {{ block.settings.heading }}
                 </h3>
               {% endif %}
-
-              {% if block.settings.text != blank %}
-                <div class="sonu-therapy-stat-text">
-                  {{ block.settings.text }}
-                </div>
-              {% endif %}
-
             </div>
 
-          {% endfor %}
+            {% if block.settings.text != blank %}
+              <div class="sonu-therapy-stat-text">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}
 
-        </div>
-
-        <div class="sonu-therapy-editorial-content sonu-therapy-animate-blur sonu-therapy-delay-4">
-
-          {% if section.settings.heading != blank %}
-
-            {% assign formatted_heading = section.settings.heading
-              | replace: '[[', '<span class="sonu-therapy-highlight">'
-              | replace: ']]', '</span>'
-              | newline_to_br
-            %}
-
-            <h2 class="sonu-therapy-heading">
-              {{ formatted_heading }}
-            </h2>
-
-          {% endif %}
-
-          {% if section.settings.description != blank %}
-            <div class="sonu-therapy-description">
-              {{ section.settings.description }}
-            </div>
-          {% endif %}
-
-        </div>
-
+          </div>
+        {% endfor %}
       </div>
 
     </div>
@@ -120,15 +108,13 @@
 }
 
 /* SECTION */
-
 .sonu-therapy-editorial{
   background:#E7DED5;
-  padding:90px 0;
+  padding:100px 0;
   overflow:hidden;
 }
 
 /* PAGE WIDTH */
-
 .sonu-therapy-page-width{
   max-width:1400px;
   margin:auto;
@@ -139,19 +125,18 @@
 }
 
 /* GRID */
-
 .sonu-therapy-grid{
   display:grid;
-  grid-template-columns:520px 1fr;
-  gap:70px;
-  align-items:start;
+  grid-template-columns: 1.15fr 1fr 0.95fr;
+  gap:60px;
+  align-items: center;
 }
 
 /* IMAGE */
-
 .sonu-therapy-image-wrap{
-  position:sticky;
-  top:100px;
+  position: sticky;
+  top: 100px;
+  width: 100%;
 }
 
 .sonu-therapy-image{
@@ -164,115 +149,125 @@
   display:none;
 }
 
-/* CONTENT */
-
-.sonu-therapy-content{
-  max-width:720px;
-  width: 100%;
-}
-
 /* STATS */
-
 .sonu-therapy-stats{
   display:flex;
   flex-direction:column;
+  gap: 20px;
 }
 
-/* SINGLE STAT */
-
+/* SINGLE STAT CARD */
 .sonu-therapy-stat{
-  padding:40px 0;
-  border-bottom:1px solid rgba(74,71,65,.35);
-  text-align:center;
+  background: #FAF6F0;
+  border-radius: 16px;
+  padding: 24px 28px;
+  text-align: left;
+  border: none;
+  box-shadow: 0 4px 20px rgba(61, 27, 3, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sonu-therapy-stat:first-child{
-  padding-top:0;
+.sonu-therapy-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(61, 27, 3, 0.05);
+}
+
+.sonu-therapy-stat-top {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 /* NUMBER */
-
 .sonu-therapy-number{
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display:inline-flex;
+  align-items:baseline;
   color:#3D1B03;
   line-height:1;
-  margin-bottom:12px;
   font-family:'pp-editorial', serif;
 }
 
 .sonu-therapy-counter{
-  font-size:82px;
-  letter-spacing:-3px;
+  font-size:54px;
+  letter-spacing:-2px;
   font-weight:200;
 }
 
 .sonu-therapy-prefix,
 .sonu-therapy-postfix{
-  font-size:48px;
-  line-height:1.2;
+  font-size:32px;
+  line-height:1;
 }
 
-/* HEADING (Acoustic Resonance Therapy Styling for Desktop) */
+/* HEADING */
 .sonu-therapy-stat-heading{
-  margin:0 0 10px;
-  font-family: 'Instrument Sans', sans-serif;
+  margin:0;
+  font-family: 'pp-editorial', serif;
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #1E1E1E;
+  font-weight: 400;
+  font-size: 20px;
+  color: #3D1B03;
+  line-height: 1.2;
 }
 
 /* TEXT */
-
 .sonu-therapy-stat-text{
-  max-width:430px;
-  margin:0 auto;
-  font-size:16px;
-  line-height:1.7;
-  color:#1E1E1E;
+  font-size:14px;
+  line-height:1.5;
+  color:rgba(30, 30, 30, 0.8);
   font-family:'Instrument Sans', sans-serif;
+  margin: 0;
+  text-align: left;
 }
 
 /* EDITORIAL CONTENT */
-
 .sonu-therapy-editorial-content{
-  padding-top:60px;
+  padding-top:0;
 }
 
 /* MAIN HEADING */
-
 .sonu-therapy-heading{
   color:#3D1B03;
-  font-size:58px;
-  line-height:1.08;
-  letter-spacing:-2px;
+  font-size:52px;
+  line-height:1.1;
+  letter-spacing:-1.5px;
   font-weight:400;
-  margin-bottom:24px;
+  margin-bottom:32px;
   font-family:'Instrument Sans', sans-serif;
 }
 
 /* HIGHLIGHT */
-
 .sonu-therapy-highlight{
   font-family:'pp-editorial', serif;
   font-style:italic;
 }
 
 /* DESCRIPTION */
-
 .sonu-therapy-description{
-  font-size:18px;
-  line-height:1.8;
-  color:#1E1E1E;
-  max-width:520px;
+  font-size:16px;
+  line-height:1.6;
+  color:rgba(30, 30, 30, 0.85);
   font-family:'Instrument Sans', sans-serif;
 }
 
-/* ANIMATION */
+.sonu-therapy-description p {
+  margin: 0 0 16px 0;
+}
 
+.sonu-therapy-description p:last-child {
+  margin-bottom: 0;
+}
+
+.sonu-therapy-description p strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E1E1E;
+  margin-bottom: 8px;
+}
+
+/* ANIMATION */
 .sonu-therapy-animate-blur{
   opacity:0;
   filter:blur(10px);
@@ -294,42 +289,65 @@
 }
 
 /* TABLET */
-
 @media(max-width:1100px){
-
   .sonu-therapy-grid{
-    grid-template-columns:420px 1fr;
-    gap:50px;
+    grid-template-columns: 1fr 1.1fr;
+    gap:40px;
+    align-items: start;
   }
-
+  .sonu-therapy-editorial-content {
+    grid-column: span 2;
+  }
   .sonu-therapy-heading{
-    font-size:48px;
+    font-size:46px;
   }
-
 }
 
-/* MOBILE Layout Adjustments matching exact Figma specs */
-
+/* MOBILE */
 @media(max-width:768px){
-
-    .sonu-therapy-editorial{
-  background:#ffff;}
   .sonu-therapy-editorial{
+    background:#ffffff;
     padding:40px 0;
   }
 
   .sonu-therapy-page-width{
-    padding: 0 24px; /* Retains clean side spacing container break gaps */
+    padding: 0 24px;
   }
 
   .sonu-therapy-grid{
     grid-template-columns:1fr;
-    gap:40px;
+    gap:32px;
+  }
+
+  .sonu-therapy-editorial-content {
+    grid-column: span 1;
+    text-align: center;
+  }
+
+  .sonu-therapy-heading {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 16px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sonu-therapy-description {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .sonu-therapy-description p strong {
+    font-size: 16px;
+    text-align: center;
   }
 
   .sonu-therapy-image-wrap{
-    position:relative;
-    top:auto;
+    margin: 0 auto;
+    max-width: 100%;
   }
 
   .sonu-therapy-desktop-image{
@@ -341,75 +359,32 @@
     border-radius:12px;
   }
 
-  .sonu-therapy-content{
-    max-width:100%;
+  .sonu-therapy-stats {
+    gap: 16px;
   }
 
-  .sonu-therapy-stat{
-    padding:28px 0;
+  .sonu-therapy-stat {
+    padding: 20px 24px;
+    border-radius: 12px;
   }
 
-  .sonu-therapy-counter{
-    font-size:55px;
-    letter-spacing:-2px;
+  .sonu-therapy-counter {
+    font-size: 40px;
   }
 
   .sonu-therapy-prefix,
-  .sonu-therapy-postfix{
-    font-size:55px;
-    line-height:1;
+  .sonu-therapy-postfix {
+    font-size: 24px;
   }
 
-  /* Stat Headings Styled exactly like 'Acoustic Resonance Therapy' specs on Mobile */
-  .sonu-therapy-stat-heading{
-    font-family: 'Instrument Sans', sans-serif !important;
-    font-style: normal !important;
-    font-weight: 500 !important;
-    font-size: 16px !important;
-    line-height: 20px !important;
-    text-align: center !important;
-    color: #1E1E1E !important;
-    margin: 0 0 10px 0;
+  .sonu-therapy-stat-heading {
+    font-size: 16px;
   }
 
-  .sonu-therapy-stat-text{
-    max-width: 100%;
-    width: 100%;
-    font-size:14px;
-    line-height:22px;
+  .sonu-therapy-stat-text {
+    font-size: 13px;
+    line-height: 1.4;
   }
-
-  .sonu-therapy-editorial-content{
-    padding-top:40px;
-  }
-
-  /* Main Title Styled exactly like 'Revolutionary personalized...' specs on Mobile */
-  .sonu-therapy-heading{
-    max-width: 306px; /* Bound structure parameters from your specs */
-    width: 100%;
-    margin: 0 auto 18px auto;
-    font-family: 'Instrument Sans', sans-serif !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    font-size: 24px !important;
-    line-height: 29px !important;
-    color: #3D1B03 !important;
-    letter-spacing: normal !important;
-  }
-
-  /* Main Description Styled exactly like your long text block specs on Mobile */
-  .sonu-therapy-description{
-    max-width: 336px; /* Bound structure parameters from your specs */
-    width: 100%;
-    margin: 0 auto;
-    font-family: 'Instrument Sans', sans-serif !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    font-size: 14px !important;
-    line-height: 22px !important;
-    color: #1E1E1E !important;
-  }
-
 }
 
 </style>

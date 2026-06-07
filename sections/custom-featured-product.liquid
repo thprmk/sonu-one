@@ -3,7 +3,51 @@
   assign current_variant = product.selected_or_first_available_variant
 -%}
 
-<div id="shopify-section-{{ section.id }}" class="custom-prod-wrapper" style="--card-bg-color: {{ section.settings.card_bg_color }};">
+<div id="shopify-section-{{ section.id }}" class="custom-prod-wrapper" style="
+  --card-bg-color: {{ section.settings.card_bg_color }};
+  {% if section.settings.bg_gradient != blank %}
+    background: {{ section.settings.bg_gradient }};
+  {% elsif section.settings.bg_color != blank %}
+    background-color: {{ section.settings.bg_color }};
+  {% endif %}
+  {% if section.settings.bg_image != blank %}
+    --bg-image-desktop: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+  {% endif %}
+  {% if section.settings.mobile_bg_image != blank %}
+    --bg-image-mobile: url('{{ section.settings.mobile_bg_image | image_url: width: 1000 }}');
+  {% elsif section.settings.bg_image != blank %}
+    --bg-image-mobile: url('{{ section.settings.bg_image | image_url: width: 1000 }}');
+  {% endif %}
+  --padding-top: {{ section.settings.padding_top | default: 80 }}px;
+  --padding-bottom: {{ section.settings.padding_bottom | default: 80 }}px;
+  --padding-top-mobile: {{ section.settings.padding_top_mobile | default: 60 }}px;
+  --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile | default: 60 }}px;
+">
+  <style>
+    #shopify-section-{{ section.id }} .custom-prod-wrapper {
+      {% if section.settings.bg_image != blank %}
+        background-image: var(--bg-image-desktop);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      {% endif %}
+    }
+    #shopify-section-{{ section.id }} .custom-prod-container {
+      padding-top: var(--padding-top, 80px) !important;
+      padding-bottom: var(--padding-bottom, 80px) !important;
+    }
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{ section.id }} .custom-prod-wrapper {
+        {% if section.settings.bg_image != blank or section.settings.mobile_bg_image != blank %}
+          background-image: var(--bg-image-mobile);
+        {% endif %}
+      }
+      #shopify-section-{{ section.id }} .custom-prod-container {
+        padding-top: var(--padding-top-mobile, 60px) !important;
+        padding-bottom: var(--padding-bottom-mobile, 60px) !important;
+      }
+    }
+  </style>
   <div class="custom-prod-container">
     
     <!-- Gallery Slideshow -->
@@ -43,6 +87,9 @@
     <div class="custom-prod-card">
       <div class="custom-prod-card__inner">
         
+        <!-- Product Title -->
+        <{{ section.settings.heading_tag | default: 'h2' }} class="custom-prod-title">{{ product.title | default: 'SONU Band' }}</{{ section.settings.heading_tag | default: 'h2' }}>
+        
         <!-- Stars & Reviews -->
         <div class="custom-prod-reviews">
           <div class="custom-prod-stars">
@@ -60,11 +107,22 @@
           <p>{{ section.settings.description | default: product.description }}</p>
         </div>
 
+        <!-- Price & FDA Props -->
+        <div class="custom-prod-price-area">
+          <div class="custom-prod-price">
+            <span class="custom-prod-price__amount">{{ current_variant.price | default: product.price | default: 29900 | money }}</span>
+          </div>
+          <div class="custom-prod-props">
+            <span>FDA Approved | FSA/HSA Eligible | VA Approved</span>
+          </div>
+        </div>
+
         <!-- Swatches and Quantity Box -->
         <div class="custom-prod-options-row">
           
           <!-- Swatches -->
           <div class="custom-prod-swatches-box">
+            <span class="custom-prod-swatches-title">Color</span>
             <div class="custom-prod-swatches">
               {% assign color_option_index = -1 %}
               {% for option in product.options_with_values %}
@@ -100,25 +158,25 @@
                 </div>
               {% endif %}
             </div>
-            <div class="custom-prod-swatch-label">Black</div>
           </div>
 
-          <!-- Quantity -->
-          <div class="custom-prod-qty-box">
-            <span class="custom-prod-qty-title">Quantity</span>
-            <div class="custom-prod-qty-selector">
-              <button type="button" class="custom-prod-qty-btn custom-prod-qty-btn--minus" aria-label="Decrease quantity">−</button>
-              <span class="custom-prod-qty-value">1</span>
-              <button type="button" class="custom-prod-qty-btn custom-prod-qty-btn--plus" aria-label="Increase quantity">+</button>
+          <!-- Quantity & Stock Status nested together -->
+          <div class="custom-prod-qty-container">
+            <div class="custom-prod-qty-box">
+              <span class="custom-prod-qty-title">Quantity</span>
+              <div class="custom-prod-qty-selector">
+                <button type="button" class="custom-prod-qty-btn custom-prod-qty-btn--minus" aria-label="Decrease quantity">−</button>
+                <span class="custom-prod-qty-value">1</span>
+                <button type="button" class="custom-prod-qty-btn custom-prod-qty-btn--plus" aria-label="Increase quantity">+</button>
+              </div>
+            </div>
+            <!-- Stock Status -->
+            <div class="custom-prod-stock">
+              <span class="custom-prod-stock__indicator"></span>
+              <span class="custom-prod-stock__text">In stock, ready to ship</span>
             </div>
           </div>
 
-        </div>
-
-        <!-- Stock Status -->
-        <div class="custom-prod-stock">
-          <span class="custom-prod-stock__indicator"></span>
-          <span class="custom-prod-stock__text">In stock, ready to ship</span>
         </div>
 
         <!-- Affirm APR Widget -->
@@ -127,18 +185,13 @@
           <span class="custom-prod-affirm__text">or as low as $27/mo with <span class="custom-prod-affirm__brand">affirm</span>. <a href="#">See if you qualify</a></span>
         </div>
 
-        <!-- Value Propositions -->
-        <div class="custom-prod-props">
-          <span>FDA 510-K Cleared | FSA/HSA Eligible | VA Approved</span>
-        </div>
-
         <!-- Buy Buttons -->
         <div class="custom-prod-actions">
           <button type="button" class="custom-prod-buy-btn button button--primary" data-variant-id="{{ current_variant.id }}">
             BUY NOW
           </button>
           <a href="#" class="custom-prod-secondary-btn">
-            TRY RISK FREE FOR 30 DAYS
+            TRY RISK FREE FOR 45 DAYS
           </a>
         </div>
 
@@ -176,6 +229,90 @@
       "id": "card_bg_color",
       "label": "Card Background Color",
       "default": "#F4EFEA"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Mobile Padding Bottom"
     }
   ],
   "presets": [

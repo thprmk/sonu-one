@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -138,7 +129,58 @@
         "label_8": ""
       }
     },
-
+    "video_slider": {
+      "type": "custom-video-slider",
+      "blocks": {
+        "video_slide_MXUViw": {
+          "type": "video_slide",
+          "settings": {
+            "video": "shopify://files/videos/vertical-animation.mp4",
+            "video_url": "",
+            "overlay_text": "",
+            "overlay_pos": "center",
+            "badge_width": 100
+          }
+        },
+        "video_slide_ciTmtU": {
+          "type": "video_slide",
+          "settings": {
+            "video": "shopify://files/videos/Mobile Version_SONU Band - Try Risk Free for 30 Days.mp4",
+            "video_url": "",
+            "overlay_text": "",
+            "overlay_pos": "center",
+            "badge_width": 100
+          }
+        },
+        "video_slide_HNcPBi": {
+          "type": "video_slide",
+          "settings": {
+            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
+            "video_url": "",
+            "overlay_text": "",
+            "overlay_pos": "center",
+            "badge_width": 100
+          }
+        }
+      },
+      "block_order": [
+        "video_slide_MXUViw",
+        "video_slide_ciTmtU",
+        "video_slide_HNcPBi"
+      ],
+      "settings": {
+        "heading": "See it to believe it",
+        "description": "Spatial Sleep is a personalized sleep headband that uses gentle sound and vibration to help you drift off naturally.",
+        "bg_color": "#f9f6f0",
+        "text_color": "#3d1b03",
+        "desktop_slide_width": 340,
+        "mobile_slide_width": 240,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
     "step_slider": {
       "type": "custom-step-slider",
       "blocks": {
@@ -159,6 +201,52 @@
         "description": "",
         "bg_color": "#f4efea",
         "text_color": "#3d1b03",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "card_slider": {
+      "type": "custom-card-slider",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "top_badge": "How it Works",
+            "title": "Gentle sound, delivered through bone",
+            "description": "The Spatial Sleep band rests on your forehead and sends soft acoustic vibrations through your skull — no earbuds needed. Each ear receives a slightly different frequency, and your brain naturally blends them into a calming rhythm that guides you toward sleep.",
+            "bottom_badge": "No effort required · Works while you rest"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "top_badge": "Why it Takes Time",
+            "title": "Think of pushing a swing",
+            "description": "One push barely moves it. But small, steady pushes — timed just right — build into a deep, effortless rhythm. That's how neural entrainment works. Each night, Spatial Sleep gives your brain another gentle push toward its natural sleep frequency.",
+            "bottom_badge": "2–4 weeks to build momentum"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "top_badge": "Consistency Matters",
+            "title": "Every night counts",
+            "description": "In clinical studies, participants who used the band nightly saw the strongest results — insomnia severity dropped by nearly 50% over four weeks, with three-quarters no longer qualifying as having insomnia.",
+            "bottom_badge": "Lin et al., Journal of Sleep Medicine, 2025 · Consistent with broader acoustic entrainment research"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "bg_color": "#F3EEF9",
         "padding_top": 80,
         "padding_bottom": 80,
         "padding_top_mobile": 60,
@@ -257,9 +345,9 @@
         "text_align": "left",
         "mobile_layout_style": "image-top",
         "mobile_text_align": "center",
-        "mobile_heading_color": "#ffffff",
-        "mobile_description_color": "#ffffff",
-        "mobile_content_bg": "#1e1e1e"
+        "mobile_heading_color": "#000000",
+        "mobile_description_color": "#000000",
+        "mobile_content_bg": "#ffffff"
       }
     },
     "faq": {
@@ -350,8 +438,8 @@
       ],
       "name": "Logo Carousel",
       "settings": {
-        "bg_image": "",
-        "bg_color": "transparent",
+        "bg_image": "shopify://shop_images/bg_2_2.png",
+        "bg_color": "#ffffff",
         "heading": "",
         "heading_tag": "h2",
         "description": "",
@@ -419,12 +507,12 @@
       ],
       "name": "sonu Team Section",
       "settings": {
-        "heading": "",
+        "heading": "Trusted by doctors",
         "heading_tag": "h1",
-        "grad_color_1": "#f9f6f0",
-        "grad_color_2": "#f9f6f0",
-        "grad_color_3": "#f9f6f0",
-        "grad_color_4": "#f9f6f0",
+        "grad_color_1": "#daf2ff",
+        "grad_color_2": "#daf2ff",
+        "grad_color_3": "#daf2ff",
+        "grad_color_4": "#daf2ff",
         "desktop_layout": "grid",
         "mobile_layout": "slider",
         "trim_words": 20
@@ -464,8 +552,8 @@
         "heading_font_size": 56,
         "heading_line_height": 68,
         "heading_font_weight": "500",
-        "card_bg_color": "#ffffff",
-        "card_border_color": "#eae6df",
+        "card_bg_color": "rgba(0,0,0,0)",
+        "card_border_color": "#b8b7ff",
         "desktop_review_text_color": "#1e2a3e",
         "desktop_review_font_size": 16,
         "desktop_review_line_height": 26,
@@ -563,12 +651,14 @@
   },
   "order": [
     "main",
+    "spatial_therapy",
     "comparison",
+    "video_slider",
+    "step_slider",
+    "card_slider",
     "logo_list",
     "doctors_testimonials",
     "patient_testimonials",
-    "step_slider",
-    "spatial_therapy",
     "app_banner",
     "faq",
     "tech_specs"

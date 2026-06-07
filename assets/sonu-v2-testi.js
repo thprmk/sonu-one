@@ -44,63 +44,74 @@
       });
     }
     
-    // ========= MOBILE: Video Slider =========
-    const mobileVideoSwiperEl = document.getElementById('v2-mobileVideoSwiper');
+    // ========= MOBILE: Custom Track Slider =========
+    const mobileContainers = document.querySelectorAll('.v2-mobile-testimonial-container');
+    mobileContainers.forEach(function(mobileContainer) {
+      const track = mobileContainer.querySelector('.v2-mobile-testimonial-track');
+      const slides = mobileContainer.querySelectorAll('.v2-mobile-testimonial-slide');
+      const totalSlides = slides.length;
+      let currentIndex = 0;
 
-    if (mobileVideoSwiperEl) {
-      const mobileVideoSwiper = new Swiper(
-        mobileVideoSwiperEl,
-        {
-          loop: true,
-          slidesPerView: 1,
-          allowTouchMove: true
+      const counterDisplay = mobileContainer.querySelector('.v2-mobile-current-index');
+      const progressFill = mobileContainer.querySelector('.v2-mobile-indicator-line-fill');
+
+      function updateSlider() {
+        if (totalSlides === 0) return;
+        
+        const translateXValue = -(currentIndex * 100);
+        track.style.transform = `translateX(${translateXValue}%)`;
+        
+        const fillPercentage = ((currentIndex + 1) / totalSlides) * 100;
+        
+        if (counterDisplay) counterDisplay.textContent = currentIndex + 1;
+        if (progressFill) progressFill.style.width = fillPercentage + '%';
+      }
+
+      function showSlide(index) {
+        if (index >= totalSlides) currentIndex = 0;
+        else if (index < 0) currentIndex = totalSlides - 1;
+        else currentIndex = index;
+
+        updateSlider();
+      }
+
+      mobileContainer.addEventListener('click', function(e) {
+        if (e.target.closest('.v2-mobile-next-slide')) {
+          e.preventDefault();
+          showSlide(currentIndex + 1);
         }
-      );
-
-      const prevBtn = mobileVideoSwiperEl.querySelector('.v2-mobile-video-prev');
-      const nextBtn = mobileVideoSwiperEl.querySelector('.v2-mobile-video-next');
-
-      if (prevBtn) {
-        prevBtn.addEventListener('click', function(e) {
+        if (e.target.closest('.v2-mobile-prev-slide')) {
           e.preventDefault();
-          mobileVideoSwiper.slidePrev();
-        });
-      }
-
-      if (nextBtn) {
-        nextBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          mobileVideoSwiper.slideNext();
-        });
-      }
-    }
-
-    // ========= MOBILE: Review Slider =========
-    const mobileReviewsSwiperEl = document.getElementById('v2-mobileReviewsSwiper');
-    const mobileReviewsPrev = document.querySelector('.v2-mobile-reviews-prev');
-    const mobileReviewsNext = document.querySelector('.v2-mobile-reviews-next');
-    
-    if (mobileReviewsSwiperEl) {
-      const mobileReviewsSwiper = new Swiper(mobileReviewsSwiperEl, {
-        loop: true,
-        slidesPerView: 1,
-        allowTouchMove: true,
+          showSlide(currentIndex - 1);
+        }
       });
-      
-      if (mobileReviewsPrev) {
-        mobileReviewsPrev.addEventListener('click', function(e) {
-          e.preventDefault();
-          mobileReviewsSwiper.slidePrev();
-        });
+
+      updateSlider();
+
+      // Swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      mobileContainer.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      mobileContainer.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+
+      function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchStartX - touchEndX > swipeThreshold) {
+          // Swipe left -> Next slide
+          showSlide(currentIndex + 1);
+        } else if (touchEndX - touchStartX > swipeThreshold) {
+          // Swipe right -> Prev slide
+          showSlide(currentIndex - 1);
+        }
       }
-      
-      if (mobileReviewsNext) {
-        mobileReviewsNext.addEventListener('click', function(e) {
-          e.preventDefault();
-          mobileReviewsSwiper.slideNext();
-        });
-      }
-    }
+    });
   }
   
   if (document.readyState === 'loading') {

@@ -1,10 +1,32 @@
-<section class="sonu-faq-section image-bg-{{ section.id }}">
+<section class="sonu-faq-section image-bg-{{ section.id }}" style="
+  {% if section.settings.bg_gradient != blank %}
+    background: {{ section.settings.bg_gradient }};
+  {% elsif section.settings.bg_color != blank %}
+    background-color: {{ section.settings.bg_color }};
+  {% endif %}
+  --padding-top: {{ section.settings.padding_top | default: 80 }}px;
+  --padding-bottom: {{ section.settings.padding_bottom | default: 80 }}px;
+  --padding-top-mobile: {{ section.settings.padding_top_mobile | default: 70 }}px;
+  --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile | default: 14 }}px;
+">
+  <style>
+    #shopify-section-{{ section.id }} .sonu-faq-section {
+      padding-top: var(--padding-top, 80px) !important;
+      padding-bottom: var(--padding-bottom, 80px) !important;
+    }
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{ section.id }} .sonu-faq-section {
+        padding-top: var(--padding-top-mobile, 70px) !important;
+        padding-bottom: var(--padding-bottom-mobile, 14px) !important;
+      }
+    }
+  </style>
 
   <div class="sonu-faq-container">
 
-    <h2 class="sonu-faq-heading">
+    <{{ section.settings.heading_tag | default: 'h2' }} class="sonu-faq-heading">
       {{ section.settings.heading }}
-    </h2>
+    </{{ section.settings.heading_tag | default: 'h2' }}>
 
     <div class="sonu-faq-list">
 
@@ -47,7 +69,6 @@
 <style>
 
 .sonu-faq-section{
-  background-color:#D7CEC7; /* Fallback color */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -60,6 +81,17 @@
   background-image: url('{{ section.settings.bg_image_desktop | image_url: width: 2000 }}');
 }
 {% endif %}
+
+/* Dynamic background handling for mobile */
+@media screen and (max-width: 768px) {
+  .image-bg-{{ section.id }} {
+    {% if section.settings.bg_image_mobile != blank %}
+      background-image: url('{{ section.settings.bg_image_mobile | image_url: width: 1000 }}') !important;
+    {% elsif section.settings.bg_image_desktop != blank %}
+      background-image: url('{{ section.settings.bg_image_desktop | image_url: width: 1000 }}') !important;
+    {% endif %}
+  }
+}
 
 .sonu-faq-container{
   max-width:780px;
@@ -82,53 +114,59 @@
   gap:12px;
 }
 
-.sonu-faq-item{
-  overflow:hidden;
+.sonu-faq-item {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1.5px solid rgba(61, 27, 3, 0.12);
+  border-radius: 14px;
+  margin-bottom: 16px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sonu-faq-question{
-  width:100%;
-  border:none;
-  background:rgba(255,255,255,0.22);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 28px;
-  cursor:pointer;
-  font-family:'Instrument Sans',sans-serif;
-  font-weight:500;
-  font-size:18px;
-  line-height:22px;
-  color:#1E1E1E;
-  text-align:left;
-  backdrop-filter: blur(4px); /* Optional: ensures text stays readable over a busy image */
-  -webkit-backdrop-filter: blur(4px);
+.sonu-faq-item.active {
+  background: #ffffff;
+  border-color: #3D1B03;
+  box-shadow: 0 8px 24px rgba(61, 27, 3, 0.05);
 }
 
-.sonu-faq-icon{
-  font-size:22px;
-  line-height:1;
-  flex-shrink:0;
+.sonu-faq-question {
+  width: 100%;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 28px;
+  cursor: pointer;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #1E1E1E;
+  text-align: left;
 }
 
-.sonu-faq-answer{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .35s ease;
+.sonu-faq-icon {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  color: #3D1B03;
+  font-weight: 500;
 }
 
-.sonu-faq-item.active .sonu-faq-answer{
-  max-height:500px; /* Increased to allow varying rich text heights safely */
+.sonu-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
 }
 
-.sonu-faq-answer-inner{
-  padding:18px 28px 24px;
-  font-family:'Instrument Sans',sans-serif;
-  font-weight:400;
-  font-size:20px;
-  line-height:30px;
-  color:#1E1E1E;
-  background: rgba(255, 255, 255, 0.1); /* Subtle contrast behind the answer */
+.sonu-faq-answer-inner {
+  padding: 0 28px 24px 28px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: rgba(30, 30, 30, 0.85);
 }
 
 /* MOBILE */
@@ -163,9 +201,9 @@
   }
 
   .sonu-faq-answer-inner{
-    padding:18px 15px;
-    font-size:14px;
-    line-height:22px;
+    padding: 0 15px 15px 15px;
+    font-size: 14px;
+    line-height: 22px;
   }
 
   .sonu-faq-icon{
@@ -177,30 +215,59 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function(){
+(function() {
+  function initFAQ(container) {
+    const items = container.querySelectorAll('.sonu-faq-item');
+    if (!items.length) return;
 
-  const items = document.querySelectorAll('.sonu-faq-item');
+    items.forEach(item => {
+      const button = item.querySelector('.sonu-faq-question');
+      const answer = item.querySelector('.sonu-faq-answer');
+      const icon = item.querySelector('.sonu-faq-icon');
 
-  items.forEach(item => {
-    const button = item.querySelector('.sonu-faq-question');
-
-    button.addEventListener('click', function(){
-      const isActive = item.classList.contains('active');
-
-      items.forEach(i => {
-        i.classList.remove('active');
-        const icon = i.querySelector('.sonu-faq-icon');
-        icon.textContent = '+';
-      });
-
-      if(!isActive){
-        item.classList.add('active');
-        item.querySelector('.sonu-faq-icon').textContent = '−';
+      // Sync initial active state heights
+      if (item.classList.contains('active') && answer) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        if (icon) icon.textContent = '−';
+      } else if (answer) {
+        answer.style.maxHeight = '0px';
+        if (icon) icon.textContent = '+';
       }
-    });
-  });
 
-});
+      button.addEventListener('click', function() {
+        const isActive = item.classList.contains('active');
+
+        // Close all items
+        items.forEach(i => {
+          i.classList.remove('active');
+          const a = i.querySelector('.sonu-faq-answer');
+          if (a) a.style.maxHeight = '0px';
+          const ic = i.querySelector('.sonu-faq-icon');
+          if (ic) ic.textContent = '+';
+        });
+
+        // Open clicked item if it wasn't already active
+        if (!isActive) {
+          item.classList.add('active');
+          if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
+          if (icon) icon.textContent = '−';
+        }
+      });
+    });
+  }
+
+  // Initial load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => initFAQ(document));
+  } else {
+    initFAQ(document);
+  }
+
+  // Theme editor block update load
+  document.addEventListener('shopify:section:load', (event) => {
+    initFAQ(event.target);
+  });
+})();
 </script>
 
 {% schema %}
@@ -214,6 +281,69 @@ document.addEventListener('DOMContentLoaded', function(){
       "default": "FAQ"
     },
     {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 70,
+      "unit": "px",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 14,
+      "unit": "px",
+      "label": "Mobile Padding Bottom"
+    },
+    {
       "type": "image_picker",
       "id": "bg_image_desktop",
       "label": "Desktop Background Image"
@@ -222,6 +352,17 @@ document.addEventListener('DOMContentLoaded', function(){
       "type": "image_picker",
       "id": "bg_image_mobile",
       "label": "Mobile Background Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#D7CEC7"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient"
     }
   ],
   "blocks": [

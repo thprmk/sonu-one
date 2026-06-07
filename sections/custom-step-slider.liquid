@@ -4,67 +4,151 @@
 -%}
 
 <div id="shopify-section-{{ section.id }}" class="custom-step-wrapper" style="
-  background-color: {{ bg_color }}; 
+  {% if section.settings.bg_gradient != blank %}
+    background: {{ section.settings.bg_gradient }};
+  {% else %}
+    background-color: {{ bg_color }};
+  {% endif %}
+  {% if section.settings.bg_image != blank %}
+    --bg-image-desktop: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+  {% endif %}
+  {% if section.settings.mobile_bg_image != blank %}
+    --bg-image-mobile: url('{{ section.settings.mobile_bg_image | image_url: width: 1000 }}');
+  {% elsif section.settings.bg_image != blank %}
+    --bg-image-mobile: url('{{ section.settings.bg_image | image_url: width: 1000 }}');
+  {% endif %}
   --text-color: {{ text_color }}; 
   --padding-top: {{ section.settings.padding_top }}px; 
   --padding-bottom: {{ section.settings.padding_bottom }}px;
   --padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
   --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
 ">
+  <style>
+    #shopify-section-{{ section.id }} .custom-step-wrapper {
+      {% if section.settings.bg_image != blank %}
+        background-image: var(--bg-image-desktop);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      {% endif %}
+    }
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{ section.id }} .custom-step-wrapper {
+        {% if section.settings.bg_image != blank or section.settings.mobile_bg_image != blank %}
+          background-image: var(--bg-image-mobile);
+        {% endif %}
+      }
+    }
+  </style>
   <div class="custom-step-container">
     
-    <div class="custom-step-header">
-      {% if section.settings.heading != blank %}
-        <h2 class="custom-step-heading" style="color: {{ text_color }};">{{ section.settings.heading }}</h2>
-      {% endif %}
-      {% if section.settings.description != blank %}
-        <div class="custom-step-desc" style="color: {{ text_color }};">{{ section.settings.description | newline_to_br }}</div>
-      {% endif %}
-    </div>
+    <!-- Desktop Interactive Layout -->
+    <div class="custom-step-desktop-layout">
+      <!-- Background Image Showcase -->
+      <div class="custom-step-bg-images">
+        {% for block in section.blocks %}
+          <div class="custom-step-bg-image{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 1800 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+        {% endfor %}
+        <div class="custom-step-bg-overlay"></div>
+      </div>
 
-    <div class="custom-step-slider-row">
-      <div class="swiper custom-step-swiper">
-        <div class="swiper-wrapper">
-          {% for block in section.blocks %}
-            <div class="swiper-slide custom-step-slide" {{ block.shopify_attributes }}>
-              
-              <div class="custom-step-image-wrap">
-                {% if block.settings.image != blank %}
-                  <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy" class="custom-step-img">
-                {% else %}
-                  {{ 'image' | placeholder_svg_tag: 'custom-step-img placeholder-svg' }}
-                {% endif %}
+      <!-- Left Hand Side Content -->
+      <div class="custom-step-desktop-inner">
+        <div class="custom-step-desktop-left">
+          {% if section.settings.heading != blank %}
+            <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-desktop-heading">{{ section.settings.heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
+          {% endif %}
+          
+          <div class="custom-step-desktop-list">
+            {% for block in section.blocks %}
+              <div class="custom-step-desktop-item{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}">
+                <div class="custom-step-desktop-indicator"></div>
+                <div class="custom-step-desktop-text">
+                  <h3 class="custom-step-desktop-title">{{ block.settings.title }}</h3>
+                  <p class="custom-step-desktop-desc">{{ block.settings.description }}</p>
+                </div>
               </div>
-
-              {% if block.settings.title != blank %}
-                <h3 class="custom-step-slide-title" style="color: {{ text_color }};">{{ block.settings.title }}</h3>
-              {% endif %}
-
-              {% if block.settings.description != blank %}
-                <p class="custom-step-slide-desc" style="color: {{ text_color }};">{{ block.settings.description }}</p>
-              {% endif %}
-
-            </div>
-          {% endfor %}
+            {% endfor %}
+          </div>
         </div>
+
+        <!-- Translucent Play Button on Bottom Right -->
+        {% if section.settings.button_text != blank %}
+          <div class="custom-step-desktop-right">
+            <a href="{{ section.settings.button_link | default: '#' }}" class="custom-step-play-btn">
+              <span class="custom-step-play-icon">
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.5 1.5L8.5 6L1.5 10.5V1.5Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="custom-step-btn-text">{{ section.settings.button_text }}</span>
+            </a>
+          </div>
+        {% endif %}
       </div>
     </div>
 
-    <!-- Bottom Navigation & Progress bar row -->
-    <div class="custom-step-controls-row">
-      <div class="custom-step-progressbar swiper-pagination"></div>
-      
-      <div class="custom-step-arrows">
-        <button class="custom-step-nav-btn custom-step-nav-btn--prev" aria-label="Previous">
-          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 17L1 9L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <button class="custom-step-nav-btn custom-step-nav-btn--next" aria-label="Next">
-          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 17L9 9L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+    <!-- Mobile Swiper Layout -->
+    <div class="custom-step-mobile-layout">
+      <div class="custom-step-header">
+        {% if section.settings.heading != blank %}
+          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-heading" style="color: {{ text_color }};">{{ section.settings.heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="custom-step-desc" style="color: {{ text_color }};">{{ section.settings.description | newline_to_br }}</div>
+        {% endif %}
+      </div>
+
+      <div class="custom-step-slider-row">
+        <div class="swiper custom-step-swiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              <div class="swiper-slide custom-step-slide" {{ block.shopify_attributes }}>
+                
+                <div class="custom-step-image-wrap">
+                  {% if block.settings.image != blank %}
+                    <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy" class="custom-step-img">
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'custom-step-img placeholder-svg' }}
+                  {% endif %}
+                </div>
+
+                {% if block.settings.title != blank %}
+                  <h3 class="custom-step-slide-title" style="color: {{ text_color }};">{{ block.settings.title }}</h3>
+                {% endif %}
+
+                {% if block.settings.description != blank %}
+                  <p class="custom-step-slide-desc" style="color: {{ text_color }};">{{ block.settings.description }}</p>
+                {% endif %}
+
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation & Progress bar row -->
+      <div class="custom-step-controls-row">
+        <div class="custom-step-progressbar swiper-pagination"></div>
+        
+        <div class="custom-step-arrows">
+          <button class="custom-step-nav-btn custom-step-nav-btn--prev" aria-label="Previous">
+            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17L1 9L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="custom-step-nav-btn custom-step-nav-btn--next" aria-label="Next">
+            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 17L9 9L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -84,15 +168,57 @@
       "default": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>"
     },
     {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" }
+      ],
+      "default": "h2"
+    },
+    {
       "type": "textarea",
       "id": "description",
       "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Watch the Acoustic Resonance Therapy Film"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
     },
     {
       "type": "color",
       "id": "bg_color",
       "label": "Background Color",
       "default": "#F4EFEA"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient",
+      "info": "Overrides background color if set"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
     },
     {
       "type": "color",
