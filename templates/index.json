@@ -376,7 +376,7 @@
       }
     },
     "sonu_logo_list_QhDEmn": {
-      "type": "sonu-logo-list",
+      "type": "sonu-logo-list-sh",
       "blocks": {
         "logo_hkkeD9": {
           "type": "logo",
@@ -498,7 +498,7 @@
       }
     },
     "sonu_logo_list_qd4U7b": {
-      "type": "sonu-logo-list",
+      "type": "sonu-logo-list-sh",
       "blocks": {
         "logo_EGPy4h": {
           "type": "logo",
@@ -617,7 +617,7 @@
       }
     },
     "doctors_testimonials_dg6NG8": {
-      "type": "doctors-testimonials",
+      "type": "doctors-testimonials-sh",
       "blocks": {
         "doctor_jBzba9": {
           "type": "doctor",
@@ -741,7 +741,7 @@
       }
     },
     "sonu_v2_testi_tExVrX": {
-      "type": "sonu-v2-testi",
+      "type": "sonu-v2-testi-sh",
       "blocks": {
         "slide_NCYPrX": {
           "type": "slide",

@@ -663,7 +663,7 @@
       }
     },
     "spatial_therapy_Cg9KHw": {
-      "type": "spatial-therapy",
+      "type": "spatial-therapy-sh",
       "blocks": {
         "stat_rpeaiH": {
           "type": "stat",
@@ -990,7 +990,7 @@
       }
     },
     "sonu_logo_list_R9jrLm": {
-      "type": "sonu-logo-list",
+      "type": "sonu-logo-list-sh",
       "blocks": {
         "logo_36XctB": {
           "type": "logo",
@@ -1255,7 +1255,7 @@
       }
     },
     "sonu_v2_testi_4a99Rw": {
-      "type": "sonu-v2-testi",
+      "type": "sonu-v2-testi-sh",
       "blocks": {
         "slide_JkNgYT": {
           "type": "slide",
@@ -1339,7 +1339,7 @@
       }
     },
     "sonu_banner_L8CRE4": {
-      "type": "sonu-banner",
+      "type": "sonu-banner-sh",
       "name": "Banner",
       "settings": {
         "bg_image": "shopify://shop_images/Rectangle_50_9ef31dfe-5457-4b4c-8626-430e0b687970.webp",
@@ -1423,7 +1423,7 @@
       }
     },
     "sonu_faq_e7WdnB": {
-      "type": "sonu-faq",
+      "type": "sonu-faq-sh",
       "blocks": {
         "faq_zGNDJC": {
           "type": "faq",

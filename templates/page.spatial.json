@@ -66,7 +66,7 @@
       }
     },
     "spatial_therapy_9nPhMx": {
-      "type": "spatial-therapy",
+      "type": "spatial-therapy-sh",
       "blocks": {
         "stat_AprM4F": {
           "type": "stat",
@@ -566,7 +566,7 @@
       }
     },
     "sonu_banner_QmaG3r": {
-      "type": "sonu-banner",
+      "type": "sonu-banner-sh",
       "name": "Banner",
       "settings": {
         "bg_image": "shopify://shop_images/Rectangle_5_3.png",
@@ -707,7 +707,7 @@
       }
     },
     "sonu_faq_e7WdnB": {
-      "type": "sonu-faq",
+      "type": "sonu-faq-sh",
       "blocks": {
         "faq_zGNDJC": {
           "type": "faq",

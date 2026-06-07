@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "custom-featured-product",
+      "type": "custom-featured-product-sh",
       "settings": {
         "product": "",
         "reviews_text": "66 reviews",
@@ -10,7 +10,7 @@
       }
     },
     "comparison": {
-      "type": "custom-comparison",
+      "type": "custom-comparison-sh",
       "blocks": {
         "column_sonu": {
           "type": "column",
@@ -182,7 +182,7 @@
       }
     },
     "step_slider": {
-      "type": "custom-step-slider",
+      "type": "custom-step-slider-sh",
       "blocks": {
         "step_slide_GNjCq7": {
           "type": "step_slide",
@@ -208,7 +208,7 @@
       }
     },
     "card_slider": {
-      "type": "custom-card-slider",
+      "type": "custom-card-slider-sh",
       "blocks": {
         "card_1": {
           "type": "card",
@@ -254,7 +254,7 @@
       }
     },
     "tech_specs": {
-      "type": "custom-specification",
+      "type": "custom-specification-sh",
       "blocks": {
         "spec_1": {
           "type": "spec",
@@ -332,7 +332,7 @@
       }
     },
     "app_banner": {
-      "type": "sonu-banner",
+      "type": "sonu-banner-sh",
       "settings": {
         "bg_image": "shopify://shop_images/Rectangle_50_9ef31dfe-5457-4b4c-8626-430e0b687970.webp",
         "mobile_bg_image": "shopify://shop_images/Rectangle_5_fc9e341c-fe9d-4792-a51f-106b7166d57a.png",
@@ -351,7 +351,7 @@
       }
     },
     "faq": {
-      "type": "sonu-faq",
+      "type": "sonu-faq-sh",
       "blocks": {
         "faq_1": {
           "type": "faq",
@@ -396,7 +396,7 @@
       }
     },
     "logo_list": {
-      "type": "sonu-logo-list",
+      "type": "sonu-logo-list-sh",
       "blocks": {
         "logo_hkkeD9": {
           "type": "logo",
@@ -450,7 +450,7 @@
       }
     },
     "doctors_testimonials": {
-      "type": "doctors-testimonials",
+      "type": "doctors-testimonials-sh",
       "blocks": {
         "doctor_jBzba9": {
           "type": "doctor",
@@ -519,7 +519,7 @@
       }
     },
     "patient_testimonials": {
-      "type": "sonu-v2-testi",
+      "type": "sonu-v2-testi-sh",
       "blocks": {
         "slide_NCYPrX": {
           "type": "slide",
@@ -577,7 +577,7 @@
       }
     },
     "spatial_therapy": {
-      "type": "spatial-therapy",
+      "type": "spatial-therapy-sh",
       "blocks": {
         "stat_LxMmDy": {
           "type": "stat",
