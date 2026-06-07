@@ -1,0 +1,310 @@
+{% comment %}
+  Custom Tech Specifications Section
+{% endcomment %}
+
+{%- liquid
+  assign bg_color = section.settings.bg_color
+  assign text_color = section.settings.text_color
+  assign overlay_opacity = section.settings.overlay_opacity | divided_by: 100.0
+-%}
+
+<section class="custom-tech-specs section"
+  style="
+    --bg-color: {{ bg_color }};
+    --bg-gradient: {{ section.settings.bg_gradient }};
+    --text-color: {{ text_color }};
+    --overlay-opacity: {{ overlay_opacity }};
+    {% if section.settings.bg_image != blank %}
+      --bg-image: url('{{ section.settings.bg_image | image_url: width: 2400 }}');
+    {% endif %}
+    {% if section.settings.mobile_bg_image != blank %}
+      --mobile-bg-image: url('{{ section.settings.mobile_bg_image | image_url: width: 1200 }}');
+    {% endif %}
+    --padding-top: {{ section.settings.padding_top | default: 90 }}px;
+    --padding-bottom: {{ section.settings.padding_bottom | default: 90 }}px;
+    --padding-top-mobile: {{ section.settings.padding_top_mobile | default: 70 }}px;
+    --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile | default: 70 }}px;
+  ">
+  <style>
+    #shopify-section-{{ section.id }} .custom-tech-specs {
+      padding-top: var(--padding-top, 90px) !important;
+      padding-bottom: var(--padding-bottom, 90px) !important;
+    }
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{ section.id }} .custom-tech-specs {
+        padding-top: var(--padding-top-mobile, 70px) !important;
+        padding-bottom: var(--padding-bottom-mobile, 70px) !important;
+      }
+    }
+  </style>
+
+  <div class="page-width">
+
+    <div class="custom-tech-grid">
+
+      <!-- LEFT IMAGE -->
+      <div class="custom-tech-left animate-blur">
+        {% if section.settings.left_image != blank %}
+          <img
+            src="{{ section.settings.left_image | image_url: width: 1800 }}"
+            alt="{{ section.settings.heading | escape }}"
+            class="custom-tech-image"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="custom-tech-right">
+
+        <!-- HEADING -->
+        {% if section.settings.heading != blank %}
+          {% assign formatted_heading = section.settings.heading
+            | replace: '[[', '<span class="custom-tech-highlight">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-tech-heading animate-blur delay-1">
+            {{ formatted_heading }}
+          </{{ section.settings.heading_tag | default: 'h2' }}>
+        {% endif %}
+
+        <!-- SPEC GRID -->
+        <div class="custom-tech-specs-grid">
+          {% for block in section.blocks %}
+            <div class="custom-tech-item animate-blur delay-{{ forloop.index }}">
+
+              <!-- TOP -->
+              <div class="custom-tech-item-top">
+                <!-- ICON -->
+                {% if block.settings.icon_svg != blank or block.settings.icon_image != blank %}
+                  <div class="custom-tech-icon">
+                    {% if block.settings.icon_svg != blank %}
+                      {{ block.settings.icon_svg }}
+                    {% elsif block.settings.icon_image != blank %}
+                      <img
+                        src="{{ block.settings.icon_image | image_url: width: 100 }}"
+                        alt=""
+                        loading="lazy"
+                      >
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                <!-- TITLE -->
+                <h3 class="custom-tech-item-heading">
+                  {{ block.settings.heading }}
+                </h3>
+              </div>
+
+              <!-- TEXT -->
+              <div class="custom-tech-item-text">
+                {{ block.settings.text }}
+              </div>
+
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+    </div>
+
+    {% if section.settings.note_text != blank %}
+      <div class="custom-tech-note">
+        {{ section.settings.note_text }}
+      </div>
+    {% endif %}
+
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Custom Tech Specs",
+  "tag": "section",
+  "class": "custom-tech-specs-section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (Use [[text]] for serif italic)",
+      "default": "Tech Specifications"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "default": 90,
+      "unit": "px",
+      "label": "Desktop Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "default": 90,
+      "unit": "px",
+      "label": "Desktop Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 70,
+      "unit": "px",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 70,
+      "unit": "px",
+      "label": "Mobile Padding Bottom"
+    },
+    {
+      "type": "textarea",
+      "id": "note_text",
+      "label": "Bottom Note"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#3A190A"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Specification",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "SVG Icon Code"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "What's Included"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Tech Specs",
+      "blocks": [
+        {
+          "type": "spec",
+          "settings": {
+            "heading": "What's Included",
+            "text": "<ul><li>SONU Band</li><li>USB-C charging cable</li></ul>"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "heading": "Weight",
+            "text": "<ul><li>2.5 oz (72 g)</li></ul>"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "heading": "Dimensions",
+            "text": "<ul><li>4 in x 7.8 in x 3.7 in</li></ul>"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "heading": "Material",
+            "text": "<ul><li>Hypoallergenic, soft fabric band</li></ul>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

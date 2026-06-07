@@ -1,0 +1,227 @@
+.sonuh-wrapper {
+  padding: 20px;
+  width: 100%;
+  max-width: 1760px;
+  margin: 0 auto;
+}
+.sonu-highlight {
+  font-family: 'pp-editorial', serif !important;
+  font-style: italic;
+  font-weight: 400;
+}
+.sonuh-hero {
+  position: relative;
+  min-height: 100vh !important;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 50px;
+}
+
+.sonuh-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.sonuh-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sonuh-desktop-bg {
+  display: block;
+}
+
+.sonuh-mobile-bg {
+  display: none;
+}
+
+.sonuh-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.20) 45%,
+    rgba(0,0,0,.05) 100%
+  );
+}
+
+.sonuh-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 810px;
+}
+
+.sonuh-text-wrap {
+  width: 100%;
+}
+
+.sonu-logo {
+  margin-bottom: 60px;
+}
+
+.sonu-logo img {
+  max-width: 220px;
+  display: block;
+}
+
+.sonu-top-text {
+  font-size: 24px;
+  line-height: 29px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.sonu-heading {
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 500;
+  font-size: 85px;
+  line-height: 104px;
+  color: #fff;
+  margin: 0 0 24px;
+}
+
+.sonu-subheading {
+  font-size: 22px;
+  line-height: 32px;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.sonu-description {
+  font-size: 22px;
+  line-height: 1.5;
+  color: #fff;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.sonuh-btn-wrap {
+  margin-top: 20px;
+}
+
+.sonuh-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 305px;
+  height: 66px;
+  background: var(--button-bg);
+  color: var(--button-text-color);
+  border-radius: 33px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.sonuh-badge {
+  margin-top: 30px;
+}
+
+.sonuh-badge img {
+  width: 220px;
+  display: block;
+}
+
+@media(max-width:768px) {
+  .sonuh-wrapper {
+    padding: 0;
+  }
+
+  .sonuh-hero {
+    min-height: 100svh;
+    border-radius: 0;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sonuh-desktop-bg {
+    display: none;
+  }
+
+  .sonuh-mobile-bg {
+    display: block;
+  }
+
+  .sonuh-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 322px;
+    height: 496px;
+    margin: auto;
+  }
+
+  .sonuh-text-wrap {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sonu-logo {
+    display: none;
+  }
+
+  .sonu-top-text {
+    display: none;
+  }
+
+  .sonu-heading {
+    font-size: 36px;
+    line-height: 44px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .sonu-subheading {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 190px;
+  }
+
+  .sonu-description {
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    max-width: 294px;
+    margin: 0 auto;
+  }
+
+  .sonuh-btn-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+  }
+
+  .sonuh-btn {
+    width: 136px;
+    height: 41px;
+    background: #FFFFFF;
+    color: #1E1E1E;
+    border-radius: 33px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .sonuh-badge {
+    margin-top: 22px;
+  }
+
+  .sonuh-badge img {
+    width: 120px;
+  }
+}

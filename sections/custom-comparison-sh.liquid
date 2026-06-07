@@ -1,0 +1,480 @@
+{{ 'swiper.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign bg_color = section.settings.bg_color
+-%}
+
+<div id="shopify-section-{{ section.id }}" class="custom-comp-wrapper" style="
+  {% if section.settings.bg_gradient != blank %}
+    background: {{ section.settings.bg_gradient }};
+  {% else %}
+    background-color: {{ bg_color }};
+  {% endif %}
+  {% if section.settings.bg_image != blank %}
+    --bg-image-desktop: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+  {% endif %}
+  {% if section.settings.mobile_bg_image != blank %}
+    --bg-image-mobile: url('{{ section.settings.mobile_bg_image | image_url: width: 1000 }}');
+  {% elsif section.settings.bg_image != blank %}
+    --bg-image-mobile: url('{{ section.settings.bg_image | image_url: width: 1000 }}');
+  {% endif %}
+  --padding-top: {{ section.settings.padding_top }}px; 
+  --padding-bottom: {{ section.settings.padding_bottom }}px; 
+  --padding-top-mobile: {{ section.settings.padding_top_mobile }}px; 
+  --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+">
+  <style>
+    #shopify-section-{{ section.id }} .custom-comp-wrapper {
+      {% if section.settings.bg_image != blank %}
+        background-image: var(--bg-image-desktop);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      {% endif %}
+    }
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{ section.id }} .custom-comp-wrapper {
+        {% if section.settings.bg_image != blank or section.settings.mobile_bg_image != blank %}
+          background-image: var(--bg-image-mobile);
+        {% endif %}
+      }
+    }
+  </style>
+  <div class="custom-comp-container">
+    
+    <div class="custom-comp-main-grid">
+      <!-- Left Info Column -->
+      <div class="custom-comp-info-col">
+        {% if section.settings.heading != blank %}
+          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-comp-info-heading">{{ section.settings.heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="custom-comp-info-description">{{ section.settings.description }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Right Table Area -->
+      <div class="custom-comp-table-area">
+        <div class="custom-comp-table-row">
+          <!-- Left labels column -->
+          <div class="custom-comp-labels-col">
+            <div class="custom-comp-header-spacer"></div>
+            
+            {% for i in (1..8) %}
+              {%- liquid
+                assign label_key = 'label_' | append: i
+                assign label_text = section.settings[label_key]
+              -%}
+              {% if label_text != blank %}
+                <div class="custom-comp-label-cell custom-comp-row-{{ i }}">
+                  {{ label_text }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+          
+          <!-- Right columns (Swiper slider) -->
+          <div class="custom-comp-slider-col">
+            <div class="swiper custom-comp-swiper">
+              <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                  <div class="swiper-slide custom-comp-column-slide" {{ block.shopify_attributes }}>
+                    <div class="custom-comp-card{% if block.settings.highlight %} highlighted{% endif %}">
+                      <!-- Header -->
+                      <div class="custom-comp-card-header">
+                        <h3>{{ block.settings.title }}</h3>
+                      </div>
+                      
+                      <!-- Rows -->
+                      {% for i in (1..8) %}
+                        {%- liquid
+                          assign label_key = 'label_' | append: i
+                          assign label_text = section.settings[label_key]
+                        -%}
+                        {% if label_text != blank %}
+                          {%- liquid
+                            assign val_key = 'row_' | append: i | append: '_val'
+                            assign txt_key = 'row_' | append: i | append: '_text'
+                            assign val = block.settings[val_key]
+                            assign txt = block.settings[txt_key]
+                          -%}
+                          <div class="custom-comp-card-cell custom-comp-row-{{ i }}">
+                            {% if val == 'check' %}
+                              <span class="custom-comp-icon custom-comp-icon--check">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                                  <path d="M8.5 12.5L11 15L15.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </span>
+                            {% elsif val == 'cross' %}
+                              <span class="custom-comp-icon custom-comp-icon--cross">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                                  <path d="M9 9L15 15M15 9L9 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </span>
+                            {% else %}
+                              <span class="custom-comp-cell-text">{{ txt }}</span>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Navigation Controls (bottom right) -->
+    <div class="custom-comp-controls-row">
+      <div class="custom-comp-controls">
+        <button class="custom-comp-nav-btn custom-comp-nav-btn--prev" aria-label="Previous">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="custom-comp-nav-btn custom-comp-nav-btn--next" aria-label="Next">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Comparison Table",
+  "tag": "section",
+  "class": "custom-comparison-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Backed by Science. Trusted by Doctors."
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>SONU uses acoustic resonance therapy — a clinically studied method that reduces inflammation, improves mucus clearance, and opens nasal airways.</p>"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F9F6F0"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Mobile Padding Bottom"
+    },
+    {
+      "type": "text",
+      "id": "label_1",
+      "label": "Label 1",
+      "default": "Efficacy"
+    },
+    {
+      "type": "text",
+      "id": "label_2",
+      "label": "Label 2",
+      "default": "Side Effects"
+    },
+    {
+      "type": "text",
+      "id": "label_3",
+      "label": "Label 3",
+      "default": "Personalization"
+    },
+    {
+      "type": "text",
+      "id": "label_4",
+      "label": "Label 4",
+      "default": "Monitoring"
+    },
+    {
+      "type": "text",
+      "id": "label_5",
+      "label": "Label 5",
+      "default": "Time to Relief"
+    },
+    {
+      "type": "text",
+      "id": "label_6",
+      "label": "Label 6"
+    },
+    {
+      "type": "text",
+      "id": "label_7",
+      "label": "Label 7"
+    },
+    {
+      "type": "text",
+      "id": "label_8",
+      "label": "Label 8"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Comparison Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Column Title",
+          "default": "SONU Band"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Highlight Column",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "row_1_val",
+          "label": "Row 1 Value",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Crossmark" },
+            { "value": "text", "label": "Text" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "row_1_text",
+          "label": "Row 1 Text"
+        },
+        {
+          "type": "select",
+          "id": "row_2_val",
+          "label": "Row 2 Value",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Crossmark" },
+            { "value": "text", "label": "Text" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "row_2_text",
+          "label": "Row 2 Text"
+        },
+        {
+          "type": "select",
+          "id": "row_3_val",
+          "label": "Row 3 Value",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Crossmark" },
+            { "value": "text", "label": "Text" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "row_3_text",
+          "label": "Row 3 Text"
+        },
+        {
+          "type": "select",
+          "id": "row_4_val",
+          "label": "Row 4 Value",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Crossmark" },
+            { "value": "text", "label": "Text" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "row_4_text",
+          "label": "Row 4 Text"
+        },
+        {
+          "type": "select",
+          "id": "row_5_val",
+          "label": "Row 5 Value",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Crossmark" },
+            { "value": "text", "label": "Text" }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "text",
+          "id": "row_5_text",
+          "label": "Row 5 Text"
+        },
+        {
+          "type": "select",
+          "id": "row_6_val",
+          "label": "Row 6 Value",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Crossmark" },
+            { "value": "text", "label": "Text" }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "text",
+          "id": "row_6_text",
+          "label": "Row 6 Text"
+        },
+        {
+          "type": "select",
+          "id": "row_7_val",
+          "label": "Row 7 Value",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Crossmark" },
+            { "value": "text", "label": "Text" }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "text",
+          "id": "row_7_text",
+          "label": "Row 7 Text"
+        },
+        {
+          "type": "select",
+          "id": "row_8_val",
+          "label": "Row 8 Value",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "cross", "label": "Crossmark" },
+            { "value": "text", "label": "Text" }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "text",
+          "id": "row_8_text",
+          "label": "Row 8 Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Comparison Table",
+      "blocks": [
+        {
+          "type": "column",
+          "settings": {
+            "title": "SONU Band",
+            "highlight": true,
+            "row_1_val": "check",
+            "row_2_val": "cross",
+            "row_3_val": "check",
+            "row_4_val": "check",
+            "row_5_val": "text",
+            "row_5_text": "Minutes"
+          }
+        },
+        {
+          "type": "column",
+          "settings": {
+            "title": "Intranasal Steroids",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_2_val": "check",
+            "row_3_val": "cross",
+            "row_4_val": "cross",
+            "row_5_val": "text",
+            "row_5_text": "Days"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

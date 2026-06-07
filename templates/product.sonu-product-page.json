@@ -1,0 +1,576 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "custom-featured-product-sh",
+      "settings": {
+        "product": "",
+        "reviews_text": "66 reviews",
+        "description": "",
+        "card_bg_color": "#f4efea"
+      }
+    },
+    "comparison": {
+      "type": "custom-comparison-sh",
+      "blocks": {
+        "column_sonu": {
+          "type": "column",
+          "settings": {
+            "title": "SONU Band",
+            "highlight": true,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "cross",
+            "row_2_text": "",
+            "row_3_val": "check",
+            "row_3_text": "",
+            "row_4_val": "check",
+            "row_4_text": "",
+            "row_5_val": "text",
+            "row_5_text": "Minutes",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_steroids1": {
+          "type": "column",
+          "settings": {
+            "title": "Intranasal Steroids",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "cross",
+            "row_3_text": "",
+            "row_4_val": "cross",
+            "row_4_text": "",
+            "row_5_val": "text",
+            "row_5_text": "Days",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_steroids2": {
+          "type": "column",
+          "settings": {
+            "title": "Intranasal Steroids",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "cross",
+            "row_3_text": "",
+            "row_4_val": "cross",
+            "row_4_text": "",
+            "row_5_val": "text",
+            "row_5_text": "Hours",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_steroids3": {
+          "type": "column",
+          "settings": {
+            "title": "Intranasal Steroids",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "cross",
+            "row_3_text": "",
+            "row_4_val": "cross",
+            "row_4_text": "",
+            "row_5_val": "text",
+            "row_5_text": "Hours",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_sonu",
+        "column_steroids1",
+        "column_steroids2",
+        "column_steroids3"
+      ],
+      "settings": {
+        "heading": "Backed by Science. Trusted by Doctors.",
+        "description": "<p>SONU uses acoustic resonance therapy — a clinically studied method that reduces inflammation, improves mucus clearance, and opens nasal airways.</p>",
+        "bg_color": "#f9f6f0",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "label_1": "Clinically Proven",
+        "label_2": "Side Effects",
+        "label_3": "Personalization",
+        "label_4": "Monitoring",
+        "label_5": "Time to Relief",
+        "label_6": "",
+        "label_7": "",
+        "label_8": ""
+      }
+    },
+
+    "step_slider": {
+      "type": "custom-step-slider-sh",
+      "blocks": {
+        "step_slide_GNjCq7": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_105.png",
+            "title": "Scan Your Face",
+            "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
+          }
+        }
+      },
+      "block_order": [
+        "step_slide_GNjCq7"
+      ],
+      "settings": {
+        "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>",
+        "description": "",
+        "bg_color": "#f4efea",
+        "text_color": "#3d1b03",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "tech_specs": {
+      "type": "custom-specification-sh",
+      "blocks": {
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "heading": "What's Included",
+            "text": "<ul><li>SONU Band</li><li>USB-C charging cable</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_800x800_bb9f8e7a-ff33-4256-b385-49c951189f38.svg"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "heading": "Weight",
+            "text": "<ul><li>2.5 oz (72 g)</li></ul>",
+            "icon_image": "shopify://shop_images/Isolation_Mode_800x800_6ce1f240-8c5e-45a4-b825-255f667db2bb.svg"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "heading": "Dimensions",
+            "text": "<ul><li>4 in x 7.8 in x 3.7 in</li><li>104 mm x 200 mm x 94 mm</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_1_800x800_7814756d-0dd0-4c96-bd6b-df586c69a046.svg"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "heading": "Material",
+            "text": "<ul><li>Hypoallergenic, soft fabric band</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_2_800x800_c309aca6-aeca-43bf-a0b9-83b7cdf81fc5.svg"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "heading": "Size",
+            "text": "<ul><li>One size fits all, adjustable</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_3_800x800_cb4d3201-9cb1-4570-9e8b-fd4667dce115.svg"
+          }
+        },
+        "spec_6": {
+          "type": "spec",
+          "settings": {
+            "heading": "Compatibility",
+            "text": "<ul><li>Requires Android (except OnePlus) or iPhone 10 or newer, or iPad with Face ID</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_5_800x800_e9e1fafa-9f2b-4a79-b837-92f33fcafc35.svg"
+          }
+        },
+        "spec_7": {
+          "type": "spec",
+          "settings": {
+            "heading": "Warranty",
+            "text": "<ul><li>1-year limited warranty</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_6_800x800_66f140de-1112-4247-9980-8910772f9bf1.svg"
+          }
+        }
+      },
+      "block_order": [
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "spec_6",
+        "spec_7"
+      ],
+      "settings": {
+        "heading": "Tech Specifications",
+        "bg_color": "#3a190a",
+        "text_color": "#ffffff",
+        "overlay_opacity": 20,
+        "bg_image": "shopify://shop_images/Rectangle_65.png",
+        "mobile_bg_image": "shopify://shop_images/section-5-mobile_1.png"
+      }
+    },
+    "app_banner": {
+      "type": "sonu-banner-sh",
+      "settings": {
+        "bg_image": "shopify://shop_images/Rectangle_50_9ef31dfe-5457-4b4c-8626-430e0b687970.webp",
+        "mobile_bg_image": "shopify://shop_images/Rectangle_5_fc9e341c-fe9d-4792-a51f-106b7166d57a.png",
+        "heading": "Your Breathing,\n[[Personalized]]",
+        "subtext": "<p>SONU Check uses your voice as a biomarker to help you keep track of your nasal breathing in real time.  Personalized to your nasal anatomy and your very own voice.</p>",
+        "heading_color": "#ffffff",
+        "description_color": "#ffffff",
+        "custom_html": "<div class=\"img-flex\">\n  <a href=\"#\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/0992/3166/2451/files/Group.png?v=1778794788\" \n      alt=\"Google Play\"\n    >\n  </a>\n\n  <a href=\"#\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/0992/3166/2451/files/App_Store.png?v=1778794774\" \n      alt=\"App Store\"\n    >\n  </a>\n</div>\n\n<style>\n  .img-flex{\n    display:flex;\n    align-items:center;\n    gap:16px;\n    flex-wrap:wrap;\njustify-content: right;\n  }\n\n  .img-flex a{\n    display:block;\n  }\n\n  .img-flex img{\n    display:block;\n    width:160px;\n    max-width:100%;\n    height:auto;\n  }\n\n  /* Desktop */\n  @media (min-width: 1024px){\n    .img-flex img{\n      width:180px;\n    }\n  }\n\n  /* Mobile */\n  @media (max-width: 767px){\n    .img-flex{\n      gap:12px;\njustify-content: center;\n    }\n\n    .img-flex img{\n      width:140px;\n    }\n  }\n</style>",
+        "content_position": "right",
+        "text_align": "left",
+        "mobile_layout_style": "image-top",
+        "mobile_text_align": "center",
+        "mobile_heading_color": "#ffffff",
+        "mobile_description_color": "#ffffff",
+        "mobile_content_bg": "#1e1e1e"
+      }
+    },
+    "faq": {
+      "type": "sonu-faq-sh",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "What is SONU™",
+            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How does SONU™ work?",
+            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "What symptoms does SONU Band help with?",
+            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Is SONU safe when it comes to EMF exposure?",
+            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4"
+      ],
+      "name": "SONU FAQ",
+      "settings": {
+        "heading": "FAQ",
+        "bg_image_desktop": "shopify://shop_images/Rectangle_60_3.png",
+        "bg_image_mobile": "shopify://shop_images/Rectangle_60_1.png"
+      }
+    },
+    "logo_list": {
+      "type": "sonu-logo-list-sh",
+      "blocks": {
+        "logo_hkkeD9": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_ucsf-health-color.avif"
+          }
+        },
+        "logo_mNXXyK": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_stanford-medicine-color.avif"
+          }
+        },
+        "logo_QMhL6C": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_cedars-sinai.avif"
+          }
+        },
+        "logo_K338NR": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_columbia-university-medical-center-color.avif"
+          }
+        },
+        "logo_x3FJ9k": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_harvard-medical-school-color.avif"
+          }
+        }
+      },
+      "block_order": [
+        "logo_hkkeD9",
+        "logo_mNXXyK",
+        "logo_QMhL6C",
+        "logo_K338NR",
+        "logo_x3FJ9k"
+      ],
+      "name": "Logo Carousel",
+      "settings": {
+        "bg_image": "",
+        "bg_color": "transparent",
+        "heading": "",
+        "heading_tag": "h2",
+        "description": "",
+        "button_text": "",
+        "button_link": "",
+        "button_bg": "#001755",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "doctors_testimonials": {
+      "type": "doctors-testimonials-sh",
+      "blocks": {
+        "doctor_jBzba9": {
+          "type": "doctor",
+          "settings": {
+            "image": "shopify://shop_images/misty.webp",
+            "name": "Misty Bridges,",
+            "role": "BS, CFNC, FNLP, COM Orofacial Myologist, Tyler, Texas",
+            "desc": "SONU has been a game changer for my clients"
+          }
+        },
+        "doctor_pJdVxJ": {
+          "type": "doctor",
+          "settings": {
+            "image": "shopify://shop_images/michael.webp",
+            "name": "Michael S. Blaiss,",
+            "role": "MD Allergist, Medical College of Georgia",
+            "desc": "As an airway-centric dentist, I work closely with patients"
+          }
+        },
+        "doctor_ijwkWt": {
+          "type": "doctor",
+          "settings": {
+            "image": "shopify://shop_images/mayra.webp",
+            "name": "Michael S. Blaiss,",
+            "role": "MD Allergist,Medical College of Georgia",
+            "desc": "As an airway-centric dentist, I work closely with patients"
+          }
+        },
+        "doctor_9p76N7": {
+          "type": "doctor",
+          "settings": {
+            "image": "shopify://shop_images/michael_s.webp",
+            "name": "Jacob Johnson,",
+            "role": "MD, Otolaryngologist UCSF",
+            "desc": "As an airway-centric dentist, I work closely with patients"
+          }
+        },
+        "doctor_kydX3J": {
+          "type": "doctor",
+          "settings": {
+            "image": "shopify://shop_images/jacob.webp",
+            "name": "Mayra Cramer,",
+            "role": "M.S., CCC-SLPSleep Language Pathologist, Menlo Park, California",
+            "desc": "As an airway-centric dentist, I work closely with patients"
+          }
+        }
+      },
+      "block_order": [
+        "doctor_jBzba9",
+        "doctor_pJdVxJ",
+        "doctor_ijwkWt",
+        "doctor_9p76N7",
+        "doctor_kydX3J"
+      ],
+      "name": "sonu Team Section",
+      "settings": {
+        "heading": "",
+        "heading_tag": "h1",
+        "grad_color_1": "#f9f6f0",
+        "grad_color_2": "#f9f6f0",
+        "grad_color_3": "#f9f6f0",
+        "grad_color_4": "#f9f6f0",
+        "desktop_layout": "grid",
+        "mobile_layout": "slider",
+        "trim_words": 20
+      }
+    },
+    "patient_testimonials": {
+      "type": "sonu-v2-testi-sh",
+      "blocks": {
+        "slide_NCYPrX": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
+            "review_1": "Before using Spatial Sleep, I would wake up several times a night and never felt truly rested. After a few weeks of wearing it regularly, I started sleeping in long, uninterrupted stretches. For the first time in years, I wake up feeling refreshed and energized.",
+            "name_1": "Jay G",
+            "role_1": "Corporate Vice President @ Fortune 500 Company",
+            "review_2": "As a physician on call, quality sleep is rare. With Spatial Sleep, I finally get deep, restorative rest.",
+            "name_2": "Ram G MD",
+            "role_2": "Radiologist",
+            "review_3": "Spatial Sleep has been a real game changer for me. I fall asleep so much faster and actually wake up feeling refreshed. I noticed a difference the very first night. Fell asleep faster, slept deeper. I used to toss and turn for hours, but with Spatial I'm out in minutes and I wake up rested.",
+            "name_3": "Julie K",
+            "role_3": "Retired RN",
+            "review_4": "I love the color and the comfort. It's subtle yet powerful. My REM sleep increased dramatically.",
+            "name_4": "Lindsay M",
+            "role_4": "Clinical Psychologist"
+          }
+        }
+      },
+      "block_order": [
+        "slide_NCYPrX"
+      ],
+      "name": "Testimonials Video sonu",
+      "settings": {
+        "heading": "Real Patients, Real Results",
+        "heading_tag": "h2",
+        "section_bg_color": "",
+        "heading_color": "#001755",
+        "heading_font_size": 56,
+        "heading_line_height": 68,
+        "heading_font_weight": "500",
+        "card_bg_color": "#ffffff",
+        "card_border_color": "#eae6df",
+        "desktop_review_text_color": "#1e2a3e",
+        "desktop_review_font_size": 16,
+        "desktop_review_line_height": 26,
+        "desktop_author_name_color": "#001755",
+        "desktop_author_name_size": 24,
+        "desktop_author_role_color": "#5a6874",
+        "desktop_author_role_size": 13,
+        "mobile_card_bg_color": "rgba(0,0,0,0)",
+        "mobile_card_border_color": "#b8b7ff",
+        "mobile_review_text_color": "#000000",
+        "mobile_review_font_size": 14,
+        "mobile_review_line_height": 22,
+        "mobile_author_name_color": "#3d1b03",
+        "mobile_author_name_size": 24,
+        "mobile_author_role_color": "#5a6874",
+        "mobile_author_role_size": 13,
+        "star_color": "#ffcd0f",
+        "nav_arrow_color": "#1f428a",
+        "nav_border_color": "#001755",
+        "container_width": "contained"
+      }
+    },
+    "spatial_therapy": {
+      "type": "spatial-therapy-sh",
+      "blocks": {
+        "stat_LxMmDy": {
+          "type": "stat",
+          "settings": {
+            "card_bg_color": "#ffffff66",
+            "card_border_color": "#ffffff66",
+            "number_color": "#3d1b03",
+            "label_color": "#3d1b03",
+            "caption_color": "#1e1e1e",
+            "prefix": "",
+            "number": "2",
+            "postfix": "X",
+            "heading": "Improvement",
+            "text": "SONU patients showed a 2X improvement in nasal congestion symptoms compared to placebo."
+          }
+        },
+        "stat_hdha8Q": {
+          "type": "stat",
+          "settings": {
+            "card_bg_color": "#ffffff66",
+            "card_border_color": "#ffffff66",
+            "number_color": "#3d1b03",
+            "label_color": "#3d1b03",
+            "caption_color": "#1e1e1e",
+            "prefix": "",
+            "number": "81",
+            "postfix": "%",
+            "heading": "Response Rate",
+            "text": "Over 80% of patients experienced clinically significant reduction in nasal congestion symptoms."
+          }
+        },
+        "stat_hxVVwj": {
+          "type": "stat",
+          "settings": {
+            "card_bg_color": "#ffffff66",
+            "card_border_color": "#ffffff66",
+            "number_color": "#3d1b03",
+            "label_color": "#3d1b03",
+            "caption_color": "#1e1e1e",
+            "prefix": "",
+            "number": "1",
+            "postfix": "k+",
+            "heading": "Doctors",
+            "text": "Recommended by over 1000 Doctors and Dentists"
+          }
+        }
+      },
+      "block_order": [
+        "stat_LxMmDy",
+        "stat_hdha8Q",
+        "stat_hxVVwj"
+      ],
+      "name": "STE Therapy Editorial",
+      "settings": {
+        "hide_mobile": false,
+        "enable_top_gradient": true,
+        "gradient_color": "#ffffff",
+        "gradient_stop": 0,
+        "gradient_fade_end": 50,
+        "bg_color": "#e5deff",
+        "desktop_image": "shopify://shop_images/section-12_1_1.png",
+        "desktop_image_position": "center center",
+        "mobile_image_position": "center center",
+        "heading_color": "#3d1b03",
+        "highlight_color": "#3d1b03",
+        "description_color": "#1e1e1e",
+        "heading": "Revolutionary personalized,\n[[non-invasive Therapeutics]]",
+        "description": "<p><strong>Acoustic Resonance Therapy</strong><br/><br/>SONU generates resonant frequencies — calibrated to your unique facial and sinus anatomy via a smartphone facial scan and machine learning — that (a) reduce mucosal inflammation, (b) increase mucociliary clearance (the nose's natural self-cleaning system), and (c) mechanically open the nasal airway. This is drug-free, relying entirely on the physics of sound and the body's natural response to resonance.</p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "comparison",
+    "logo_list",
+    "doctors_testimonials",
+    "patient_testimonials",
+    "step_slider",
+    "spatial_therapy",
+    "app_banner",
+    "faq",
+    "tech_specs"
+  ]
+}
