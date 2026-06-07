@@ -4,7 +4,7 @@
   assign bg_color = section.settings.bg_color
 -%}
 
-<div id="shopify-section-{{ section.id }}" class="custom-comp-wrapper" style="
+<div class="custom-comp-wrapper" style="
   {% if section.settings.bg_gradient != blank %}
     background: {{ section.settings.bg_gradient }};
   {% else %}
