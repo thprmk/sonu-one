@@ -36,6 +36,12 @@
             <h4>{{ block.settings.name }}</h4>
             <p>{{ block.settings.role }}</p>
           </div>
+
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 5L15 11L9 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
 
         <!-- INDENTED DESCRIPTION -->
@@ -56,24 +62,22 @@
 
   </div>
 
-  {% if section.settings.mobile_layout == 'slider' %}
-    <div class="team-slider-container hide-desktop">
-      
-      <!-- PROGRESS BAR (FULL WIDTH) -->
+  {% if section.settings.mobile_layout == 'slider' or section.settings.desktop_layout == 'slider' %}
+    <div class="team-slider-controls">
+      <!-- PROGRESS BAR -->
       {% render 'sonu-progress-bar',
         progress_id: 'team-progress-bar-' | append: section.id,
-        container_class: 'team-progress',
-        bar_class: 'team-progress-bar-card'
+        container_class: 'carousel-progress team-progress',
+        bar_class: 'progress-bar-card team-progress-bar-card'
       %}
 
-      <!-- ARROWS (RIGHT ALIGNED) -->
-      <div class="team-arrows">
+      <!-- ARROWS -->
+      <div class="carousel-arrows team-arrows">
         {% render 'sonu-nav-arrows',
-          prev_class: 'team-arrow-btn team-prev-btn',
-          next_class: 'team-arrow-btn team-next-btn'
+          prev_class: 'custom-arrow-btn carousel-prev team-prev-btn',
+          next_class: 'custom-arrow-btn carousel-next team-next-btn'
         %}
       </div>
-
     </div>
   {% endif %}
 

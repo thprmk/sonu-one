@@ -40,11 +40,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateProgress = () => {
       const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+      if (prevBtn) {
+        if (slider.scrollLeft <= 5) {
+          prevBtn.style.opacity = '0.35';
+          prevBtn.style.pointerEvents = 'none';
+        } else {
+          prevBtn.style.opacity = '1';
+          prevBtn.style.pointerEvents = 'auto';
+        }
+      }
+
+      if (nextBtn) {
+        if (maxScroll <= 0 || slider.scrollLeft >= maxScroll - 5) {
+          nextBtn.style.opacity = '0.35';
+          nextBtn.style.pointerEvents = 'none';
+        } else {
+          nextBtn.style.opacity = '1';
+          nextBtn.style.pointerEvents = 'auto';
+        }
+      }
+
       if(maxScroll <= 0){
         progressBar.style.width = '100%';
         return;
       }
-      const percent = (slider.scrollLeft / maxScroll) * 100;
+      const scrollPercent = slider.scrollLeft / maxScroll;
+      const minWidth = 15; // Minimum 15% width at scroll 0
+      const percent = minWidth + (scrollPercent * (100 - minWidth));
       progressBar.style.width = `${percent}%`;
     };
 
@@ -53,14 +76,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
         const card = slider.querySelector('.doctor-card');
-        slider.scrollBy({ left: card.offsetWidth + 15, behavior: 'smooth' });
+        const gap = parseInt(window.getComputedStyle(slider).gap) || 20;
+        slider.scrollBy({ left: card.offsetWidth + gap, behavior: 'smooth' });
       });
     }
 
     if (prevBtn) {
       prevBtn.addEventListener('click', () => {
         const card = slider.querySelector('.doctor-card');
-        slider.scrollBy({ left: -(card.offsetWidth + 15), behavior: 'smooth' });
+        const gap = parseInt(window.getComputedStyle(slider).gap) || 20;
+        slider.scrollBy({ left: -(card.offsetWidth + gap), behavior: 'smooth' });
       });
     }
 

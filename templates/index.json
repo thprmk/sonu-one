@@ -152,7 +152,7 @@
                   "settings": {
                     "label": "Shop Now",
                     "link": "shopify://collections/all",
-                    "style": "primary",
+                    "style": "sonu-pill-desktop",
                     "size": "medium",
                     "icon": "caret-right",
                     "icon_only": false,
@@ -289,7 +289,7 @@
                   "settings": {
                     "label": "Shop Now",
                     "link": "shopify://collections/all",
-                    "style": "primary",
+                    "style": "sonu-pill-desktop",
                     "size": "medium",
                     "icon": "caret-right",
                     "icon_only": false,
@@ -489,7 +489,7 @@
       ],
       "name": "Premium Carousel",
       "settings": {
-        "heading": "Precision therapeutics<br>\npowered by <span style=\"color:#656AE3;\">AI &</span><br>\n<span style=\"color:#656AE3;\">sound science.</span>",
+        "heading": "<span style=\"white-space: nowrap;\">Precision therapeutics</span><br>\npowered by <span style=\"color:#656AE3;\">AI & sound science.</span>",
         "heading_tag": "h2",
         "bg_color": "#ffffff",
         "bg_image": "shopify://shop_images/bg_2_b077ce0d-2553-4607-ad5a-465427e502e5.png",
@@ -680,7 +680,7 @@
         "grad_color_2": "#daf2ff",
         "grad_color_3": "#daf2ff",
         "grad_color_4": "#daf2ff",
-        "desktop_layout": "grid",
+        "desktop_layout": "slider",
         "mobile_layout": "slider",
         "trim_words": 20
       }

@@ -1,13 +1,28 @@
 <section class="science-bg-area">
-<section class="logo-section section" style="
-  background: {{ section.settings.bg_color | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
-  {% if section.settings.bg_image != blank %}
-    background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  {% endif %}
-">
+<style>
+  #shopify-section-{{ section.id }} .logo-section {
+    background: {{ section.settings.bg_color_desktop | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
+    {% if section.settings.bg_image != blank %}
+      background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+  }
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .logo-section {
+      background: {{ section.settings.bg_color_mobile | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
+      {% if section.settings.bg_image != blank %}
+        background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      {% endif %}
+    }
+  }
+</style>
+<section class="logo-section section">
 
   {% render 'sonu-section-header',
     heading: section.settings.heading,
@@ -73,10 +88,16 @@
       "label": "Background Image"
     },
     {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background Color Fallback",
-      "default": "#f5f6fb"
+      "type": "color_background",
+      "id": "bg_color_desktop",
+      "label": "Desktop Background",
+      "default": "linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_color_mobile",
+      "label": "Mobile Background",
+      "default": "linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)"
     },
     {
       "type": "text",
