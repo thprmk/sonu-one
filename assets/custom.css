@@ -739,12 +739,13 @@
   padding-right: 80px;
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 991px) {
   .custom-comp-wrapper {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
     padding-top: var(--padding-top-mobile, 60px);
     padding-bottom: var(--padding-bottom-mobile, 60px);
   }
@@ -760,8 +761,8 @@
 /* Side-by-side layout on desktop */
 .custom-comp-main-grid {
   display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 80px;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 40px;
   align-items: start;
   width: 100%;
 }
@@ -829,8 +830,8 @@
 
 @media screen and (max-width: 768px) {
   .custom-comp-table-row {
-    grid-template-columns: 110px 140px 1fr;
-    gap: 12px;
+    grid-template-columns: 85px 125px 1fr;
+    gap: 8px;
   }
 }
 
@@ -844,6 +845,13 @@
 .custom-comp-static-col {
   display: flex;
   flex-direction: column;
+  width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .custom-comp-static-col {
+    width: 125px;
+  }
 }
 
 .custom-comp-header-spacer {
@@ -871,9 +879,10 @@
 
 @media screen and (max-width: 768px) {
   .custom-comp-label-cell {
-    font-size: 12px;
+    font-size: 11px;
     height: 68px;
-    line-height: 1.3;
+    line-height: 1.25;
+    padding-right: 4px;
   }
 }
 
@@ -882,6 +891,13 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+  margin-right: -80px;
+}
+
+@media screen and (max-width: 991px) {
+  .custom-comp-slider-col {
+    margin-right: -16px;
+  }
 }
 
 .custom-comp-swiper {
@@ -903,7 +919,7 @@
 
 @media screen and (max-width: 768px) {
   .swiper-slide.custom-comp-column-slide {
-    width: 140px !important;
+    width: 125px !important;
   }
 }
 
@@ -960,6 +976,9 @@
   color: #3D1B03;
   margin: 0;
   line-height: 1.2;
+  white-space: normal;
+  overflow: visible;
+  word-wrap: break-word;
 }
 
 @media screen and (max-width: 768px) {
