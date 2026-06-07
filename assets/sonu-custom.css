@@ -2131,161 +2131,188 @@
     display:none;
   }
 
-  /* Keep layout hidden since section is desktop-only */
   .v2-mobile-layout{
     display:block; 
+    width: 100%;
   }
 
-  .v2-review-card-1,
-  .v2-review-card-2,
-  .v2-review-card-3,
-  .v2-review-card-4{
-    transform:none;
+  .v2-mobile-testimonial-container {
+    display: flex;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
   }
 
-  .v2-mobile-video-swiper{
-    width:254px;
-    margin:0 auto;
-    overflow:hidden;
-    border-radius: 10px;
-    position:relative;
+  .v2-mobile-testimonial-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
   }
 
-  .v2-mobile-video-slide{
-    position:relative;
-    z-index:1;
+  .v2-mobile-testimonial-slide {
+    width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
   }
 
-  .v2-mobile-video-slide video{
-    width:254px;
-    height:453px;
-    object-fit:cover;
-    border-radius: 10px;
-    display:block;
+  .v2-mobile-media-panel {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    box-sizing: border-box;
   }
 
-  /* MOBILE VIDEO ARROWS */
-  .v2-mobile-video-prev,
-  .v2-mobile-video-next{
-    width:28px !important;
-    height:28px !important;
-    background:rgba(255,255,255,.08) !important;
-    backdrop-filter:blur(4px);
-    border:1px solid rgba(255,255,255,.85) !important;
-    border-radius:50%;
-    z-index:9999 !important;
-    top:50% !important;
-    transform:translateY(-50%);
+  .v2-mobile-video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 9 / 16;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.12);
+    line-height: 0;
+    background-color: #000000;
   }
 
-  .v2-mobile-video-prev{
-    left:10px !important;
+  .v2-mobile-video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
   }
 
-  .v2-mobile-video-next{
-    right:10px !important;
+  .v2-mobile-content-panel {
+    width: 100%;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
   }
 
-  .v2-mobile-video-prev:after,
-  .v2-mobile-video-next:after{
-    color:#fff !important;
-    font-size:12px !important;
-    font-weight:700 !important;
+  .v2-mobile-review-card {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 25px;
+    padding: 40px 25px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    background: var(--mobile-card-bg, #ffffff);
   }
 
-  .v2-mobile-video-prev.swiper-button-disabled,
-  .v2-mobile-video-next.swiper-button-disabled{
-    opacity:.4;
-  }
-  
-  .v2-mobile-video-prev,
-  .v2-mobile-video-next{
-    display:flex !important;
-  }
-
-  .v2-mobile-video-prev.swiper-button-lock,
-  .v2-mobile-video-next.swiper-button-lock{
-    display:flex !important;
-  }
-
-  .v2-mobile-video-swiper{
-    position:relative;
-  }
-
-  .v2-mobile-video-prev,
-  .v2-mobile-video-next{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:24px;
-    height:24px;
-    border:1px solid rgba(255,255,255,.9);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(4px);
-    z-index:99999;
-    cursor:pointer;
-  }
-
-  .v2-mobile-video-prev{
-    left:12px;
-  }
-
-  .v2-mobile-video-next{
-    right:12px;
-  }
-
-  .v2-mobile-video-prev svg,
-  .v2-mobile-video-next svg{
-    width:8px;
-    height:12px;
-  }
-
-  .v2-mobile-review-card .v2-review-text {
-    font-family: var(--sonu-font-primary);
+  .v2-mobile-review-quote {
+    font-family: var(--sonu-font-serif);
     font-style: normal;
     font-weight: 400;
     text-align: center;
+    margin: 0 auto 24px auto;
+    max-width: 100%;
   }
 
-  .v2-mobile-review-card h4 {
-    font-family: 'Times New Roman', serif;
+  .v2-mobile-author-name {
+    font-family: var(--sonu-font-serif);
     font-style: italic;
     font-weight: 400;
+    margin-bottom: 6px;
     text-align: center;
   }
 
-  .v2-mobile-rating-stars{
-    display:block;
-    margin-top:14px;
+  .v2-mobile-author-role {
     font-family: var(--sonu-font-primary);
-    font-size:18px;
-    line-height:1;
-    text-align:center;
-    letter-spacing:3px;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-align: center;
   }
-}
 
-/* make sure arrows stay above video */
-.v2-mobile-video-prev,
-.v2-mobile-video-next{
-  z-index: 99999 !important;
-  cursor: pointer;
-}
-
-.v2-mobile-rating-stars{
-  display:none;
-}
-
-@media(max-width:767px){
-  .v2-mobile-rating-stars{
-    display:block;
+  .v2-mobile-rating-stars-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 14px;
   }
-}.v2-review-card {
-margin-top:10px!important;
+
+  .v2-mobile-rating-stars-row svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+  }
+
+  .v2-mobile-indicator-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 320px;
+    margin: 20px auto 40px auto;
+    font-family: var(--sonu-font-primary);
+    font-size: 16px;
+    color: #000000;
+    user-select: none;
+    position: relative;
+    z-index: 10;
+  }
+
+  .v2-mobile-counter-label {
+    min-width: 45px;
+    text-align: left;
+    letter-spacing: 0.05em;
+  }
+
+  .v2-mobile-indicator-line-track {
+    flex: 1;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.15);
+    margin: 0 20px;
+    position: relative;
+    border-radius: 2px;
+  }
+
+  .v2-mobile-indicator-line-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background-color: #000000;
+    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 2px;
+  }
+
+  .v2-mobile-nav-arrows {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .v2-mobile-nav-arrow {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    transition: transform 0.2s ease;
+  }
+
+  .v2-mobile-nav-arrow:active {
+    transform: scale(0.85);
+  }
 }
 
 
