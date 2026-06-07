@@ -1,6 +1,10 @@
 <style>
   #shopify-section-{{ section.id }} .v2-testimonial-video-section {
-    background: {{ section.settings.section_bg_color }} !important;
+    {%- if section.settings.section_bg_gradient != blank -%}
+      background: {{ section.settings.section_bg_gradient }} !important;
+    {%- else -%}
+      background: {{ section.settings.section_bg_color }} !important;
+    {%- endif -%}
     padding-top: {{ section.settings.padding_top }}px !important;
     padding-bottom: {{ section.settings.padding_bottom }}px !important;
     {%- if section.settings.section_bg_image != blank -%}
@@ -60,6 +64,19 @@
     #shopify-section-{{ section.id }} .v2-testimonial-video-section {
       padding-top: {{ section.settings.mobile_padding_top }}px !important;
       padding-bottom: {{ section.settings.mobile_padding_bottom }}px !important;
+      {%- if section.settings.section_bg_image_mobile != blank -%}
+        background-image: url('{{ section.settings.section_bg_image_mobile | image_url: width: 1000 }}') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+      {%- elsif section.settings.section_bg_image != blank -%}
+        background-image: url('{{ section.settings.section_bg_image | image_url: width: 1000 }}') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+      {%- else -%}
+        background-image: none !important;
+      {%- endif -%}
     }
     
     #shopify-section-{{ section.id }} .v2-section-title {
@@ -293,7 +310,8 @@
         { "value": "h3", "label": "H3" },
         { "value": "h4", "label": "H4" },
         { "value": "h5", "label": "H5" },
-        { "value": "h6", "label": "H6" }
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" }
       ],
       "default": "h2"
     },
@@ -308,9 +326,19 @@
       "default": "#ffffff"
     },
     {
+      "type": "color_background",
+      "id": "section_bg_gradient",
+      "label": "Section Background Gradient"
+    },
+    {
       "type": "image_picker",
       "id": "section_bg_image",
       "label": "Section Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_bg_image_mobile",
+      "label": "Section Mobile Background Image"
     },
     {
       "type": "header",
