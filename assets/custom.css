@@ -821,7 +821,7 @@
 
 .custom-comp-table-row {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 180px 200px 1fr;
   align-items: stretch;
   gap: 24px;
   width: 100%;
@@ -829,13 +829,19 @@
 
 @media screen and (max-width: 768px) {
   .custom-comp-table-row {
-    grid-template-columns: 110px 1fr;
+    grid-template-columns: 110px 140px 1fr;
     gap: 12px;
   }
 }
 
 /* Labels column */
 .custom-comp-labels-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Static column */
+.custom-comp-static-col {
   display: flex;
   flex-direction: column;
 }

@@ -73,11 +73,60 @@
             {% endfor %}
           </div>
           
+          <!-- Static Highlighted Column (SONU Band) -->
+          {%- assign first_block = section.blocks | first -%}
+          {%- if first_block != blank -%}
+            <div class="custom-comp-static-col" {{ first_block.shopify_attributes }}>
+              <div class="custom-comp-card{% if first_block.settings.highlight %} highlighted{% endif %}">
+                <!-- Header -->
+                <div class="custom-comp-card-header">
+                  <h3>{{ first_block.settings.title }}</h3>
+                </div>
+                
+                <!-- Rows -->
+                {% for i in (1..8) %}
+                  {%- liquid
+                    assign label_key = 'label_' | append: i
+                    assign label_text = section.settings[label_key]
+                  -%}
+                  {% if label_text != blank %}
+                    {%- liquid
+                      assign val_key = 'row_' | append: i | append: '_val'
+                      assign txt_key = 'row_' | append: i | append: '_text'
+                      assign val = first_block.settings[val_key]
+                      assign txt = first_block.settings[txt_key]
+                    -%}
+                    <div class="custom-comp-card-cell custom-comp-row-{{ i }}">
+                      {% if val == 'check' %}
+                        <span class="custom-comp-icon custom-comp-icon--check">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M8.5 12.5L11 15L15.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      {% elsif val == 'cross' %}
+                        <span class="custom-comp-icon custom-comp-icon--cross">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M9 9L15 15M15 9L9 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      {% else %}
+                        <span class="custom-comp-cell-text">{{ txt }}</span>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          {%- endif -%}
+
           <!-- Right columns (Swiper slider) -->
           <div class="custom-comp-slider-col">
             <div class="swiper custom-comp-swiper">
               <div class="swiper-wrapper">
                 {% for block in section.blocks %}
+                  {% if forloop.first %}{% continue %}{% endif %}
                   <div class="swiper-slide custom-comp-column-slide" {{ block.shopify_attributes }}>
                     <div class="custom-comp-card{% if block.settings.highlight %} highlighted{% endif %}">
                       <!-- Header -->
