@@ -171,53 +171,46 @@
         "label_8": ""
       }
     },
-    "sonu_logo_list_MnBwb4": {
+    "sonu_logo_list_y36Hrp": {
       "type": "sonu-logo-list",
       "blocks": {
-        "logo_jna7NT": {
+        "logo_M7LWzE": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/logo_ucsf-health-color.avif"
+            "logo": "shopify://shop_images/image_12.png"
           }
         },
-        "logo_mHgf99": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/image_16.png"
-          }
-        },
-        "logo_pfwVTm": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/logo_cedars-sinai.avif"
-          }
-        },
-        "logo_fTkCd8": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/logo_columbia-university-medical-center-color.avif"
-          }
-        },
-        "logo_WqTUt6": {
+        "logo_X7KJ8G": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/image_13.png"
           }
+        },
+        "logo_LiY6RT": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/image_17.png"
+          }
+        },
+        "logo_hL48XD": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_ucsf-health-color.avif"
+          }
         }
       },
       "block_order": [
-        "logo_jna7NT",
-        "logo_mHgf99",
-        "logo_pfwVTm",
-        "logo_fTkCd8",
-        "logo_WqTUt6"
+        "logo_M7LWzE",
+        "logo_X7KJ8G",
+        "logo_LiY6RT",
+        "logo_hL48XD"
       ],
       "name": "Logo Carousel",
       "settings": {
         "bg_color_desktop": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
         "bg_color_desktop_solid": "#f9f6f0",
         "bg_color_mobile": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
-        "bg_color_mobile_solid": "transparent",
+        "bg_color_mobile_solid": "#f9f6f0",
         "heading": "",
         "heading_tag": "h2",
         "description": "",
@@ -680,7 +673,7 @@
   "order": [
     "main",
     "comparison",
-    "sonu_logo_list_MnBwb4",
+    "sonu_logo_list_y36Hrp",
     "doctors_testimonials",
     "patient_testimonials",
     "step_slider",
