@@ -307,9 +307,10 @@
 .custom-prod-gallery__slide img {
   width: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   height: 100%;
   border-radius: 0 28px 28px 0;
+  background: #ffffff;
 }
 
 /* Floating Controls Pill overlaying image */
@@ -355,9 +356,13 @@
 }
 
 .custom-prod-gallery__pagination {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+  position: static !important;
+  width: auto !important;
 }
 
 .custom-prod-gallery__pagination .swiper-pagination-bullet {
@@ -707,11 +712,16 @@
     height: auto;
     aspect-ratio: 1.05;
     border-radius: 0;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    background: #ffffff;
   }
 
   .custom-prod-gallery__slide img {
     height: 100%;
     border-radius: 0;
+    object-fit: contain;
+    background: #ffffff;
   }
 
   .custom-prod-gallery__controls {
