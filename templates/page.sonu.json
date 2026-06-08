@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -847,205 +838,76 @@
       }
     },
     "comparison_table_A6aREE": {
-      "type": "comparison-table",
+      "type": "custom-comparison-sh",
       "blocks": {
-        "section-header": {
-          "type": "_products-bundle-header",
-          "static": true,
-          "settings": {},
-          "blocks": {
-            "text_kNmkhY": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text_transform": "none",
-                "custom_text_alignment": "left",
-                "custom_text_color": "#3d1b03",
-                "custom_font_weight": "300",
-                "text": "<p>Backed by Science.<br/>Trusted by Doctors.</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "custom",
-                "font": "var(--font-heading--family)",
-                "font_weight": "300",
-                "font_size": 49,
-                "font_size_mobile": 33,
-                "line_height": "normal",
-                "text_color": "text",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "100%",
-                "text_alignment": "left",
-                "width_mobile": "100%",
-                "text_alignment_mobile": "center",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text_WWwRXH": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text_transform": "none",
-                "custom_text_alignment": "left",
-                "custom_text_color": "#3d1b03",
-                "custom_font_weight": "",
-                "text": "<p>SONU uses acoustic resonance therapy — a clinically proven method that reduces inflammation, improves mucus clearance, and opens nasal airways.</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "subtext",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "100%",
-                "text_alignment": "left",
-                "width_mobile": "100%",
-                "text_alignment_mobile": "center",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 83,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_kNmkhY",
-            "text_WWwRXH"
-          ]
-        },
-        "comparison-table": {
-          "type": "_comparison-table-content",
-          "static": true,
+        "column_sonu": {
+          "type": "column",
           "settings": {
-            "title-1": "Clinically Proven",
-            "title-2": "Side Effects",
-            "title-3": "Personalization",
-            "title-4": "Monitoring",
-            "title-5": "Time to Relief within minutes",
-            "title-6": "",
-            "title-7": "",
-            "title-8": "",
-            "title-9": "",
-            "title-10": ""
-          },
-          "blocks": {
-            "comparison_col_gncmb7": {
-              "type": "_comparison-col",
-              "name": "t:names.comparison_column",
-              "settings": {
-                "title": "SONU Band",
-                "checkbox-1": true,
-                "checkbox-2": true,
-                "checkbox-3": true,
-                "checkbox-4": true,
-                "checkbox-5": true,
-                "checkbox-6": false,
-                "checkbox-7": false,
-                "checkbox-8": false,
-                "checkbox-9": false,
-                "checkbox-10": false
-              },
-              "blocks": {}
-            },
-            "comparison_col_nGRGtw": {
-              "type": "_comparison-col",
-              "name": "t:names.comparison_column",
-              "settings": {
-                "title": "Intranasal Steroids",
-                "checkbox-1": true,
-                "checkbox-2": true,
-                "checkbox-3": false,
-                "checkbox-4": false,
-                "checkbox-5": false,
-                "checkbox-6": false,
-                "checkbox-7": false,
-                "checkbox-8": false,
-                "checkbox-9": false,
-                "checkbox-10": false
-              },
-              "blocks": {}
-            },
-            "comparison_col_RzHQw7": {
-              "type": "_comparison-col",
-              "name": "t:names.comparison_column",
-              "settings": {
-                "title": "Intranasal Steroids",
-                "checkbox-1": true,
-                "checkbox-2": true,
-                "checkbox-3": false,
-                "checkbox-4": false,
-                "checkbox-5": false,
-                "checkbox-6": false,
-                "checkbox-7": false,
-                "checkbox-8": false,
-                "checkbox-9": false,
-                "checkbox-10": false
-              },
-              "blocks": {}
-            },
-            "comparison_col_LWnwHQ": {
-              "type": "_comparison-col",
-              "name": "t:names.comparison_column",
-              "settings": {
-                "title": "Intranasal Steroids",
-                "checkbox-1": true,
-                "checkbox-2": true,
-                "checkbox-3": false,
-                "checkbox-4": false,
-                "checkbox-5": false,
-                "checkbox-6": false,
-                "checkbox-7": false,
-                "checkbox-8": false,
-                "checkbox-9": false,
-                "checkbox-10": false
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "comparison_col_gncmb7",
-            "comparison_col_nGRGtw",
-            "comparison_col_RzHQw7",
-            "comparison_col_LWnwHQ"
-          ]
+            "title": "SONU Band",
+            "highlight": true,
+            "row_1_val": "check",
+            "row_2_val": "check",
+            "row_3_val": "check",
+            "row_4_val": "check",
+            "row_5_val": "check"
+          }
+        },
+        "column_steroids_1": {
+          "type": "column",
+          "settings": {
+            "title": "Intranasal Steroids",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_2_val": "check",
+            "row_3_val": "cross",
+            "row_4_val": "cross",
+            "row_5_val": "cross"
+          }
+        },
+        "column_steroids_2": {
+          "type": "column",
+          "settings": {
+            "title": "Intranasal Steroids",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_2_val": "check",
+            "row_3_val": "cross",
+            "row_4_val": "cross",
+            "row_5_val": "cross"
+          }
+        },
+        "column_steroids_3": {
+          "type": "column",
+          "settings": {
+            "title": "Intranasal Steroids",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_2_val": "check",
+            "row_3_val": "cross",
+            "row_4_val": "cross",
+            "row_5_val": "cross"
+          }
         }
       },
-      "name": "t:names.comparison_table",
+      "block_order": [
+        "column_sonu",
+        "column_steroids_1",
+        "column_steroids_2",
+        "column_steroids_3"
+      ],
       "settings": {
-        "container": "full",
-        "color_scheme": "scheme-7",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 20,
-        "devices": "desktop",
-        "padding-block-start": 65,
-        "padding-block-end": 65,
-        "padding-inline-start": 0,
-        "padding-inline-end": 0,
-        "padding-block-start-mobile": 15,
-        "padding-block-end-mobile": 0,
-        "padding-inline-start-mobile": 0,
-        "padding-inline-end-mobile": 0
+        "heading": "Backed by Science. Trusted by Doctors.",
+        "description": "<p>SONU uses acoustic resonance therapy — a clinically proven method that reduces inflammation, improves mucus clearance, and opens nasal airways.</p>",
+        "bg_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "label_1": "Clinically Proven",
+        "label_2": "Side Effects",
+        "label_3": "Personalization",
+        "label_4": "Monitoring",
+        "label_5": "Time to Relief within minutes"
       }
     },
     "custom_liquid_WNmYyJ": {

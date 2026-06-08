@@ -23,6 +23,7 @@
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
+      padding-left: {{ section.settings.desktop_left_padding | default: 80 }}px !important;
     }
     
     {% if section.settings.bg_image != blank %}
@@ -31,6 +32,123 @@
     }
     {% endif %}
 
+    #shopify-section-{{ section.id }} .custom-card-slider-heading {
+      color: {{ section.settings.heading_color }} !important;
+      font-size: {{ section.settings.heading_font_size }}px !important;
+      line-height: {{ section.settings.heading_line_height }}px !important;
+      font-weight: {{ section.settings.heading_font_weight }} !important;
+      letter-spacing: {{ section.settings.heading_letter_spacing }}px !important;
+    }
+    
+    #shopify-section-{{ section.id }} .custom-card-slider-header {
+      margin-bottom: {{ section.settings.desktop_heading_margin_bottom }}px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide {
+      width: {{ section.settings.desktop_card_width }}px !important;
+      height: {{ section.settings.desktop_card_height }}px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide__inner {
+      {% if section.settings.card_border_radius != blank %}
+        border-radius: {{ section.settings.card_border_radius }}px !important;
+      {% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide__title {
+      font-size: {{ section.settings.card_title_font_size }}px !important;
+      {% if section.settings.card_title_color != blank %}
+        color: {{ section.settings.card_title_color }} !important;
+      {% endif %}
+      {% if section.settings.card_title_line_height != blank %}
+        line-height: {{ section.settings.card_title_line_height }} !important;
+      {% endif %}
+      {% if section.settings.card_title_letter_spacing != blank %}
+        letter-spacing: {{ section.settings.card_title_letter_spacing }}px !important;
+      {% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide__desc {
+      font-size: {{ section.settings.card_desc_font_size }}px !important;
+      {% if section.settings.card_desc_color != blank %}
+        color: {{ section.settings.card_desc_color }} !important;
+      {% endif %}
+      {% if section.settings.card_desc_line_height != blank %}
+        line-height: {{ section.settings.card_desc_line_height }} !important;
+      {% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide__top-badge span {
+      {% if section.settings.top_badge_bg != blank %}
+        background: {{ section.settings.top_badge_bg }} !important;
+      {% endif %}
+      {% if section.settings.top_badge_border != blank %}
+        border-color: {{ section.settings.top_badge_border }} !important;
+      {% endif %}
+      {% if section.settings.top_badge_color != blank %}
+        color: {{ section.settings.top_badge_color }} !important;
+      {% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide__bottom-badge span {
+      {% if section.settings.bottom_badge_bg != blank %}
+        background: {{ section.settings.bottom_badge_bg }} !important;
+      {% endif %}
+      {% if section.settings.bottom_badge_color != blank %}
+        color: {{ section.settings.bottom_badge_color }} !important;
+      {% endif %}
+    }
+
+    /* Progress bar styling */
+    #shopify-section-{{ section.id }} .custom-card-progressbar.swiper-pagination-progressbar {
+      {% if section.settings.progressbar_bg_color != blank %}
+        background: {{ section.settings.progressbar_bg_color }} !important;
+      {% endif %}
+      height: {{ section.settings.progressbar_height }}px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-progressbar.swiper-pagination-lock {
+      display: block !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-progressbar .swiper-pagination-progressbar-fill {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      transform-origin: left top !important;
+      {% if section.settings.progressbar_fill_color != blank %}
+        background: {{ section.settings.progressbar_fill_color }} !important;
+      {% endif %}
+      border-radius: 999px !important;
+    }
+
+    /* Navigation button styles */
+    #shopify-section-{{ section.id }} .custom-card-nav-btn {
+      {% if section.settings.nav_arrow_color != blank %}
+        color: {{ section.settings.nav_arrow_color }} !important;
+      {% endif %}
+      {% if section.settings.nav_border_color != blank %}
+        border-color: {{ section.settings.nav_border_color }} !important;
+      {% endif %}
+      {% if section.settings.nav_bg_color != blank %}
+        background: {{ section.settings.nav_bg_color }} !important;
+      {% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-nav-btn:hover {
+      {% if section.settings.nav_hover_arrow_color != blank %}
+        color: {{ section.settings.nav_hover_arrow_color }} !important;
+      {% endif %}
+      {% if section.settings.nav_hover_border_color != blank %}
+        border-color: {{ section.settings.nav_hover_border_color }} !important;
+      {% endif %}
+      {% if section.settings.nav_hover_bg_color != blank %}
+        background: {{ section.settings.nav_hover_bg_color }} !important;
+      {% endif %}
+    }
+
     @media screen and (max-width: 768px) {
       .image-bg-{{ section.id }} {
         {% if section.settings.mobile_bg_image != blank %}
@@ -38,6 +156,61 @@
         {% elsif section.settings.bg_image != blank %}
           background-image: url('{{ section.settings.bg_image | image_url: width: 1000 }}') !important;
         {% endif %}
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slider-wrapper {
+        padding-left: {{ section.settings.mobile_side_padding }}px !important;
+        padding-right: 0 !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slider-header {
+        padding-right: {{ section.settings.mobile_side_padding }}px !important;
+        margin-bottom: {{ section.settings.mobile_heading_margin_bottom }}px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slider-heading {
+        font-size: {{ section.settings.mobile_heading_font_size }}px !important;
+        line-height: {{ section.settings.mobile_heading_line_height }}px !important;
+        letter-spacing: {{ section.settings.mobile_heading_letter_spacing }}px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slide {
+        width: {{ section.settings.mobile_card_width }}vw !important;
+        height: {{ section.settings.mobile_card_height }}px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slide__title {
+        font-size: {{ section.settings.mobile_card_title_font_size }}px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slide__desc {
+        font-size: {{ section.settings.mobile_card_desc_font_size }}px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-controls-row {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 24px !important;
+        padding-left: 0 !important;
+        padding-right: {{ section.settings.mobile_side_padding }}px !important;
+        margin-top: 32px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-progressbar.swiper-pagination-progressbar {
+        flex: 1 !important;
+        height: {{ section.settings.progressbar_height }}px !important;
+        margin: 0 !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-arrows {
+        width: auto !important;
+        align-self: center !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-nav-btn {
+        width: {{ section.settings.nav_btn_size }}px !important;
+        height: {{ section.settings.nav_btn_size }}px !important;
       }
     }
   </style>
@@ -224,6 +397,359 @@
       "default": 60,
       "unit": "px",
       "label": "Padding Bottom Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Custom Heading Typography"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size (px)",
+      "default": 44,
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Heading Line Height (px)",
+      "default": 52,
+      "min": 24,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "label": "Heading Letter Spacing (px)",
+      "default": -0.5,
+      "min": -2,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_font_size",
+      "label": "Mobile Heading Font Size (px)",
+      "default": 32,
+      "min": 18,
+      "max": 60,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_line_height",
+      "label": "Mobile Heading Line Height (px)",
+      "default": 38,
+      "min": 22,
+      "max": 70,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_letter_spacing",
+      "label": "Mobile Heading Letter Spacing (px)",
+      "default": -0.5,
+      "min": -2,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_heading_margin_bottom",
+      "label": "Desktop Heading Margin Bottom (px)",
+      "default": 48,
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_margin_bottom",
+      "label": "Mobile Heading Margin Bottom (px)",
+      "default": 32,
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Card Sizing & Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_card_width",
+      "label": "Desktop Card Width (px)",
+      "default": 440,
+      "min": 250,
+      "max": 600,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_card_height",
+      "label": "Desktop Card Height (px)",
+      "default": 580,
+      "min": 350,
+      "max": 800,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_left_padding",
+      "label": "Desktop Left Padding (px)",
+      "default": 80,
+      "min": 20,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Border Radius (px)",
+      "default": 28,
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_width",
+      "label": "Mobile Card Width (vw)",
+      "default": 85,
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vw"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_height",
+      "label": "Mobile Card Height (px)",
+      "default": 440,
+      "min": 300,
+      "max": 600,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "label": "Mobile Side Padding (px)",
+      "default": 20,
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Card Content Typography"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_title_font_size",
+      "label": "Card Title Font Size (px)",
+      "default": 26,
+      "min": 16,
+      "max": 36,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_title_font_size",
+      "label": "Mobile Card Title Font Size (px)",
+      "default": 18,
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "card_title_line_height",
+      "label": "Card Title Line Height",
+      "default": "1.25"
+    },
+    {
+      "type": "range",
+      "id": "card_title_letter_spacing",
+      "label": "Card Title Letter Spacing (px)",
+      "default": -0.5,
+      "min": -2,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "card_desc_color",
+      "label": "Card Description Color",
+      "default": "rgba(255, 255, 255, 0.85)"
+    },
+    {
+      "type": "number",
+      "id": "card_desc_font_size",
+      "label": "Card Description Font Size (px)",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "mobile_card_desc_font_size",
+      "label": "Mobile Card Description Font Size (px)",
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "card_desc_line_height",
+      "label": "Card Description Line Height",
+      "default": "1.5"
+    },
+    {
+      "type": "header",
+      "content": "Card Badges Settings"
+    },
+    {
+      "type": "color",
+      "id": "top_badge_bg",
+      "label": "Top Badge Background Color",
+      "default": "rgba(255, 255, 255, 0.12)"
+    },
+    {
+      "type": "color",
+      "id": "top_badge_border",
+      "label": "Top Badge Border Color",
+      "default": "rgba(255, 255, 255, 0.18)"
+    },
+    {
+      "type": "color",
+      "id": "top_badge_color",
+      "label": "Top Badge Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bottom_badge_bg",
+      "label": "Bottom Badge Background Color",
+      "default": "rgba(0, 0, 0, 0.45)"
+    },
+    {
+      "type": "color",
+      "id": "bottom_badge_color",
+      "label": "Bottom Badge Text Color",
+      "default": "rgba(255, 255, 255, 0.9)"
+    },
+    {
+      "type": "header",
+      "content": "Slider Controls Settings"
+    },
+    {
+      "type": "range",
+      "id": "progressbar_height",
+      "label": "Progress Bar Height (px)",
+      "default": 2,
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "progressbar_fill_color",
+      "label": "Progress Bar Active Color",
+      "default": "#5E53E5"
+    },
+    {
+      "type": "color",
+      "id": "progressbar_bg_color",
+      "label": "Progress Bar Track Color",
+      "default": "rgba(94, 83, 229, 0.15)"
+    },
+    {
+      "type": "range",
+      "id": "nav_btn_size",
+      "label": "Navigation Button Size (px)",
+      "default": 44,
+      "min": 32,
+      "max": 64,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "nav_arrow_color",
+      "label": "Arrow Icon Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "nav_border_color",
+      "label": "Arrow Border Color",
+      "default": "rgba(0, 0, 0, 0.15)"
+    },
+    {
+      "type": "color",
+      "id": "nav_bg_color",
+      "label": "Arrow Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_arrow_color",
+      "label": "Arrow Hover Icon Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_border_color",
+      "label": "Arrow Hover Border Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_bg_color",
+      "label": "Arrow Hover Background Color",
+      "default": "#ffffff"
     }
   ],
   "blocks": [

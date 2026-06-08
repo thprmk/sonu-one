@@ -115,13 +115,17 @@
 <style>
 
 /* SECTION */
-.tech-specs {
+#shopify-section-{{ section.id }} .tech-specs {
   position: relative;
   padding: 90px 0;
   background-size: cover !important;
   background-position: center;
   background-repeat: no-repeat !important;
-border-radius:0px 0px 100px 100px;
+  {% if section.settings.enable_bottom_radius_desktop %}
+    border-radius: 0px 0px {{ section.settings.bottom_radius_desktop }}px {{ section.settings.bottom_radius_desktop }}px !important;
+  {% else %}
+    border-radius: 0px !important;
+  {% endif %}
   overflow: hidden;
 }
 
@@ -150,7 +154,7 @@ border-radius:0px 0px 100px 100px;
     }
 @media(max-width:768px){
 
-  .tech-specs {
+  #shopify-section-{{ section.id }} .tech-specs {
 
     {% if section.settings.mobile_bg_image != blank %}
       background-image:url('{{ section.settings.mobile_bg_image | image_url: width: 1200 }}') !important;
@@ -158,7 +162,11 @@ border-radius:0px 0px 100px 100px;
 
     background-size: cover;
     background-position: center;
-    border-radius:0px;
+    {% if section.settings.enable_bottom_radius_mobile %}
+      border-radius: 0px 0px {{ section.settings.bottom_radius_mobile }}px {{ section.settings.bottom_radius_mobile }}px !important;
+    {% else %}
+      border-radius: 0px !important;
+    {% endif %}
 }
 
 .tech-note{
@@ -457,6 +465,42 @@ text-align:center;
       "id": "text_color",
       "label": "Text Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Border Radius"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bottom_radius_desktop",
+      "label": "Enable Bottom Radius (Desktop)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "bottom_radius_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 100,
+      "unit": "px",
+      "label": "Bottom Radius (Desktop)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bottom_radius_mobile",
+      "label": "Enable Bottom Radius (Mobile)",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "bottom_radius_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 50,
+      "unit": "px",
+      "label": "Bottom Radius (Mobile)"
     }
 
   ],

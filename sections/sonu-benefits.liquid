@@ -5,8 +5,8 @@
 .sleep-benefits {
   position: relative;
   overflow: hidden;
-  /* Reduced baseline padding to keep layout within standard viewports */
-  padding: 60px 0; 
+  padding-top: {{ section.settings.padding_top | default: 60 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | default: 60 }}px; 
   background: {{ section.settings.bg_color }};
   display: flex;
   justify-content: center;
@@ -53,13 +53,20 @@
   max-width: 550px;
 }
 
-.sleep-heading h2 {
+.sleep-heading h1,
+.sleep-heading h2,
+.sleep-heading h3,
+.sleep-heading h4,
+.sleep-heading h5,
+.sleep-heading h6,
+.sleep-heading p,
+.sleep-heading span,
+.sleep-heading div {
   margin: 0;
   color: {{ section.settings.heading_color }};
   font-family: 'Instrument Sans', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 48px; /* Scaled down slightly from 60px to look clean on web viewports */
   line-height: 1.15;
   letter-spacing: -1px;
 }
@@ -68,11 +75,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  height: 54px;
-  border-radius: 33px;
-  background: #001755;
-  color: #FFFFFF;
+  width: {{ section.settings.button_width | default: 200 }}px;
+  height: {{ section.settings.button_height | default: 54 }}px;
+  border-radius: {{ section.settings.button_border_radius | default: 33 }}px;
+  background: {{ section.settings.button_bg | default: '#001755' }};
+  color: {{ section.settings.button_text_color | default: '#FFFFFF' }};
   text-decoration: none;
   font-family: 'Instrument Sans', sans-serif;
   font-style: normal;
@@ -115,7 +122,7 @@
   font-size: 20px; /* Reduced from 24px to stop wrapping titles */
   line-height: 1.2;
   text-align: center;
-  color: #1E1E1E;
+  color: {{ section.settings.tab_text_color | default: '#1E1E1E' }};
   opacity: .4;
   position: relative;
   transition: opacity 0.2s ease;
@@ -132,7 +139,7 @@
   bottom: -13px;
   width: 100%;
   height: 2px;
-  background: #000000;
+  background: {{ section.settings.tab_active_color | default: '#000000' }};
 }
 
 /* ==========================================================================
@@ -165,9 +172,8 @@
   font-family: 'Instrument Sans', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 32px;
   line-height: 1.25;
-  color: #3D1B03;
+  color: {{ section.settings.subheading_color | default: '#3D1B03' }};
   margin: 0 0 24px 0;
 }
 
@@ -183,7 +189,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.6;
-  color: #1E1E1E;
+  color: {{ section.settings.desc_color | default: '#1E1E1E' }};
   margin-bottom: 36px;
 }
 
@@ -198,10 +204,10 @@
   max-width: 480px;
   min-height: 120px;
   padding: 24px;
-  background: rgba(61, 27, 3, 0.12); 
-  border: 1px solid #E5E5E5;
+  background: {{ section.settings.quote_bg_color | default: 'rgba(61, 27, 3, 0.12)' }}; 
+  border: 1px solid {{ section.settings.quote_border_color | default: '#E5E5E5' }};
   border-radius: 12px;
-  color: #3D1B03;
+  color: {{ section.settings.quote_text_color | default: '#3D1B03' }};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -246,7 +252,8 @@
 @media(max-width: 768px) {
   .sleep-benefits {
     background: #000;
-    padding: 0;
+    padding-top: {{ section.settings.padding_top_mobile | default: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile | default: 0 }}px;
   }
 
   .sleep-panel {
@@ -315,8 +322,15 @@
     display: none;
   }
 
-  .sleep-heading h2 {
-    font-size: 36px;
+  .sleep-heading h1,
+  .sleep-heading h2,
+  .sleep-heading h3,
+  .sleep-heading h4,
+  .sleep-heading h5,
+  .sleep-heading h6,
+  .sleep-heading p,
+  .sleep-heading span,
+  .sleep-heading div {
     line-height: 1.5;
     font-weight: 400;
     letter-spacing: 0px;
@@ -378,7 +392,6 @@
     color: #FFFFFF;
     font-family: 'Instrument Sans', sans-serif;
     font-weight: 400;
-    font-size: 24px;
     line-height: 31px;
   }
 
@@ -407,10 +420,11 @@
     text-align: center;
     font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
-    font-size: 20px;
     line-height: 26px;
     min-height: auto;
     border: none;
+  }
+  .sleep-tab {
   }
 
   .sleep-html {
@@ -479,7 +493,7 @@
     <!-- TOP CONTAINER BLOCK -->
     <div class="sleep-top">
       <div class="sleep-heading">
-        <h2>{{ section.settings.heading }}</h2>
+        <{{ section.settings.heading_tag | default: 'h2' }}>{{ section.settings.heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
       </div>
       {% if section.settings.button_text != blank %}
         <a href="{{ section.settings.button_link }}" class="sleep-btn">
@@ -519,9 +533,9 @@
               | replace: ']]', '</span>'
               | newline_to_br
             %}
-            <h3 class="sleep-subheading">
+            <{{ block.settings.heading_tag | default: 'h3' }} class="sleep-subheading">
               {{ formatted_subheading }}
-            </h3>
+            </{{ block.settings.heading_tag | default: 'h3' }}>
             
             <div class="sleep-desc">
               {{ block.settings.description }}
@@ -664,51 +678,194 @@ document.addEventListener('DOMContentLoaded', () => {
   "name": "Benefits Tabs",
   "settings": [
     {
-      "type":"text",
-      "id":"heading",
-      "label":"Heading",
-      "default":"What Better Breathing Feels Like"
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What Better Breathing Feels Like"
     },
     {
-      "type":"text",
-      "id":"button_text",
-      "label":"Button Text",
-      "default":"LEARN MORE"
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "LEARN MORE"
     },
     {
-      "type":"url",
-      "id":"button_link",
-      "label":"Button Link"
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
     },
     {
-      "type":"color",
-      "id":"bg_color",
-      "label":"Background Color",
-      "default":"#ffffff"
+      "type": "header",
+      "content": "Desktop Spacing"
     },
     {
-      "type":"color",
-      "id":"heading_color",
-      "label":"Heading Color",
-      "default":"#3D1B03"
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Desktop Padding Top"
     },
     {
-      "type":"color",
-      "id":"subheading_color",
-      "label":"Subheading Color",
-      "default":"#3D1B03"
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Desktop Padding Bottom"
     },
     {
-      "type":"color",
-      "id":"button_bg",
-      "label":"Button Background",
-      "default":"#001755"
+      "type": "header",
+      "content": "Mobile Spacing"
     },
     {
-      "type":"color",
-      "id":"button_text_color",
-      "label":"Button Text Color",
-      "default":"#ffffff"
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0,
+      "unit": "px",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0,
+      "unit": "px",
+      "label": "Mobile Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "tab_text_color",
+      "label": "Tab Text Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Active Tab Line & Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "quote_bg_color",
+      "label": "Quote Background Color",
+      "default": "rgba(61,27,3,0.12)"
+    },
+    {
+      "type": "color",
+      "id": "quote_text_color",
+      "label": "Quote Text Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "color",
+      "id": "quote_border_color",
+      "label": "Quote Border Color",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" },
+        { "value": "span", "label": "Span" },
+        { "value": "div", "label": "Div" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "header",
+      "content": "Button Sizing & Shape"
+    },
+    {
+      "type": "range",
+      "id": "button_width",
+      "min": 100,
+      "max": 300,
+      "step": 5,
+      "default": 200,
+      "unit": "px",
+      "label": "Button Width"
+    },
+    {
+      "type": "range",
+      "id": "button_height",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "default": 54,
+      "unit": "px",
+      "label": "Button Height"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 33,
+      "unit": "px",
+      "label": "Button Border Radius"
     }
   ],
   "blocks":[
@@ -733,10 +890,27 @@ document.addEventListener('DOMContentLoaded', () => {
           "default":"Brain Health"
         },
         {
-          "type":"text",
-          "id":"heading",
-          "label":"Heading",
-          "default":"Clearer Airways, Clearer Thinking"
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Clearer Airways, Clearer Thinking"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Subheading Tag",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" },
+            { "value": "p", "label": "Paragraph (P)" },
+            { "value": "span", "label": "Span" },
+            { "value": "div", "label": "Div" }
+          ],
+          "default": "h3"
         },
         {
           "type":"textarea",

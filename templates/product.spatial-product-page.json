@@ -605,6 +605,57 @@
         "padding_top_mobile": 60,
         "padding_bottom_mobile": 60
       }
+    },
+    "expectations_timeline": {
+      "type": "custom-expectations-sh",
+      "blocks": {
+        "expect_1": {
+          "type": "column",
+          "settings": {
+            "top_badge": "DAYS 1-7",
+            "moon_phase": "crescent",
+            "title": "Your body is listening",
+            "description": "This week, your acoustic therapy is personalized to you. Each session gently trains your brain's natural sleep response. Be patient with yourself — the foundation is being built.",
+            "bottom_badge": "Use nightly for best results"
+          }
+        },
+        "expect_2": {
+          "type": "column",
+          "settings": {
+            "top_badge": "DAYS 8-14",
+            "moon_phase": "half",
+            "title": "Changes are starting",
+            "description": "Most people notice the first shift right around now — falling asleep a little easier, waking a little less. Your brain is responding to the therapy. Keep going.",
+            "bottom_badge": "Use nightly for best results"
+          }
+        },
+        "expect_3": {
+          "type": "column",
+          "settings": {
+            "top_badge": "WEEK 4 & BEYOND",
+            "moon_phase": "gibbous",
+            "title": "Sleep that transforms",
+            "description": "After four weeks, clinical studies show insomnia severity can be reduced by nearly half — with 3 in 4 people no longer qualifying as having insomnia. You're on your way.",
+            "bottom_badge": "~50% insomnia reduction at 4 weeks"
+          }
+        }
+      },
+      "block_order": [
+        "expect_1",
+        "expect_2",
+        "expect_3"
+      ],
+      "settings": {
+        "heading": "<em>What</em> to Expect & <em>When</em> to Expect It",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "bg_color": "#F3EEF9",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
     }
   },
   "order": [
@@ -616,6 +667,7 @@
     "step_slider",
     "spatial_therapy",
     "card_slider",
+    "expectations_timeline",
     "app_banner",
     "faq",
     "tech_specs"

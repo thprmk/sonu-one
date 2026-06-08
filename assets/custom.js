@@ -294,6 +294,38 @@ function initCustomCardSlider(container) {
   });
 }
 
+function initCustomExpectationsSlider(container) {
+  const swiperEl = container.querySelector('.custom-expect-swiper');
+  if (!swiperEl) return;
+
+  const prevBtn = container.querySelector('.custom-expect-nav-btn--prev');
+  const nextBtn = container.querySelector('.custom-expect-nav-btn--next');
+  const progressbarEl = container.querySelector('.custom-expect-progressbar');
+
+  new Swiper(swiperEl, {
+    modules: [Navigation, Pagination],
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    loop: false,
+    navigation: {
+      nextEl: nextBtn,
+      prevEl: prevBtn,
+    },
+    pagination: {
+      el: progressbarEl,
+      type: 'progressbar',
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 16,
+      },
+      768: {
+        spaceBetween: 24,
+      }
+    }
+  });
+}
+
 function initAll() {
   document.querySelectorAll('.shopify-section').forEach(section => {
     initCustomFeaturedProduct(section);
@@ -302,6 +334,7 @@ function initAll() {
     initCustomStepSlider(section);
     initCustomStatsSlider(section);
     initCustomCardSlider(section);
+    initCustomExpectationsSlider(section);
   });
 }
 
@@ -319,4 +352,5 @@ document.addEventListener('shopify:section:load', (event) => {
   initCustomStepSlider(event.target);
   initCustomStatsSlider(event.target);
   initCustomCardSlider(event.target);
+  initCustomExpectationsSlider(event.target);
 });

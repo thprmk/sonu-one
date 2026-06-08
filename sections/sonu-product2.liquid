@@ -34,7 +34,7 @@
       </div>
 
       <div class="sonu-product-info">
-        <h1 class="sonu-product-title">{{ product.title }}</h1>
+        <{{ section.settings.heading_tag | default: 'h1' }} class="sonu-product-title">{{ product.title }}</{{ section.settings.heading_tag | default: 'h1' }}>
         
         <div class="sonu-reviews-rating">
           <div class="sonu-stars-group">
@@ -130,7 +130,7 @@
         
         {% if section.settings.feature_heading != blank %}
           <div class="sonu-features-list">
-            <h3 class="sonu-features-heading">{{ section.settings.feature_heading }}</h3>
+            <{{ section.settings.features_heading_tag | default: 'h3' }} class="sonu-features-heading">{{ section.settings.feature_heading }}</{{ section.settings.features_heading_tag | default: 'h3' }}>
             <ul>
               {% if section.settings.feature_1 != blank %}<li>{{ section.settings.feature_1 }}</li>{% endif %}
               {% if section.settings.feature_2 != blank %}<li>{{ section.settings.feature_2 }}</li>{% endif %}
@@ -146,8 +146,9 @@
 
 <style>
 .sonu-product-section {
-  background: #ffffff;
-  padding: 60px 0;
+  background: {{ section.settings.bg_color | default: '#ffffff' }};
+  padding-top: {{ section.settings.padding_top | default: 60 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | default: 60 }}px;
   width: 100%;
 }
 
@@ -226,9 +227,7 @@
   font-family: 'Instrument Sans', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 32px;
-  line-height: 39px;
-  color: #3D1B03;
+  color: {{ section.settings.title_color | default: '#3D1B03' }};
   margin: 0 0 8px 0;
   text-align: left;
 }
@@ -269,7 +268,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
-  color: #1E1E1E;
+  color: {{ section.settings.text_color | default: '#1E1E1E' }};
   margin-bottom: 24px;
   text-align: left;
 }
@@ -285,7 +284,7 @@
   font-weight: 400;
   font-size: 36px;
   line-height: 44px;
-  color: #3D1B03;
+  color: {{ section.settings.title_color | default: '#3D1B03' }};
 }
 
 .sonu-compare-price {
@@ -309,7 +308,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 36px;
-  color: #1E1E1E;
+  color: {{ section.settings.badge_color | default: '#1E1E1E' }};
   background: none;
   padding: 0;
 }
@@ -339,7 +338,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 36px;
-  color: #1E1E1E;
+  color: {{ section.settings.text_color | default: '#1E1E1E' }};
   margin: 0;
   text-align: left;
 }
@@ -378,13 +377,13 @@
   box-sizing: border-box;
   width: 146px;
   height: 66px;
-  border: 1px solid #86A0AF;
+  border: 1px solid {{ section.settings.quantity_border_color | default: '#86A0AF' }};
   border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  background: #fff;
+  background: {{ section.settings.quantity_bg_color | default: '#ffffff' }};
 }
 
 .sonu-quantity-btn {
@@ -395,7 +394,7 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 36px;
-  color: #86A0AF;
+  color: {{ section.settings.quantity_btn_color | default: '#86A0AF' }};
   cursor: pointer;
   padding: 0;
 }
@@ -406,7 +405,7 @@
   font-weight: 400;
   font-size: 24px;
   line-height: 36px;
-  color: #1E1E1E;
+  color: {{ section.settings.text_color | default: '#1E1E1E' }};
   text-align: center;
 }
 
@@ -424,7 +423,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 36px;
-  color: #1E1E1E;
+  color: {{ section.settings.text_color | default: '#1E1E1E' }};
   display: flex;
   align-items: center;
   gap: 12px;
@@ -461,8 +460,8 @@
   box-sizing: border-box;
   flex: 1; /* Instructs buttons to take up equal horizontal widths */
   max-width: 320px; /* Limits size expansion cleanly */
-  height: 60px;
-  border-radius: 30px;
+  height: {{ section.settings.button_height | default: 60 }}px;
+  border-radius: {{ section.settings.button_border_radius | default: 30 }}px;
   font-family: 'Instrument Sans', sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -479,19 +478,19 @@
 }
 
 .sonu-btn-primary {
-  background: #001755;
+  background: {{ section.settings.button_primary_bg | default: '#001755' }};
   border: none;
-  color: #FFFFFF;
+  color: {{ section.settings.button_primary_text_color | default: '#FFFFFF' }};
 }
 
 .sonu-btn-primary:hover {
-  background: #062270;
+  opacity: 0.9;
 }
 
 .sonu-btn-secondary {
-  background: #FFFFFF;
-  border: 1px solid #001755;
-  color: #001755;
+  background: {{ section.settings.button_secondary_bg | default: '#FFFFFF' }};
+  border: 1px solid {{ section.settings.button_secondary_border_color | default: '#001755' }};
+  color: {{ section.settings.button_secondary_text_color | default: '#001755' }};
 }
 
 .sonu-btn-secondary:hover {
@@ -537,7 +536,8 @@
 
 @media screen and (max-width: 767px) {
   .sonu-product-section {
-    padding: 30px 0 !important;
+    padding-top: {{ section.settings.padding_top_mobile | default: 30 }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom_mobile | default: 30 }}px !important;
   }
   .sonu-options-row {
     flex-direction: column;
@@ -697,6 +697,192 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "try_free_text",
       "label": "Try Risk Free Button Text",
       "default": "TRY RISK FREE FOR 45 DAYS"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Desktop Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Desktop Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 30,
+      "unit": "px",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 30,
+      "unit": "px",
+      "label": "Mobile Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text/Description Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge Text Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "quantity_border_color",
+      "label": "Quantity Selector Border Color",
+      "default": "#86A0AF"
+    },
+    {
+      "type": "color",
+      "id": "quantity_bg_color",
+      "label": "Quantity Selector Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "quantity_btn_color",
+      "label": "Quantity Selector Button Color",
+      "default": "#86A0AF"
+    },
+    {
+      "type": "color",
+      "id": "button_primary_bg",
+      "label": "Primary Button Background",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "button_primary_text_color",
+      "label": "Primary Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_bg",
+      "label": "Secondary Button Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_border_color",
+      "label": "Secondary Button Border Color",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_text_color",
+      "label": "Secondary Button Text Color",
+      "default": "#001755"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Product Title Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" },
+        { "value": "span", "label": "Span" },
+        { "value": "div", "label": "Div" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "select",
+      "id": "features_heading_tag",
+      "label": "Features List Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" },
+        { "value": "span", "label": "Span" },
+        { "value": "div", "label": "Div" }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "header",
+      "content": "Button Sizing & Shape"
+    },
+    {
+      "type": "range",
+      "id": "button_height",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Button Height"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 30,
+      "unit": "px",
+      "label": "Button Border Radius"
     },
     {
       "type": "header",

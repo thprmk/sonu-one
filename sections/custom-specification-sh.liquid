@@ -29,11 +29,21 @@
     #shopify-section-{{ section.id }} .custom-tech-specs {
       padding-top: var(--padding-top, 90px) !important;
       padding-bottom: var(--padding-bottom, 90px) !important;
+      {% if section.settings.enable_bottom_radius_desktop %}
+        border-radius: 0px 0px {{ section.settings.bottom_radius_desktop }}px {{ section.settings.bottom_radius_desktop }}px !important;
+      {% else %}
+        border-radius: 0px !important;
+      {% endif %}
     }
     @media screen and (max-width: 768px) {
       #shopify-section-{{ section.id }} .custom-tech-specs {
         padding-top: var(--padding-top-mobile, 70px) !important;
         padding-bottom: var(--padding-bottom-mobile, 70px) !important;
+        {% if section.settings.enable_bottom_radius_mobile %}
+          border-radius: 0px 0px {{ section.settings.bottom_radius_mobile }}px {{ section.settings.bottom_radius_mobile }}px !important;
+        {% else %}
+          border-radius: 0px !important;
+        {% endif %}
       }
     }
   </style>
@@ -240,6 +250,42 @@
       "id": "text_color",
       "label": "Text Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Border Radius"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bottom_radius_desktop",
+      "label": "Enable Bottom Radius (Desktop)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "bottom_radius_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 100,
+      "unit": "px",
+      "label": "Bottom Radius (Desktop)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bottom_radius_mobile",
+      "label": "Enable Bottom Radius (Mobile)",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "bottom_radius_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 50,
+      "unit": "px",
+      "label": "Bottom Radius (Mobile)"
     }
   ],
   "blocks": [

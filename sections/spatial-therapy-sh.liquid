@@ -124,82 +124,49 @@
   <!-- MOBILE VERSION -->
   <div class="ste-mobile-only" style="width: 100%;">
     <div class="custom-stats-container">
-      
-      {% if section.settings.heading != blank %}
-        <div class="custom-stats-header">
-          {% capture highlight_span %}<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color | default: text_color }};">{% endcapture %}
-          {% assign ste_formatted_heading = section.settings.heading
-            | replace: '[[', highlight_span
-            | replace: ']]', '</span>'
-            | newline_to_br
-          %}
-          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-stats-section-heading" style="color: {{ text_color }};">{{ ste_formatted_heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
+
+
+      <!-- Top Image -->
+      {%- assign mobile_img = section.settings.mobile_image | default: section.settings.desktop_image -%}
+      {% if mobile_img != blank %}
+        <div class="ste-mobile-hero-image-wrap">
+          <img src="{{ mobile_img | image_url: width: 1000 }}" alt="" class="ste-mobile-hero-img" loading="lazy">
         </div>
       {% endif %}
 
-      <div class="custom-stats-slider-row">
-        <div class="swiper custom-stats-swiper">
-          <div class="swiper-wrapper">
-            {% for block in section.blocks %}
-              {%- liquid
-                assign stat_num = block.settings.stat_number | default: block.settings.number
-                assign stat_lab = block.settings.stat_label | default: block.settings.heading
-                assign stat_desc = block.settings.description | default: block.settings.text
-                assign block_prefix = block.settings.prefix
-                assign block_postfix = block.settings.postfix
-              -%}
-              <div class="swiper-slide custom-stats-slide" {{ block.shopify_attributes }}>
-                
-                <div class="custom-stats-image-wrap">
-                  {% if block.settings.image != blank %}
-                    <img src="{{ block.settings.image | image_url: width: 1000 }}" alt="{{ stat_lab | escape }}" loading="lazy" class="custom-stats-img">
-                  {% elsif section.settings.mobile_image != blank %}
-                    <img src="{{ section.settings.mobile_image | image_url: width: 1000 }}" alt="{{ stat_lab | escape }}" loading="lazy" class="custom-stats-img">
-                  {% elsif section.settings.desktop_image != blank %}
-                    <img src="{{ section.settings.desktop_image | image_url: width: 1000 }}" alt="{{ stat_lab | escape }}" loading="lazy" class="custom-stats-img">
-                  {% else %}
-                    {{ 'image' | placeholder_svg_tag: 'custom-stats-img placeholder-svg' }}
-                  {% endif %}
-                </div>
-
-                <div class="custom-stats-content">
-                  {% if stat_num != blank %}
-                    <div class="custom-stats-number" style="color: {{ text_color }};">
-                      {% if block_prefix != blank %}{{ block_prefix }}{% endif %}{{ stat_num }}{% if block_postfix != blank %}{{ block_postfix }}{% endif %}
-                    </div>
-                  {% endif %}
-
-                  {% if stat_lab != blank %}
-                    <div class="custom-stats-label" style="color: {{ text_color }};">{{ stat_lab }}</div>
-                  {% endif %}
-
-                  {% if stat_desc != blank %}
-                    <p class="custom-stats-desc" style="color: {{ text_color }};">{{ stat_desc }}</p>
-                  {% endif %}
-                </div>
-
+      <!-- Vertical Stats List -->
+      <div class="ste-mobile-stats-list">
+        {% for block in section.blocks %}
+          {%- liquid
+            assign stat_num = block.settings.stat_number | default: block.settings.number
+            assign stat_lab = block.settings.stat_label | default: block.settings.heading
+            assign stat_desc = block.settings.description | default: block.settings.text
+            assign block_prefix = block.settings.prefix
+            assign block_postfix = block.settings.postfix
+          -%}
+          
+          {% if forloop.first == false %}
+            <hr class="ste-mobile-divider">
+          {% endif %}
+          
+          <div class="ste-mobile-stat-item" {{ block.shopify_attributes }}>
+            <div class="ste-mobile-stat-number" style="color: {{ block.settings.number_color | default: text_color }};">
+              {% if block_prefix != blank %}{{ block_prefix }}{% endif %}{{ stat_num }}{% if block_postfix != blank %}{{ block_postfix }}{% endif %}
+            </div>
+            
+            {% if stat_lab != blank %}
+              <div class="ste-mobile-stat-label" style="color: {{ block.settings.label_color | default: text_color }};">
+                {{ stat_lab }}
               </div>
-            {% endfor %}
+            {% endif %}
+            
+            {% if stat_desc != blank %}
+              <div class="ste-mobile-stat-desc" style="color: {{ block.settings.caption_color | default: '#666' }};">
+                {{ stat_desc }}
+              </div>
+            {% endif %}
           </div>
-        </div>
-      </div>
-
-      <!-- Bottom Navigation & Progress bar row -->
-      <div class="custom-stats-controls-row">
-        <div class="custom-stats-progressbar swiper-pagination"></div>
-        
-        <div class="custom-stats-arrows">
-          <button class="custom-stats-nav-btn custom-stats-nav-btn--prev" aria-label="Previous">
-            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L1 9L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <button class="custom-stats-nav-btn custom-stats-nav-btn--next" aria-label="Next">
-            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 17L9 9L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
+        {% endfor %}
       </div>
 
     </div>
@@ -456,7 +423,72 @@
   }
 
   .ste-desktop-only { display: none !important; }
-  .ste-mobile-only { display: block !important; }
+  
+  .ste-mobile-only {
+    display: block !important;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+
+  .ste-mobile-hero-image-wrap {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+
+  .ste-mobile-hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ste-mobile-stats-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ste-mobile-stat-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ste-mobile-stat-number {
+    font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+    font-size: 54px;
+    font-weight: normal;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .ste-mobile-stat-label {
+    font-family: 'pp-editorial', 'PP Editorial New', serif !important;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .ste-mobile-stat-desc {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(30, 30, 30, 0.85);
+    max-width: 300px;
+  }
+
+  .ste-mobile-divider {
+    border: none;
+    border-top: 1px solid rgba(84, 54, 32, 0.15);
+    margin: 32px 0;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 768px) {

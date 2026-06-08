@@ -32,23 +32,83 @@
         background-repeat: no-repeat;
       {% endif %}
     }
+    #shopify-section-{{ section.id }} .custom-step-desktop-layout {
+      {% if section.settings.enable_bottom_radius %}
+        border-radius: 0 0 {{ section.settings.bottom_radius }}px {{ section.settings.bottom_radius }}px !important;
+      {% else %}
+        border-radius: 0 !important;
+      {% endif %}
+    }
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{ section.id }} .custom-step-wrapper {
+        {% if section.settings.enable_bottom_radius %}
+          border-radius: 0 0 {{ section.settings.bottom_radius }}px {{ section.settings.bottom_radius }}px !important;
+          overflow: hidden;
+        {% else %}
+          border-radius: 0 !important;
+        {% endif %}
+      }
+    }
     #shopify-section-{{ section.id }} .custom-step-desktop-heading {
       color: {{ section.settings.heading_color }} !important;
       font-size: {{ section.settings.heading_font_size }}px !important;
       line-height: {{ section.settings.heading_line_height }}px !important;
       font-weight: {{ section.settings.heading_font_weight }} !important;
       margin-bottom: {{ section.settings.desktop_heading_margin_bottom }}px !important;
+      letter-spacing: {{ section.settings.heading_letter_spacing }}px !important;
     }
     #shopify-section-{{ section.id }} .custom-step-heading {
       color: {{ text_color }} !important;
       font-weight: {{ section.settings.heading_font_weight }} !important;
       margin-bottom: {{ section.settings.mobile_heading_margin_bottom }}px !important;
+      letter-spacing: {{ section.settings.heading_letter_spacing }}px !important;
     }
     @media screen and (max-width: 768px) {
       #shopify-section-{{ section.id }} .custom-step-wrapper {
         {% if section.settings.bg_image != blank or section.settings.mobile_bg_image != blank %}
           background-image: var(--bg-image-mobile);
         {% endif %}
+      }
+      #shopify-section-{{ section.id }} .custom-step-heading {
+        font-size: {{ section.settings.mobile_heading_font_size }}px !important;
+        line-height: {{ section.settings.mobile_heading_line_height }}px !important;
+        letter-spacing: {{ section.settings.mobile_heading_letter_spacing }}px !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-header {
+        padding-left: {{ section.settings.mobile_side_padding }}px !important;
+        padding-right: {{ section.settings.mobile_side_padding }}px !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-swiper {
+        padding-left: {{ section.settings.mobile_side_padding }}px !important;
+        padding-right: {{ section.settings.mobile_side_padding }}px !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-slide {
+        width: {{ section.settings.mobile_slide_width }}vw !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-image-wrap {
+        aspect-ratio: {{ section.settings.mobile_image_aspect_ratio }} !important;
+        border-radius: 20px !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-controls-row {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 24px !important;
+        padding-left: {{ section.settings.mobile_side_padding }}px !important;
+        padding-right: {{ section.settings.mobile_side_padding }}px !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-progressbar {
+        flex: 1 !important;
+        height: {{ section.settings.progressbar_height }}px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-arrows {
+        width: auto !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-nav-btn {
+        width: {{ section.settings.nav_btn_size }}px !important;
+        height: {{ section.settings.nav_btn_size }}px !important;
       }
     }
   </style>
@@ -304,6 +364,26 @@
     },
     {
       "type": "header",
+      "content": "Section Rounded Corners"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bottom_radius",
+      "label": "Enable Bottom Rounded Corners",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "bottom_radius",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 100,
+      "unit": "px",
+      "label": "Bottom Border Radius"
+    },
+    {
+      "type": "header",
       "content": "Desktop Padding"
     },
     {
@@ -349,6 +429,106 @@
       "default": 60,
       "unit": "px",
       "label": "Mobile Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Heading Typography"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_font_size",
+      "label": "Mobile Heading Font Size (px)",
+      "default": 32,
+      "min": 18,
+      "max": 60,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_line_height",
+      "label": "Mobile Heading Line Height (px)",
+      "default": 38,
+      "min": 22,
+      "max": 70,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "label": "Heading Letter Spacing (px)",
+      "default": 0,
+      "min": -2,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_letter_spacing",
+      "label": "Mobile Heading Letter Spacing (px)",
+      "default": 0,
+      "min": -2,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Layout & Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "label": "Mobile Side Padding (px)",
+      "default": 24,
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_slide_width",
+      "label": "Mobile Slide Width (vw)",
+      "default": 85,
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vw"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_aspect_ratio",
+      "label": "Mobile Image Aspect Ratio",
+      "options": [
+        { "value": "1/1", "label": "Square (1:1)" },
+        { "value": "4/5", "label": "Vertical (4:5)" },
+        { "value": "3/4", "label": "Vertical (3:4)" },
+        { "value": "5/4", "label": "Horizontal (5:4)" }
+      ],
+      "default": "4/5"
+    },
+    {
+      "type": "range",
+      "id": "progressbar_height",
+      "label": "Progress Bar Height (px)",
+      "default": 2,
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "nav_btn_size",
+      "label": "Navigation Button Size (px)",
+      "default": 44,
+      "min": 32,
+      "max": 64,
+      "step": 2,
+      "unit": "px"
     }
   ],
   "blocks": [

@@ -147,6 +147,193 @@
         "label_8": ""
       }
     },
+
+    "step_slider": {
+      "type": "custom-step-slider-sh",
+      "blocks": {
+        "step_slide_GNjCq7": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_105.png",
+            "title": "Scan Your Face",
+            "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
+          }
+        },
+        "step_slide_2": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_105.png",
+            "title": "Acoustic Resonance Calibration",
+            "description": "Find the resonant frequencies of your unique nasal passages."
+          }
+        },
+        "step_slide_3": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_105.png",
+            "title": "Breathe Naturally",
+            "description": "Wear the headband for 15 minutes a day to clear congestion."
+          }
+        }
+      },
+      "block_order": [
+        "step_slide_GNjCq7",
+        "step_slide_2",
+        "step_slide_3"
+      ],
+      "settings": {
+        "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>",
+        "description": "",
+        "bg_color": "#f4efea",
+        "text_color": "#3d1b03",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "tech_specs": {
+      "type": "custom-specification-sh",
+      "blocks": {
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "heading": "What's Included",
+            "text": "<ul><li>SONU Band</li><li>USB-C charging cable</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_800x800_bb9f8e7a-ff33-4256-b385-49c951189f38.svg"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "heading": "Weight",
+            "text": "<ul><li>2.5 oz (72 g)</li></ul>",
+            "icon_image": "shopify://shop_images/Isolation_Mode_800x800_6ce1f240-8c5e-45a4-b825-255f667db2bb.svg"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "heading": "Dimensions",
+            "text": "<ul><li>4 in x 7.8 in x 3.7 in</li><li>104 mm x 200 mm x 94 mm</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_1_800x800_7814756d-0dd0-4c96-bd6b-df586c69a046.svg"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "heading": "Material",
+            "text": "<ul><li>Hypoallergenic, soft fabric band</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_2_800x800_c309aca6-aeca-43bf-a0b9-83b7cdf81fc5.svg"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "heading": "Size",
+            "text": "<ul><li>One size fits all, adjustable</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_3_800x800_cb4d3201-9cb1-4570-9e8b-fd4667dce115.svg"
+          }
+        },
+        "spec_6": {
+          "type": "spec",
+          "settings": {
+            "heading": "Compatibility",
+            "text": "<ul><li>Requires Android (except OnePlus) or iPhone 10 or newer, or iPad with Face ID</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_5_800x800_e9e1fafa-9f2b-4a79-b837-92f33fcafc35.svg"
+          }
+        },
+        "spec_7": {
+          "type": "spec",
+          "settings": {
+            "heading": "Warranty",
+            "text": "<ul><li>1-year limited warranty</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_6_800x800_66f140de-1112-4247-9980-8910772f9bf1.svg"
+          }
+        }
+      },
+      "block_order": [
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "spec_6",
+        "spec_7"
+      ],
+      "settings": {
+        "heading": "Tech Specifications",
+        "bg_color": "#3a190a",
+        "text_color": "#ffffff",
+        "overlay_opacity": 20,
+        "bg_image": "shopify://shop_images/Rectangle_65.png",
+        "mobile_bg_image": "shopify://shop_images/section-5-mobile_1.png"
+      }
+    },
+    "app_banner": {
+      "type": "sonu-banner-sh",
+      "settings": {
+        "bg_image": "shopify://shop_images/Rectangle_50_9ef31dfe-5457-4b4c-8626-430e0b687970.webp",
+        "mobile_bg_image": "shopify://shop_images/Rectangle_5_fc9e341c-fe9d-4792-a51f-106b7166d57a.png",
+        "heading": "Your Breathing,\n[[Personalized]]",
+        "subtext": "<p>SONU Check uses your voice as a biomarker to help you keep track of your nasal breathing in real time.  Personalized to your nasal anatomy and your very own voice.</p>",
+        "heading_color": "#ffffff",
+        "description_color": "#ffffff",
+        "custom_html": "<div class=\"img-flex\">\n  <a href=\"#\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/0992/3166/2451/files/Group.png?v=1778794788\" \n      alt=\"Google Play\"\n    >\n  </a>\n\n  <a href=\"#\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/0992/3166/2451/files/App_Store.png?v=1778794774\" \n      alt=\"App Store\"\n    >\n  </a>\n</div>\n\n<style>\n  .img-flex{\n    display:flex;\n    align-items:center;\n    gap:16px;\n    flex-wrap:wrap;\njustify-content: right;\n  }\n\n  .img-flex a{\n    display:block;\n  }\n\n  .img-flex img{\n    display:block;\n    width:160px;\n    max-width:100%;\n    height:auto;\n  }\n\n  /* Desktop */\n  @media (min-width: 1024px){\n    .img-flex img{\n      width:180px;\n    }\n  }\n\n  /* Mobile */\n  @media (max-width: 767px){\n    .img-flex{\n      gap:12px;\njustify-content: center;\n    }\n\n    .img-flex img{\n      width:140px;\n    }\n  }\n</style>",
+        "content_position": "right",
+        "text_align": "left",
+        "mobile_layout_style": "image-top",
+        "mobile_text_align": "center",
+        "mobile_heading_color": "#ffffff",
+        "mobile_description_color": "#ffffff",
+        "mobile_content_bg": "#1e1e1e"
+      }
+    },
+    "faq": {
+      "type": "sonu-faq-sh",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "What is SONU™",
+            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How does SONU™ work?",
+            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "What symptoms does SONU Band help with?",
+            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+          }
+        },
+        "faq_4": {
+           "type": "faq",
+           "settings": {
+             "question": "Is SONU safe when it comes to EMF exposure?",
+             "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+           }
+         }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4"
+      ],
+      "name": "SONU FAQ",
+      "settings": {
+        "heading": "FAQ",
+        "bg_image_desktop": "shopify://shop_images/Rectangle_60_3.png",
+        "bg_image_mobile": "shopify://shop_images/Rectangle_60_1.png"
+      }
+    },
     "logo_list": {
       "type": "sonu-logo-list-sh",
       "blocks": {

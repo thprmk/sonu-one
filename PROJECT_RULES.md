@@ -50,7 +50,7 @@ Never create multiple custom JS files.
 Client must be able to manage:
 
 - Colors
-- Typography
+- Typography (Always use text tag selectors like H1-H6, P, Span, Div instead of inline font-size range controls, allowing sizes to be governed globally via settings/stylesheets)
 - Buttons
 - Spacing
 
