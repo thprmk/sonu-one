@@ -3,19 +3,15 @@
 <style>
   #sonu-press-{{ section.id }} {
     border-radius: 0 0 {{ section.settings.border_radius_bottom | default: 40 }}px {{ section.settings.border_radius_bottom | default: 40 }}px !important;
-    {% if section.settings.margin_bottom_negative > 0 %}
-      margin-bottom: -{{ section.settings.margin_bottom_negative }}px !important;
-    {% endif %}
+    margin-bottom: -{{ section.settings.margin_bottom_negative | default: 40 }}px !important;
+    position: relative;
+    z-index: 2 !important;
   }
 
   @media screen and (max-width: 768px) {
     #sonu-press-{{ section.id }} {
       border-radius: 0 0 {{ section.settings.border_radius_bottom_mobile | default: 35 }}px {{ section.settings.border_radius_bottom_mobile | default: 35 }}px !important;
-      {% if section.settings.margin_bottom_negative_mobile > 0 %}
-        margin-bottom: -{{ section.settings.margin_bottom_negative_mobile }}px !important;
-      {% else %}
-        margin-bottom: 0 !important;
-      {% endif %}
+      margin-bottom: -{{ section.settings.margin_bottom_negative_mobile | default: 35 }}px !important;
     }
   }
 </style>
@@ -286,7 +282,7 @@
       "min": 0,
       "max": 150,
       "step": 5,
-      "default": 0,
+      "default": 40,
       "unit": "px",
       "label": "Negative Margin Bottom (Desktop)"
     },
@@ -296,7 +292,7 @@
       "min": 0,
       "max": 150,
       "step": 5,
-      "default": 0,
+      "default": 35,
       "unit": "px",
       "label": "Negative Margin Bottom (Mobile)"
     },
