@@ -840,6 +840,7 @@
         "graph_B7TrQ9",
         "graph_cExWPR"
       ],
+      "disabled": true,
       "name": "Graph Slider",
       "settings": {
         "heading": "",
