@@ -354,6 +354,33 @@
         "mobile_heading_margin_bottom": 16
       }
     },
+    "sonu_testimonial_6fFXAe": {
+      "type": "sonu-testimonial",
+      "blocks": {
+        "testimonial_xMBAft": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
+            "video_url": "",
+            "subheading": "OUR FAVORITE PRODUCTS",
+            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing.",
+            "heading_tag": "h2",
+            "author_name": "Zach",
+            "author_bio": "College counselor",
+            "show_stars": true
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_xMBAft"
+      ],
+      "name": "Contained Video Slider",
+      "settings": {
+        "bg_color": "#f4efea",
+        "video_bg_color": "#F5F5F5",
+        "content_bg_color": "#f4efea"
+      }
+    },
     "step_slider": {
       "type": "custom-step-slider-sh",
       "blocks": {
@@ -469,6 +496,8 @@
       "name": "STE Therapy Editorial",
       "settings": {
         "hide_mobile": false,
+        "show_description_mobile": true,
+        "block_heading_tag": "h3",
         "enable_top_gradient": true,
         "gradient_color": "#ffffff",
         "gradient_stop": 0,
@@ -676,6 +705,7 @@
     "sonu_logo_list_y36Hrp",
     "doctors_testimonials",
     "patient_testimonials",
+    "sonu_testimonial_6fFXAe",
     "step_slider",
     "spatial_therapy",
     "app_banner",
