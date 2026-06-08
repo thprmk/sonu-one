@@ -25,12 +25,18 @@
 ">
   <style>
     #shopify-section-{{ section.id }} .custom-step-wrapper {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
       {% if section.settings.bg_image != blank %}
         background-image: var(--bg-image-desktop);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
       {% endif %}
+    }
+    #shopify-section-{{ section.id }} .custom-step-container {
+      max-width: 100% !important;
+      width: 100% !important;
     }
     #shopify-section-{{ section.id }} .custom-step-desktop-layout {
       {% if section.settings.enable_bottom_radius %}
