@@ -694,9 +694,11 @@
           "settings": {
             "video": "shopify://files/videos/vertical-animation.mp4",
             "video_url": "",
-            "subheading": "",
+            "subheading": "OUR FAVORITE PRODUCTS",
             "quote": "As an airway patient I am always looking for ways to improve my nasal breathing. SONU has been the best addition yet to my nasal hygiene routine. I highly recommend it to anyone struggling with nasal congestion.",
             "heading_tag": "h2",
+            "quote_font_size": 18,
+            "quote_font_size_desktop": 36,
             "author_name": "Zach",
             "author_bio": "College counselor",
             "show_stars": true
@@ -710,6 +712,8 @@
             "subheading": "",
             "quote": "As an airway patient I am always looking for ways to improve my nasal breathing.",
             "heading_tag": "h2",
+            "quote_font_size": 28,
+            "quote_font_size_desktop": 36,
             "author_name": "Zach",
             "author_bio": "College counselor",
             "show_stars": true
