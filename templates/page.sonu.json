@@ -685,6 +685,36 @@
         "content_bg_color": "#ffffff"
       }
     },
+    "sonu_banner_sh_w7pmeq": {
+      "type": "sonu-banner-sh",
+      "settings": {
+        "bg_image": "shopify://shop_images/Rectangle_50_9ef31dfe-5457-4b4c-8626-430e0b687970.webp",
+        "mobile_bg_image": "shopify://shop_images/Rectangle_5_fc9e341c-fe9d-4792-a51f-106b7166d57a.png",
+        "bg_color": "rgba(0,0,0,0)",
+        "bg_gradient": "",
+        "heading": "Your Breathing,\n[[Personalized]]",
+        "heading_tag": "h2",
+        "subtext": "<p>SONU Check uses your voice as a biomarker to help you keep track of your nasal breathing in real time.  Personalized to your nasal anatomy and your very own voice.</p>",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "heading_color": "#ffffff",
+        "description_color": "#ffffff",
+        "custom_html": "<div class=\"img-flex\">\n  <a href=\"#\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/0992/3166/2451/files/Group.png?v=1778794788\" \n      alt=\"Google Play\"\n    >\n  </a>\n\n  <a href=\"#\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/0992/3166/2451/files/App_Store.png?v=1778794774\" \n      alt=\"App Store\"\n    >\n  </a>\n</div>\n\n<style>\n  .img-flex{\n    display:flex;\n    align-items:center;\n    gap:16px;\n    flex-wrap:wrap;\njustify-content: right;\n  }\n\n  .img-flex a{\n    display:block;\n  }\n\n  .img-flex img{\n    display:block;\n    width:160px;\n    max-width:100%;\n    height:auto;\n  }\n\n  /* Desktop */\n  @media (min-width: 1024px){\n    .img-flex img{\n      width:180px;\n    }\n  }\n\n  /* Mobile */\n  @media (max-width: 767px){\n    .img-flex{\n      gap:12px;\njustify-content: center;\n    }\n\n    .img-flex img{\n      width:140px;\n    }\n  }\n</style>",
+        "content_position": "right",
+        "text_align": "left",
+        "mobile_layout_style": "image-top",
+        "mobile_text_align": "center",
+        "mobile_heading_color": "#3d1b03",
+        "mobile_description_color": "#3d1b03",
+        "mobile_content_bg": "#ffffff",
+        "btn1_text": "",
+        "btn1_link": "",
+        "btn2_text": "",
+        "btn2_link": ""
+      }
+    },
     "sonu_v2_testi_4a99Rw": {
       "type": "sonu-v2-testi-sh",
       "blocks": {
@@ -778,37 +808,6 @@
         "button_1_link": "",
         "button_2_text": "Explore Spatial Sleep",
         "button_2_link": ""
-      }
-    },
-    "sonu_banner_L8CRE4": {
-      "type": "sonu-banner-sh",
-      "name": "Banner",
-      "settings": {
-        "bg_image": "shopify://shop_images/Rectangle_50_9ef31dfe-5457-4b4c-8626-430e0b687970.webp",
-        "mobile_bg_image": "shopify://shop_images/Rectangle_5_fc9e341c-fe9d-4792-a51f-106b7166d57a.png",
-        "bg_color": "rgba(0,0,0,0)",
-        "bg_gradient": "",
-        "heading": "Your Breathing,\n[[Personalized]]",
-        "heading_tag": "h2",
-        "subtext": "<p>SONU Check uses your voice as a biomarker to help you keep track of your nasal breathing in real time.  Personalized to your nasal anatomy and your very own voice.</p>",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40,
-        "heading_color": "#ffffff",
-        "description_color": "#ffffff",
-        "custom_html": "<div class=\"img-flex\">\n  <a href=\"#\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/0992/3166/2451/files/Group.png?v=1778794788\" \n      alt=\"Google Play\"\n    >\n  </a>\n\n  <a href=\"#\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/0992/3166/2451/files/App_Store.png?v=1778794774\" \n      alt=\"App Store\"\n    >\n  </a>\n</div>\n\n<style>\n  .img-flex{\n    display:flex;\n    align-items:center;\n    gap:16px;\n    flex-wrap:wrap;\njustify-content: right;\n  }\n\n  .img-flex a{\n    display:block;\n  }\n\n  .img-flex img{\n    display:block;\n    width:160px;\n    max-width:100%;\n    height:auto;\n  }\n\n  /* Desktop */\n  @media (min-width: 1024px){\n    .img-flex img{\n      width:180px;\n    }\n  }\n\n  /* Mobile */\n  @media (max-width: 767px){\n    .img-flex{\n      gap:12px;\njustify-content: center;\n    }\n\n    .img-flex img{\n      width:140px;\n    }\n  }\n</style>",
-        "content_position": "right",
-        "text_align": "left",
-        "mobile_layout_style": "image-top",
-        "mobile_text_align": "center",
-        "mobile_heading_color": "#000000",
-        "mobile_description_color": "#000000",
-        "mobile_content_bg": "#ffffff",
-        "btn1_text": "",
-        "btn1_link": "",
-        "btn2_text": "",
-        "btn2_link": ""
       }
     },
     "sonu_product2_pLxTFq": {
@@ -1168,9 +1167,9 @@
     "sonu_benefits_hX6Enc",
     "custom_heading_KJwfea",
     "sonu_testimonial_fUb3n6",
+    "sonu_banner_sh_w7pmeq",
     "sonu_v2_testi_4a99Rw",
     "sonu_flex_banner_N66fYQ",
-    "sonu_banner_L8CRE4",
     "sonu_product2_pLxTFq",
     "sonu_faq_e7WdnB",
     "custom_specification_sh_xAqyyt",
