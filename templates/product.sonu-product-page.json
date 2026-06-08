@@ -407,7 +407,7 @@
         "padding_bottom_mobile": 60,
         "mobile_side_padding": 24,
         "mobile_slide_width": 85,
-        "mobile_image_aspect_ratio": "4/5",
+        "mobile_image_aspect_ratio": "5/4",
         "progressbar_height": 2,
         "nav_btn_size": 44
       }
