@@ -56,7 +56,7 @@
 
           {% if section.settings.description != blank %}
             <div class="ste-body-description" style="color: {{ section.settings.description_color | default: text_color }};">
-              {{ section.settings.description }}
+              {{ section.settings.description | replace: '[[', highlight_span | replace: ']]', '</span>' }}
             </div>
           {% endif %}
         </div>
@@ -79,16 +79,20 @@
               <div class="ste-metric-card-header">
                 <div class="ste-metric-num-display" style="color: {{ block.settings.number_color | default: text_color }};">
                   {% if block_prefix != blank %}
-                    <span class="ste-metric-prefix" style="color: {{ block.settings.number_color | default: text_color }};">{{ block_prefix }}</span>
+                    <span class="ste-metric-prefix" style="color: {{ block.settings.number_color | default: text_color }};">
+                      {{ block_prefix | replace: '[[', highlight_span | replace: ']]', '</span>' }}
+                    </span>
                   {% endif %}
 
                   {%- liquid
-                    assign number_clean = stat_num | replace: 'x', '' | replace: 'X', '' | replace: '%', '' | replace: 'k+', '' | replace: 'K+', '' | replace: '+', ''
+                    assign number_clean = stat_num | replace: '[[', '' | replace: ']]', '' | replace: 'x', '' | replace: 'X', '' | replace: '%', '' | replace: 'k+', '' | replace: 'K+', '' | replace: '+', ''
                   -%}
                   <span class="ste-metric-counter" data-target="{{ number_clean }}" style="color: {{ block.settings.number_color | default: text_color }};">0</span>
 
                   {% if block_postfix != blank %}
-                    <span class="ste-metric-postfix" style="color: {{ block.settings.number_color | default: text_color }};">{{ block_postfix }}</span>
+                    <span class="ste-metric-postfix" style="color: {{ block.settings.number_color | default: text_color }};">
+                      {{ block_postfix | replace: '[[', highlight_span | replace: ']]', '</span>' }}
+                    </span>
                   {% else %}
                     {% if stat_num contains 'x' or stat_num contains 'X' %}
                       <span class="ste-metric-postfix" style="color: {{ block.settings.number_color | default: text_color }};">X</span>
@@ -101,15 +105,15 @@
                 </div>
 
                 {% if stat_lab != blank %}
-                  <h3 class="ste-metric-label" style="color: {{ block.settings.label_color | default: text_color }};">
-                    {{ stat_lab }}
-                  </h3>
+                  <{{ section.settings.block_heading_tag | default: 'h3' }} class="ste-metric-label" style="color: {{ block.settings.label_color | default: text_color }};">
+                    {{ stat_lab | replace: '[[', highlight_span | replace: ']]', '</span>' }}
+                  </{{ section.settings.block_heading_tag | default: 'h3' }}>
                 {% endif %}
               </div>
 
               {% if stat_desc != blank %}
                 <div class="ste-metric-caption" style="color: {{ block.settings.caption_color | default: text_color }};">
-                  {{ stat_desc }}
+                  {{ stat_desc | replace: '[[', highlight_span | replace: ']]', '</span>' }}
                 </div>
               {% endif %}
 
@@ -125,6 +129,18 @@
   <div class="ste-mobile-only" style="width: 100%;">
     <div class="custom-stats-container">
 
+      <!-- Top Heading -->
+      {% if section.settings.heading != blank %}
+        {% capture highlight_span %}<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color | default: text_color }};">{% endcapture %}
+        {% assign ste_formatted_heading_mobile = section.settings.heading
+          | replace: '[[', highlight_span
+          | replace: ']]', '</span>'
+          | newline_to_br
+        %}
+        <{{ section.settings.heading_tag | default: 'h2' }} class="ste-mobile-heading" style="color: {{ section.settings.heading_color | default: text_color }};">
+          {{ ste_formatted_heading_mobile }}
+        </{{ section.settings.heading_tag | default: 'h2' }}>
+      {% endif %}
 
       <!-- Top Image -->
       {%- assign mobile_img = section.settings.mobile_image | default: section.settings.desktop_image -%}
@@ -143,6 +159,11 @@
             assign stat_desc = block.settings.description | default: block.settings.text
             assign block_prefix = block.settings.prefix
             assign block_postfix = block.settings.postfix
+
+            {% capture highlight_span %}<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color | default: text_color }};">{% endcapture %}
+            assign formatted_num = stat_num | replace: '[[', highlight_span | replace: ']]', '</span>'
+            assign formatted_prefix = block_prefix | replace: '[[', highlight_span | replace: ']]', '</span>'
+            assign formatted_postfix = block_postfix | replace: '[[', highlight_span | replace: ']]', '</span>'
           -%}
           
           {% if forloop.first == false %}
@@ -151,18 +172,18 @@
           
           <div class="ste-mobile-stat-item" {{ block.shopify_attributes }}>
             <div class="ste-mobile-stat-number" style="color: {{ block.settings.number_color | default: text_color }};">
-              {% if block_prefix != blank %}{{ block_prefix }}{% endif %}{{ stat_num }}{% if block_postfix != blank %}{{ block_postfix }}{% endif %}
+              {% if block_prefix != blank %}{{ formatted_prefix }}{% endif %}{{ formatted_num }}{% if block_postfix != blank %}{{ formatted_postfix }}{% endif %}
             </div>
             
             {% if stat_lab != blank %}
-              <div class="ste-mobile-stat-label" style="color: {{ block.settings.label_color | default: text_color }};">
-                {{ stat_lab }}
-              </div>
+              <{{ section.settings.block_heading_tag | default: 'div' }} class="ste-mobile-stat-label" style="color: {{ block.settings.label_color | default: text_color }};">
+                {{ stat_lab | replace: '[[', highlight_span | replace: ']]', '</span>' }}
+              </{{ section.settings.block_heading_tag | default: 'div' }}>
             {% endif %}
             
             {% if stat_desc != blank %}
               <div class="ste-mobile-stat-desc" style="color: {{ block.settings.caption_color | default: '#666' }};">
-                {{ stat_desc }}
+                {{ stat_desc | replace: '[[', highlight_span | replace: ']]', '</span>' }}
               </div>
             {% endif %}
           </div>
@@ -170,8 +191,9 @@
       </div>
 
       {% if section.settings.show_description_mobile and section.settings.description != blank %}
+        {% capture highlight_span %}<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color | default: text_color }};">{% endcapture %}
         <div class="ste-mobile-description ste-body-description" style="color: {{ section.settings.description_color | default: text_color }};">
-          {{ section.settings.description }}
+          {{ section.settings.description | replace: '[[', highlight_span | replace: ']]', '</span>' }}
         </div>
       {% endif %}
 
@@ -496,6 +518,17 @@
     width: 100%;
   }
 
+  .ste-mobile-heading {
+    font-family: 'Instrument Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.15;
+    margin: 0 0 24px 0;
+    letter-spacing: -1px;
+    text-align: center;
+  }
+
   .ste-mobile-description {
     margin-top: 40px;
     text-align: left;
@@ -586,6 +619,19 @@
       "id": "show_description_mobile",
       "label": "Show Description on Mobile",
       "default": true
+    },
+    {
+      "type": "select",
+      "id": "block_heading_tag",
+      "label": "Block Heading Tag (Stats)",
+      "options": [
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "div", "label": "Div" }
+      ],
+      "default": "h3"
     },
     {
       "type": "header",
