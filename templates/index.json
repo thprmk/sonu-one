@@ -665,6 +665,14 @@
             "role": "M.S., CCC-SLPSleep Language Pathologist, Menlo Park, California",
             "desc": "As an airway-centric dentist, I work closely with patients"
           }
+        },
+        "doctor_meKrNt": {
+          "type": "doctor",
+          "settings": {
+            "name": "",
+            "role": "",
+            "desc": ""
+          }
         }
       },
       "block_order": [
@@ -672,7 +680,8 @@
         "doctor_pJdVxJ",
         "doctor_ijwkWt",
         "doctor_9p76N7",
-        "doctor_kydX3J"
+        "doctor_kydX3J",
+        "doctor_meKrNt"
       ],
       "name": "sonu Team Section",
       "settings": {
