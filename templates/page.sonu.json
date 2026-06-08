@@ -550,7 +550,7 @@
         "heading": "What Better Breathing Feels Like",
         "font_family": "var(--font-body--family)",
         "font_size": 42,
-        "font_size_mobile": 33,
+        "font_size_mobile": 31,
         "font_weight": "400",
         "text_color": "#3d1b03",
         "text_align": "center",
@@ -675,7 +675,7 @@
         "heading": "What Better Breathing Feels Like",
         "font_family": "var(--font-body--family)",
         "font_size": 42,
-        "font_size_mobile": 33,
+        "font_size_mobile": 31,
         "font_weight": "400",
         "text_color": "#3d1b03",
         "text_align": "center",
@@ -728,7 +728,11 @@
       "settings": {
         "bg_color": "#ffffff",
         "video_bg_color": "#ffffff",
-        "content_bg_color": "#ffffff"
+        "content_bg_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0
       }
     },
     "sonu_banner_sh_w7pmeq": {
@@ -853,7 +857,11 @@
         "button_1_text": "Explore SONU",
         "button_1_link": "",
         "button_2_text": "Explore Spatial Sleep",
-        "button_2_link": ""
+        "button_2_link": "",
+        "padding_top": 125,
+        "padding_bottom": 125,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24
       }
     },
     "sonu_product2_pLxTFq": {
@@ -1184,6 +1192,12 @@
       ],
       "name": "Press Feature",
       "settings": {
+        "margin_bottom_negative": 40,
+        "margin_bottom_negative_mobile": 35,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 80,
+        "mobile_padding_bottom": 80,
         "bg_image": "shopify://shop_images/Rectangle_34_1_c5976d67-0b8f-46f4-849c-6fe2cf6b1c30.png",
         "feature_image": "shopify://shop_images/Rectangle_35_1.png",
         "badge": "Featured Article",
