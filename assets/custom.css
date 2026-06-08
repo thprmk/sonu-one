@@ -867,6 +867,12 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
+  .custom-comp-info-col {
+    order: 2;
+  }
+  .custom-comp-table-area {
+    order: 1;
+  }
 }
 
 /* Info column (left) */
