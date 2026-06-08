@@ -49,11 +49,13 @@
             <p>{{ block.settings.role }}</p>
           </div>
 
-          <div class="card-arrow">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 5L15 11L9 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
+          {% if section.settings.show_card_arrow %}
+            <div class="card-arrow">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 5L15 11L9 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          {% endif %}
         </div>
 
         <!-- INDENTED DESCRIPTION -->
@@ -226,6 +228,12 @@
       "default": 60,
       "unit": "px",
       "label": "Padding Bottom (Mobile)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_arrow",
+      "label": "Show Card Arrow",
+      "default": false
     }
   ],
   "blocks": [
