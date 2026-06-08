@@ -419,7 +419,6 @@
       "name": "Logo Carousel",
       "settings": {
         "bg_image": "shopify://shop_images/bg_2_2.png",
-        "bg_color": "#ffffff",
         "heading": "",
         "heading_tag": "h2",
         "description": "",
@@ -554,7 +553,6 @@
       ],
       "name": "Logo Carousel",
       "settings": {
-        "bg_color": "#f5f6fb",
         "heading": "As Featured In",
         "heading_tag": "h2",
         "description": "",
