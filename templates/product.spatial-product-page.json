@@ -779,7 +779,7 @@
         "mobile_bg_image": "shopify://shop_images/section-5-mobile_1_1.png",
         "bg_color": "#3a190a",
         "bg_gradient": "",
-        "overlay_opacity": 20,
+        "overlay_opacity": 0,
         "text_color": "#ffffff",
         "enable_bottom_radius_desktop": true,
         "bottom_radius_desktop": 100,
