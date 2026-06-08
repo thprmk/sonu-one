@@ -385,7 +385,22 @@
             "subheading": "OUR FAVORITE PRODUCTS",
             "quote": "As an airway patient I am always looking for ways to improve my nasal breathing.",
             "heading_tag": "p",
-            "quote_font_size": 18,
+            "quote_font_size": 16,
+            "quote_font_size_desktop": 36,
+            "author_name": "Zach",
+            "author_bio": "College counselor",
+            "show_stars": true
+          }
+        },
+        "testimonial_jpgFD3": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
+            "video_url": "",
+            "subheading": "OUR FAVORITE PRODUCTS",
+            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing.",
+            "heading_tag": "p",
+            "quote_font_size": 16,
             "quote_font_size_desktop": 36,
             "author_name": "Zach",
             "author_bio": "College counselor",
@@ -394,7 +409,8 @@
         }
       },
       "block_order": [
-        "testimonial_xMBAft"
+        "testimonial_xMBAft",
+        "testimonial_jpgFD3"
       ],
       "name": "Contained Video Slider",
       "settings": {
