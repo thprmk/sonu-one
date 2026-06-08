@@ -816,6 +816,8 @@
         "heading_tag": "h2",
         "section_bg_color": "",
         "section_bg_gradient": "",
+        "section_bg_image": "shopify://shop_images/bg_2_57fd96c2-cb15-4725-a6cb-1e5573407321.png",
+        "section_bg_image_mobile": "shopify://shop_images/bg_2_57fd96c2-cb15-4725-a6cb-1e5573407321.png",
         "heading_color": "#001755",
         "card_bg_color": "rgba(0,0,0,0)",
         "card_border_color": "#b8b7ff",
