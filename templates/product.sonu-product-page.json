@@ -397,7 +397,7 @@
         "button_text": "Watch the Acoustic Resonance Therapy Film",
         "button_link": "",
         "bg_color": "#f4efea",
-        "bg_gradient": "",
+        "bg_gradient": "linear-gradient(180deg, rgba(244, 239, 234, 1) 3%, rgba(255, 255, 255, 1) 92%)",
         "text_color": "#3d1b03",
         "enable_bottom_radius": true,
         "bottom_radius": 100,
