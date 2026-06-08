@@ -2301,7 +2301,7 @@ margin-top:10px!important;
   overflow: hidden;
   z-index: 1;
   /* Retain the rounded corners */
-  border-radius: 0 0 40px 40px !important;
+  border-radius: 0 !important;
 }
 
 /* BACKGROUND */
@@ -2933,15 +2933,15 @@ margin-top:10px!important;
   .press-feature,
   .press-bg,
   .press-bg img {
-    border-radius: 0 0 30px 30px;
+    border-radius: 0;
   }
 }
 
 @media (max-width: 768px) {
 
   .press-feature {
-    border-radius: 0 0 35px 35px !important;
-    margin-bottom: 0 !important; 
+    border-radius: 0 !important;
+    margin-bottom: -35px !important; 
     position: relative;
     z-index: 20!important;
   }
@@ -2988,8 +2988,8 @@ margin-top:10px!important;
 
 @media (max-width: 768px) {
   .press-feature {
-    border-radius: 0 0 35px 35px !important;
-    margin-bottom: 0 !important; 
+    border-radius: 0 !important;
+    margin-bottom: -35px !important; 
     position: relative;
     z-index: 20 !important;
     padding-left: 0 !important;
@@ -4986,8 +4986,8 @@ h4.sonu-section-heading {
     margin-top: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    margin-bottom: 0 !important;
-    border-radius: 0 0 40px 40px !important;
+    margin-bottom: -40px !important;
+    border-radius: 0 !important;
     padding: 80px 0 !important;
   }
   

@@ -2,16 +2,18 @@
 
 <style>
   #sonu-press-{{ section.id }} {
-    border-radius: 0 0 {{ section.settings.border_radius_bottom | default: 40 }}px {{ section.settings.border_radius_bottom | default: 40 }}px !important;
     margin-bottom: -{{ section.settings.margin_bottom_negative | default: 40 }}px !important;
     position: relative;
     z-index: 2 !important;
+    padding-top: {{ section.settings.padding_top | default: 80 }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom | default: 80 }}px !important;
   }
 
   @media screen and (max-width: 768px) {
     #sonu-press-{{ section.id }} {
-      border-radius: 0 0 {{ section.settings.border_radius_bottom_mobile | default: 35 }}px {{ section.settings.border_radius_bottom_mobile | default: 35 }}px !important;
       margin-bottom: -{{ section.settings.margin_bottom_negative_mobile | default: 35 }}px !important;
+      padding-top: {{ section.settings.mobile_padding_top | default: 80 }}px !important;
+      padding-bottom: {{ section.settings.mobile_padding_bottom | default: 80 }}px !important;
     }
   }
 </style>
@@ -258,26 +260,6 @@
     },
     {
       "type": "range",
-      "id": "border_radius_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "default": 40,
-      "unit": "px",
-      "label": "Bottom Border Radius (Desktop)"
-    },
-    {
-      "type": "range",
-      "id": "border_radius_bottom_mobile",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "default": 35,
-      "unit": "px",
-      "label": "Bottom Border Radius (Mobile)"
-    },
-    {
-      "type": "range",
       "id": "margin_bottom_negative",
       "min": 0,
       "max": 150,
@@ -295,6 +277,50 @@
       "default": 35,
       "unit": "px",
       "label": "Negative Margin Bottom (Mobile)"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Top (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Top (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)"
     },
     {
       "type": "image_picker",

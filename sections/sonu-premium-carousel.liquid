@@ -1,4 +1,16 @@
 {{ 'sonu-custom.css' | asset_url | stylesheet_tag }}
+<style>
+  #premium-carousel-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | default: 80 }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom | default: 80 }}px !important;
+  }
+  @media screen and (max-width: 768px) {
+    #premium-carousel-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top | default: 60 }}px !important;
+      padding-bottom: {{ section.settings.mobile_padding_bottom | default: 60 }}px !important;
+    }
+  }
+</style>
 <section class="science-bg-area">
 
 <section
@@ -153,6 +165,50 @@
         { "value": "right",  "label": "Right"  }
       ],
       "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Top (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Padding Top (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)"
     }
   ],
   "blocks": [

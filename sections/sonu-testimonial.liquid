@@ -7,19 +7,22 @@
       background-position: center;
       background-repeat: no-repeat;
     {%- endif -%}
-    padding: 0;
     margin: 0;
     display: none; /* Hidden on desktop by default */
     flex-direction: column;
     width: 100%;
     overflow: hidden;
     position: relative;
+    padding-top: {{ section.settings.padding_top | default: 0 }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom | default: 0 }}px !important;
   }
 
   /* Display only on mobile screens (768px wide and below) */
   @media screen and (max-width: 768px) {
     .split-video-testimonial-{{ section.id }} {
       display: flex;
+      padding-top: {{ section.settings.mobile_padding_top | default: 0 }}px !important;
+      padding-bottom: {{ section.settings.mobile_padding_bottom | default: 0 }}px !important;
     }
   }
 
@@ -445,6 +448,50 @@
     "id": "content_bg_color",
     "label": "Content Area Background",
     "default": "#E2F0EC"
+  },
+  {
+    "type": "header",
+    "content": "Section Padding"
+  },
+  {
+    "type": "range",
+    "id": "padding_top",
+    "min": 0,
+    "max": 160,
+    "step": 4,
+    "default": 0,
+    "unit": "px",
+    "label": "Padding Top (Desktop)"
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom",
+    "min": 0,
+    "max": 160,
+    "step": 4,
+    "default": 0,
+    "unit": "px",
+    "label": "Padding Bottom (Desktop)"
+  },
+  {
+    "type": "range",
+    "id": "mobile_padding_top",
+    "min": 0,
+    "max": 120,
+    "step": 2,
+    "default": 0,
+    "unit": "px",
+    "label": "Padding Top (Mobile)"
+  },
+  {
+    "type": "range",
+    "id": "mobile_padding_bottom",
+    "min": 0,
+    "max": 120,
+    "step": 2,
+    "default": 0,
+    "unit": "px",
+    "label": "Padding Bottom (Mobile)"
   }
 ],
   "blocks": [

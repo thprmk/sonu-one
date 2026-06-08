@@ -1,3 +1,15 @@
+<style>
+  #sonu-sound-banner-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | default: 125 }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom | default: 125 }}px !important;
+  }
+  @media screen and (max-width: 768px) {
+    #sonu-sound-banner-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top | default: 24 }}px !important;
+      padding-bottom: {{ section.settings.mobile_padding_bottom | default: 24 }}px !important;
+    }
+  }
+</style>
 <section id="sonu-sound-banner-{{ section.id }}" class="sonu-sound-banner" style="
   --heading-color: {{ section.settings.heading_color | default: '#001755' }};
   --btn-bg: {{ section.settings.btn_bg_color | default: '#ffffff' }};
@@ -136,6 +148,50 @@
       "type": "url",
       "id": "button_2_link",
       "label": "Button 2 Link"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 125,
+      "unit": "px",
+      "label": "Padding Top (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 125,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 24,
+      "unit": "px",
+      "label": "Padding Top (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 24,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)"
     }
   ],
   "presets": [
