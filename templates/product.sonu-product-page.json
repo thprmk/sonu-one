@@ -119,13 +119,37 @@
             "row_8_val": "text",
             "row_8_text": ""
           }
+        },
+        "column_paNeLJ": {
+          "type": "column",
+          "settings": {
+            "title": "SONU Band",
+            "highlight": false,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "check",
+            "row_3_text": "",
+            "row_4_val": "check",
+            "row_4_text": "",
+            "row_5_val": "text",
+            "row_5_text": "",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
         }
       },
       "block_order": [
         "column_sonu",
         "column_steroids1",
         "column_steroids2",
-        "column_steroids3"
+        "column_steroids3",
+        "column_paNeLJ"
       ],
       "settings": {
         "heading": "Backed by Science. Trusted by Doctors.",
@@ -147,55 +171,53 @@
         "label_8": ""
       }
     },
-    "logo_list": {
-      "type": "sonu-logo-list-sh",
+    "sonu_logo_list_MnBwb4": {
+      "type": "sonu-logo-list",
       "blocks": {
-        "logo_hkkeD9": {
+        "logo_jna7NT": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/logo_ucsf-health-color.avif"
           }
         },
-        "logo_mNXXyK": {
+        "logo_mHgf99": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/logo_stanford-medicine-color.avif"
+            "logo": "shopify://shop_images/image_16.png"
           }
         },
-        "logo_QMhL6C": {
+        "logo_pfwVTm": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/logo_cedars-sinai.avif"
           }
         },
-        "logo_K338NR": {
+        "logo_fTkCd8": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/logo_columbia-university-medical-center-color.avif"
           }
         },
-        "logo_x3FJ9k": {
+        "logo_WqTUt6": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/logo_harvard-medical-school-color.avif"
+            "logo": "shopify://shop_images/image_13.png"
           }
         }
       },
       "block_order": [
-        "logo_hkkeD9",
-        "logo_mNXXyK",
-        "logo_QMhL6C",
-        "logo_K338NR",
-        "logo_x3FJ9k"
+        "logo_jna7NT",
+        "logo_mHgf99",
+        "logo_pfwVTm",
+        "logo_fTkCd8",
+        "logo_WqTUt6"
       ],
       "name": "Logo Carousel",
       "settings": {
-        "bg_gradient": "",
-        "bg_color": "rgba(0,0,0,0)",
-        "padding_top": 20,
-        "padding_bottom": 40,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0,
+        "bg_color_desktop": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
+        "bg_color_desktop_solid": "#f9f6f0",
+        "bg_color_mobile": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
+        "bg_color_mobile_solid": "transparent",
         "heading": "",
         "heading_tag": "h2",
         "description": "",
@@ -312,35 +334,21 @@
         "section_bg_color": "#f4efea",
         "section_bg_gradient": "",
         "heading_color": "#001755",
-        "heading_font_size": 56,
-        "heading_line_height": 68,
-        "heading_font_weight": "500",
         "card_bg_color": "#f4efea",
         "card_border_color": "#001755",
         "card_border_width": 1,
         "card_border_radius": 16,
         "card_padding": 32,
         "desktop_review_text_color": "#1e2a3e",
-        "desktop_review_font_size": 16,
-        "desktop_review_line_height": 26,
-        "desktop_review_font_weight": "400",
         "desktop_author_name_color": "#001755",
-        "desktop_author_name_size": 24,
-        "desktop_author_name_weight": "700",
         "desktop_author_role_color": "#5a6874",
-        "desktop_author_role_size": 13,
-        "desktop_author_role_weight": "400",
         "mobile_card_bg_color": "rgba(0,0,0,0)",
         "mobile_card_border_color": "#b8b7ff",
         "mobile_card_border_radius": 25,
         "mobile_card_padding": 24,
         "mobile_review_text_color": "#000000",
-        "mobile_review_font_size": 14,
-        "mobile_review_line_height": 22,
         "mobile_author_name_color": "#3d1b03",
-        "mobile_author_name_size": 24,
         "mobile_author_role_color": "#5a6874",
-        "mobile_author_role_size": 13,
         "star_color": "#ffcd0f",
         "nav_arrow_color": "#1f428a",
         "nav_border_color": "#001755",
@@ -372,11 +380,8 @@
         "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>",
         "heading_tag": "h2",
         "heading_color": "#ffffff",
-        "heading_font_size": 48,
-        "heading_line_height": 58,
-        "heading_font_weight": "400",
         "desktop_heading_margin_bottom": 54,
-        "mobile_heading_margin_bottom": 24,
+        "mobile_heading_margin_bottom": 28,
         "description": "",
         "button_text": "Watch the Acoustic Resonance Therapy Film",
         "button_link": "",
@@ -385,14 +390,10 @@
         "text_color": "#3d1b03",
         "enable_bottom_radius": true,
         "bottom_radius": 100,
-        "padding_top": 80,
-        "padding_bottom": 80,
+        "padding_top": 0,
+        "padding_bottom": 16,
         "padding_top_mobile": 60,
         "padding_bottom_mobile": 60,
-        "mobile_heading_font_size": 32,
-        "mobile_heading_line_height": 38,
-        "heading_letter_spacing": 0,
-        "mobile_heading_letter_spacing": 0,
         "mobile_side_padding": 24,
         "mobile_slide_width": 85,
         "mobile_image_aspect_ratio": "4/5",
@@ -461,7 +462,7 @@
         "gradient_color": "#ffffff",
         "gradient_stop": 0,
         "gradient_fade_end": 50,
-        "bg_color": "#e5deff",
+        "bg_color": "#f9f6f0",
         "bg_gradient": "",
         "text_color": "#3d1b03",
         "desktop_image": "shopify://shop_images/section-12_1_1.png",
@@ -661,7 +662,7 @@
   "order": [
     "main",
     "comparison",
-    "logo_list",
+    "sonu_logo_list_MnBwb4",
     "doctors_testimonials",
     "patient_testimonials",
     "step_slider",
