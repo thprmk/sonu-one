@@ -1,6 +1,8 @@
 {%- liquid
   assign bg_color = section.settings.bg_color
   assign text_color = section.settings.text_color
+  assign highlight_color = section.settings.highlight_color | default: text_color
+  assign highlight_span = '<span class="ste-serif-highlight" style="color: ' | append: highlight_color | append: ';">'
 -%}
 
 <div id="shopify-section-{{ section.id }}" class="custom-stats-wrapper ste-section-wrapper {% if section.settings.hide_mobile %}ste-hide-mobile{% endif %}" style="
@@ -43,7 +45,6 @@
         <!-- Column 1: Editorial Content -->
         <div class="ste-main-editorial-content ste-animate-blur ste-delay-4">
           {% if section.settings.heading != blank %}
-            {% capture highlight_span %}<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color | default: text_color }};">{% endcapture %}
             {% assign ste_formatted_heading = section.settings.heading
               | replace: '[[', highlight_span
               | replace: ']]', '</span>'
@@ -131,7 +132,6 @@
 
       <!-- Top Heading -->
       {% if section.settings.heading != blank %}
-        {% capture highlight_span %}<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color | default: text_color }};">{% endcapture %}
         {% assign ste_formatted_heading_mobile = section.settings.heading
           | replace: '[[', highlight_span
           | replace: ']]', '</span>'
@@ -160,7 +160,6 @@
             assign block_prefix = block.settings.prefix
             assign block_postfix = block.settings.postfix
 
-            {% capture highlight_span %}<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color | default: text_color }};">{% endcapture %}
             assign formatted_num = stat_num | replace: '[[', highlight_span | replace: ']]', '</span>'
             assign formatted_prefix = block_prefix | replace: '[[', highlight_span | replace: ']]', '</span>'
             assign formatted_postfix = block_postfix | replace: '[[', highlight_span | replace: ']]', '</span>'
@@ -191,7 +190,6 @@
       </div>
 
       {% if section.settings.show_description_mobile and section.settings.description != blank %}
-        {% capture highlight_span %}<span class="ste-serif-highlight" style="color: {{ section.settings.highlight_color | default: text_color }};">{% endcapture %}
         <div class="ste-mobile-description ste-body-description" style="color: {{ section.settings.description_color | default: text_color }};">
           {{ section.settings.description | replace: '[[', highlight_span | replace: ']]', '</span>' }}
         </div>
