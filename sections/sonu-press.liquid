@@ -4,7 +4,7 @@
   #sonu-press-{{ section.id }} {
     margin-bottom: -{{ section.settings.margin_bottom_negative | default: 40 }}px !important;
     position: relative;
-    z-index: 2 !important;
+    z-index: 1000 !important;
     padding-top: {{ section.settings.padding_top | default: 80 }}px !important;
     padding-bottom: {{ section.settings.padding_bottom | default: 80 }}px !important;
   }
@@ -14,6 +14,7 @@
       margin-bottom: -{{ section.settings.margin_bottom_negative_mobile | default: 35 }}px !important;
       padding-top: {{ section.settings.mobile_padding_top | default: 80 }}px !important;
       padding-bottom: {{ section.settings.mobile_padding_bottom | default: 80 }}px !important;
+      z-index: 1000 !important;
     }
   }
 </style>

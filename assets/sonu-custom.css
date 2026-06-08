@@ -2943,7 +2943,7 @@ margin-top:10px!important;
     border-radius: 0 !important;
     margin-bottom: -35px !important; 
     position: relative;
-    z-index: 20!important;
+    z-index: 1000!important;
   }
 
 }
@@ -2980,8 +2980,7 @@ margin-top:10px!important;
   }
 
   .mobile-press-slider .press-item {
-    height: auto !important;
-    align-self: flex-start !important;
+    height: 208px !important;
   }
 
 }
@@ -2991,7 +2990,7 @@ margin-top:10px!important;
     border-radius: 0 !important;
     margin-bottom: -35px !important; 
     position: relative;
-    z-index: 20 !important;
+    z-index: 1000 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
