@@ -12,7 +12,7 @@
     "main": {
       "type": "custom-featured-product-sh",
       "settings": {
-        "product": "",
+        "product": "sonu-band",
         "reviews_text": "66 reviews",
         "description": "",
         "card_bg_color": "#f0e7f7",
