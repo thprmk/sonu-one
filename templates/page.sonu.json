@@ -199,6 +199,29 @@
             "row_8_text": ""
           }
         },
+        "column_G6AKeq": {
+          "type": "column",
+          "settings": {
+            "title": "SONU Band",
+            "highlight": true,
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "check",
+            "row_3_text": "",
+            "row_4_val": "check",
+            "row_4_text": "",
+            "row_5_val": "check",
+            "row_5_text": "",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
         "column_steroids_1": {
           "type": "column",
           "settings": {
@@ -271,6 +294,7 @@
       },
       "block_order": [
         "column_sonu",
+        "column_G6AKeq",
         "column_steroids_1",
         "column_steroids_2",
         "column_steroids_3"
