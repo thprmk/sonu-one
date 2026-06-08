@@ -419,6 +419,8 @@
       "name": "Logo Carousel",
       "settings": {
         "bg_image": "shopify://shop_images/bg_2_2.png",
+        "bg_color_desktop": "linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)",
+        "bg_color_mobile": "linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)",
         "heading": "",
         "heading_tag": "h2",
         "description": "",
@@ -551,8 +553,13 @@
         "logo_VdCUPw",
         "logo_zXB6kY"
       ],
+      "custom_css": [
+        "/* .split-content {background: linear-gradient(to bottom, #eff1ff 10%, #daf2ff 90%);}@media (max-width: 768px) {.split-left, .description {text-align: center; } .features {justify-content: space-evenly; }} */"
+      ],
       "name": "Logo Carousel",
       "settings": {
+        "bg_color_desktop": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
+        "bg_color_mobile": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
         "heading": "As Featured In",
         "heading_tag": "h2",
         "description": "",
@@ -600,10 +607,7 @@
         "feature_9VKqtL",
         "feature_TjqdpM"
       ],
-      "custom_css": [
-        ".split-content {background: linear-gradient(to bottom, #eff1ff 10%, #daf2ff 90%);}",
-        "@media (max-width: 768px) {.split-left, .description {text-align: center; } .features {justify-content: space-evenly; }}"
-      ],
+      "custom_css": [],
       "name": "Split Content",
       "settings": {
         "small_heading": "Why Sound?",
@@ -768,21 +772,30 @@
         "heading": "Real Patients, Real Results",
         "heading_tag": "h2",
         "section_bg_color": "",
+        "section_bg_gradient": "",
         "heading_color": "#001755",
         "heading_font_size": 56,
         "heading_line_height": 68,
         "heading_font_weight": "500",
         "card_bg_color": "rgba(0,0,0,0)",
         "card_border_color": "#b8b7ff",
+        "card_border_width": 1,
+        "card_border_radius": 16,
+        "card_padding": 32,
         "desktop_review_text_color": "#1e2a3e",
         "desktop_review_font_size": 16,
         "desktop_review_line_height": 26,
+        "desktop_review_font_weight": "400",
         "desktop_author_name_color": "#001755",
         "desktop_author_name_size": 24,
+        "desktop_author_name_weight": "700",
         "desktop_author_role_color": "#5a6874",
         "desktop_author_role_size": 13,
+        "desktop_author_role_weight": "400",
         "mobile_card_bg_color": "rgba(0,0,0,0)",
         "mobile_card_border_color": "#b8b7ff",
+        "mobile_card_border_radius": 25,
+        "mobile_card_padding": 24,
         "mobile_review_text_color": "#000000",
         "mobile_review_font_size": 14,
         "mobile_review_line_height": 22,
@@ -793,7 +806,13 @@
         "star_color": "#ffcd0f",
         "nav_arrow_color": "#1f428a",
         "nav_border_color": "#001755",
-        "container_width": "contained"
+        "container_width": "contained",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 20,
+        "desktop_heading_margin_bottom": 70,
+        "mobile_heading_margin_bottom": 16
       }
     },
     "progress_timeline_xkkpwF": {
