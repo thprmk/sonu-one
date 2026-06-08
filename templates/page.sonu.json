@@ -176,34 +176,14 @@
     "comparison_table_A6aREE": {
       "type": "custom-comparison-sh",
       "blocks": {
-        "column_sonu": {
-          "type": "column",
-          "settings": {
-            "title": "SONU Band",
-            "highlight": true,
-            "row_1_val": "check",
-            "row_1_text": "",
-            "row_2_val": "check",
-            "row_2_text": "",
-            "row_3_val": "check",
-            "row_3_text": "",
-            "row_4_val": "check",
-            "row_4_text": "",
-            "row_5_val": "check",
-            "row_5_text": "",
-            "row_6_val": "text",
-            "row_6_text": "",
-            "row_7_val": "text",
-            "row_7_text": "",
-            "row_8_val": "text",
-            "row_8_text": ""
-          }
-        },
         "column_G6AKeq": {
           "type": "column",
           "settings": {
             "title": "SONU Band",
             "highlight": true,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -227,6 +207,35 @@
           "settings": {
             "title": "Intranasal Steroids",
             "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "cross",
+            "row_3_text": "",
+            "row_4_val": "cross",
+            "row_4_text": "",
+            "row_5_val": "cross",
+            "row_5_text": "",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_KF3gjD": {
+          "type": "column",
+          "settings": {
+            "title": "Intranasal Steroids",
+            "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -250,6 +259,9 @@
           "settings": {
             "title": "Intranasal Steroids",
             "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -273,6 +285,9 @@
           "settings": {
             "title": "Intranasal Steroids",
             "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -293,15 +308,16 @@
         }
       },
       "block_order": [
-        "column_sonu",
         "column_G6AKeq",
         "column_steroids_1",
+        "column_KF3gjD",
         "column_steroids_2",
         "column_steroids_3"
       ],
       "settings": {
         "heading": "Backed by Science. Trusted by Doctors.",
         "heading_tag": "h2",
+        "block_heading_tag": "h3",
         "description": "<p>SONU uses acoustic resonance therapy — a clinically proven method that reduces inflammation, improves mucus clearance, and opens nasal airways.</p>",
         "bg_color": "#ffffff",
         "bg_gradient": "",
