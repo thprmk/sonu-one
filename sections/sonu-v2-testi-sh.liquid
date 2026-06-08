@@ -30,21 +30,14 @@
   
   #shopify-section-{{ section.id }} .v2-review-text {
     color: {{ section.settings.desktop_review_text_color }} !important;
-    font-size: {{ section.settings.desktop_review_font_size }}px !important;
-    line-height: {{ section.settings.desktop_review_line_height }}px !important;
-    font-weight: {{ section.settings.desktop_review_font_weight }} !important;
   }
   
   #shopify-section-{{ section.id }} .v2-review-author h4 {
     color: {{ section.settings.desktop_author_name_color }} !important;
-    font-size: {{ section.settings.desktop_author_name_size }}px !important;
-    font-weight: {{ section.settings.desktop_author_name_weight }} !important;
   }
   
   #shopify-section-{{ section.id }} .v2-review-author span {
     color: {{ section.settings.desktop_author_role_color }} !important;
-    font-size: {{ section.settings.desktop_author_role_size }}px !important;
-    font-weight: {{ section.settings.desktop_author_role_weight }} !important;
   }
   
   #shopify-section-{{ section.id }} .v2-desktop-rating-stars-row {
@@ -92,18 +85,14 @@
     
     #shopify-section-{{ section.id }} .v2-mobile-review-quote {
       color: {{ section.settings.mobile_review_text_color }} !important;
-      font-size: {{ section.settings.mobile_review_font_size }}px !important;
-      line-height: {{ section.settings.mobile_review_line_height }}px !important;
     }
     
     #shopify-section-{{ section.id }} .v2-mobile-author-name {
       color: {{ section.settings.mobile_author_name_color }} !important;
-      font-size: {{ section.settings.mobile_author_name_size }}px !important;
     }
     
     #shopify-section-{{ section.id }} .v2-mobile-author-role {
       color: {{ section.settings.mobile_author_role_color }} !important;
-      font-size: {{ section.settings.mobile_author_role_size }}px !important;
     }
     
     #shopify-section-{{ section.id }} .v2-mobile-rating-stars-row {
@@ -114,11 +103,12 @@
 
 <section class="v2-testimonial-video-section {% if section.settings.full_width %}v2-full-width{% else %}v2-contained{% endif %}">
   <div class="v2-page-width">
-    {%- capture heading_style -%}color: {{ section.settings.heading_color }}; font-size: {{ section.settings.heading_font_size }}px; line-height: {{ section.settings.heading_line_height }}px; font-weight: {{ section.settings.heading_font_weight }};{%- endcapture -%}
+    {%- capture heading_style -%}color: {{ section.settings.heading_color }};{%- endcapture -%}
+    {%- assign heading_class_with_tag = 'v2-section-title ' | append: section.settings.heading_tag | default: 'h2' -%}
     {% render 'sonu-section-header',
       heading: section.settings.heading,
       heading_tag: section.settings.heading_tag,
-      heading_class: 'v2-section-title',
+      heading_class: heading_class_with_tag,
       heading_style: heading_style,
       text_align: 'center',
       animate: true
@@ -138,7 +128,7 @@
                       {% assign role_key = 'role_' | append: i %}
                       {% if block.settings[review_key] != blank %}
                         <div class="v2-review-card v2-review-card-{{ i }}">
-                          <div class="v2-review-text">
+                          <div class="v2-review-text rte">
                             {{ block.settings[review_key] }}
                           </div>
                           <div class="v2-review-author">
@@ -228,13 +218,13 @@
 
                   <div class="v2-mobile-content-panel">
                     <div class="v2-mobile-review-card">
-                      <div class="v2-mobile-review-quote">
+                      <div class="v2-mobile-review-quote rte">
                         “{{ block.settings[review_key] | replace: '"', '' | replace: '“', '' | replace: '”', '' }}”
                       </div>
 
-                      <div class="v2-mobile-author-name">
+                      <h4 class="v2-mobile-author-name h4">
                         {{ block.settings[name_key] | escape }}
-                      </div>
+                      </h4>
 
                       <div class="v2-mobile-author-role">
                         {{ block.settings[role_key] | escape }}
@@ -351,40 +341,6 @@
       "default": "#001755"
     },
     {
-      "type": "range",
-      "id": "heading_font_size",
-      "label": "Heading Font Size (px)",
-      "default": 56,
-      "min": 24,
-      "max": 80,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "heading_line_height",
-      "label": "Heading Line Height (px)",
-      "default": 68,
-      "min": 30,
-      "max": 100,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "select",
-      "id": "heading_font_weight",
-      "label": "Heading Font Weight",
-      "options": [
-        { "value": "300", "label": "Light (300)" },
-        { "value": "400", "label": "Regular (400)" },
-        { "value": "500", "label": "Medium (500)" },
-        { "value": "600", "label": "Semi Bold (600)" },
-        { "value": "700", "label": "Bold (700)" },
-        { "value": "800", "label": "Extra Bold (800)" }
-      ],
-      "default": "500"
-    },
-    {
       "type": "header",
       "content": "Desktop Testimonial Card"
     },
@@ -437,95 +393,16 @@
       "default": "#1E2A3E"
     },
     {
-      "type": "range",
-      "id": "desktop_review_font_size",
-      "label": "Review Font Size (px)",
-      "default": 16,
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "desktop_review_line_height",
-      "label": "Review Line Height (px)",
-      "default": 26,
-      "min": 18,
-      "max": 40,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "select",
-      "id": "desktop_review_font_weight",
-      "label": "Review Font Weight",
-      "options": [
-        { "value": "300", "label": "Light (300)" },
-        { "value": "400", "label": "Regular (400)" },
-        { "value": "500", "label": "Medium (500)" },
-        { "value": "600", "label": "Semi Bold (600)" },
-        { "value": "700", "label": "Bold (700)" }
-      ],
-      "default": "400"
-    },
-    {
       "type": "color",
       "id": "desktop_author_name_color",
       "label": "Author Name Color",
       "default": "#001755"
     },
     {
-      "type": "range",
-      "id": "desktop_author_name_size",
-      "label": "Author Name Font Size (px)",
-      "default": 24,
-      "min": 16,
-      "max": 36,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "select",
-      "id": "desktop_author_name_weight",
-      "label": "Author Name Font Weight",
-      "options": [
-        { "value": "300", "label": "Light (300)" },
-        { "value": "400", "label": "Regular (400)" },
-        { "value": "500", "label": "Medium (500)" },
-        { "value": "600", "label": "Semi Bold (600)" },
-        { "value": "700", "label": "Bold (700)" }
-      ],
-      "default": "700"
-    },
-    {
       "type": "color",
       "id": "desktop_author_role_color",
       "label": "Author Role Color",
       "default": "#5A6874"
-    },
-    {
-      "type": "range",
-      "id": "desktop_author_role_size",
-      "label": "Author Role Font Size (px)",
-      "default": 13,
-      "min": 10,
-      "max": 20,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "select",
-      "id": "desktop_author_role_weight",
-      "label": "Author Role Font Weight",
-      "options": [
-        { "value": "300", "label": "Light (300)" },
-        { "value": "400", "label": "Regular (400)" },
-        { "value": "500", "label": "Medium (500)" },
-        { "value": "600", "label": "Semi Bold (600)" },
-        { "value": "700", "label": "Bold (700)" }
-      ],
-      "default": "400"
     },
     {
       "type": "header",
@@ -570,56 +447,16 @@
       "default": "#000000"
     },
     {
-      "type": "range",
-      "id": "mobile_review_font_size",
-      "label": "Mobile Review Font Size (px)",
-      "default": 14,
-      "min": 10,
-      "max": 22,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "mobile_review_line_height",
-      "label": "Mobile Review Line Height (px)",
-      "default": 22,
-      "min": 16,
-      "max": 36,
-      "step": 1,
-      "unit": "px"
-    },
-    {
       "type": "color",
       "id": "mobile_author_name_color",
       "label": "Mobile Author Name Color",
       "default": "#3D1B03"
     },
     {
-      "type": "range",
-      "id": "mobile_author_name_size",
-      "label": "Mobile Author Name Font Size (px)",
-      "default": 24,
-      "min": 16,
-      "max": 32,
-      "step": 1,
-      "unit": "px"
-    },
-    {
       "type": "color",
       "id": "mobile_author_role_color",
       "label": "Mobile Author Role Color",
       "default": "#5A6874"
-    },
-    {
-      "type": "range",
-      "id": "mobile_author_role_size",
-      "label": "Mobile Author Role Font Size (px)",
-      "default": 13,
-      "min": 10,
-      "max": 18,
-      "step": 1,
-      "unit": "px"
     },
     {
       "type": "header",
