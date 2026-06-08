@@ -1,7 +1,12 @@
 <section class="science-bg-area">
 <style>
   #shopify-section-{{ section.id }} .logo-section {
-    background: {{ section.settings.bg_color_desktop | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
+    {% if section.settings.bg_color_desktop_solid != blank and section.settings.bg_color_desktop_solid != 'transparent' %}
+      background-color: {{ section.settings.bg_color_desktop_solid }};
+      background-image: none;
+    {% else %}
+      background: {{ section.settings.bg_color_desktop | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
+    {% endif %}
     {% if section.settings.bg_image != blank %}
       background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
       background-size: cover;
@@ -12,7 +17,12 @@
 
   @media (max-width: 768px) {
     #shopify-section-{{ section.id }} .logo-section {
-      background: {{ section.settings.bg_color_mobile | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
+      {% if section.settings.bg_color_mobile_solid != blank and section.settings.bg_color_mobile_solid != 'transparent' %}
+        background-color: {{ section.settings.bg_color_mobile_solid }};
+        background-image: none;
+      {% else %}
+        background: {{ section.settings.bg_color_mobile | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
+      {% endif %}
       {% if section.settings.bg_image != blank %}
         background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
         background-size: cover;
@@ -90,14 +100,26 @@
     {
       "type": "color_background",
       "id": "bg_color_desktop",
-      "label": "Desktop Background",
+      "label": "Desktop Background (Gradient)",
       "default": "linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_desktop_solid",
+      "label": "Desktop Background (Solid Color)",
+      "default": "transparent"
     },
     {
       "type": "color_background",
       "id": "bg_color_mobile",
-      "label": "Mobile Background",
+      "label": "Mobile Background (Gradient)",
       "default": "linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_mobile_solid",
+      "label": "Mobile Background (Solid Color)",
+      "default": "transparent"
     },
     {
       "type": "text",
