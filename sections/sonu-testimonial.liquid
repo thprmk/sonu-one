@@ -265,9 +265,31 @@
       margin: 0;
     }
   }
+  .split-video-testimonial-{{ section.id }} .testimonial-section-header-wrap {
+    margin: 40px auto 20px auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  @media screen and (max-width: 768px) {
+    .split-video-testimonial-{{ section.id }} .testimonial-section-header-wrap {
+      margin: 30px auto 10px auto;
+      padding: 0 20px;
+    }
+  }
 </style>
 
 <div class="split-video-testimonial-{{ section.id }}" id="TestimonialSection-{{ section.id }}">
+  {%- if section.settings.heading != blank -%}
+    <div class="testimonial-section-header-wrap page-width">
+      {%- assign heading_style = 'color: ' | append: section.settings.heading_color | append: ';' -%}
+      {%- render 'sonu-section-header',
+        heading: section.settings.heading,
+        heading_tag: section.settings.heading_tag,
+        heading_style: heading_style,
+        text_align: 'center'
+      -%}
+    </div>
+  {%- endif -%}
   <div class="testimonial-slider-container">
     <div class="testimonial-slider-track">
       {%- for block in section.blocks -%}
@@ -422,10 +444,37 @@
   "name": "Contained Video Slider",
   "max_blocks": 8,
   "settings": [
-  {
-    "type": "header",
-    "content": "Section Colors & Media"
-  },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Real Patients, Real Results"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "header",
+      "content": "Section Colors & Media"
+    },
   {
     "type": "image_picker",
     "id": "bg_image",
