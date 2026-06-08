@@ -1030,7 +1030,7 @@
         "bg_gradient": "",
         "overlay_opacity": 20,
         "text_color": "#ffffff",
-        "enable_bottom_radius_desktop": true,
+        "enable_bottom_radius_desktop": false,
         "bottom_radius_desktop": 100,
         "enable_bottom_radius_mobile": false,
         "bottom_radius_mobile": 50
