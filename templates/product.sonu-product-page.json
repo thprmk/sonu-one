@@ -33,6 +33,9 @@
           "settings": {
             "title": "SONU Band",
             "highlight": true,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "cross",
@@ -56,6 +59,9 @@
           "settings": {
             "title": "Intranasal Steroids",
             "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -79,6 +85,9 @@
           "settings": {
             "title": "Intranasal Steroids",
             "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -102,6 +111,9 @@
           "settings": {
             "title": "Intranasal Steroids",
             "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -125,6 +137,9 @@
           "settings": {
             "title": "SONU Band",
             "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -154,6 +169,7 @@
       "settings": {
         "heading": "Backed by Science. Trusted by Doctors.",
         "heading_tag": "h2",
+        "block_heading_tag": "h3",
         "description": "<p>SONU uses acoustic resonance therapy — a clinically studied method that reduces inflammation, improves mucus clearance, and opens nasal airways.</p>",
         "bg_color": "#f9f6f0",
         "bg_gradient": "",
@@ -364,7 +380,9 @@
             "video_url": "",
             "subheading": "OUR FAVORITE PRODUCTS",
             "quote": "As an airway patient I am always looking for ways to improve my nasal breathing.",
-            "heading_tag": "h2",
+            "heading_tag": "p",
+            "quote_font_size": 18,
+            "quote_font_size_desktop": 36,
             "author_name": "Zach",
             "author_bio": "College counselor",
             "show_stars": true
@@ -377,7 +395,7 @@
       "name": "Contained Video Slider",
       "settings": {
         "bg_color": "#f4efea",
-        "video_bg_color": "#F5F5F5",
+        "video_bg_color": "#f5f5f5",
         "content_bg_color": "#f4efea"
       }
     },
