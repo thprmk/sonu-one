@@ -34,10 +34,6 @@
 
     #shopify-section-{{ section.id }} .custom-card-slider-heading {
       color: {{ section.settings.heading_color }} !important;
-      font-size: {{ section.settings.heading_font_size }}px !important;
-      line-height: {{ section.settings.heading_line_height }}px !important;
-      font-weight: {{ section.settings.heading_font_weight }} !important;
-      letter-spacing: {{ section.settings.heading_letter_spacing }}px !important;
     }
     
     #shopify-section-{{ section.id }} .custom-card-slider-header {
@@ -56,25 +52,14 @@
     }
 
     #shopify-section-{{ section.id }} .custom-card-slide__title {
-      font-size: {{ section.settings.card_title_font_size }}px !important;
       {% if section.settings.card_title_color != blank %}
         color: {{ section.settings.card_title_color }} !important;
-      {% endif %}
-      {% if section.settings.card_title_line_height != blank %}
-        line-height: {{ section.settings.card_title_line_height }} !important;
-      {% endif %}
-      {% if section.settings.card_title_letter_spacing != blank %}
-        letter-spacing: {{ section.settings.card_title_letter_spacing }}px !important;
       {% endif %}
     }
 
     #shopify-section-{{ section.id }} .custom-card-slide__desc {
-      font-size: {{ section.settings.card_desc_font_size }}px !important;
       {% if section.settings.card_desc_color != blank %}
         color: {{ section.settings.card_desc_color }} !important;
-      {% endif %}
-      {% if section.settings.card_desc_line_height != blank %}
-        line-height: {{ section.settings.card_desc_line_height }} !important;
       {% endif %}
     }
 
@@ -168,23 +153,9 @@
         margin-bottom: {{ section.settings.mobile_heading_margin_bottom }}px !important;
       }
 
-      #shopify-section-{{ section.id }} .custom-card-slider-heading {
-        font-size: {{ section.settings.mobile_heading_font_size }}px !important;
-        line-height: {{ section.settings.mobile_heading_line_height }}px !important;
-        letter-spacing: {{ section.settings.mobile_heading_letter_spacing }}px !important;
-      }
-
       #shopify-section-{{ section.id }} .custom-card-slide {
         width: {{ section.settings.mobile_card_width }}vw !important;
         height: {{ section.settings.mobile_card_height }}px !important;
-      }
-
-      #shopify-section-{{ section.id }} .custom-card-slide__title {
-        font-size: {{ section.settings.mobile_card_title_font_size }}px !important;
-      }
-
-      #shopify-section-{{ section.id }} .custom-card-slide__desc {
-        font-size: {{ section.settings.mobile_card_desc_font_size }}px !important;
       }
 
       #shopify-section-{{ section.id }} .custom-card-controls-row {
@@ -223,7 +194,7 @@
           <span class="custom-card-slider-subheading">{{ section.settings.subheading }}</span>
         {% endif %}
         {% if section.settings.heading != blank %}
-          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-card-slider-heading">{{ section.settings.heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
+          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-card-slider-heading {{ section.settings.heading_tag | default: 'h2' }}">{{ section.settings.heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
         {% endif %}
       </div>
     {% endif %}
@@ -257,11 +228,11 @@
               <!-- Slide Contents -->
               <div class="custom-card-slide__content">
                 {% if block.settings.title != blank %}
-                  <h3 class="custom-card-slide__title">{{ block.settings.title }}</h3>
+                  <h3 class="custom-card-slide__title h3">{{ block.settings.title }}</h3>
                 {% endif %}
                 
                 {% if block.settings.description != blank %}
-                  <p class="custom-card-slide__desc">{{ block.settings.description }}</p>
+                  <p class="custom-card-slide__desc rte">{{ block.settings.description }}</p>
                 {% endif %}
 
                 {% if block.settings.bottom_badge != blank %}
@@ -400,86 +371,13 @@
     },
     {
       "type": "header",
-      "content": "Custom Heading Typography"
+      "content": "Heading Settings"
     },
     {
       "type": "color",
       "id": "heading_color",
       "label": "Heading Color",
       "default": "#3D1B03"
-    },
-    {
-      "type": "range",
-      "id": "heading_font_size",
-      "label": "Heading Font Size (px)",
-      "default": 44,
-      "min": 20,
-      "max": 80,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "heading_line_height",
-      "label": "Heading Line Height (px)",
-      "default": 52,
-      "min": 24,
-      "max": 100,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "select",
-      "id": "heading_font_weight",
-      "label": "Heading Font Weight",
-      "options": [
-        { "value": "300", "label": "Light (300)" },
-        { "value": "400", "label": "Regular (400)" },
-        { "value": "500", "label": "Medium (500)" },
-        { "value": "600", "label": "Semi Bold (600)" },
-        { "value": "700", "label": "Bold (700)" }
-      ],
-      "default": "400"
-    },
-    {
-      "type": "range",
-      "id": "heading_letter_spacing",
-      "label": "Heading Letter Spacing (px)",
-      "default": -0.5,
-      "min": -2,
-      "max": 5,
-      "step": 0.1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "mobile_heading_font_size",
-      "label": "Mobile Heading Font Size (px)",
-      "default": 32,
-      "min": 18,
-      "max": 60,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "mobile_heading_line_height",
-      "label": "Mobile Heading Line Height (px)",
-      "default": 38,
-      "min": 22,
-      "max": 70,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "mobile_heading_letter_spacing",
-      "label": "Mobile Heading Letter Spacing (px)",
-      "default": -0.5,
-      "min": -2,
-      "max": 5,
-      "step": 0.1,
-      "unit": "px"
     },
     {
       "type": "range",
@@ -577,7 +475,7 @@
     },
     {
       "type": "header",
-      "content": "Card Content Typography"
+      "content": "Card Content Settings"
     },
     {
       "type": "color",
@@ -586,64 +484,10 @@
       "default": "#ffffff"
     },
     {
-      "type": "range",
-      "id": "card_title_font_size",
-      "label": "Card Title Font Size (px)",
-      "default": 26,
-      "min": 16,
-      "max": 36,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "mobile_card_title_font_size",
-      "label": "Mobile Card Title Font Size (px)",
-      "default": 18,
-      "min": 14,
-      "max": 28,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "text",
-      "id": "card_title_line_height",
-      "label": "Card Title Line Height",
-      "default": "1.25"
-    },
-    {
-      "type": "range",
-      "id": "card_title_letter_spacing",
-      "label": "Card Title Letter Spacing (px)",
-      "default": -0.5,
-      "min": -2,
-      "max": 5,
-      "step": 0.1,
-      "unit": "px"
-    },
-    {
       "type": "color",
       "id": "card_desc_color",
       "label": "Card Description Color",
       "default": "rgba(255, 255, 255, 0.85)"
-    },
-    {
-      "type": "number",
-      "id": "card_desc_font_size",
-      "label": "Card Description Font Size (px)",
-      "default": 14
-    },
-    {
-      "type": "number",
-      "id": "mobile_card_desc_font_size",
-      "label": "Mobile Card Description Font Size (px)",
-      "default": 12
-    },
-    {
-      "type": "text",
-      "id": "card_desc_line_height",
-      "label": "Card Description Line Height",
-      "default": "1.5"
     },
     {
       "type": "header",
