@@ -739,29 +739,30 @@
             "show_stars": true
           }
         },
-        "testimonial_VTcy7W": {
+        "testimonial_7qgGxk": {
           "type": "testimonial",
           "settings": {
             "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
             "video_url": "",
-            "subheading": "OUR FAVORITE PRODUCTS",
-            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing.",
+            "subheading": "",
+            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing. SONU has been the best addition yet to my nasal hygiene routine. I highly recommend it to anyone struggling with nasal congestion.",
             "heading_tag": "h2",
-            "quote_font_size": 28,
+            "quote_font_size": 16,
             "quote_font_size_desktop": 36,
             "author_name": "Zach",
             "author_bio": "College counselor",
             "show_stars": true
           }
         },
-        "testimonial_8W7ymt": {
+        "testimonial_iXw6hF": {
           "type": "testimonial",
           "settings": {
+            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
             "video_url": "",
-            "subheading": "OUR FAVORITE PRODUCTS",
-            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing.",
+            "subheading": "",
+            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing. SONU has been the best addition yet to my nasal hygiene routine. I highly recommend it to anyone struggling with nasal congestion.",
             "heading_tag": "h2",
-            "quote_font_size": 28,
+            "quote_font_size": 16,
             "quote_font_size_desktop": 36,
             "author_name": "Zach",
             "author_bio": "College counselor",
@@ -771,8 +772,8 @@
       },
       "block_order": [
         "testimonial_ciki7d",
-        "testimonial_VTcy7W",
-        "testimonial_8W7ymt"
+        "testimonial_7qgGxk",
+        "testimonial_iXw6hF"
       ],
       "name": "Contained Video Slider",
       "settings": {
