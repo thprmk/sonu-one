@@ -698,17 +698,17 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "device": "desktop",
+        "device": "mobile",
         "padding-block-start": 60,
-        "padding-block-start-mobile": 40,
+        "padding-block-start-mobile": 74,
         "bg_image": "shopify://shop_images/Rectangle_42_3ec71b52-56da-44ca-aa62-63117698b7bc.png",
         "bg_color": "",
         "bg_gradient": "",
         "text_color": "",
         "link_color": "",
         "link_hover_color": "",
-        "custom_margin_top": -70,
-        "custom_margin_top_mobile": 0
+        "custom_margin_top": -75,
+        "custom_margin_top_mobile": -25
       }
     },
     "custom_liquid_VXHzkP": {
