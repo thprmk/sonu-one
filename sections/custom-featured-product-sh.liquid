@@ -43,7 +43,7 @@
         {% endif %}
       }
       #shopify-section-{{ section.id }} .custom-prod-container {
-        padding-top: var(--padding-top-mobile, 60px) !important;
+        padding-top: 0 !important;
         padding-bottom: var(--padding-bottom-mobile, 60px) !important;
       }
     }
@@ -167,16 +167,18 @@
           <div class="custom-prod-qty-container">
             <div class="custom-prod-qty-box">
               <span class="custom-prod-qty-title">Quantity</span>
-              <div class="custom-prod-qty-selector">
-                <button type="button" class="custom-prod-qty-btn custom-prod-qty-btn--minus" aria-label="Decrease quantity">−</button>
-                <span class="custom-prod-qty-value">1</span>
-                <button type="button" class="custom-prod-qty-btn custom-prod-qty-btn--plus" aria-label="Increase quantity">+</button>
+              <div class="custom-prod-qty-right">
+                <div class="custom-prod-qty-selector">
+                  <button type="button" class="custom-prod-qty-btn custom-prod-qty-btn--minus" aria-label="Decrease quantity">−</button>
+                  <span class="custom-prod-qty-value">1</span>
+                  <button type="button" class="custom-prod-qty-btn custom-prod-qty-btn--plus" aria-label="Increase quantity">+</button>
+                </div>
+                <!-- Stock Status -->
+                <div class="custom-prod-stock">
+                  <span class="custom-prod-stock__indicator"></span>
+                  <span class="custom-prod-stock__text">In stock, ready to ship</span>
+                </div>
               </div>
-            </div>
-            <!-- Stock Status -->
-            <div class="custom-prod-stock">
-              <span class="custom-prod-stock__indicator"></span>
-              <span class="custom-prod-stock__text">In stock, ready to ship</span>
             </div>
           </div>
 

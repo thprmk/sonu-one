@@ -309,6 +309,7 @@
   display: block;
   object-fit: cover;
   height: 100%;
+  border-radius: 0 28px 28px 0;
 }
 
 /* Floating Controls Pill overlaying image */
@@ -398,7 +399,7 @@
 
 /* Product Title */
 .custom-prod-title {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-size: 56px;
   font-weight: normal;
   color: #3D1B03;
@@ -471,15 +472,27 @@
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  gap: 60px;
-  margin-bottom: 36px;
+  gap: 40px;
+  margin-bottom: 24px;
 }
 
 /* Swatches inline styling */
 .custom-prod-swatches-box {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 16px;
+}
+
+.custom-prod-swatches-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sonu-font-family, inherit);
+  font-size: 14px;
+  font-weight: 600;
+  color: #3D1B03;
+  margin: 0;
 }
 
 .custom-prod-swatches-title {
@@ -487,6 +500,12 @@
   font-size: 14px;
   color: #3D1B03;
   font-weight: 600;
+}
+
+.custom-prod-swatch-label {
+  font-weight: 400;
+  opacity: 0.8;
+  display: none;
 }
 
 .custom-prod-swatches {
@@ -528,7 +547,7 @@
 
 .custom-prod-qty-box {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
 }
 
@@ -537,6 +556,14 @@
   font-size: 14px;
   color: #3D1B03;
   font-weight: 600;
+  margin-top: 12px;
+}
+
+.custom-prod-qty-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 .custom-prod-qty-selector {
@@ -576,7 +603,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .custom-prod-stock__indicator {
@@ -672,22 +699,34 @@
 @media screen and (max-width: 768px) {
   .custom-prod-container {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 60px 20px;
+    padding: 0 0 40px 0 !important;
+    gap: 0;
   }
 
   .custom-prod-gallery {
-    border-radius: 16px;
-    aspect-ratio: auto;
-    height: 55vh;
+    height: auto;
+    aspect-ratio: 1.05;
+    border-radius: 0;
   }
 
   .custom-prod-gallery__slide img {
     height: 100%;
+    border-radius: 0;
+  }
+
+  .custom-prod-gallery__controls {
+    bottom: 48px;
   }
 
   .custom-prod-card {
-    padding: 0;
+    background-color: var(--card-bg-color, #F4EFEA) !important;
+    margin-top: -30px;
+    border-radius: 30px 30px 0 0;
+    padding: 30px 24px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
   }
 
   .custom-prod-card__inner {
@@ -703,10 +742,50 @@
   }
 
   .custom-prod-options-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 16px;
+  }
+
+  .custom-prod-swatches-box {
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 28px;
+    gap: 8px;
+  }
+
+  .custom-prod-swatches {
+    order: 1;
+  }
+
+  .custom-prod-swatches-header {
+    order: 2;
+    margin: 0;
+  }
+
+  .custom-prod-swatches-header .custom-prod-swatches-title {
+    display: none;
+  }
+
+  .custom-prod-swatches-header .custom-prod-swatch-label {
+    display: block;
+    font-size: 13px;
+    opacity: 0.8;
+  }
+
+  .custom-prod-qty-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .custom-prod-qty-title {
+    margin-top: 0;
+  }
+
+  .custom-prod-qty-right {
+    gap: 8px;
   }
 
   .custom-prod-affirm {
@@ -783,7 +862,7 @@
 }
 
 .custom-comp-info-heading {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-size: 52px;
   line-height: 1.15;
   font-weight: normal;
@@ -1423,7 +1502,7 @@
 
 /* Heading styling: matches editorial serif in screenshot */
 .custom-step-desktop-heading {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-size: 48px;
   line-height: 1.2;
   font-weight: normal;
@@ -1433,7 +1512,7 @@
 }
 
 .custom-step-desktop-heading em {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-style: italic;
   font-weight: normal;
 }
@@ -1587,7 +1666,7 @@
 }
 
 .custom-step-heading {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-size: 48px;
   font-weight: normal;
   color: #3D1B03;
@@ -1596,7 +1675,7 @@
 }
 
 .custom-step-heading em {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-style: italic;
   font-weight: normal;
 }
@@ -1832,7 +1911,7 @@
 }
 
 .custom-stats-section-heading {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-size: 48px;
   font-weight: normal;
   color: #3D1B03;
@@ -1908,7 +1987,7 @@
 }
 
 .custom-stats-number {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-size: 100px;
   line-height: 0.9;
   font-weight: normal;
@@ -1924,7 +2003,7 @@
 }
 
 .custom-stats-label {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-size: 28px;
   line-height: 1.2;
   font-weight: normal;
@@ -2265,7 +2344,7 @@
 }
 
 .custom-card-slider-heading {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-size: 44px;
   line-height: 1.2;
   font-weight: normal;
@@ -2572,7 +2651,7 @@
 }
 
 .custom-expect-heading {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-size: 44px;
   line-height: 1.2;
   font-weight: normal;
@@ -2581,7 +2660,7 @@
 }
 
 .custom-expect-heading em {
-  font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+  font-family: var(--sonu-font-family);
   font-style: italic;
   font-weight: normal;
 }
@@ -2787,5 +2866,28 @@ body.index #MainContent .shopify-section,
 body.index #MainContent .shopify-section > div,
 body.index #MainContent .shopify-section > section {
   background: transparent !important;
+}
+
+/* Global highlight typography override for parsed bracket [[content]] elements */
+.highlight,
+.sonu-highlight,
+.sonu-therapy-highlight,
+.sbh-serif-highlight,
+.sleep-serif,
+.research-serif,
+.specs-highlight,
+.banner-italic,
+.custom-tech-highlight,
+h1 em,
+h2 em,
+h3 em,
+h4 em,
+h5 em,
+h6 em,
+.custom-step-heading em,
+.custom-step-desktop-heading em,
+.custom-expect-heading em {
+  font-family: 'PP Editorial New', 'pp-editorial', Georgia, serif !important;
+  font-style: italic !important;
 }
 
