@@ -33,6 +33,9 @@
           "settings": {
             "title": "SONU Band",
             "highlight": true,
+            "bg_color": "#d2bee4",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "cross",
@@ -56,6 +59,9 @@
           "settings": {
             "title": "Intranasal Steroids",
             "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -79,6 +85,9 @@
           "settings": {
             "title": "Intranasal Steroids",
             "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -102,6 +111,9 @@
           "settings": {
             "title": "Intranasal Steroids",
             "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
             "row_1_val": "check",
             "row_1_text": "",
             "row_2_val": "check",
@@ -130,6 +142,7 @@
       "settings": {
         "heading": "More effective thanother sleep-aids",
         "heading_tag": "h2",
+        "block_heading_tag": "h3",
         "description": "<p>Spatial Sleep is the only sleep wearable validated with a real clinical sleep scale in rigorous trials.</p>",
         "bg_color": "#f0e7f7",
         "bg_gradient": "",
@@ -587,6 +600,8 @@
       "name": "STE Therapy Editorial",
       "settings": {
         "hide_mobile": false,
+        "show_description_mobile": true,
+        "block_heading_tag": "h3",
         "enable_top_gradient": true,
         "gradient_color": "#ffffff",
         "gradient_stop": 0,
