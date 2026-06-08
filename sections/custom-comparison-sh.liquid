@@ -77,10 +77,22 @@
           {%- assign first_block = section.blocks | first -%}
           {%- if first_block != blank -%}
             <div class="custom-comp-static-col" {{ first_block.shopify_attributes }}>
-              <div class="custom-comp-card{% if first_block.settings.highlight %} highlighted{% endif %}">
+              <div class="custom-comp-card{% if first_block.settings.highlight %} highlighted{% endif %}" style="
+                {% if first_block.settings.bg_color != blank %}
+                  background-color: {{ first_block.settings.bg_color }} !important;
+                {% endif %}
+                {% if first_block.settings.border_color != blank %}
+                  border: 1px solid {{ first_block.settings.border_color }} !important;
+                {% endif %}
+                {% if first_block.settings.text_color != blank %}
+                  color: {{ first_block.settings.text_color }} !important;
+                {% endif %}
+              ">
                 <!-- Header -->
                 <div class="custom-comp-card-header">
-                  <h3>{{ first_block.settings.title }}</h3>
+                  <{{ section.settings.block_heading_tag | default: 'h3' }} class="custom-comp-block-title" style="color: inherit;">
+                    {{ first_block.settings.title }}
+                  </{{ section.settings.block_heading_tag | default: 'h3' }}>
                 </div>
                 
                 <!-- Rows -->
@@ -128,10 +140,22 @@
                 {% for block in section.blocks %}
                   {% if forloop.first %}{% continue %}{% endif %}
                   <div class="swiper-slide custom-comp-column-slide" {{ block.shopify_attributes }}>
-                    <div class="custom-comp-card{% if block.settings.highlight %} highlighted{% endif %}">
+                    <div class="custom-comp-card{% if block.settings.highlight %} highlighted{% endif %}" style="
+                      {% if block.settings.bg_color != blank %}
+                        background-color: {{ block.settings.bg_color }} !important;
+                      {% endif %}
+                      {% if block.settings.border_color != blank %}
+                        border: 1px solid {{ block.settings.border_color }} !important;
+                      {% endif %}
+                      {% if block.settings.text_color != blank %}
+                        color: {{ block.settings.text_color }} !important;
+                      {% endif %}
+                    ">
                       <!-- Header -->
                       <div class="custom-comp-card-header">
-                        <h3>{{ block.settings.title }}</h3>
+                        <{{ section.settings.block_heading_tag | default: 'h3' }} class="custom-comp-block-title" style="color: inherit;">
+                          {{ block.settings.title }}
+                        </{{ section.settings.block_heading_tag | default: 'h3' }}>
                       </div>
                       
                       <!-- Rows -->
@@ -222,6 +246,20 @@
         { "value": "p", "label": "Paragraph (P)" }
       ],
       "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "block_heading_tag",
+      "label": "Block Title Tag",
+      "options": [
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "div", "label": "Div" },
+        { "value": "p", "label": "Paragraph (P)" }
+      ],
+      "default": "h3"
     },
     {
       "type": "richtext",
@@ -360,6 +398,21 @@
           "id": "highlight",
           "label": "Highlight Column",
           "default": false
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Custom Card BG Color"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Custom Card Border Color"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Custom Card Text/Icon Color"
         },
         {
           "type": "select",

@@ -116,10 +116,13 @@ function initCustomComparison(container) {
     },
     breakpoints: {
       320: {
-        spaceBetween: 12,
+        spaceBetween: 8,
       },
       768: {
-        spaceBetween: 24,
+        spaceBetween: 12,
+      },
+      992: {
+        spaceBetween: 16,
       }
     }
   });

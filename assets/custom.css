@@ -850,10 +850,16 @@
 /* Side-by-side layout on desktop */
 .custom-comp-main-grid {
   display: grid;
-  grid-template-columns: 1fr 1.8fr;
+  grid-template-columns: 1fr 3.1fr;
   gap: 40px;
   align-items: start;
   width: 100%;
+}
+
+@media screen and (max-width: 1399px) {
+  .custom-comp-main-grid {
+    grid-template-columns: 1fr 2.8fr;
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -911,10 +917,17 @@
 
 .custom-comp-table-row {
   display: grid;
-  grid-template-columns: 180px 200px 1fr;
+  grid-template-columns: 140px 160px 1fr;
   align-items: stretch;
-  gap: 24px;
+  gap: 16px;
   width: 100%;
+}
+
+@media screen and (max-width: 1399px) {
+  .custom-comp-table-row {
+    grid-template-columns: 130px 150px 1fr;
+    gap: 12px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -934,7 +947,13 @@
 .custom-comp-static-col {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 160px;
+}
+
+@media screen and (max-width: 1399px) {
+  .custom-comp-static-col {
+    width: 150px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -995,7 +1014,7 @@
 }
 
 .swiper-slide.custom-comp-column-slide {
-  width: 200px !important; /* slider card width */
+  width: 160px !important; /* slider card width */
   height: auto;
   display: flex;
   flex-direction: column;
@@ -1004,6 +1023,12 @@
   box-shadow: none !important;
   padding: 0 !important;
   margin: 0;
+}
+
+@media screen and (max-width: 1399px) {
+  .swiper-slide.custom-comp-column-slide {
+    width: 150px !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1058,11 +1083,12 @@
   }
 }
 
+.custom-comp-block-title,
 .custom-comp-card-header h3 {
   font-family: var(--sonu-font-family, inherit);
   font-size: 18px;
   font-weight: 600;
-  color: #3D1B03;
+  color: inherit;
   margin: 0;
   line-height: 1.2;
   white-space: normal;
@@ -1071,6 +1097,7 @@
 }
 
 @media screen and (max-width: 768px) {
+  .custom-comp-block-title,
   .custom-comp-card-header h3 {
     font-size: 13px;
   }
@@ -1095,7 +1122,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #3D1B03; /* Warm dark brown matching mockup */
+  color: inherit;
+}
+
+.custom-comp-card:not([style*="color:"]) .custom-comp-icon,
+.custom-comp-card:not([style*="color:"]) .custom-comp-cell-text {
+  color: #3D1B03;
 }
 
 .custom-comp-icon svg {
@@ -1114,7 +1146,7 @@
   font-family: var(--sonu-font-family, inherit);
   font-size: 15px;
   font-weight: 500;
-  color: #3D1B03;
+  color: inherit;
   opacity: 0.9;
   text-align: center;
 }
