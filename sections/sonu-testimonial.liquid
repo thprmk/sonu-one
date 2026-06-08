@@ -124,8 +124,8 @@
     font-family: var(--sonu-font-primary);
     font-style: normal;
     font-weight: 400;
-    font-size: 28px;
-    line-height: 38px;
+    font-size: var(--quote-font-size-mobile, 28px);
+    line-height: 1.35;
     color: #000000;
     max-width: 500px;
     margin: 0 auto 24px auto;
@@ -250,8 +250,8 @@
     }
     
     .split-video-testimonial-{{ section.id }} .main-quote {
-      font-size: 36px;
-      line-height: 46px;
+      font-size: var(--quote-font-size-desktop, 36px);
+      line-height: 1.3;
     }
 
     .split-video-testimonial-{{ section.id }} .carousel-indicator-bar {
@@ -296,7 +296,14 @@
 
               {%- if block.settings.quote != blank -%}
                 {%- assign quote_tag = block.settings.heading_tag | default: 'h2' -%}
-                <{{ quote_tag }} class="main-quote">
+                <{{ quote_tag }} class="main-quote" style="
+                  {% if block.settings.quote_font_size != blank %}
+                    --quote-font-size-mobile: {{ block.settings.quote_font_size }}px;
+                  {% endif %}
+                  {% if block.settings.quote_font_size_desktop != blank %}
+                    --quote-font-size-desktop: {{ block.settings.quote_font_size_desktop }}px;
+                  {% endif %}
+                ">
                   “{{ block.settings.quote | replace: '"', '' | replace: '“', '' }}”
                 </{{ quote_tag }}>
               {%- endif -%}
@@ -486,9 +493,30 @@
             { "value": "h3", "label": "H3" },
             { "value": "h4", "label": "H4" },
             { "value": "h5", "label": "H5" },
-            { "value": "h6", "label": "H6" }
+            { "value": "h6", "label": "H6" },
+            { "value": "p", "label": "Paragraph (P)" }
           ],
           "default": "h2"
+        },
+        {
+          "type": "range",
+          "id": "quote_font_size",
+          "min": 12,
+          "max": 48,
+          "step": 1,
+          "default": 28,
+          "unit": "px",
+          "label": "Quote Font Size (Mobile)"
+        },
+        {
+          "type": "range",
+          "id": "quote_font_size_desktop",
+          "min": 12,
+          "max": 60,
+          "step": 1,
+          "default": 36,
+          "unit": "px",
+          "label": "Quote Font Size (Desktop)"
         },
         {
           "type": "text",
