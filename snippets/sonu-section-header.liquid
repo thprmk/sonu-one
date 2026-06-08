@@ -43,8 +43,8 @@
       | replace: '<br>', newline 
       | replace: '<br/>', newline 
       | replace: '<br />', newline 
-      | replace: '[[', '<span class="highlight">' 
-      | replace: ']]', '</span>' 
+      | replace: '[[', '<em class="highlight-text relative z--1 highlight-text--standard highlight-text--color-inherit animate" is="highlight-text" style="--hl-font-style: italic;">' 
+      | replace: ']]', '</em>' 
       | newline_to_br 
       | replace: double_br, single_br
       | replace: double_br_short, single_br
@@ -59,8 +59,8 @@
       | replace: '<br>', newline 
       | replace: '<br/>', newline 
       | replace: '<br />', newline 
-      | replace: '[[', '<span class="highlight">' 
-      | replace: ']]', '</span>' 
+      | replace: '[[', '<em class="highlight-text relative z--1 highlight-text--standard highlight-text--color-inherit animate" is="highlight-text" style="--hl-font-style: italic;">' 
+      | replace: ']]', '</em>' 
       | newline_to_br 
       | replace: double_br, single_br
       | replace: double_br_short, single_br

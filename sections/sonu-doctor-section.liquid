@@ -91,6 +91,41 @@
   pointer-events: none;
 }
 
+/* Icon */
+.hc-tm-card-arrow {
+  position: absolute;
+  left: 17.29%;
+  right: 81.2%;
+  top: 49.13%;
+  bottom: 50.54%;
+  border: 2px solid #FFFFFF;
+
+  /* Display overrides for premium centered chevron look */
+  left: auto !important;
+  right: 21px !important;
+  top: auto !important;
+  bottom: 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 3 !important;
+  transition: transform 0.2s ease, background-color 0.2s ease !important;
+}
+
+.hc-tm-card:hover .hc-tm-card-arrow {
+  transform: scale(1.1) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.hc-tm-card-arrow svg {
+  width: 8px;
+  height: 12px;
+  display: block;
+}
+
 /* CARD TEXT INSIDE IMAGE */
 .hc-tm-img-content {
   position: absolute;
@@ -345,6 +380,12 @@
           <div class="hc-tm-img-content">
             <h4>{{ block.settings.name | escape }}</h4>
             <p>{{ block.settings.role | escape }}</p>
+          </div>
+
+          <div class="hc-tm-card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 5L15 11L9 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
         </div>
 

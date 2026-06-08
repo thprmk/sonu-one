@@ -36,7 +36,7 @@
 
       {%- assign heading_tag = section.settings.heading_tag | default: 'h2' -%}
       <{{ heading_tag }} class="sonu-sound-banner__heading">
-        {{ section.settings.heading }}
+        {{ section.settings.heading | newline_to_br }}
       </{{ heading_tag }}>
 
       <div class="sonu-sound-banner__buttons">

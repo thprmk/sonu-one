@@ -24,7 +24,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateProgress() {
       const scrollWidth = wrapper.scrollWidth - wrapper.clientWidth;
-      const percent = scrollWidth > 0 ? (wrapper.scrollLeft / scrollWidth) * 100 : 0;
+
+      if (prevBtn) {
+        if (wrapper.scrollLeft <= 5) {
+          prevBtn.style.opacity = '0.35';
+          prevBtn.style.pointerEvents = 'none';
+        } else {
+          prevBtn.style.opacity = '1';
+          prevBtn.style.pointerEvents = 'auto';
+        }
+      }
+
+      if (nextBtn) {
+        if (scrollWidth <= 0 || wrapper.scrollLeft >= scrollWidth - 5) {
+          nextBtn.style.opacity = '0.35';
+          nextBtn.style.pointerEvents = 'none';
+        } else {
+          nextBtn.style.opacity = '1';
+          nextBtn.style.pointerEvents = 'auto';
+        }
+      }
+
+      const scrollPercent = scrollWidth > 0 ? (wrapper.scrollLeft / scrollWidth) : 0;
+      const minWidth = 15; // Minimum 15% width at scroll 0
+      const percent = minWidth + (scrollPercent * (100 - minWidth));
       progress.style.width = percent + "%";
     }
 
