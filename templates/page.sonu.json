@@ -55,9 +55,9 @@
           "type": "stat",
           "settings": {
             "prefix": "",
-            "number": "2",
-            "postfix": "X",
-            "heading": "Improvement",
+            "number": "[[2]]",
+            "postfix": "[[X]]",
+            "heading": "[[Improvement]]",
             "text": "SONU patients showed a 2X improvement in nasal congestion symptoms compared to placebo.",
             "card_bg_color": "#ffffff66",
             "card_border_color": "#ffffff66",
