@@ -127,85 +127,6 @@
         "padding_bottom_mobile": 60
       }
     },
-    "spatial_therapy_YXpbDw": {
-      "type": "spatial-therapy-sh",
-      "blocks": {
-        "stat_LxMmDy": {
-          "type": "stat",
-          "settings": {
-            "prefix": "",
-            "number": "2",
-            "postfix": "X",
-            "heading": "Improvement",
-            "text": "SONU patients showed a 2X improvement in nasal congestion symptoms compared to placebo.",
-            "card_bg_color": "#ffffff66",
-            "card_border_color": "#ffffff66",
-            "number_color": "#3d1b03",
-            "label_color": "#3d1b03",
-            "caption_color": "#1e1e1e"
-          }
-        },
-        "stat_hdha8Q": {
-          "type": "stat",
-          "settings": {
-            "prefix": "",
-            "number": "81",
-            "postfix": "%",
-            "heading": "Response Rate",
-            "text": "Over 80% of patients experienced clinically significant reduction in nasal congestion symptoms.",
-            "card_bg_color": "#ffffff66",
-            "card_border_color": "#ffffff66",
-            "number_color": "#3d1b03",
-            "label_color": "#3d1b03",
-            "caption_color": "#1e1e1e"
-          }
-        },
-        "stat_hxVVwj": {
-          "type": "stat",
-          "settings": {
-            "prefix": "",
-            "number": "1",
-            "postfix": "K+",
-            "heading": "Doctors",
-            "text": "Recommended by over 1000 Doctors and Dentists",
-            "card_bg_color": "#ffffff66",
-            "card_border_color": "#ffffff66",
-            "number_color": "#3d1b03",
-            "label_color": "#3d1b03",
-            "caption_color": "#1e1e1e"
-          }
-        }
-      },
-      "block_order": [
-        "stat_LxMmDy",
-        "stat_hdha8Q",
-        "stat_hxVVwj"
-      ],
-      "name": "STE Therapy Editorial",
-      "settings": {
-        "hide_mobile": true,
-        "enable_top_gradient": true,
-        "gradient_color": "#ffffff",
-        "gradient_stop": 0,
-        "gradient_fade_end": 50,
-        "bg_color": "#e5deff",
-        "bg_gradient": "",
-        "text_color": "#3d1b03",
-        "desktop_image": "shopify://shop_images/section-12_1_1.png",
-        "desktop_image_position": "center center",
-        "mobile_image_position": "center center",
-        "heading": "Revolutionary Personalized\nNon-invasive\nTherapeutics",
-        "heading_tag": "h2",
-        "description": "<p><strong>Acoustic Resonance Therapy </strong><br/><br/>SONU generates resonant frequencies — calibrated to your unique facial and sinus anatomy via a smartphone facial scan and machine learning — that  (a) reduce mucosal inflammation, (b) increase mucociliary clearance (the nose's natural self-cleaning system), and (c) mechanically open the nasal airway. This is drug-free, relying entirely on the physics of sound and the body's natural response to resonance.</p>",
-        "heading_color": "#3d1b03",
-        "highlight_color": "#3d1b03",
-        "description_color": "#1e1e1e",
-        "padding_top": 80,
-        "padding_bottom": 80,
-        "padding_top_mobile": 60,
-        "padding_bottom_mobile": 60
-      }
-    },
     "sonu_graph_slider_XrMcdY": {
       "type": "sonu-graph-slider",
       "blocks": {
@@ -1237,7 +1158,6 @@
     "main",
     "sonu_hero_banner_FbCfje",
     "spatial_therapy_sh_W69N7P",
-    "spatial_therapy_YXpbDw",
     "sonu_graph_slider_XrMcdY",
     "comparison_table_A6aREE",
     "custom_liquid_WNmYyJ",
