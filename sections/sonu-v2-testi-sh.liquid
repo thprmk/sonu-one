@@ -3,7 +3,8 @@
     {%- if section.settings.section_bg_gradient != blank -%}
       background: {{ section.settings.section_bg_gradient }} !important;
     {%- else -%}
-      background: {{ section.settings.section_bg_color }} !important;
+      background-color: {{ section.settings.section_bg_color | default: 'transparent' }} !important;
+      background-image: none !important;
     {%- endif -%}
     padding-top: {{ section.settings.padding_top }}px !important;
     padding-bottom: {{ section.settings.padding_bottom }}px !important;
