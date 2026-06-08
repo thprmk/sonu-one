@@ -717,7 +717,8 @@
         "padding_top": 40,
         "padding_bottom": 40,
         "mobile_padding_top": 38,
-        "mobile_padding_bottom": 38
+        "mobile_padding_bottom": 38,
+        "show_card_arrow": false
       }
     },
     "sonu_testimonial_LnWe4p": {
@@ -729,7 +730,7 @@
             "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
             "video_url": "",
             "subheading": "",
-            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing.",
+            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing. SONU has been the best addition yet to my nasal hygiene routine. I highly recommend it to anyone struggling with nasal congestion.",
             "heading_tag": "h2",
             "quote_font_size": 28,
             "quote_font_size_desktop": 36,
