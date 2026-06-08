@@ -21,8 +21,8 @@
         "heading_tag": "h2",
         "padding_top": 80,
         "padding_bottom": 80,
-        "padding_top_mobile": 60,
-        "padding_bottom_mobile": 60
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
       }
     },
     "comparison": {
@@ -147,55 +147,53 @@
         "label_8": ""
       }
     },
-    "logo_list": {
-      "type": "sonu-logo-list-sh",
+    "sonu_logo_list_PtxqbC": {
+      "type": "sonu-logo-list",
       "blocks": {
-        "logo_hkkeD9": {
+        "logo_gAUHc4": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/logo_ucsf-health-color.avif"
+            "logo": "shopify://shop_images/logo_sharp-stealy.png"
           }
         },
-        "logo_mNXXyK": {
+        "logo_PTFi6p": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_harvard-medical-school-color.avif"
+          }
+        },
+        "logo_zPApU9": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/logo_stanford-medicine-color.avif"
           }
         },
-        "logo_QMhL6C": {
+        "logo_Ng7bFG": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/logo_cedars-sinai.avif"
           }
         },
-        "logo_K338NR": {
+        "logo_i7PifX": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/logo_columbia-university-medical-center-color.avif"
-          }
-        },
-        "logo_x3FJ9k": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/logo_harvard-medical-school-color.avif"
+            "logo": "shopify://shop_images/logo_ucsf-health-color.avif"
           }
         }
       },
       "block_order": [
-        "logo_hkkeD9",
-        "logo_mNXXyK",
-        "logo_QMhL6C",
-        "logo_K338NR",
-        "logo_x3FJ9k"
+        "logo_gAUHc4",
+        "logo_PTFi6p",
+        "logo_zPApU9",
+        "logo_Ng7bFG",
+        "logo_i7PifX"
       ],
       "name": "Logo Carousel",
       "settings": {
-        "bg_gradient": "",
-        "bg_color": "#f0e7f7",
-        "padding_top": 20,
-        "padding_bottom": 40,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0,
+        "bg_color_desktop": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
+        "bg_color_desktop_solid": "#f0e7f7",
+        "bg_color_mobile": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
+        "bg_color_mobile_solid": "#f0e7f7",
         "heading": "",
         "heading_tag": "h2",
         "description": "",
@@ -277,7 +275,7 @@
         "padding_top": 40,
         "padding_bottom": 40,
         "padding_top_mobile": 60,
-        "padding_bottom_mobile": 60
+        "padding_bottom_mobile": 0
       }
     },
     "card_slider": {
@@ -330,13 +328,6 @@
         "padding_top_mobile": 60,
         "padding_bottom_mobile": 60,
         "heading_color": "#3d1b03",
-        "heading_font_size": 44,
-        "heading_line_height": 52,
-        "heading_font_weight": "400",
-        "heading_letter_spacing": -0.5,
-        "mobile_heading_font_size": 32,
-        "mobile_heading_line_height": 38,
-        "mobile_heading_letter_spacing": -0.5,
         "desktop_heading_margin_bottom": 48,
         "mobile_heading_margin_bottom": 32,
         "desktop_card_width": 440,
@@ -347,14 +338,7 @@
         "mobile_card_height": 440,
         "mobile_side_padding": 20,
         "card_title_color": "#ffffff",
-        "card_title_font_size": 26,
-        "mobile_card_title_font_size": 18,
-        "card_title_line_height": "1.25",
-        "card_title_letter_spacing": -0.5,
         "card_desc_color": "#ffffffd9",
-        "card_desc_font_size": 14,
-        "mobile_card_desc_font_size": 12,
-        "card_desc_line_height": "1.5",
         "top_badge_bg": "#ffffff1f",
         "top_badge_border": "#ffffff2e",
         "top_badge_color": "#ffffff",
@@ -423,13 +407,6 @@
         "padding_top_mobile": 60,
         "padding_bottom_mobile": 60,
         "heading_color": "#0e1b4c",
-        "heading_font_size": 44,
-        "heading_line_height": 52,
-        "heading_font_weight": "400",
-        "heading_letter_spacing": -0.5,
-        "mobile_heading_font_size": 32,
-        "mobile_heading_line_height": 38,
-        "mobile_heading_letter_spacing": -0.5,
         "desktop_heading_margin_bottom": 64,
         "mobile_heading_margin_bottom": 40,
         "desktop_left_padding": 80,
@@ -437,12 +414,7 @@
         "mobile_card_width": 85,
         "mobile_side_padding": 24,
         "card_title_color": "#0e1b4c",
-        "card_title_font_size": 24,
-        "mobile_card_title_font_size": 20,
         "card_desc_color": "#1e1e1e",
-        "card_desc_font_size": 14,
-        "mobile_card_desc_font_size": 13,
-        "card_desc_line_height": "1.5",
         "top_badge_bg": "#e2d9f3",
         "top_badge_color": "#5e53e5",
         "bottom_badge_bg": "#afafb2",
@@ -491,35 +463,21 @@
         "section_bg_color": "#f0e7f7",
         "section_bg_gradient": "",
         "heading_color": "#001755",
-        "heading_font_size": 56,
-        "heading_line_height": 68,
-        "heading_font_weight": "500",
         "card_bg_color": "#f0e7f7",
         "card_border_color": "#8f00ff",
         "card_border_width": 1,
         "card_border_radius": 16,
         "card_padding": 32,
         "desktop_review_text_color": "#1e2a3e",
-        "desktop_review_font_size": 16,
-        "desktop_review_line_height": 26,
-        "desktop_review_font_weight": "400",
         "desktop_author_name_color": "#001755",
-        "desktop_author_name_size": 24,
-        "desktop_author_name_weight": "700",
         "desktop_author_role_color": "#5a6874",
-        "desktop_author_role_size": 13,
-        "desktop_author_role_weight": "400",
         "mobile_card_bg_color": "rgba(0,0,0,0)",
         "mobile_card_border_color": "#b8b7ff",
         "mobile_card_border_radius": 25,
         "mobile_card_padding": 24,
         "mobile_review_text_color": "#000000",
-        "mobile_review_font_size": 14,
-        "mobile_review_line_height": 22,
         "mobile_author_name_color": "#3d1b03",
-        "mobile_author_name_size": 24,
         "mobile_author_role_color": "#5a6874",
-        "mobile_author_role_size": 13,
         "star_color": "#ffcd0f",
         "nav_arrow_color": "#1f428a",
         "nav_border_color": "#001755",
@@ -550,28 +508,21 @@
       "settings": {
         "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>",
         "heading_tag": "h2",
-        "heading_color": "#ffffff",
-        "heading_font_size": 48,
-        "heading_line_height": 58,
-        "heading_font_weight": "400",
+        "heading_color": "#001755",
         "desktop_heading_margin_bottom": 54,
         "mobile_heading_margin_bottom": 24,
         "description": "",
         "button_text": "Watch the Acoustic Resonance Therapy Film",
         "button_link": "",
         "bg_color": "#f0e7f7",
-        "bg_gradient": "",
-        "text_color": "#3d1b03",
+        "bg_gradient": "linear-gradient(180deg, rgba(240, 231, 247, 1), rgba(255, 255, 255, 1) 100%)",
+        "text_color": "#001755",
         "enable_bottom_radius": true,
         "bottom_radius": 100,
         "padding_top": 80,
         "padding_bottom": 80,
-        "padding_top_mobile": 60,
+        "padding_top_mobile": 0,
         "padding_bottom_mobile": 60,
-        "mobile_heading_font_size": 32,
-        "mobile_heading_line_height": 38,
-        "heading_letter_spacing": 0,
-        "mobile_heading_letter_spacing": 0,
         "mobile_side_padding": 24,
         "mobile_slide_width": 85,
         "mobile_image_aspect_ratio": "4/5",
@@ -679,9 +630,9 @@
         "text_align": "left",
         "mobile_layout_style": "image-top",
         "mobile_text_align": "center",
-        "mobile_heading_color": "#ffffff",
-        "mobile_description_color": "#ffffff",
-        "mobile_content_bg": "#1e1e1e",
+        "mobile_heading_color": "#001755",
+        "mobile_description_color": "#001755",
+        "mobile_content_bg": "#ffffffff",
         "btn1_text": "",
         "btn1_link": "",
         "btn2_text": "",
@@ -840,7 +791,7 @@
   "order": [
     "main",
     "comparison",
-    "logo_list",
+    "sonu_logo_list_PtxqbC",
     "doctors_testimonials",
     "card_slider",
     "expectations_timeline",
