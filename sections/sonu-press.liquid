@@ -1,5 +1,25 @@
 {{ 'sonu-custom.css' | asset_url | stylesheet_tag }}
 
+<style>
+  #sonu-press-{{ section.id }} {
+    border-radius: 0 0 {{ section.settings.border_radius_bottom | default: 40 }}px {{ section.settings.border_radius_bottom | default: 40 }}px !important;
+    {% if section.settings.margin_bottom_negative > 0 %}
+      margin-bottom: -{{ section.settings.margin_bottom_negative }}px !important;
+    {% endif %}
+  }
+
+  @media screen and (max-width: 768px) {
+    #sonu-press-{{ section.id }} {
+      border-radius: 0 0 {{ section.settings.border_radius_bottom_mobile | default: 35 }}px {{ section.settings.border_radius_bottom_mobile | default: 35 }}px !important;
+      {% if section.settings.margin_bottom_negative_mobile > 0 %}
+        margin-bottom: -{{ section.settings.margin_bottom_negative_mobile }}px !important;
+      {% else %}
+        margin-bottom: 0 !important;
+      {% endif %}
+    }
+  }
+</style>
+
 <section id="sonu-press-{{ section.id }}" class="press-feature">
 
   <!-- BACKGROUND -->
@@ -236,6 +256,50 @@
 {
   "name": "Press Feature Section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout & Spacing"
+    },
+    {
+      "type": "range",
+      "id": "border_radius_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 40,
+      "unit": "px",
+      "label": "Bottom Border Radius (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "border_radius_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 35,
+      "unit": "px",
+      "label": "Bottom Border Radius (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_negative",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 0,
+      "unit": "px",
+      "label": "Negative Margin Bottom (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_negative_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 0,
+      "unit": "px",
+      "label": "Negative Margin Bottom (Mobile)"
+    },
     {
       "type": "image_picker",
       "id": "bg_image",
