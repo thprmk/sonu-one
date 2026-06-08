@@ -865,13 +865,17 @@
 @media screen and (max-width: 991px) {
   .custom-comp-main-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 24px;
   }
   .custom-comp-info-col {
-    order: 2;
+    order: 3;
   }
   .custom-comp-table-area {
     order: 1;
+  }
+  .custom-comp-controls-row {
+    order: 2;
+    margin-top: 0 !important;
   }
 }
 
@@ -1169,6 +1173,7 @@
   justify-content: flex-end;
   width: 100%;
   margin-top: 40px;
+  grid-column: 1 / -1;
 }
 
 @media screen and (max-width: 768px) {
