@@ -56,8 +56,8 @@
           "settings": {
             "prefix": "",
             "number": "[[2]]",
-            "postfix": "[[X]]",
-            "heading": "Improvement",
+            "postfix": "[[x]]",
+            "heading": "[[Improvement]]",
             "text": "SONU patients showed a 2X improvement in nasal congestion symptoms compared to placebo.",
             "card_bg_color": "#ffffff66",
             "card_border_color": "#ffffff66",
@@ -70,9 +70,9 @@
           "type": "stat",
           "settings": {
             "prefix": "",
-            "number": "81",
-            "postfix": "%",
-            "heading": "Response Rate",
+            "number": "[[81]]",
+            "postfix": "[[%]]",
+            "heading": "[[Response Rate]]",
             "text": "Over 80% of patients experienced clinically significant reduction in nasal congestion symptoms.",
             "card_bg_color": "#ffffff66",
             "card_border_color": "#ffffff66",
@@ -85,8 +85,8 @@
           "type": "stat",
           "settings": {
             "prefix": "",
-            "number": "1",
-            "postfix": "k+",
+            "number": "[[1]]",
+            "postfix": "[[K+]]",
             "heading": "Doctors",
             "text": "Recommended by over 1000 Doctors and Dentists",
             "card_bg_color": "#ffffff66",
@@ -106,6 +106,7 @@
       "settings": {
         "hide_mobile": false,
         "show_description_mobile": true,
+        "block_heading_tag": "h3",
         "enable_top_gradient": true,
         "gradient_color": "#ffffff",
         "gradient_stop": 0,
