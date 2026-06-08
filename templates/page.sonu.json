@@ -1591,108 +1591,7 @@
         "bg_gradient": ""
       }
     },
-    "sonu_specification_rRabMH": {
-      "type": "sonu-specification",
-      "blocks": {
-        "spec_qjpHzK": {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "",
-            "icon_image": "shopify://shop_images/Icon_800x800_bb9f8e7a-ff33-4256-b385-49c951189f38.svg",
-            "heading": "What's Included",
-            "text": "<ul><li>SONU Band</li><li>USB-C charging cable</li></ul>"
-          }
-        },
-        "spec_9DMbwV": {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "",
-            "icon_image": "shopify://shop_images/Isolation_Mode_800x800_6ce1f240-8c5e-45a4-b825-255f667db2bb.svg",
-            "heading": "What's Included",
-            "text": "<ul><li>2.5 oz (72 g)</li></ul>"
-          }
-        },
-        "spec_BqiVdY": {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "",
-            "icon_image": "shopify://shop_images/Icon_1_800x800_7814756d-0dd0-4c96-bd6b-df586c69a046.svg",
-            "heading": "Dimensions",
-            "text": "<ul><li>4 in × 7.8 in × 3.7 in</li><li>104 mm × 200 mm × 94 mm</li></ul>"
-          }
-        },
-        "spec_NPmCXh": {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "",
-            "icon_image": "shopify://shop_images/Icon_2_800x800_c309aca6-aeca-43bf-a0b9-83b7cdf81fc5.svg",
-            "heading": "Material",
-            "text": "<ul><li>Hypoallergenic, soft fabric band</li></ul>"
-          }
-        },
-        "spec_NHn9Vc": {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "",
-            "icon_image": "shopify://shop_images/Icon_3_800x800_cb4d3201-9cb1-4570-9e8b-fd4667dce115.svg",
-            "heading": "size",
-            "text": "<ul><li>One size fits all, adjustable</li></ul>"
-          }
-        },
-        "spec_Bx3fxJ": {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "",
-            "icon_image": "shopify://shop_images/Icon_4_800x800_715b52f8-1708-49e1-9b4b-60c4e5e105b7.svg",
-            "heading": "Battery Life",
-            "text": "<ul><li>75 minutes* (5 sessions)</li></ul>"
-          }
-        },
-        "spec_TiTAWJ": {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "",
-            "icon_image": "shopify://shop_images/Icon_5_800x800_e9e1fafa-9f2b-4a79-b837-92f33fcafc35.svg",
-            "heading": "Compatability",
-            "text": "<ul><li>Requires Android (except OnePlus ) or iPhone 10 or newer, or iPad with Face ID</li></ul>"
-          }
-        },
-        "spec_TtU7xV": {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "",
-            "icon_image": "shopify://shop_images/Icon_6_800x800_66f140de-1112-4247-9980-8910772f9bf1.svg",
-            "heading": "Warrnty",
-            "text": "<ul><li>1-year limited warranty</li></ul>"
-          }
-        }
-      },
-      "block_order": [
-        "spec_qjpHzK",
-        "spec_9DMbwV",
-        "spec_BqiVdY",
-        "spec_NPmCXh",
-        "spec_NHn9Vc",
-        "spec_Bx3fxJ",
-        "spec_TiTAWJ",
-        "spec_TtU7xV"
-      ],
-      "disabled": true,
-      "name": "Tech Specifications",
-      "settings": {
-        "heading": "Tech Specifications",
-        "note_text": "",
-        "bg_image": "shopify://shop_images/Rectangle_65.png",
-        "mobile_bg_image": "shopify://shop_images/section-5-mobile_1.png",
-        "bg_color": "#3a190a",
-        "overlay_opacity": 20,
-        "text_color": "#ffffff",
-        "enable_bottom_radius_desktop": true,
-        "bottom_radius_desktop": 100,
-        "enable_bottom_radius_mobile": false,
-        "bottom_radius_mobile": 50
-      }
-    },
+
     "sonu_slide2_BhV36f": {
       "type": "sonu-slide2",
       "blocks": {
@@ -1809,44 +1708,71 @@
     "custom_specification_sh_xAqyyt": {
       "type": "custom-specification-sh",
       "blocks": {
-        "spec_9xqgzb": {
+        "spec_1": {
           "type": "spec",
           "settings": {
-            "icon_svg": "",
             "heading": "What's Included",
-            "text": "<ul><li>SONU Band</li><li>USB-C charging cable</li></ul>"
+            "text": "<ul><li>SONU Band</li><li>USB-C charging cable</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_800x800_bb9f8e7a-ff33-4256-b385-49c951189f38.svg"
           }
         },
-        "spec_jwKXcc": {
+        "spec_2": {
           "type": "spec",
           "settings": {
-            "icon_svg": "",
             "heading": "Weight",
-            "text": "<ul><li>2.5 oz (72 g)</li></ul>"
+            "text": "<ul><li>2.5 oz (72 g)</li></ul>",
+            "icon_image": "shopify://shop_images/Isolation_Mode_800x800_6ce1f240-8c5e-45a4-b825-255f667db2bb.svg"
           }
         },
-        "spec_bAPdWT": {
+        "spec_3": {
           "type": "spec",
           "settings": {
-            "icon_svg": "",
             "heading": "Dimensions",
-            "text": "<ul><li>4 in x 7.8 in x 3.7 in</li></ul>"
+            "text": "<ul><li>4 in x 7.8 in x 3.7 in</li><li>104 mm x 200 mm x 94 mm</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_1_800x800_7814756d-0dd0-4c96-bd6b-df586c69a046.svg"
           }
         },
-        "spec_3hB3yU": {
+        "spec_4": {
           "type": "spec",
           "settings": {
-            "icon_svg": "",
             "heading": "Material",
-            "text": "<ul><li>Hypoallergenic, soft fabric band</li></ul>"
+            "text": "<ul><li>Hypoallergenic, soft fabric band</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_2_800x800_c309aca6-aeca-43bf-a0b9-83b7cdf81fc5.svg"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "heading": "Size",
+            "text": "<ul><li>One size fits all, adjustable</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_3_800x800_cb4d3201-9cb1-4570-9e8b-fd4667dce115.svg"
+          }
+        },
+        "spec_6": {
+          "type": "spec",
+          "settings": {
+            "heading": "Compatibility",
+            "text": "<ul><li>Requires Android (except OnePlus) or iPhone 10 or newer, or iPad with Face ID</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_5_800x800_e9e1fafa-9f2b-4a79-b837-92f33fcafc35.svg"
+          }
+        },
+        "spec_7": {
+          "type": "spec",
+          "settings": {
+            "heading": "Warranty",
+            "text": "<ul><li>1-year limited warranty</li></ul>",
+            "icon_image": "shopify://shop_images/Icon_6_800x800_66f140de-1112-4247-9980-8910772f9bf1.svg"
           }
         }
       },
       "block_order": [
-        "spec_9xqgzb",
-        "spec_jwKXcc",
-        "spec_bAPdWT",
-        "spec_3hB3yU"
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "spec_6",
+        "spec_7"
       ],
       "name": "Custom Tech Specs",
       "settings": {
@@ -1857,10 +1783,12 @@
         "padding_top_mobile": 70,
         "padding_bottom_mobile": 70,
         "note_text": "",
-        "bg_color": "#3A190A",
+        "bg_color": "#3a190a",
         "bg_gradient": "",
         "overlay_opacity": 20,
         "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/Rectangle_65.png",
+        "mobile_bg_image": "shopify://shop_images/section-5-mobile_1.png",
         "enable_bottom_radius_desktop": true,
         "bottom_radius_desktop": 100,
         "enable_bottom_radius_mobile": false,
@@ -1943,10 +1871,9 @@
     "sonu_banner_L8CRE4",
     "sonu_product2_pLxTFq",
     "sonu_faq_e7WdnB",
-    "sonu_specification_rRabMH",
+    "custom_specification_sh_xAqyyt",
     "sonu_slide2_BhV36f",
     "custom_step_slider_sh_CF43xV",
-    "custom_specification_sh_xAqyyt",
     "sonu_press_j7VRNf"
   ]
 }
