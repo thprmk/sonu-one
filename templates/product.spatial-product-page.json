@@ -280,205 +280,6 @@
         "padding_bottom_mobile": 60
       }
     },
-    "patient_testimonials": {
-      "type": "sonu-v2-testi-sh",
-      "blocks": {
-        "slide_NCYPrX": {
-          "type": "slide",
-          "settings": {
-            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
-            "review_1": "Before using Spatial Sleep, I would wake up several times a night and never felt truly rested. After a few weeks of wearing it regularly, I started sleeping in long, uninterrupted stretches. For the first time in years, I wake up feeling refreshed and energized.",
-            "name_1": "Jay G",
-            "role_1": "Corporate Vice President @ Fortune 500 Company",
-            "review_2": "As a physician on call, quality sleep is rare. With Spatial Sleep, I finally get deep, restorative rest.",
-            "name_2": "Ram G MD",
-            "role_2": "Radiologist",
-            "review_3": "Spatial Sleep has been a real game changer for me. I fall asleep so much faster and actually wake up feeling refreshed. I noticed a difference the very first night. Fell asleep faster, slept deeper. I used to toss and turn for hours, but with Spatial I'm out in minutes and I wake up rested.",
-            "name_3": "Julie K",
-            "role_3": "Retired RN",
-            "review_4": "I love the color and the comfort. It's subtle yet powerful. My REM sleep increased dramatically.",
-            "name_4": "Lindsay M",
-            "role_4": "Clinical Psychologist"
-          }
-        }
-      },
-      "block_order": [
-        "slide_NCYPrX"
-      ],
-      "name": "Testimonials Video sonu",
-      "settings": {
-        "heading": "Real Patients, Real Results",
-        "heading_tag": "h2",
-        "section_bg_color": "#f0e7f7",
-        "section_bg_gradient": "",
-        "heading_color": "#001755",
-        "heading_font_size": 56,
-        "heading_line_height": 68,
-        "heading_font_weight": "500",
-        "card_bg_color": "#ffffff",
-        "card_border_color": "#eae6df",
-        "card_border_width": 1,
-        "card_border_radius": 16,
-        "card_padding": 32,
-        "desktop_review_text_color": "#1e2a3e",
-        "desktop_review_font_size": 16,
-        "desktop_review_line_height": 26,
-        "desktop_review_font_weight": "400",
-        "desktop_author_name_color": "#001755",
-        "desktop_author_name_size": 24,
-        "desktop_author_name_weight": "700",
-        "desktop_author_role_color": "#5a6874",
-        "desktop_author_role_size": 13,
-        "desktop_author_role_weight": "400",
-        "mobile_card_bg_color": "rgba(0,0,0,0)",
-        "mobile_card_border_color": "#b8b7ff",
-        "mobile_card_border_radius": 25,
-        "mobile_card_padding": 24,
-        "mobile_review_text_color": "#000000",
-        "mobile_review_font_size": 14,
-        "mobile_review_line_height": 22,
-        "mobile_author_name_color": "#3d1b03",
-        "mobile_author_name_size": 24,
-        "mobile_author_role_color": "#5a6874",
-        "mobile_author_role_size": 13,
-        "star_color": "#ffcd0f",
-        "nav_arrow_color": "#1f428a",
-        "nav_border_color": "#001755",
-        "container_width": "contained",
-        "padding_top": 100,
-        "padding_bottom": 100,
-        "mobile_padding_top": 30,
-        "mobile_padding_bottom": 20,
-        "desktop_heading_margin_bottom": 70,
-        "mobile_heading_margin_bottom": 16
-      }
-    },
-    "step_slider": {
-      "type": "custom-step-slider-sh",
-      "blocks": {
-        "step_slide_GNjCq7": {
-          "type": "step_slide",
-          "settings": {
-            "image": "shopify://shop_images/Rectangle_105.png",
-            "title": "Scan Your Face",
-            "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
-          }
-        }
-      },
-      "block_order": [
-        "step_slide_GNjCq7"
-      ],
-      "settings": {
-        "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>",
-        "heading_tag": "h2",
-        "heading_color": "#ffffff",
-        "heading_font_size": 48,
-        "heading_line_height": 58,
-        "heading_font_weight": "400",
-        "desktop_heading_margin_bottom": 54,
-        "mobile_heading_margin_bottom": 24,
-        "description": "",
-        "button_text": "Watch the Acoustic Resonance Therapy Film",
-        "button_link": "",
-        "bg_color": "#f4efea",
-        "bg_gradient": "",
-        "text_color": "#3d1b03",
-        "enable_bottom_radius": true,
-        "bottom_radius": 100,
-        "padding_top": 80,
-        "padding_bottom": 80,
-        "padding_top_mobile": 60,
-        "padding_bottom_mobile": 60,
-        "mobile_heading_font_size": 32,
-        "mobile_heading_line_height": 38,
-        "heading_letter_spacing": 0,
-        "mobile_heading_letter_spacing": 0,
-        "mobile_side_padding": 24,
-        "mobile_slide_width": 85,
-        "mobile_image_aspect_ratio": "4/5",
-        "progressbar_height": 2,
-        "nav_btn_size": 44
-      }
-    },
-    "spatial_therapy": {
-      "type": "spatial-therapy-sh",
-      "blocks": {
-        "stat_LxMmDy": {
-          "type": "stat",
-          "settings": {
-            "prefix": "",
-            "number": "2",
-            "postfix": "X",
-            "heading": "Improvement",
-            "text": "SONU patients showed a 2X improvement in nasal congestion symptoms compared to placebo.",
-            "card_bg_color": "#ffffff66",
-            "card_border_color": "#ffffff66",
-            "number_color": "#3d1b03",
-            "label_color": "#3d1b03",
-            "caption_color": "#1e1e1e"
-          }
-        },
-        "stat_hdha8Q": {
-          "type": "stat",
-          "settings": {
-            "prefix": "",
-            "number": "81",
-            "postfix": "%",
-            "heading": "Response Rate",
-            "text": "Over 80% of patients experienced clinically significant reduction in nasal congestion symptoms.",
-            "card_bg_color": "#ffffff66",
-            "card_border_color": "#ffffff66",
-            "number_color": "#3d1b03",
-            "label_color": "#3d1b03",
-            "caption_color": "#1e1e1e"
-          }
-        },
-        "stat_hxVVwj": {
-          "type": "stat",
-          "settings": {
-            "prefix": "",
-            "number": "1",
-            "postfix": "k+",
-            "heading": "Doctors",
-            "text": "Recommended by over 1000 Doctors and Dentists",
-            "card_bg_color": "#ffffff66",
-            "card_border_color": "#ffffff66",
-            "number_color": "#3d1b03",
-            "label_color": "#3d1b03",
-            "caption_color": "#1e1e1e"
-          }
-        }
-      },
-      "block_order": [
-        "stat_LxMmDy",
-        "stat_hdha8Q",
-        "stat_hxVVwj"
-      ],
-      "name": "STE Therapy Editorial",
-      "settings": {
-        "hide_mobile": false,
-        "enable_top_gradient": true,
-        "gradient_color": "#ffffff",
-        "gradient_stop": 0,
-        "gradient_fade_end": 50,
-        "bg_color": "#e5deff",
-        "bg_gradient": "",
-        "text_color": "#3d1b03",
-        "desktop_image": "shopify://shop_images/section-12_1_1.png",
-        "desktop_image_position": "center center",
-        "mobile_image_position": "center center",
-        "heading": "Revolutionary personalized,\n[[non-invasive Therapeutics]]",
-        "heading_tag": "h2",
-        "description": "<p><strong>Acoustic Resonance Therapy</strong><br/><br/>SONU generates resonant frequencies — calibrated to your unique facial and sinus anatomy via a smartphone facial scan and machine learning — that (a) reduce mucosal inflammation, (b) increase mucociliary clearance (the nose's natural self-cleaning system), and (c) mechanically open the nasal airway. This is drug-free, relying entirely on the physics of sound and the body's natural response to resonance.</p>",
-        "heading_color": "#3d1b03",
-        "highlight_color": "#3d1b03",
-        "description_color": "#1e1e1e",
-        "padding_top": 80,
-        "padding_bottom": 80,
-        "padding_top_mobile": 60,
-        "padding_bottom_mobile": 60
-      }
-    },
     "card_slider": {
       "type": "custom-card-slider-sh",
       "blocks": {
@@ -658,6 +459,205 @@
         "nav_hover_bg_color": "#ffffff"
       }
     },
+    "patient_testimonials": {
+      "type": "sonu-v2-testi-sh",
+      "blocks": {
+        "slide_NCYPrX": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
+            "review_1": "Before using Spatial Sleep, I would wake up several times a night and never felt truly rested. After a few weeks of wearing it regularly, I started sleeping in long, uninterrupted stretches. For the first time in years, I wake up feeling refreshed and energized.",
+            "name_1": "Jay G",
+            "role_1": "Corporate Vice President @ Fortune 500 Company",
+            "review_2": "As a physician on call, quality sleep is rare. With Spatial Sleep, I finally get deep, restorative rest.",
+            "name_2": "Ram G MD",
+            "role_2": "Radiologist",
+            "review_3": "Spatial Sleep has been a real game changer for me. I fall asleep so much faster and actually wake up feeling refreshed. I noticed a difference the very first night. Fell asleep faster, slept deeper. I used to toss and turn for hours, but with Spatial I'm out in minutes and I wake up rested.",
+            "name_3": "Julie K",
+            "role_3": "Retired RN",
+            "review_4": "I love the color and the comfort. It's subtle yet powerful. My REM sleep increased dramatically.",
+            "name_4": "Lindsay M",
+            "role_4": "Clinical Psychologist"
+          }
+        }
+      },
+      "block_order": [
+        "slide_NCYPrX"
+      ],
+      "name": "Testimonials Video sonu",
+      "settings": {
+        "heading": "Real Patients, Real Results",
+        "heading_tag": "h2",
+        "section_bg_color": "#f0e7f7",
+        "section_bg_gradient": "",
+        "heading_color": "#001755",
+        "heading_font_size": 56,
+        "heading_line_height": 68,
+        "heading_font_weight": "500",
+        "card_bg_color": "#f0e7f7",
+        "card_border_color": "#8f00ff",
+        "card_border_width": 1,
+        "card_border_radius": 16,
+        "card_padding": 32,
+        "desktop_review_text_color": "#1e2a3e",
+        "desktop_review_font_size": 16,
+        "desktop_review_line_height": 26,
+        "desktop_review_font_weight": "400",
+        "desktop_author_name_color": "#001755",
+        "desktop_author_name_size": 24,
+        "desktop_author_name_weight": "700",
+        "desktop_author_role_color": "#5a6874",
+        "desktop_author_role_size": 13,
+        "desktop_author_role_weight": "400",
+        "mobile_card_bg_color": "rgba(0,0,0,0)",
+        "mobile_card_border_color": "#b8b7ff",
+        "mobile_card_border_radius": 25,
+        "mobile_card_padding": 24,
+        "mobile_review_text_color": "#000000",
+        "mobile_review_font_size": 14,
+        "mobile_review_line_height": 22,
+        "mobile_author_name_color": "#3d1b03",
+        "mobile_author_name_size": 24,
+        "mobile_author_role_color": "#5a6874",
+        "mobile_author_role_size": 13,
+        "star_color": "#ffcd0f",
+        "nav_arrow_color": "#1f428a",
+        "nav_border_color": "#001755",
+        "container_width": "contained",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 20,
+        "desktop_heading_margin_bottom": 70,
+        "mobile_heading_margin_bottom": 16
+      }
+    },
+    "step_slider": {
+      "type": "custom-step-slider-sh",
+      "blocks": {
+        "step_slide_GNjCq7": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_105.png",
+            "title": "Scan Your Face",
+            "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
+          }
+        }
+      },
+      "block_order": [
+        "step_slide_GNjCq7"
+      ],
+      "settings": {
+        "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>",
+        "heading_tag": "h2",
+        "heading_color": "#ffffff",
+        "heading_font_size": 48,
+        "heading_line_height": 58,
+        "heading_font_weight": "400",
+        "desktop_heading_margin_bottom": 54,
+        "mobile_heading_margin_bottom": 24,
+        "description": "",
+        "button_text": "Watch the Acoustic Resonance Therapy Film",
+        "button_link": "",
+        "bg_color": "#f0e7f7",
+        "bg_gradient": "",
+        "text_color": "#3d1b03",
+        "enable_bottom_radius": true,
+        "bottom_radius": 100,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "mobile_heading_font_size": 32,
+        "mobile_heading_line_height": 38,
+        "heading_letter_spacing": 0,
+        "mobile_heading_letter_spacing": 0,
+        "mobile_side_padding": 24,
+        "mobile_slide_width": 85,
+        "mobile_image_aspect_ratio": "4/5",
+        "progressbar_height": 2,
+        "nav_btn_size": 44
+      }
+    },
+    "spatial_therapy": {
+      "type": "spatial-therapy-sh",
+      "blocks": {
+        "stat_LxMmDy": {
+          "type": "stat",
+          "settings": {
+            "prefix": "",
+            "number": "2",
+            "postfix": "X",
+            "heading": "Better Sleep",
+            "text": "Clinical trial participants reported 2X improvement in sleep quality after 2 weeks' use.",
+            "card_bg_color": "#fdd4d4",
+            "card_border_color": "#ffffff",
+            "number_color": "#3d1b03",
+            "label_color": "#001755",
+            "caption_color": "#001755"
+          }
+        },
+        "stat_hdha8Q": {
+          "type": "stat",
+          "settings": {
+            "prefix": "",
+            "number": "100",
+            "postfix": "%",
+            "heading": "Faster Onset",
+            "text": "100% of trial participants fell asleep faster.",
+            "card_bg_color": "#ffffff66",
+            "card_border_color": "#ffffff66",
+            "number_color": "#3d1b03",
+            "label_color": "#3d1b03",
+            "caption_color": "#1e1e1e"
+          }
+        },
+        "stat_hxVVwj": {
+          "type": "stat",
+          "settings": {
+            "prefix": ">",
+            "number": "70",
+            "postfix": "%",
+            "heading": "Stayed Asleep",
+            "text": "Over 70% of trial participants slept through the night.",
+            "card_bg_color": "#ffffff66",
+            "card_border_color": "#ffffff66",
+            "number_color": "#3d1b03",
+            "label_color": "#3d1b03",
+            "caption_color": "#1e1e1e"
+          }
+        }
+      },
+      "block_order": [
+        "stat_LxMmDy",
+        "stat_hdha8Q",
+        "stat_hxVVwj"
+      ],
+      "name": "STE Therapy Editorial",
+      "settings": {
+        "hide_mobile": false,
+        "enable_top_gradient": true,
+        "gradient_color": "#ffffff",
+        "gradient_stop": 0,
+        "gradient_fade_end": 50,
+        "bg_color": "#e5deff",
+        "bg_gradient": "",
+        "text_color": "#001755",
+        "desktop_image": "shopify://shop_images/Group_20.png",
+        "desktop_image_position": "center center",
+        "mobile_image_position": "center center",
+        "heading": "Acoustic Resonance Therapy modified for Sleep",
+        "heading_tag": "h2",
+        "description": "<p>The brain has a natural tendency to synchronize its electrical cycles with external stimuli. When you are awake, your brain typically operates in Beta waves (13–30 Hz). To enter deep sleep, it must slow down to Delta waves (0.5–4 Hz). By playing low-frequency acoustic sounds, Spatial Sleep acts as a metronome. The brain’s activity shifts to the slower rhythm, manually downshifting the nervous system from alertness to calm.</p>",
+        "heading_color": "#001755",
+        "highlight_color": "#001755",
+        "description_color": "#001755",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
     "app_banner": {
       "type": "sonu-banner-sh",
       "settings": {
@@ -694,28 +694,28 @@
         "faq_1": {
           "type": "faq",
           "settings": {
-            "question": "What is SONU™",
-            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+            "question": "What will I hear after I tap “Sleep Now” on the app?",
+            "answer": "<p>You will hear melodies playing from the front of the headband, where the transducers are located. The transducers will also gently vibrate. </p>"
           }
         },
         "faq_2": {
           "type": "faq",
           "settings": {
-            "question": "How does SONU™ work?",
+            "question": "How long do I have to listen to the harmony ? ",
             "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
           }
         },
         "faq_3": {
           "type": "faq",
           "settings": {
-            "question": "What symptoms does SONU Band help with?",
+            "question": "How often should I use Spatial Sleep?",
             "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
           }
         },
         "faq_4": {
           "type": "faq",
           "settings": {
-            "question": "Is SONU safe when it comes to EMF exposure?",
+            "question": "How long does the battery last between charges?",
             "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
           }
         }
@@ -734,9 +734,9 @@
         "padding_bottom": 80,
         "padding_top_mobile": 70,
         "padding_bottom_mobile": 14,
-        "bg_image_desktop": "shopify://shop_images/Rectangle_60_3.png",
-        "bg_image_mobile": "shopify://shop_images/Rectangle_60_1.png",
-        "bg_color": "#d7cec7",
+        "bg_image_desktop": "shopify://shop_images/Rectangle_60_2.png",
+        "bg_image_mobile": "shopify://shop_images/Rectangle_60.png",
+        "bg_color": "#d2bee4",
         "bg_gradient": ""
       }
     },
@@ -749,7 +749,7 @@
             "icon_svg": "",
             "icon_image": "shopify://shop_images/Icon_800x800_bb9f8e7a-ff33-4256-b385-49c951189f38.svg",
             "heading": "What's Included",
-            "text": "<ul><li>SONU Band</li><li>USB-C charging cable</li></ul>"
+            "text": "<ul><li>One Spatial Sleep Headband</li><li>USB-C charging cable</li><li>Quick Start Guide</li></ul>"
           }
         },
         "spec_2": {
@@ -824,7 +824,7 @@
         "padding_top_mobile": 70,
         "padding_bottom_mobile": 70,
         "note_text": "",
-        "bg_image": "shopify://shop_images/Rectangle_65.png",
+        "bg_image": "shopify://shop_images/Rectangle_65_1.png",
         "mobile_bg_image": "shopify://shop_images/section-5-mobile_1.png",
         "bg_color": "#3a190a",
         "bg_gradient": "",
