@@ -33,7 +33,7 @@
     color: {{ section.settings.desktop_review_text_color }} !important;
   }
   
-  #shopify-section-{{ section.id }} .v2-review-author h6 {
+  #shopify-section-{{ section.id }} .v2-review-author h5 {
     color: {{ section.settings.desktop_author_name_color }} !important;
   }
   
@@ -133,7 +133,7 @@
                             {{ block.settings[review_key] }}
                           </div>
                           <div class="v2-review-author">
-                            <h4>{{ block.settings[name_key] }}</h4>
+                            <h5>{{ block.settings[name_key] }}</h5>
                             <span>{{ block.settings[role_key] }}</span>
                           </div>
                           <div class="v2-desktop-rating-stars-row">
