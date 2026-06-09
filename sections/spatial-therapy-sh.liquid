@@ -130,17 +130,7 @@
   <div class="ste-mobile-only" style="width: 100%;">
     <div class="custom-stats-container">
 
-      <!-- Top Heading -->
-      {% if section.settings.heading != blank %}
-        {% assign ste_formatted_heading_mobile = section.settings.heading
-          | replace: '[[', highlight_span
-          | replace: ']]', '</span>'
-          | newline_to_br
-        %}
-        <{{ section.settings.heading_tag | default: 'h2' }} class="ste-mobile-heading" style="color: {{ section.settings.heading_color | default: text_color }};">
-          {{ ste_formatted_heading_mobile }}
-        </{{ section.settings.heading_tag | default: 'h2' }}>
-      {% endif %}
+      
 
       <!-- Top Image -->
       {%- assign mobile_img = section.settings.mobile_image | default: section.settings.desktop_image -%}
@@ -188,7 +178,17 @@
           </div>
         {% endfor %}
       </div>
-
+<!-- Top Heading -->
+      {% if section.settings.heading != blank %}
+        {% assign ste_formatted_heading_mobile = section.settings.heading
+          | replace: '[[', highlight_span
+          | replace: ']]', '</span>'
+          | newline_to_br
+        %}
+        <{{ section.settings.heading_tag | default: 'h2' }} class="ste-mobile-heading" style="color: {{ section.settings.heading_color | default: text_color }};">
+          {{ ste_formatted_heading_mobile }}
+        </{{ section.settings.heading_tag | default: 'h2' }}>
+      {% endif %}
       {% if section.settings.show_description_mobile and section.settings.description != blank %}
         <div class="ste-mobile-description ste-body-description" style="color: {{ section.settings.description_color | default: text_color }};">
           {{ section.settings.description | replace: '[[', highlight_span | replace: ']]', '</span>' }}
