@@ -384,7 +384,7 @@
             "video_url": "",
             "subheading": "",
             "quote": "As an airway patient I am always looking for ways to improve my nasal breathing. SONU has been the best addition yet to my nasal hygiene routine. I highly recommend it to anyone struggling with nasal congestion.",
-            "heading_tag": "p",
+            "heading_tag": "h2",
             "quote_font_size": 16,
             "quote_font_size_desktop": 36,
             "author_name": "Zach",
@@ -469,7 +469,7 @@
         "step_slide_DDMNQG"
       ],
       "settings": {
-        "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through [[Your Nose]]",
+        "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>[[Your Nose]]</em>",
         "heading_tag": "h3",
         "heading_color": "#ffffff",
         "desktop_heading_margin_bottom": 54,
