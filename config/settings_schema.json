@@ -124,22 +124,52 @@
         "content": "t:content.fonts"
       },
       {
-        "type": "font_picker",
+        "type": "select",
         "id": "type_body_font",
         "label": "t:options.body",
-        "default": "bricolage_grotesque_n5"
+        "default": "Instrument Sans",
+        "options": [
+          {
+            "value": "Instrument Sans",
+            "label": "Instrument Sans"
+          },
+          {
+            "value": "PP Editorial New",
+            "label": "PP Editorial New"
+          }
+        ]
       },
       {
-        "type": "font_picker",
+        "type": "select",
         "id": "type_heading_font",
         "label": "t:options.heading",
-        "default": "bricolage_grotesque_n7"
+        "default": "Instrument Sans",
+        "options": [
+          {
+            "value": "Instrument Sans",
+            "label": "Instrument Sans"
+          },
+          {
+            "value": "PP Editorial New",
+            "label": "PP Editorial New"
+          }
+        ]
       },
       {
-        "type": "font_picker",
+        "type": "select",
         "id": "type_highlight_font",
         "label": "t:settings.highlight_font",
-        "default": "bricolage_grotesque_n7"
+        "default": "PP Editorial New",
+        "options": [
+          {
+            "value": "Instrument Sans",
+            "label": "Instrument Sans"
+          },
+          {
+            "value": "PP Editorial New",
+            "label": "PP Editorial New"
+          }
+        ]
       },
       {
         "type": "text",

@@ -28,7 +28,7 @@
         when 'highlight'
           assign base = settings.type_highlight_font
       endcase
-      if base == blank
+      if base == blank or base == 'Instrument Sans' or base == 'PP Editorial New' or base == 'instrument-sans' or base == 'pp-editorial'
         continue
       endif
     -%}
@@ -321,19 +321,62 @@
     --flip-x-factor: 1;
 
     /* Font families */
-    --font-body--family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
-    --font-body--style: {{ settings.type_body_font.style }};
-    --font-body--weight: {{ settings.type_body_font.weight }};
+    {%- liquid
+      if settings.type_body_font == 'instrument-sans' or settings.type_body_font == 'Instrument Sans'
+        assign body_font_family = "'Instrument Sans', sans-serif"
+        assign body_font_style = "normal"
+        assign body_font_weight = "400"
+      elsif settings.type_body_font == 'pp-editorial' or settings.type_body_font == 'PP Editorial New'
+        assign body_font_family = "'PP Editorial New', 'pp-editorial', Georgia, serif"
+        assign body_font_style = "normal"
+        assign body_font_weight = "400"
+      else
+        assign body_font_family = settings.type_body_font.family | append: ', ' | append: settings.type_body_font.fallback_families
+        assign body_font_style = settings.type_body_font.style
+        assign body_font_weight = settings.type_body_font.weight
+      endif
+
+      if settings.type_heading_font == 'instrument-sans' or settings.type_heading_font == 'Instrument Sans'
+        assign heading_font_family = "'Instrument Sans', sans-serif"
+        assign heading_font_style = "normal"
+        assign heading_font_weight = "400"
+      elsif settings.type_heading_font == 'pp-editorial' or settings.type_heading_font == 'PP Editorial New'
+        assign heading_font_family = "'PP Editorial New', 'pp-editorial', Georgia, serif"
+        assign heading_font_style = "normal"
+        assign heading_font_weight = "400"
+      else
+        assign heading_font_family = settings.type_heading_font.family | append: ', ' | append: settings.type_heading_font.fallback_families
+        assign heading_font_style = settings.type_heading_font.style
+        assign heading_font_weight = settings.type_heading_font.weight
+      endif
+
+      if settings.type_highlight_font == 'instrument-sans' or settings.type_highlight_font == 'Instrument Sans'
+        assign highlight_font_family = "'Instrument Sans', sans-serif"
+        assign highlight_font_style = "normal"
+        assign highlight_font_weight = "400"
+      elsif settings.type_highlight_font == 'pp-editorial' or settings.type_highlight_font == 'PP Editorial New'
+        assign highlight_font_family = "'PP Editorial New', 'pp-editorial', Georgia, serif"
+        assign highlight_font_style = "italic"
+        assign highlight_font_weight = "400"
+      else
+        assign highlight_font_family = settings.type_highlight_font.family | append: ', ' | append: settings.type_highlight_font.fallback_families
+        assign highlight_font_style = settings.type_highlight_font.style
+        assign highlight_font_weight = settings.type_highlight_font.weight
+      endif
+    -%}
+    --font-body--family: {{ body_font_family }};
+    --font-body--style: {{ body_font_style }};
+    --font-body--weight: {{ body_font_weight }};
 
     {%- liquid
       if settings.subheading_font == 'body'
-        assign subheading_font_family = settings.type_body_font.family | append: ', ' | append: settings.type_body_font.fallback_families
-        assign subheading_font_style = settings.type_body_font.style
-        assign subheading_font_weight_inherit = settings.type_body_font.weight
+        assign subheading_font_family = body_font_family
+        assign subheading_font_style = body_font_style
+        assign subheading_font_weight_inherit = body_font_weight
       else
-        assign subheading_font_family = settings.type_heading_font.family | append: ', ' | append: settings.type_heading_font.fallback_families
-        assign subheading_font_style = settings.type_heading_font.style
-        assign subheading_font_weight_inherit = settings.type_heading_font.weight
+        assign subheading_font_family = heading_font_family
+        assign subheading_font_style = heading_font_style
+        assign subheading_font_weight_inherit = heading_font_weight
       endif
 
       if settings.subheading_font_weight == blank
@@ -352,13 +395,13 @@
 
     {%- liquid
       if settings.pcard_title_font == 'body'
-        assign pcard_title_font_family = settings.type_body_font.family | append: ', ' | append: settings.type_body_font.fallback_families
-        assign pcard_title_font_style = settings.type_body_font.style
-        assign pcard_title_font_weight_inherit = settings.type_body_font.weight
+        assign pcard_title_font_family = body_font_family
+        assign pcard_title_font_style = body_font_style
+        assign pcard_title_font_weight_inherit = body_font_weight
       else
-        assign pcard_title_font_family = settings.type_heading_font.family | append: ', ' | append: settings.type_heading_font.fallback_families
-        assign pcard_title_font_style = settings.type_heading_font.style
-        assign pcard_title_font_weight_inherit = settings.type_heading_font.weight
+        assign pcard_title_font_family = heading_font_family
+        assign pcard_title_font_style = heading_font_style
+        assign pcard_title_font_weight_inherit = heading_font_weight
       endif
 
       if settings.pcard_title_font_weight == blank
@@ -375,13 +418,13 @@
 
     {%- liquid
       if settings.pcard_price_font == 'body'
-        assign pcard_price_font_family = settings.type_body_font.family | append: ', ' | append: settings.type_body_font.fallback_families
-        assign pcard_price_font_style = settings.type_body_font.style
-        assign pcard_price_font_weight_inherit = settings.type_body_font.weight
+        assign pcard_price_font_family = body_font_family
+        assign pcard_price_font_style = body_font_style
+        assign pcard_price_font_weight_inherit = body_font_weight
       else
-        assign pcard_price_font_family = settings.type_heading_font.family | append: ', ' | append: settings.type_heading_font.fallback_families
-        assign pcard_price_font_style = settings.type_heading_font.style
-        assign pcard_price_font_weight_inherit = settings.type_heading_font.weight
+        assign pcard_price_font_family = heading_font_family
+        assign pcard_price_font_style = heading_font_style
+        assign pcard_price_font_weight_inherit = heading_font_weight
       endif
 
       if settings.pcard_price_font_weight == blank
@@ -396,13 +439,13 @@
 
     {%- liquid
       if settings.pcard_badge_font == 'body'
-        assign pcard_badge_font_family = settings.type_body_font.family | append: ', ' | append: settings.type_body_font.fallback_families
-        assign pcard_badge_font_style = settings.type_body_font.style
-        assign pcard_badge_font_weight_inherit = settings.type_body_font.weight
+        assign pcard_badge_font_family = body_font_family
+        assign pcard_badge_font_style = body_font_style
+        assign pcard_badge_font_weight_inherit = body_font_weight
       else
-        assign pcard_badge_font_family = settings.type_heading_font.family | append: ', ' | append: settings.type_heading_font.fallback_families
-        assign pcard_badge_font_style = settings.type_heading_font.style
-        assign pcard_badge_font_weight_inherit = settings.type_heading_font.weight
+        assign pcard_badge_font_family = heading_font_family
+        assign pcard_badge_font_style = heading_font_style
+        assign pcard_badge_font_weight_inherit = heading_font_weight
       endif
 
       if settings.pcard_badge_font_weight == blank
@@ -419,13 +462,13 @@
 
     {%- liquid
       if settings.navigation_font == 'body'
-        assign navigation_font_family = settings.type_body_font.family | append: ', ' | append: settings.type_body_font.fallback_families
-        assign navigation_font_style = settings.type_body_font.style
-        assign navigation_font_weight_inherit = settings.type_body_font.weight
+        assign navigation_font_family = body_font_family
+        assign navigation_font_style = body_font_style
+        assign navigation_font_weight_inherit = body_font_weight
       else
-        assign navigation_font_family = settings.type_heading_font.family | append: ', ' | append: settings.type_heading_font.fallback_families
-        assign navigation_font_style = settings.type_heading_font.style
-        assign navigation_font_weight_inherit = settings.type_heading_font.weight
+        assign navigation_font_family = heading_font_family
+        assign navigation_font_style = heading_font_style
+        assign navigation_font_weight_inherit = heading_font_weight
       endif
 
       if settings.navigation_font_weight == blank
@@ -442,13 +485,13 @@
 
     {%- liquid
       if settings.button_font == 'body'
-        assign button_font_family = settings.type_body_font.family | append: ', ' | append: settings.type_body_font.fallback_families
-        assign button_font_style = settings.type_body_font.style
-        assign button_font_weight_inherit = settings.type_body_font.weight
+        assign button_font_family = body_font_family
+        assign button_font_style = body_font_style
+        assign button_font_weight_inherit = body_font_weight
       else
-        assign button_font_family = settings.type_heading_font.family | append: ', ' | append: settings.type_heading_font.fallback_families
-        assign button_font_style = settings.type_heading_font.style
-        assign button_font_weight_inherit = settings.type_heading_font.weight
+        assign button_font_family = heading_font_family
+        assign button_font_style = heading_font_style
+        assign button_font_weight_inherit = heading_font_weight
       endif
 
       if settings.button_font_weight == blank
@@ -461,13 +504,13 @@
     --font-button--style: {{ button_font_style }};
     --font-button--weight: {{ button_font_weight }};
 
-    --font-heading--family: {{ settings.type_heading_font.family }}, {{ settings.type_heading_font.fallback_families }};
-    --font-heading--style: {{ settings.type_heading_font.style }};
-    --font-heading--weight: {{ settings.type_heading_font.weight }};
+    --font-heading--family: {{ heading_font_family }};
+    --font-heading--style: {{ heading_font_style }};
+    --font-heading--weight: {{ heading_font_weight }};
 
-    --font-highlight--family: {{ settings.type_highlight_font.family }}, {{ settings.type_highlight_font.fallback_families }};
-    --font-highlight--style: {{ settings.type_highlight_font.style }};
-    --font-highlight--weight: {{ settings.type_highlight_font.weight }};
+    --font-highlight--family: {{ highlight_font_family }};
+    --font-highlight--style: {{ highlight_font_style }};
+    --font-highlight--weight: {{ highlight_font_weight }};
 
     /* Buttons */
     --font-button--transform: {{ settings.button_text_transform }};

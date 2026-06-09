@@ -1,26 +1,43 @@
-{%- unless settings.type_body_font.system? and settings.type_heading_font.system? -%}
-  <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+{%- assign body_is_custom = false -%}
+{%- if settings.type_body_font == 'instrument-sans' or settings.type_body_font == 'Instrument Sans' or settings.type_body_font == 'pp-editorial' or settings.type_body_font == 'PP Editorial New' -%}
+  {%- assign body_is_custom = true -%}
+{%- endif -%}
+
+{%- assign heading_is_custom = false -%}
+{%- if settings.type_heading_font == 'instrument-sans' or settings.type_heading_font == 'Instrument Sans' or settings.type_heading_font == 'pp-editorial' or settings.type_heading_font == 'PP Editorial New' -%}
+  {%- assign heading_is_custom = true -%}
+{%- endif -%}
+
+{%- unless body_is_custom or heading_is_custom -%}
+  {%- unless settings.type_body_font.system? and settings.type_heading_font.system? -%}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+  {%- endunless -%}
 {%- endunless -%}
 
 {% # theme-check-disable %}
-{%- unless settings.type_body_font.system? -%}
-  <link
-    rel="preload"
-    as="font"
-    href="{{ settings.type_body_font | font_url }}"
-    type="font/woff2"
-    crossorigin
-    fetchpriority="low"
-  >
+{%- unless body_is_custom -%}
+  {%- unless settings.type_body_font.system? -%}
+    <link
+      rel="preload"
+      as="font"
+      href="{{ settings.type_body_font | font_url }}"
+      type="font/woff2"
+      crossorigin
+      fetchpriority="low"
+    >
+  {%- endunless -%}
 {%- endunless -%}
-{%- unless settings.type_heading_font.system? -%}
-  <link
-    rel="preload"
-    as="font"
-    href="{{ settings.type_heading_font | font_url }}"
-    type="font/woff2"
-    crossorigin
-    fetchpriority="low"
-  >
+
+{%- unless heading_is_custom -%}
+  {%- unless settings.type_heading_font.system? -%}
+    <link
+      rel="preload"
+      as="font"
+      href="{{ settings.type_heading_font | font_url }}"
+      type="font/woff2"
+      crossorigin
+      fetchpriority="low"
+    >
+  {%- endunless -%}
 {%- endunless -%}
 {% # theme-check-enable %}
