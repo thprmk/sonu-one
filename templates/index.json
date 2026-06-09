@@ -867,9 +867,9 @@
         "button_2_text": "Explore Spatial Sleep",
         "button_2_link": "",
         "padding_top": 30,
-        "padding_bottom": 50,
+        "padding_bottom": 60,
         "mobile_padding_top": 24,
-        "mobile_padding_bottom": 116
+        "mobile_padding_bottom": 24
       }
     },
     "blog_posts_qncGyC": {
