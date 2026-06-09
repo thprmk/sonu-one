@@ -1904,8 +1904,8 @@
   padding-right: 0;
 }
 
-.v2-testimonial-video-section.v2-full-width .v2-page-width {
-  max-width: 1520px;
+.v2-testimonial-video-section.v2-full-width .{
+  max-width: 1520px!important;
   margin: 0 auto;
   padding: 0;
 }
