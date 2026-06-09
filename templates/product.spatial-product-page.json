@@ -461,7 +461,7 @@
         "card_title_color": "#0e1b4c",
         "card_desc_color": "#1e1e1e",
         "top_badge_bg": "#e2d9f3",
-        "top_badge_color": "#5e53e5",
+        "top_badge_color": "#000000",
         "bottom_badge_bg": "#afafb2",
         "bottom_badge_color": "#ffffff",
         "progressbar_height": 2,
