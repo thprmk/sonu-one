@@ -5,7 +5,7 @@
 -%}
 
 <div class="custom-comp-wrapper" style="
-  {% if section.settings.bg_gradient != blank %}
+  {% if section.settings.bg_gradient != blank %}x
     background: {{ section.settings.bg_gradient }};
   {% else %}
     background-color: {{ bg_color }};
@@ -414,6 +414,11 @@
           "id": "text_color",
           "label": "Custom Card Text/Icon Color"
         },
+{
+  "type": "color",
+  "id": "title_color",
+  "label": "Column Title Color"
+},
         {
           "type": "select",
           "id": "row_1_val",
