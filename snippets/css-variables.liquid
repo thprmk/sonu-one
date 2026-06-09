@@ -6,7 +6,7 @@
 
   {%- liquid
     assign loaded = ''
-    assign roles = 'body,head,highlight' | split: ','
+    assign roles = 'body,head,highlight,highlight_secondary' | split: ','
     assign variants = 'regular|normal, bold|normal, regular|italic, bold|italic' | split: ','
 
     # Parse extra weights from settings
@@ -27,8 +27,10 @@
           assign extra_weights_array = heading_extra_weights_array
         when 'highlight'
           assign base = settings.type_highlight_font
+        when 'highlight_secondary'
+          assign base = settings.type_highlight_font_secondary
       endcase
-      if base == blank or base == 'Instrument Sans' or base == 'PP Editorial New' or base == 'instrument-sans' or base == 'pp-editorial'
+      if base == blank or base == 'Instrument Sans' or base == 'PP Editorial New' or base == 'instrument-sans' or base == 'pp-editorial' or base == 'Times New Roman'
         continue
       endif
     -%}
@@ -358,10 +360,32 @@
         assign highlight_font_family = "'PP Editorial New', 'pp-editorial', Georgia, serif"
         assign highlight_font_style = "italic"
         assign highlight_font_weight = "400"
+      elsif settings.type_highlight_font == 'Times New Roman'
+        assign highlight_font_family = "'Times New Roman', Times, Georgia, serif"
+        assign highlight_font_style = "italic"
+        assign highlight_font_weight = "400"
       else
         assign highlight_font_family = settings.type_highlight_font.family | append: ', ' | append: settings.type_highlight_font.fallback_families
         assign highlight_font_style = settings.type_highlight_font.style
         assign highlight_font_weight = settings.type_highlight_font.weight
+      endif
+
+      if settings.type_highlight_font_secondary == 'instrument-sans' or settings.type_highlight_font_secondary == 'Instrument Sans'
+        assign highlight_font_family_secondary = "'Instrument Sans', sans-serif"
+        assign highlight_font_style_secondary = "normal"
+        assign highlight_font_weight_secondary = "400"
+      elsif settings.type_highlight_font_secondary == 'pp-editorial' or settings.type_highlight_font_secondary == 'PP Editorial New'
+        assign highlight_font_family_secondary = "'PP Editorial New', 'pp-editorial', Georgia, serif"
+        assign highlight_font_style_secondary = "italic"
+        assign highlight_font_weight_secondary = "400"
+      elsif settings.type_highlight_font_secondary == 'Times New Roman' or settings.type_highlight_font_secondary == blank
+        assign highlight_font_family_secondary = "'Times New Roman', Times, Georgia, serif"
+        assign highlight_font_style_secondary = "italic"
+        assign highlight_font_weight_secondary = "400"
+      else
+        assign highlight_font_family_secondary = settings.type_highlight_font_secondary.family | append: ', ' | append: settings.type_highlight_font_secondary.fallback_families
+        assign highlight_font_style_secondary = settings.type_highlight_font_secondary.style
+        assign highlight_font_weight_secondary = settings.type_highlight_font_secondary.weight
       endif
     -%}
     --font-body--family: {{ body_font_family }};
@@ -511,6 +535,10 @@
     --font-highlight--family: {{ highlight_font_family }};
     --font-highlight--style: {{ highlight_font_style }};
     --font-highlight--weight: {{ highlight_font_weight }};
+
+    --font-highlight-secondary--family: {{ highlight_font_family_secondary }};
+    --font-highlight-secondary--style: {{ highlight_font_style_secondary }};
+    --font-highlight-secondary--weight: {{ highlight_font_weight_secondary }};
 
     /* Buttons */
     --font-button--transform: {{ settings.button_text_transform }};

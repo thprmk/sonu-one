@@ -51,8 +51,24 @@
 @font-face {
   font-family: 'PP Editorial New';
   src: url('{{ "PPEditorialNew-Ultrabold-BF644b21500840c.otf" | asset_url }}') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-Ultrabold-BF644b21500840c.otf" | asset_url }}') format('opentype');
   font-weight: 800;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-UltraboldItalic-BF644b214faef01.otf" | asset_url }}') format('opentype');
+  font-weight: 700;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -92,6 +108,38 @@
   font-family: 'pp-editorial';
   src: url('{{ "PPEditorialNew-Italic-BF644b214fb0c0a.otf" | asset_url }}') format('opentype');
   font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-Ultrabold-BF644b21500840c.otf" | asset_url }}') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-Ultrabold-BF644b21500840c.otf" | asset_url }}') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-UltraboldItalic-BF644b214faef01.otf" | asset_url }}') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-UltraboldItalic-BF644b214faef01.otf" | asset_url }}') format('opentype');
+  font-weight: 800;
   font-style: italic;
   font-display: swap;
 }
@@ -273,4 +321,128 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".sonu-blur-in").forEach(el => observer.observe(el));
   }
 });
+
+// Global typography bracket parser for highlights
+(() => {
+  const excludeWords = ['count', 'threshold', 'price', 'amount', 'address', 'name', 'email'];
+  const bracketOpen = '[' + '[';
+  const bracketClose = ']' + ']';
+  const curlyOpen = '{' + '{';
+  const curlyClose = '}' + '}';
+
+  function parseBrackets(str, openToken, closeToken, className, excludeList) {
+    let result = "";
+    let currentIndex = 0;
+    let hasMatches = false;
+
+    while (true) {
+      const start = str.indexOf(openToken, currentIndex);
+      if (start === -1) {
+        result += str.substring(currentIndex);
+        break;
+      }
+
+      result += str.substring(currentIndex, start);
+      const end = str.indexOf(closeToken, start + openToken.length);
+      if (end === -1) {
+        result += str.substring(start);
+        break;
+      }
+
+      const content = str.substring(start + openToken.length, end);
+      const trimmed = content.trim();
+
+      if (excludeList && excludeList.includes(trimmed)) {
+        result += openToken + content + closeToken;
+      } else {
+        result += `<span class="${className}">${content}</span>`;
+        hasMatches = true;
+      }
+
+      currentIndex = end + closeToken.length;
+    }
+
+    return { text: result, hasMatches };
+  }
+
+  function processNode(node) {
+    if (!node) return;
+    if (node.nodeType === 3) { // Text Node
+      const text = node.nodeValue;
+      if (text && (text.includes(bracketOpen) || text.includes(curlyOpen))) {
+        let hasMatches = false;
+        let newText = text;
+
+        // Escape HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.textContent = newText;
+        newText = tempDiv.innerHTML;
+
+        // Replace [[content]] -> <span class="highlight-pp">content</span>
+        if (newText.includes(bracketOpen)) {
+          const parsed = parseBrackets(newText, bracketOpen, bracketClose, 'highlight-pp');
+          newText = parsed.text;
+          if (parsed.hasMatches) hasMatches = true;
+        }
+
+        // Replace {{content}} -> <span class="highlight-times">content</span>
+        if (newText.includes(curlyOpen)) {
+          const parsed = parseBrackets(newText, curlyOpen, curlyClose, 'highlight-times', excludeWords);
+          newText = parsed.text;
+          if (parsed.hasMatches) hasMatches = true;
+        }
+
+        if (hasMatches) {
+          const wrapper = document.createElement('span');
+          wrapper.className = 'parsed-highlight-wrapper';
+          wrapper.innerHTML = newText;
+          node.parentNode.replaceChild(wrapper, node);
+        }
+      }
+    } else if (node.nodeType === 1) { // Element Node
+      const tag = node.tagName.toLowerCase();
+      if (
+        tag !== 'script' && 
+        tag !== 'style' && 
+        tag !== 'iframe' && 
+        tag !== 'svg' && 
+        tag !== 'input' && 
+        tag !== 'textarea' && 
+        tag !== 'noscript' &&
+        !node.classList.contains('parsed-highlight-wrapper')
+      ) {
+        const children = Array.from(node.childNodes);
+        for (const child of children) {
+          processNode(child);
+        }
+      }
+    }
+  }
+
+  // Initialize parsing
+  const init = () => {
+    processNode(document.body);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  // Monitor dynamic changes (AJAX, cart drawer, customizer updates, etc.)
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        processNode(node);
+      }
+    }
+  });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  // Handle Shopify customizer section loads
+  document.addEventListener("shopify:section:load", (event) => {
+    processNode(event.target);
+  });
+})();
 </script>

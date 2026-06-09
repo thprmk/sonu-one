@@ -168,6 +168,30 @@
           {
             "value": "PP Editorial New",
             "label": "PP Editorial New"
+          },
+          {
+            "value": "Times New Roman",
+            "label": "Times New Roman"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "type_highlight_font_secondary",
+        "label": "Highlight Font (Secondary)",
+        "default": "Times New Roman",
+        "options": [
+          {
+            "value": "Instrument Sans",
+            "label": "Instrument Sans"
+          },
+          {
+            "value": "PP Editorial New",
+            "label": "PP Editorial New"
+          },
+          {
+            "value": "Times New Roman",
+            "label": "Times New Roman"
           }
         ]
       },

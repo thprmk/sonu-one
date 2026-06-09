@@ -4435,7 +4435,15 @@ h5 em,
 h6 em,
 .custom-step-heading em,
 .custom-step-desktop-heading em,
-.custom-expect-heading em {
-  font-family: 'PP Editorial New', 'pp-editorial', Georgia, serif !important;
-  font-style: italic !important;
+.custom-expect-heading em,
+.highlight-pp {
+  font-family: var(--font-highlight--family, 'PP Editorial New', 'pp-editorial', Georgia, serif) !important;
+  font-style: var(--font-highlight--style, italic) !important;
+  font-weight: var(--font-highlight--weight, 400) !important;
+}
+
+.highlight-times {
+  font-family: var(--font-highlight-secondary--family, 'Times New Roman', Times, Georgia, serif) !important;
+  font-style: var(--font-highlight-secondary--style, italic) !important;
+  font-weight: var(--font-highlight-secondary--weight, 400) !important;
 }
