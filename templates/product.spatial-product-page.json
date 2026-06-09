@@ -408,6 +408,7 @@
           "settings": {
             "top_badge": "DAYS 1-7",
             "moon_phase": "crescent",
+            "icon_image": "shopify://shop_images/Group_38.png",
             "title": "Your body is listening",
             "description": "This week, your acoustic therapy is personalized to you. Each session gently trains your brain's natural sleep response. Be patient with yourself — the foundation is being built.",
             "bottom_badge": "Use nightly for best results"
