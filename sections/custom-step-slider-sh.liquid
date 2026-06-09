@@ -59,6 +59,11 @@
       color: {{ section.settings.heading_color }} !important;
       margin-bottom: {{ section.settings.desktop_heading_margin_bottom }}px !important;
     }
+    #shopify-section-{{ section.id }} .custom-step-desktop-heading em {
+      font-family: var(--sonu-font-serif) !important;
+      font-style: italic !important;
+      font-weight: normal !important;
+    }
     #shopify-section-{{ section.id }} .custom-step-heading {
       color: {{ text_color }} !important;
       margin-bottom: {{ section.settings.mobile_heading_margin_bottom }}px !important;
@@ -83,10 +88,10 @@
         margin-bottom: 36px !important;
       }
       #shopify-section-{{ section.id }} .custom-step-heading {
-        font-family: var(--sonu-font-serif) !important;
-        font-size: 36px !important;
-        line-height: 1.15 !important;
-        font-weight: 300 !important;
+        font-family: var(--sonu-font-family, sans-serif) !important;
+        font-size: 32px !important;
+        line-height: 1.25 !important;
+        font-weight: normal !important;
         text-align: center !important;
         color: #3D1B03 !important;
         margin-bottom: 0 !important;
@@ -192,7 +197,7 @@
       <div class="custom-step-desktop-inner">
         <div class="custom-step-desktop-left">
           {% if section.settings.heading != blank %}
-            <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-desktop-heading {{ section.settings.heading_tag | default: 'h2' }}">{{ section.settings.heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
+            <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-desktop-heading {{ section.settings.heading_tag | default: 'h2' }}">{{ section.settings.heading | replace: '[[', '<em>' | replace: ']]', '</em>' }}</{{ section.settings.heading_tag | default: 'h2' }}>
           {% endif %}
           
           <div class="custom-step-desktop-list">
@@ -228,7 +233,7 @@
     <div class="custom-step-mobile-layout">
       <div class="custom-step-header">
         {% if section.settings.heading != blank %}
-          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-heading {{ section.settings.heading_tag | default: 'h2' }}" style="color: {{ text_color }};">{{ section.settings.heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
+          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-heading {{ section.settings.heading_tag | default: 'h2' }}" style="color: {{ text_color }};">{{ section.settings.heading | replace: '[[', '<em>' | replace: ']]', '</em>' }}</{{ section.settings.heading_tag | default: 'h2' }}>
         {% endif %}
         {% if section.settings.description != blank %}
           <div class="custom-step-desc rte" style="color: {{ text_color }};">{{ section.settings.description | newline_to_br }}</div>
