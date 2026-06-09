@@ -2949,6 +2949,7 @@ h6 em,
    ========================================================================== */
 
 h1, .h1, .text-block.h1 > * {
+  font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h1) !important;
   line-height: var(--font-h1--line-height) !important;
   font-weight: var(--font-h1--weight) !important;
@@ -2956,6 +2957,7 @@ h1, .h1, .text-block.h1 > * {
 }
 
 h2, .h2, .text-block.h2 > * {
+  font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h2) !important;
   line-height: var(--font-h2--line-height) !important;
   font-weight: var(--font-h2--weight) !important;
@@ -2963,6 +2965,7 @@ h2, .h2, .text-block.h2 > * {
 }
 
 h3, .h3, .text-block.h3 > * {
+  font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h3) !important;
   line-height: var(--font-h3--line-height) !important;
   font-weight: var(--font-h3--weight) !important;
@@ -2970,6 +2973,7 @@ h3, .h3, .text-block.h3 > * {
 }
 
 h4, .h4, .text-block.h4 > * {
+  font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h4) !important;
   line-height: var(--font-h4--line-height) !important;
   font-weight: var(--font-h4--weight) !important;
@@ -2977,6 +2981,7 @@ h4, .h4, .text-block.h4 > * {
 }
 
 h5, .h5, .text-block.h5 > * {
+  font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h5) !important;
   line-height: var(--font-h5--line-height) !important;
   font-weight: var(--font-h5--weight) !important;
@@ -2984,13 +2989,15 @@ h5, .h5, .text-block.h5 > * {
 }
 
 h6, .h6, .text-block.h6 > * {
+  font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h6) !important;
   line-height: var(--font-h6--line-height) !important;
   font-weight: var(--font-h6--weight) !important;
   letter-spacing: var(--font-h6--letter-spacing) !important;
 }
 
-p, .paragraph, .paragraph > *, .sonu-section-text, .desc {
+p:not([class]), p.paragraph, .paragraph, .paragraph > *, .sonu-section-text, .desc, .rte p {
+  font-family: var(--font-body--family) !important;
   font-size: var(--font-size--paragraph) !important;
   line-height: var(--font-paragraph--line-height) !important;
   font-weight: var(--font-paragraph--weight) !important;
@@ -3000,11 +3007,15 @@ p, .paragraph, .paragraph > *, .sonu-section-text, .desc {
 /* Bypass section-specific class overrides to force inheritance of global tag styles */
 .sonu-heading,
 .sonu-section-heading,
-.sonu-hero-heading {
+.sonu-hero-heading,
+.sonu-section-text,
+.sonu-body,
+.sonu-subtext {
   font-size: inherit !important;
   line-height: inherit !important;
   font-weight: inherit !important;
   letter-spacing: inherit !important;
 }
+
 
 
