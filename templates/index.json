@@ -496,7 +496,7 @@
       "name": "Premium Carousel",
       "settings": {
         "heading": "<span style=\"white-space: nowrap;\">Precision therapeutics</span><br>\npowered by <span style=\"color:#656AE3;\">AI & sound science.</span>",
-        "heading_tag": "h1",
+        "heading_tag": "h2",
         "bg_color": "#ffffff",
         "bg_image": "shopify://shop_images/bg_2_b077ce0d-2553-4607-ad5a-465427e502e5.png",
         "text_color": "#001755",
@@ -572,7 +572,7 @@
         "bg_color_mobile": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
         "bg_color_mobile_solid": "rgba(0,0,0,0)",
         "heading": "As Featured In",
-        "heading_tag": "h1",
+        "heading_tag": "h3",
         "description": "",
         "button_text": "",
         "button_link": "",
