@@ -1193,7 +1193,7 @@
         "padding_top": 80,
         "padding_bottom": 80,
         "mobile_padding_top": 80,
-        "mobile_padding_bottom": 80,
+        "mobile_padding_bottom": 42,
         "bg_image": "shopify://shop_images/Rectangle_34_1_c5976d67-0b8f-46f4-849c-6fe2cf6b1c30.png",
         "feature_image": "shopify://shop_images/Rectangle_35_1.png",
         "badge": "Featured Article",
