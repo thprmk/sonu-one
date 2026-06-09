@@ -59,10 +59,16 @@
       color: {{ section.settings.heading_color }} !important;
       margin-bottom: {{ section.settings.desktop_heading_margin_bottom }}px !important;
     }
-    #shopify-section-{{ section.id }} .custom-step-desktop-heading em {
-      font-family: var(--sonu-font-serif) !important;
-      font-style: italic !important;
-      font-weight: normal !important;
+    #shopify-section-{{ section.id }} .custom-step-desktop-heading em,
+    #shopify-section-{{ section.id }} .custom-step-desktop-heading .highlight-pp {
+      font-family: var(--font-highlight--family, var(--sonu-font-serif)) !important;
+      font-style: var(--font-highlight--style, italic) !important;
+      font-weight: var(--font-highlight--weight, normal) !important;
+    }
+    #shopify-section-{{ section.id }} .custom-step-desktop-heading .highlight-times {
+      font-family: var(--font-highlight-secondary--family, 'Times New Roman', Times, serif) !important;
+      font-style: var(--font-highlight-secondary--style, italic) !important;
+      font-weight: var(--font-highlight-secondary--weight, normal) !important;
     }
     #shopify-section-{{ section.id }} .custom-step-heading {
       color: {{ text_color }} !important;
@@ -96,10 +102,16 @@
         color: #3D1B03 !important;
         margin-bottom: 0 !important;
       }
-      #shopify-section-{{ section.id }} .custom-step-heading em {
-        font-family: var(--sonu-font-serif) !important;
-        font-style: italic !important;
-        font-weight: normal !important;
+      #shopify-section-{{ section.id }} .custom-step-heading em,
+      #shopify-section-{{ section.id }} .custom-step-heading .highlight-pp {
+        font-family: var(--font-highlight--family, var(--sonu-font-serif)) !important;
+        font-style: var(--font-highlight--style, italic) !important;
+        font-weight: var(--font-highlight--weight, normal) !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-heading .highlight-times {
+        font-family: var(--font-highlight-secondary--family, 'Times New Roman', Times, serif) !important;
+        font-style: var(--font-highlight-secondary--style, italic) !important;
+        font-weight: var(--font-highlight-secondary--weight, normal) !important;
       }
       #shopify-section-{{ section.id }} .custom-step-slider-row {
         overflow: visible !important;
@@ -197,7 +209,7 @@
       <div class="custom-step-desktop-inner">
         <div class="custom-step-desktop-left">
           {% if section.settings.heading != blank %}
-            <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-desktop-heading {{ section.settings.heading_tag | default: 'h2' }}">{{ section.settings.heading | replace: '[[', '<em>' | replace: ']]', '</em>' }}</{{ section.settings.heading_tag | default: 'h2' }}>
+            <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-desktop-heading {{ section.settings.heading_tag | default: 'h2' }}">{{ section.settings.heading | replace: '[[', '<em class="highlight-pp">' | replace: ']]', '</em>' | replace: '((', '<span class="highlight-times">' | replace: '))', '</span>' }}</{{ section.settings.heading_tag | default: 'h2' }}>
           {% endif %}
           
           <div class="custom-step-desktop-list">
@@ -233,7 +245,7 @@
     <div class="custom-step-mobile-layout">
       <div class="custom-step-header">
         {% if section.settings.heading != blank %}
-          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-heading {{ section.settings.heading_tag | default: 'h2' }}" style="color: {{ text_color }};">{{ section.settings.heading | replace: '[[', '<em>' | replace: ']]', '</em>' }}</{{ section.settings.heading_tag | default: 'h2' }}>
+          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-heading {{ section.settings.heading_tag | default: 'h2' }}" style="color: {{ text_color }};">{{ section.settings.heading | replace: '[[', '<em class="highlight-pp">' | replace: ']]', '</em>' | replace: '((', '<span class="highlight-times">' | replace: '))', '</span>' }}</{{ section.settings.heading_tag | default: 'h2' }}>
         {% endif %}
         {% if section.settings.description != blank %}
           <div class="custom-step-desc rte" style="color: {{ text_color }};">{{ section.settings.description | newline_to_br }}</div>
