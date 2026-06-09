@@ -538,16 +538,43 @@
     "step_slider": {
       "type": "custom-step-slider-sh",
       "blocks": {
+        "step_slide_RbbMfg": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_106.png",
+            "title": "Breathe Better — Fast",
+            "description": "Breathe free -- no side effects.  Sonu has been shown to be better than intranasal steroids for first line treatment."
+          }
+        },
+        "step_slide_gWXmXK": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_117_2.png",
+            "title": "Experience the power of customized Sound",
+            "description": "Sonu's bone conduction transducers deliver resonant sound into your sinus cavities to sonicate mucus and reduce inflammation"
+          }
+        },
+        "step_slide_WU89hq": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Group_17_1.png",
+            "title": "Find your Resonant Frequency",
+            "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
+          }
+        },
         "step_slide_GNjCq7": {
           "type": "step_slide",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_105.png",
+            "image": "shopify://shop_images/Rectangle_4_d8c6b2a2-2ac9-44e9-b2d6-6bee4349c2ac.png",
             "title": "Scan Your Face",
             "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
           }
         }
       },
       "block_order": [
+        "step_slide_RbbMfg",
+        "step_slide_gWXmXK",
+        "step_slide_WU89hq",
         "step_slide_GNjCq7"
       ],
       "settings": {
