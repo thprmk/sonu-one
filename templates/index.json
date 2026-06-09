@@ -841,7 +841,7 @@
         "star_color": "#ffcd0f",
         "nav_arrow_color": "#1f428a",
         "nav_border_color": "#001755",
-        "container_width": "contained",
+        "container_width": "full_width",
         "padding_top": 40,
         "padding_bottom": 40,
         "mobile_padding_top": 30,
