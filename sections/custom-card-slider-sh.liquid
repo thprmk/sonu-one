@@ -85,11 +85,23 @@
     }
 
     /* Progress bar styling */
+    #shopify-section-{{ section.id }} .custom-card-progressbar-wrapper {
+      position: relative !important;
+      flex-grow: 1 !important;
+      max-width: 800px !important;
+      height: {{ section.settings.progressbar_height }}px !important;
+    }
+
     #shopify-section-{{ section.id }} .custom-card-progressbar.swiper-pagination-progressbar {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
       {% if section.settings.progressbar_bg_color != blank %}
         background: {{ section.settings.progressbar_bg_color }} !important;
       {% endif %}
-      height: {{ section.settings.progressbar_height }}px !important;
+      border-radius: 999px !important;
     }
 
     #shopify-section-{{ section.id }} .custom-card-progressbar.swiper-pagination-lock {
@@ -229,11 +241,19 @@
         gap: 24px !important;
       }
 
-      #shopify-section-{{ section.id }} .custom-card-progressbar.swiper-pagination-progressbar {
-        position: relative !important;
-        width: auto !important;
+      #shopify-section-{{ section.id }} .custom-card-progressbar-wrapper {
         flex: 1 !important;
+        position: relative !important;
         height: 3px !important;
+        max-width: none !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-progressbar.swiper-pagination-progressbar {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
         background: rgba(255, 255, 255, 0.2) !important;
         margin: 0 !important;
         border-radius: 999px !important;
@@ -339,7 +359,9 @@
 
     <!-- Navigation & Progress Controls at Bottom -->
     <div class="custom-card-controls-row">
-      <div class="custom-card-progressbar swiper-pagination"></div>
+      <div class="custom-card-progressbar-wrapper">
+        <div class="custom-card-progressbar swiper-pagination"></div>
+      </div>
       
       <div class="custom-card-arrows">
         <button class="custom-card-nav-btn custom-card-nav-btn--prev" aria-label="Previous">

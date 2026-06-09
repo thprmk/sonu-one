@@ -208,15 +208,21 @@
       width: 100%;
     }
 
-    #shopify-section-{{ section.id }} .custom-expect-progressbar.swiper-pagination-progressbar {
+    #shopify-section-{{ section.id }} .custom-expect-progressbar-wrapper {
       position: relative !important;
       flex-grow: 1 !important;
       max-width: 800px !important;
       height: {{ section.settings.progressbar_height }}px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-progressbar.swiper-pagination-progressbar {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
       background: {{ section.settings.progressbar_bg_color }} !important;
-      border-radius: 999px;
-      overflow: hidden;
-      margin: 0 !important;
+      border-radius: 999px !important;
     }
 
     #shopify-section-{{ section.id }} .custom-expect-progressbar .swiper-pagination-progressbar-fill {
@@ -334,12 +340,22 @@
         margin-top: 32px !important;
       }
 
-      #shopify-section-{{ section.id }} .custom-expect-progressbar.swiper-pagination-progressbar {
-        position: relative !important;
-        width: auto !important;
+      #shopify-section-{{ section.id }} .custom-expect-progressbar-wrapper {
         flex: 1 !important;
-        margin: 0 !important;
+        position: relative !important;
+        height: {{ section.settings.progressbar_height }}px !important;
         max-width: none !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-expect-progressbar.swiper-pagination-progressbar {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: {{ section.settings.progressbar_bg_color }} !important;
+        margin: 0 !important;
+        border-radius: 999px !important;
       }
 
       #shopify-section-{{ section.id }} .custom-expect-arrows {
@@ -436,7 +452,9 @@
 
     <!-- Controls Row at bottom -->
     <div class="custom-expect-controls-row">
-      <div class="custom-expect-progressbar swiper-pagination"></div>
+      <div class="custom-expect-progressbar-wrapper">
+        <div class="custom-expect-progressbar swiper-pagination"></div>
+      </div>
       
       <div class="custom-expect-arrows">
         <button class="custom-expect-nav-btn custom-expect-nav-btn--prev" aria-label="Previous">
