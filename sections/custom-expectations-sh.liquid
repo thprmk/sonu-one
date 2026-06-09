@@ -331,17 +331,16 @@
       }
 
       #shopify-section-{{ section.id }} .custom-expect-controls-row {
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        gap: 24px !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 20px !important;
         padding-left: 0 !important;
         padding-right: {{ section.settings.mobile_side_padding | default: 24 }}px !important;
         margin-top: 32px !important;
       }
 
       #shopify-section-{{ section.id }} .custom-expect-progressbar-wrapper {
-        flex: 1 !important;
+        width: 100% !important;
         position: relative !important;
         height: {{ section.settings.progressbar_height }}px !important;
         max-width: none !important;
@@ -360,7 +359,9 @@
 
       #shopify-section-{{ section.id }} .custom-expect-arrows {
         width: auto !important;
-        align-self: center !important;
+        align-self: flex-end !important;
+        display: flex !important;
+        gap: 12px !important;
       }
     }
   </style>

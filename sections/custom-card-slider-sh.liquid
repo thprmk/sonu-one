@@ -187,7 +187,7 @@
       }
 
       #shopify-section-{{ section.id }} .custom-card-slide__content {
-        padding: 24px 24px 110px 24px !important;
+        padding: 24px 24px 120px 24px !important;
       }
 
       #shopify-section-{{ section.id }} .custom-card-slide__title {
@@ -227,7 +227,7 @@
 
       #shopify-section-{{ section.id }} .custom-card-controls-row {
         position: absolute !important;
-        bottom: 32px !important;
+        bottom: 24px !important;
         left: 24px !important;
         right: 24px !important;
         width: auto !important;
@@ -235,16 +235,15 @@
         margin-top: 0 !important;
         padding: 0 !important;
         display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        gap: 24px !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 20px !important;
       }
 
       #shopify-section-{{ section.id }} .custom-card-progressbar-wrapper {
-        flex: 1 !important;
+        width: 100% !important;
         position: relative !important;
-        height: 3px !important;
+        height: 2px !important;
         max-width: none !important;
       }
 
@@ -265,7 +264,7 @@
 
       #shopify-section-{{ section.id }} .custom-card-arrows {
         width: auto !important;
-        align-self: center !important;
+        align-self: flex-end !important;
         display: flex !important;
         gap: 12px !important;
       }
