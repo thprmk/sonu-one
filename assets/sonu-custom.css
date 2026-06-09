@@ -1893,12 +1893,14 @@
 }
 
 /* Container width styles */
-.v2-testimonial-video-section.v2-contained .v2-page-width {
-  max-width: 1250px!important;
-  margin: 0 auto;
-  padding: 0 20px;
+@media screen and (min-width: 768px) {
+  .v2-testimonial-video-section.v2-contained .v2-page-width {
+    width: 100%;
+    max-width: none !important;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
 }
-
 .v2-testimonial-video-section.v2-full-width {
   padding-left: 0;
   padding-right: 0;
