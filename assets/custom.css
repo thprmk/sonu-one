@@ -2948,7 +2948,7 @@ h6 em,
    GLOBAL TYPOGRAPHY SETTINGS LINKING
    ========================================================================== */
 
-h1, .h1, .text-block.h1 > * {
+#MainContent h1, #MainContent .h1, #MainContent .text-block.h1 > * {
   font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h1) !important;
   line-height: var(--font-h1--line-height) !important;
@@ -2956,7 +2956,7 @@ h1, .h1, .text-block.h1 > * {
   letter-spacing: var(--font-h1--letter-spacing) !important;
 }
 
-h2, .h2, .text-block.h2 > * {
+#MainContent h2, #MainContent .h2, #MainContent .text-block.h2 > * {
   font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h2) !important;
   line-height: var(--font-h2--line-height) !important;
@@ -2964,7 +2964,7 @@ h2, .h2, .text-block.h2 > * {
   letter-spacing: var(--font-h2--letter-spacing) !important;
 }
 
-h3, .h3, .text-block.h3 > * {
+#MainContent h3, #MainContent .h3, #MainContent .text-block.h3 > * {
   font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h3) !important;
   line-height: var(--font-h3--line-height) !important;
@@ -2972,7 +2972,7 @@ h3, .h3, .text-block.h3 > * {
   letter-spacing: var(--font-h3--letter-spacing) !important;
 }
 
-h4, .h4, .text-block.h4 > * {
+#MainContent h4, #MainContent .h4, #MainContent .text-block.h4 > * {
   font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h4) !important;
   line-height: var(--font-h4--line-height) !important;
@@ -2980,7 +2980,7 @@ h4, .h4, .text-block.h4 > * {
   letter-spacing: var(--font-h4--letter-spacing) !important;
 }
 
-h5, .h5, .text-block.h5 > * {
+#MainContent h5, #MainContent .h5, #MainContent .text-block.h5 > * {
   font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h5) !important;
   line-height: var(--font-h5--line-height) !important;
@@ -2988,7 +2988,7 @@ h5, .h5, .text-block.h5 > * {
   letter-spacing: var(--font-h5--letter-spacing) !important;
 }
 
-h6, .h6, .text-block.h6 > * {
+#MainContent h6, #MainContent .h6, #MainContent .text-block.h6 > * {
   font-family: var(--font-heading--family) !important;
   font-size: var(--font-size--h6) !important;
   line-height: var(--font-h6--line-height) !important;
@@ -2996,7 +2996,7 @@ h6, .h6, .text-block.h6 > * {
   letter-spacing: var(--font-h6--letter-spacing) !important;
 }
 
-p:not([class]), p.paragraph, .paragraph, .paragraph > *, .sonu-section-text, .desc, .rte p {
+#MainContent p:not([class]), #MainContent p.paragraph, #MainContent .paragraph, #MainContent .paragraph > *, #MainContent .sonu-section-text, #MainContent .desc, #MainContent .rte p {
   font-family: var(--font-body--family) !important;
   font-size: var(--font-size--paragraph) !important;
   line-height: var(--font-paragraph--line-height) !important;
@@ -3005,12 +3005,12 @@ p:not([class]), p.paragraph, .paragraph, .paragraph > *, .sonu-section-text, .de
 }
 
 /* Bypass section-specific class overrides to force inheritance of global tag styles */
-.sonu-heading,
-.sonu-section-heading,
-.sonu-hero-heading,
-.sonu-section-text,
-.sonu-body,
-.sonu-subtext {
+#MainContent .sonu-heading,
+#MainContent .sonu-section-heading,
+#MainContent .sonu-hero-heading,
+#MainContent .sonu-section-text,
+#MainContent .sonu-body,
+#MainContent .sonu-subtext {
   font-size: inherit !important;
   line-height: inherit !important;
   font-weight: inherit !important;
