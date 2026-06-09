@@ -161,8 +161,15 @@
                     ">
                       <!-- Header -->
                       <div class="custom-comp-card-header">
-                        <{{ section.settings.block_heading_tag | default: 'h3' }} class="custom-comp-block-title" style="color: inherit;">
-                          {{ block.settings.title }}
+<{{ section.settings.block_heading_tag | default: 'h3' }}
+  class="custom-comp-block-title"
+  style="
+    {% if block.settings.title_color != blank %}
+      color: {{ block.settings.title_color }};
+    {% else %}
+      color: inherit;
+    {% endif %}
+  ">                          {{ block.settings.title }}
                         </{{ section.settings.block_heading_tag | default: 'h3' }}>
                       </div>
                       
