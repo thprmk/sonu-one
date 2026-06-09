@@ -414,6 +414,9 @@
       ],
       "name": "Contained Video Slider",
       "settings": {
+        "heading": "Real Patients, Real Results",
+        "heading_tag": "h2",
+        "heading_color": "#3d1b03",
         "bg_color": "#f4efea",
         "video_bg_color": "#f4efea",
         "content_bg_color": "#f4efea",
@@ -466,7 +469,7 @@
         "step_slide_DDMNQG"
       ],
       "settings": {
-        "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through<em>Your Nose</em>",
+        "heading": "Personalized Sound Therapy Built for make you Breathe Correctly through[[<em>Your Nose]]</em>",
         "heading_tag": "h2",
         "heading_color": "#ffffff",
         "desktop_heading_margin_bottom": 54,
