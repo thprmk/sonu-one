@@ -38,7 +38,7 @@
         "sticky_header": "always",
         "enable_search_form": true,
         "search_form_style": "solid",
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "show_sperator_line": true,
         "hide_sperator_line_for_templates": "",
         "enable_dividers": false,
