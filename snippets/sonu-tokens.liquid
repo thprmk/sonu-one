@@ -324,11 +324,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Global typography bracket parser for highlights
 (() => {
-  const excludeWords = ['count', 'threshold', 'price', 'amount', 'address', 'name', 'email'];
   const bracketOpen = '[' + '[';
   const bracketClose = ']' + ']';
-  const curlyOpen = '{' + '{';
-  const curlyClose = '}' + '}';
+  const parenOpen = '(' + '(';
+  const parenClose = ')' + ')';
 
   function parseBrackets(str, openToken, closeToken, className, excludeList) {
     let result = "";
@@ -369,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!node) return;
     if (node.nodeType === 3) { // Text Node
       const text = node.nodeValue;
-      if (text && (text.includes(bracketOpen) || text.includes(curlyOpen))) {
+      if (text && (text.includes(bracketOpen) || text.includes(parenOpen))) {
         let hasMatches = false;
         let newText = text;
 
@@ -385,9 +384,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (parsed.hasMatches) hasMatches = true;
         }
 
-        // Replace {{content}} -> <span class="highlight-times">content</span>
-        if (newText.includes(curlyOpen)) {
-          const parsed = parseBrackets(newText, curlyOpen, curlyClose, 'highlight-times', excludeWords);
+        // Replace ((content)) -> <span class="highlight-times">content</span>
+        if (newText.includes(parenOpen)) {
+          const parsed = parseBrackets(newText, parenOpen, parenClose, 'highlight-times');
           newText = parsed.text;
           if (parsed.hasMatches) hasMatches = true;
         }
