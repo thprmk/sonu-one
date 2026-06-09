@@ -330,8 +330,8 @@
     }
 
     .press-right.mobile-press-slider .press-item {
-      flex: 0 0 282px !important;
-      width: 282px !important;
+      flex: 0 0 312px !important;
+      width: 312px !important;
       height: 208px !important;
       border-radius: 20px !important;
       padding: 24px !important;
@@ -685,16 +685,13 @@
     {% if section.settings.mobile_press_layout == 'slider' %}
       <div class="mobile-press-footer">
         <div class="mobile-press-count">
-          <span id="mobilePressCurrent-{{ section.id }}">1</span>/
           {% assign press_count = 0 %}
           {% for block in section.blocks %}
             {% if block.type == 'press' %}
               {% assign press_count = press_count | plus: 1 %}
             {% endif %}
           {% endfor %}
-          <span id="mobilePressTotal-{{ section.id }}">
-            {{ press_count }}
-          </span>
+          <span id="mobilePressCurrent-{{ section.id }}">1</span>/<span id="mobilePressTotal-{{ section.id }}">{{ press_count }}</span>
         </div>
 
         <div class="mobile-press-dots" id="mobilePressDots-{{ section.id }}">
