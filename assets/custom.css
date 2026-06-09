@@ -2951,7 +2951,12 @@ h6 em,
 .custom-stats-nav-btn,
 .custom-expect-nav-btn,
 .custom-vid-nav-btn,
-.sonu-arrow-btn {
+.sonu-arrow-btn,
+.nav-arrow,
+.mobile-arrow,
+.v2-mobile-nav-arrow,
+.hc-tm-btn,
+.research-arrow {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -2972,7 +2977,12 @@ h6 em,
 .custom-stats-nav-btn:hover,
 .custom-expect-nav-btn:hover,
 .custom-vid-nav-btn:hover,
-.sonu-arrow-btn:hover {
+.sonu-arrow-btn:hover,
+.nav-arrow:hover,
+.mobile-arrow:hover,
+.v2-mobile-nav-arrow:hover,
+.hc-tm-btn:hover,
+.research-arrow:hover {
   background: #ffffff !important;
   border-color: #1E1E1E !important;
   color: #1E1E1E !important;
@@ -2985,9 +2995,17 @@ h6 em,
 .custom-stats-nav-btn svg,
 .custom-expect-nav-btn svg,
 .custom-vid-nav-btn svg,
-.sonu-arrow-btn svg {
+.sonu-arrow-btn svg,
+.nav-arrow svg,
+.mobile-arrow svg,
+.v2-mobile-nav-arrow svg,
+.hc-tm-btn svg,
+.research-arrow svg {
   width: 8px !important;
   height: 14px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.5px !important;
 }
 
 .custom-card-nav-btn.swiper-button-disabled,
@@ -2996,7 +3014,12 @@ h6 em,
 .custom-expect-nav-btn.swiper-button-disabled,
 .custom-vid-nav-btn.swiper-button-disabled,
 .sonu-arrow-btn[disabled],
-.sonu-arrow-btn.swiper-button-disabled {
+.sonu-arrow-btn.swiper-button-disabled,
+.nav-arrow[disabled],
+.mobile-arrow[disabled],
+.v2-mobile-nav-arrow[disabled],
+.hc-tm-btn[disabled],
+.research-arrow[disabled] {
   opacity: 0.3 !important;
   pointer-events: none !important;
 }
@@ -3007,10 +3030,27 @@ h6 em,
   .custom-stats-nav-btn,
   .custom-expect-nav-btn,
   .custom-vid-nav-btn,
-  .sonu-arrow-btn {
+  .sonu-arrow-btn,
+  .nav-arrow,
+  .mobile-arrow,
+  .v2-mobile-nav-arrow,
+  .hc-tm-btn,
+  .research-arrow {
     width: 40px !important;
     height: 40px !important;
   }
 }
+
+/* Specific styling for dark background sections (e.g. Benefits Tabs) */
+.sleep-benefits .mobile-arrow {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #FFFFFF !important;
+}
+.sleep-benefits .mobile-arrow:hover {
+  background: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #1E1E1E !important;
+}
+
 
 
