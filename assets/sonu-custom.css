@@ -1907,7 +1907,7 @@
   padding-right: 0;
 }
 
-.v2-testimonial-video-section.v2-full-width .{
+.v2-testimonial-video-section.v2-full-width .v2-page-width {
   max-width: 1520px!important;
   margin: 0 auto;
   padding: 0;
@@ -2901,9 +2901,11 @@
   }
 
   .press-card {
-    width: calc(100% - 54px) !important;
+    width: auto !important;
+    aspect-ratio: auto !important;
     height: 391px !important;
-    margin: 0 auto !important;
+    margin-left: 27px !important;
+    margin-right: 27px !important;
   }
 
   .press-badge {
