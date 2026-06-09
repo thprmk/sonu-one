@@ -1564,10 +1564,11 @@
   letter-spacing: -1px;
 }
 
-.custom-step-desktop-heading em {
-  font-family: var(--sonu-font-family);
-  font-style: italic;
-  font-weight: normal;
+.custom-step-desktop-heading em,
+.custom-step-heading em {
+  font-family: var(--sonu-font-serif) !important;
+  font-style: italic !important;
+  font-weight: normal !important;
 }
 
 /* Steps list */
