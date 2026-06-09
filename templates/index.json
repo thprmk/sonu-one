@@ -567,7 +567,6 @@
       ],
       "name": "Logo Carousel",
       "settings": {
-        "bg_image": "shopify://shop_images/bg_2_57fd96c2-cb15-4725-a6cb-1e5573407321.png",
         "bg_color_desktop": "",
         "bg_color_desktop_solid": "rgba(0,0,0,0)",
         "bg_color_mobile": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
@@ -777,6 +776,9 @@
       ],
       "name": "Contained Video Slider",
       "settings": {
+        "heading": "Real Patients, Real Results",
+        "heading_tag": "h2",
+        "heading_color": "#3d1b03",
         "bg_image": "shopify://shop_images/bg_1_42edb9d6-8c36-4420-bfe5-b65fa11dc790.png",
         "bg_color": "#ffffff",
         "video_bg_color": "#f5f5f5",
