@@ -17,7 +17,7 @@
     "animations_enabled": true,
     "type_body_font": "geist_n4",
     "type_heading_font": "instrument_sans_n4",
-    "type_highlight_font": "instrument_sans_n4",
+    "type_highlight_font": "instrument_serif_n4",
     "body_extra_weights": "400,500",
     "heading_extra_weights": "400",
     "subheading_font": "body",
