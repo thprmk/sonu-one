@@ -90,7 +90,15 @@
               ">
                 <!-- Header -->
                 <div class="custom-comp-card-header">
-                  <{{ section.settings.block_heading_tag | default: 'h3' }} class="custom-comp-block-title" style="color: inherit;">
+                 <{{ section.settings.block_heading_tag | default: 'h3' }}
+  class="custom-comp-block-title"
+  style="
+    {% if first_block.settings.title_color != blank %}
+      color: {{ first_block.settings.title_color }};
+    {% else %}
+      color: inherit;
+    {% endif %}
+  ">
                     {{ first_block.settings.title }}
                   </{{ section.settings.block_heading_tag | default: 'h3' }}>
                 </div>
