@@ -708,7 +708,7 @@
       ],
       "name": "Contained Video Slider",
       "settings": {
-        "heading": "Real Patients, Real Results",
+        "heading": "Real Patients,  Real Results",
         "heading_tag": "h2",
         "heading_color": "#3d1b03",
         "bg_color": "#ffffff",
@@ -875,7 +875,7 @@
         "button_secondary_text_color": "#001755",
         "heading_tag": "h1",
         "features_heading_tag": "h3",
-        "button_height": 60,
+        "button_height": 64,
         "button_border_radius": 30,
         "feature_heading": ""
       }
