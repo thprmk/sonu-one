@@ -1093,22 +1093,33 @@
         "step_slide_VJ6bCV": {
           "type": "step_slide",
           "settings": {
-            "title": "Acoustic Mapping",
-            "description": "Find the resonant frequencies of your unique nasal passages."
+            "image": "shopify://shop_images/Group_17_10017713-d537-4de9-944a-00d8746e597e.png",
+            "title": "Find your Resonant Frequency",
+            "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
           }
         },
         "step_slide_UG3J6D": {
           "type": "step_slide",
           "settings": {
-            "title": "Breathe Naturally",
-            "description": "Wear the headband for 15 minutes a day to clear congestion."
+            "image": "shopify://shop_images/Rectangle_117_1.png",
+            "title": "Experience the power of customized Sound",
+            "description": "Sonu's bone conduction transducers deliver resonant sound into your sinus cavities to sonicate mucus and reduce inflammation"
+          }
+        },
+        "step_slide_PxWwDy": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_106.png",
+            "title": "Breathe Better — Fast",
+            "description": "Breathe free -- no side effects.  Sonu has been shown to be better than intranasal steroids for first line treatment."
           }
         }
       },
       "block_order": [
         "step_slide_Ezr99g",
         "step_slide_VJ6bCV",
-        "step_slide_UG3J6D"
+        "step_slide_UG3J6D",
+        "step_slide_PxWwDy"
       ],
       "name": "Custom Step Slider",
       "settings": {
@@ -1131,7 +1142,7 @@
         "padding_bottom_mobile": 60,
         "mobile_side_padding": 24,
         "mobile_slide_width": 85,
-        "mobile_image_aspect_ratio": "4/5",
+        "mobile_image_aspect_ratio": "5/4",
         "progressbar_height": 2,
         "nav_btn_size": 44
       }
