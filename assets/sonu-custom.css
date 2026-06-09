@@ -1866,7 +1866,7 @@
 /* Desktop only */
 @media screen and (min-width: 990px) {
   .section-slideshow {
-    padding: 55px 55px 55px 55px;
+    padding: 35px 35px 35px 35px;
   }
 
   .section-slideshow .swiper,
