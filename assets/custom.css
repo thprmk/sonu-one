@@ -2945,3 +2945,72 @@ h6 em,
   font-style: italic !important;
 }
 
+/* Global Unified Slider Navigation Button Overrides */
+.custom-card-nav-btn,
+.custom-step-nav-btn,
+.custom-stats-nav-btn,
+.custom-expect-nav-btn,
+.custom-vid-nav-btn,
+.sonu-arrow-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.15) !important;
+  background: transparent !important;
+  color: #1E1E1E !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.custom-card-nav-btn:hover,
+.custom-step-nav-btn:hover,
+.custom-stats-nav-btn:hover,
+.custom-expect-nav-btn:hover,
+.custom-vid-nav-btn:hover,
+.sonu-arrow-btn:hover {
+  background: #ffffff !important;
+  border-color: #1E1E1E !important;
+  color: #1E1E1E !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+  transform: none !important;
+}
+
+.custom-card-nav-btn svg,
+.custom-step-nav-btn svg,
+.custom-stats-nav-btn svg,
+.custom-expect-nav-btn svg,
+.custom-vid-nav-btn svg,
+.sonu-arrow-btn svg {
+  width: 8px !important;
+  height: 14px !important;
+}
+
+.custom-card-nav-btn.swiper-button-disabled,
+.custom-step-nav-btn.swiper-button-disabled,
+.custom-stats-nav-btn.swiper-button-disabled,
+.custom-expect-nav-btn.swiper-button-disabled,
+.custom-vid-nav-btn.swiper-button-disabled,
+.sonu-arrow-btn[disabled],
+.sonu-arrow-btn.swiper-button-disabled {
+  opacity: 0.3 !important;
+  pointer-events: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .custom-card-nav-btn,
+  .custom-step-nav-btn,
+  .custom-stats-nav-btn,
+  .custom-expect-nav-btn,
+  .custom-vid-nav-btn,
+  .sonu-arrow-btn {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+
