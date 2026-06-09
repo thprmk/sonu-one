@@ -99,7 +99,7 @@
                     "custom_text_alignment": "left",
                     "custom_text_color": "#000000",
                     "custom_font_weight": "",
-                    "text": "<p>We’re obsessed with <br/>building the best.</p>",
+                    "text": "<p>We’re obsessed with <br/>[[building the best.]]</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
                     "highlight_shape_color": "",
