@@ -579,7 +579,7 @@
         "button_bg": "#001755",
         "button_text_color": "#ffffff",
         "padding_top": 40,
-        "padding_bottom": 40,
+        "padding_bottom": 88,
         "mobile_padding_top": 30,
         "mobile_padding_bottom": 76
       }
