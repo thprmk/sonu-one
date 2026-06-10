@@ -1,20 +1,43 @@
 <section class="science-bg-area">
 <style>
   #shopify-section-{{ section.id }} .logo-section {
+    position: relative;
     {% if section.settings.bg_color_desktop_solid != blank and section.settings.bg_color_desktop_solid != 'transparent' %}
       background-color: {{ section.settings.bg_color_desktop_solid }};
       background-image: none;
     {% else %}
       background: {{ section.settings.bg_color_desktop | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
     {% endif %}
+    padding-top: {{ section.settings.padding_top | default: 40 }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom | default: 40 }}px !important;
+    overflow: hidden;
+  }
+
+  /* Background image with opacity overlay */
+  #shopify-section-{{ section.id }} .logo-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     {% if section.settings.bg_image != blank %}
       background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      opacity: {{ section.settings.bg_image_opacity | divided_by: 100.0 }};
+    {% else %}
+      opacity: 0;
     {% endif %}
-    padding-top: {{ section.settings.padding_top | default: 40 }}px !important;
-    padding-bottom: {{ section.settings.padding_bottom | default: 40 }}px !important;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Ensure content sits above the pseudo-element */
+  #shopify-section-{{ section.id }} .logo-section > * {
+    position: relative;
+    z-index: 1;
   }
 
   @media (max-width: 768px) {
@@ -25,14 +48,18 @@
       {% else %}
         background: {{ section.settings.bg_color_mobile | default: 'linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%)' }};
       {% endif %}
+      padding-top: {{ section.settings.mobile_padding_top | default: 20 }}px !important;
+      padding-bottom: {{ section.settings.mobile_padding_bottom | default: 20 }}px !important;
+    }
+
+    #shopify-section-{{ section.id }} .logo-section::before {
       {% if section.settings.bg_image != blank %}
         background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        opacity: {{ section.settings.mobile_bg_image_opacity | default: section.settings.bg_image_opacity | divided_by: 100.0 }};
       {% endif %}
-      padding-top: {{ section.settings.mobile_padding_top | default: 20 }}px !important;
-      padding-bottom: {{ section.settings.mobile_padding_bottom | default: 20 }}px !important;
     }
   }
 </style>
@@ -100,6 +127,26 @@
       "type": "image_picker",
       "id": "bg_image",
       "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "bg_image_opacity",
+      "label": "Background Image Opacity (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 100,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "mobile_bg_image_opacity",
+      "label": "Background Image Opacity (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 100,
+      "unit": "%"
     },
     {
       "type": "color_background",
