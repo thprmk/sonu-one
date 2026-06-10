@@ -431,8 +431,8 @@
         "button_text_color": "#ffffff",
         "padding_top": 40,
         "padding_bottom": 40,
-        "mobile_padding_top": 20,
-        "mobile_padding_bottom": 20
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
       }
     },
     "sonu_premium_carousel_eFbBd6": {
