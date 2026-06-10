@@ -260,7 +260,7 @@
 
 @media screen and (max-width: 768px) {
   .custom-new-footer {
-    padding: 80px 40px 48px 40px;
+    padding: {{ section.settings.padding_top_mobile | default: 80 }}px 40px 48px 40px;
     margin-top: {{ section.settings.margin_top_mobile | default: 0 }}px;
   }
 
@@ -273,7 +273,7 @@
   .custom-footer-logo-wrap {
     order: 1;
     align-self: start;
-    margin-bottom: 0;
+    margin-bottom: -12px;
   }
 
   .custom-footer-payments {
@@ -666,6 +666,16 @@
       "unit": "px",
       "label": "Padding Bottom (Desktop)",
       "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 10,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 80
     },
     {
       "type": "header",
