@@ -1,361 +1,532 @@
-{%- liquid
-  assign enable_country_selector = false
-  if section.settings.enable_country_selector and localization.available_countries.size > 1
-    assign enable_country_selector = true
-  endif
+<style>
+.custom-new-footer {
+  position: relative;
+  background-image: url('https://cdn.shopify.com/s/files/1/0992/3166/2451/files/Rectangle_42.webp?v=1780063233');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #FFFFFF;
+  padding: 80px 80px 40px 80px;
+  font-family: 'Instrument Sans', sans-serif;
+  overflow: hidden;
+  z-index: 1;
+}
 
-  assign enable_language_selector = false
-  if section.settings.enable_language_selector and localization.available_languages.size > 1
-    assign enable_language_selector = true
-  endif
+.custom-footer-container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 80px;
+  row-gap: 48px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
 
-  assign enable_social_media_icons = false
-  if section.settings.enable_social_media_icons
-    assign socials = 'facebook,instagram,tiktok,pinterest,x,threads,youtube,vimeo,snapchat,linkedin,tumblr'
-    assign socials_arr = socials | split: ','
+/* LOGO */
+.custom-footer-logo-wrap {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+}
 
-    for social in socials_arr
-      assign setting_key = social | append: '_url'
-      if settings[setting_key] != blank
-        assign enable_social_media_icons = true
-        break
-      endif
-    endfor
-  endif
+.custom-footer-logo {
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
 
-  assign enable_follow_on_shop = false
-  if section.settings.enable_follow_on_shop and shop.features.follow_on_shop?
-    assign enable_follow_on_shop = true
-  endif
+/* PAYMENTS */
+.custom-footer-payments {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+}
 
-  assign enable_payment_icons = section.settings.enable_payment_icons
-%}
-{%- capture inline_style -%}
-  {% render 'spacing-style', settings: section.settings %}
-{%- endcapture -%}
+.custom-payments-desktop-only {
+  display: block;
+}
 
-{%- style -%}
-  #shopify-section-{{ section.id }} .footer {
-    position: relative;
-    z-index: 1;
-    {%- if section.settings.bg_gradient != blank -%}
-      background: {{ section.settings.bg_gradient }} !important;
-    {%- elsif section.settings.bg_color != blank -%}
-      background-color: {{ section.settings.bg_color }} !important;
-      background-image: none !important;
-    {%- endif -%}
+.custom-payments-mobile-only {
+  display: none;
+}
 
-    {%- if section.settings.bg_image != blank -%}
-      background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}') !important;
-      background-size: cover !important;
-      background-position: center !important;
-      background-repeat: no-repeat !important;
-    {%- endif -%}
+.custom-payments-desktop-only ul {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-    margin-top: {{ section.settings.custom_margin_top }}px !important;
+.custom-payments-desktop-only svg {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+/* NEWSLETTER */
+.custom-footer-newsletter-wrap {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-footer-desc {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #FFFFFF;
+  margin: 0 0 20px 0;
+  max-width: 320px;
+}
+
+.custom-footer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.custom-footer-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-footer-input-wrapper input {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #FFFFFF;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.custom-footer-input-wrapper input:focus {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.custom-footer-input-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.custom-footer-inline-submit {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none; /* Only visible on mobile */
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.custom-footer-desktop-submit {
+  width: fit-content;
+  padding: 14px 28px;
+  border-radius: 30px;
+  border: none;
+  background: #FFFFFF;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.custom-footer-desktop-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* LINKS GRID */
+.custom-footer-links-grid {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.custom-footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.custom-footer-col h4 {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 8px 0;
+  text-transform: capitalize;
+  letter-spacing: 0.05em;
+}
+
+.custom-footer-col a {
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  line-height: 1.3;
+}
+
+.custom-footer-col a:hover {
+  opacity: 0.7;
+}
+
+/* DIVIDER */
+.custom-footer-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 60px 0 30px 0;
+  width: 100%;
+}
+
+/* BOTTOM FOOTER */
+.custom-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.custom-footer-bottom-links-desktop {
+  display: flex;
+  gap: 24px;
+}
+
+.custom-footer-bottom-links-desktop a {
+  font-size: 14px;
+  color: #FFFFFF;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.custom-footer-bottom-links-desktop a:hover {
+  opacity: 1;
+}
+
+.custom-footer-bottom-links-mobile {
+  display: none;
+}
+
+.custom-footer-copyright {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* RESPONSIVE LAYOUT */
+@media screen and (max-width: 1024px) {
+  .custom-footer-container {
+    column-gap: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .custom-new-footer {
+    padding: 60px 20px 40px 20px;
   }
 
-  {%- if section.settings.text_color != blank -%}
-    #shopify-section-{{ section.id }} {
-      --color-foreground: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }} !important;
-    }
-    #shopify-section-{{ section.id }} .footer__copyright,
-    #shopify-section-{{ section.id }} .footer__copyright a {
-      color: {{ section.settings.text_color }} !important;
-    }
-  {%- endif -%}
-
-  {%- if section.settings.link_color != blank -%}
-    #shopify-section-{{ section.id }} .footer a,
-    #shopify-section-{{ section.id }} .footer__links a,
-    #shopify-section-{{ section.id }} .footer .reversed-link,
-    #shopify-section-{{ section.id }} .footer .color-subtext {
-      color: {{ section.settings.link_color }} !important;
-    }
-  {%- endif -%}
-
-  {%- if section.settings.link_hover_color != blank -%}
-    #shopify-section-{{ section.id }} .footer a:hover,
-    #shopify-section-{{ section.id }} .footer__links a:hover,
-    #shopify-section-{{ section.id }} .footer .reversed-link:hover,
-    #shopify-section-{{ section.id }} .footer .reversed-link:hover .reversed-link__text {
-      color: {{ section.settings.link_hover_color }} !important;
-    }
-  {%- endif -%}
-
-  @media (max-width: 768px) {
-    #shopify-section-{{ section.id }} .footer {
-      margin-top: {{ section.settings.custom_margin_top_mobile }}px !important;
-    }
+  .custom-footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
   }
-{%- endstyle -%}
 
-<footer
-  class="footer block color-{{ section.settings.color_scheme }}"
-  style="{% render 'border-style', settings: section.settings %}"
->
-  <div
-    class="footer__top spacing-style"
-    style="{{ inline_style | strip | strip_newlines }}"
-  >
-    <div class="page-width">
-      <div class="footer__top-blocks flex flex-wrap">
-        {%- content_for 'blocks' -%}
-      </div>
+  .custom-footer-logo-wrap {
+    order: 1;
+    align-self: start;
+    margin-bottom: 0;
+  }
+
+  .custom-footer-payments {
+    order: 2;
+    align-self: start;
+    justify-self: start;
+    width: 100%;
+  }
+
+  .custom-payments-desktop-only {
+    display: none;
+  }
+
+  .custom-payments-mobile-only {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .custom-mobile-payment-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .custom-mobile-payment-icons svg {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+
+  .custom-mobile-payment-text {
+    font-size: 15px;
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+
+  .custom-footer-links-grid {
+    order: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 40px;
+    column-gap: 20px;
+    width: 100%;
+  }
+
+  .custom-footer-col {
+    grid-column: span 1;
+  }
+
+  .col-company {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .col-support {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .col-resources {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .col-connect {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 0;
+  }
+
+  .custom-footer-col h4 {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .custom-footer-col a {
+    font-size: 15px;
+  }
+
+  .custom-footer-newsletter-wrap {
+    order: 4;
+    width: 100%;
+  }
+
+  .custom-footer-desc {
+    font-size: 18px;
+    margin-bottom: 24px;
+    max-width: 100%;
+  }
+
+  .custom-footer-input-wrapper input {
+    padding: 14px 50px 14px 18px; /* Extra padding on right for arrow */
+  }
+
+  .custom-footer-inline-submit {
+    display: flex;
+  }
+
+  .custom-footer-desktop-submit {
+    display: none;
+  }
+
+  .custom-footer-divider {
+    margin: 40px 0 24px 0;
+  }
+
+  .custom-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .custom-footer-bottom-links-desktop {
+    display: none;
+  }
+
+  .custom-footer-bottom-links-mobile {
+    display: grid;
+    grid-template-columns: max-content max-content max-content;
+    gap: 16px 24px;
+    width: 100%;
+  }
+
+  .custom-footer-bottom-links-mobile a {
+    font-size: 14px;
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  .custom-footer-copyright {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+</style>
+
+<footer class="custom-new-footer">
+  <div class="custom-footer-container">
+    
+    <!-- LOGO -->
+    <div class="custom-footer-logo-wrap">
+      <a href="/">
+        <img src="https://soundhealthsonu.myshopify.com/cdn/shop/files/logo.png?height=108&v=1776786182" alt="SoundHealth Logo" class="custom-footer-logo">
+      </a>
     </div>
-  </div>
-  <div class="footer__bottom page-width">
-    {%- if enable_social_media_icons or section.settings.menu != blank -%}
-      <div class="footer__bottom-row flex flex-wrap gap-5 md:gap-6 justify-between items-end">
-        {%- if enable_social_media_icons -%}
-          {% render 'social-icons', icon_type: 'solid' %}
-        {%- endif -%}
 
-        <ul class="footer__links list-unstyled flex flex-wrap gap-1 gap-x-3 md:gap-x-6">
-          {%- for link in section.settings.menu.links -%}
+    <!-- PAYMENTS -->
+    <div class="custom-footer-payments">
+      <!-- DESKTOP PAYMENT ICONS -->
+      <div class="custom-payments-desktop-only">
+        <ul>
+          {%- assign payment_types = 'paypal,apple_pay,google_pay,visa,master,american_express' | split: ',' -%}
+          {%- for type in payment_types -%}
             <li>
-              <a href="{{ link.url }}" class="reversed-link block">{{ link.title }}</a>
+              {{ type | payment_type_svg_tag }}
             </li>
           {%- endfor -%}
         </ul>
       </div>
-    {%- endif -%}
-    <div class="footer__bottom-row flex flex-wrap gap-5 md:gap-6 justify-between items-center">
-      {%- if enable_country_selector or enable_language_selector or enable_payment_icons or enable_follow_on_shop -%}
-        <div class="flex flex-wrap items-center justify-start md:justify-end gap-5 md:gap-6">
-          {%- if enable_follow_on_shop -%}
-            <div class="footer__follow-on-shop">
-              {% comment %} TODO: enable theme-check once `login_button` is accepted as valid filter {% endcomment %}
-              {% # theme-check-disable %}
-              {{ shop | login_button: action: 'follow' }}
-              {% # theme-check-enable %}
-            </div>
-          {%- endif -%}
-          {%- if enable_country_selector or enable_language_selector -%}
-            {%- render 'dropdown-localization',
-              block_id: section.id,
-              toggle_button_style: 'outline',
-              show_country: enable_country_selector,
-              show_country_flag: true,
-              show_language: enable_language_selector
-            -%}
-          {%- endif -%}
-
-          {%- if enable_payment_icons -%}
-            <div class="footer__payment">
-              {%- render 'payment-icons' -%}
-            </div>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
-      <div class="footer__copyright text-wrap">
-        &copy;
-        {{ 'now' | date: '%Y' }}
-        {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
+      
+      <!-- MOBILE PAYMENT ICONS -->
+      <div class="custom-payments-mobile-only">
+        <ul class="custom-mobile-payment-icons">
+          {%- assign payment_types_mobile = 'visa,master,american_express' | split: ',' -%}
+          {%- for type in payment_types_mobile -%}
+            <li>
+              {{ type | payment_type_svg_tag }}
+            </li>
+          {%- endfor -%}
+        </ul>
+        <span class="custom-mobile-payment-text">Major Cards Accepted</span>
       </div>
     </div>
+
+    <!-- NEWSLETTER -->
+    <div class="custom-footer-newsletter-wrap">
+      <p class="custom-footer-desc">Subscribe to our newsletter for the latest updates and offers.</p>
+      
+      {% form 'customer', class: 'custom-footer-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="custom-footer-input-wrapper">
+          <input type="email" name="contact[email]" placeholder="Enter your Email" required autocomplete="email">
+          <button type="submit" class="custom-footer-inline-submit" aria-label="Subscribe">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 1L17 6L12 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M1 6H17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <button type="submit" class="custom-footer-desktop-submit">Sign me up</button>
+      {% endform %}
+    </div>
+
+    <!-- LINKS GRID -->
+    <div class="custom-footer-links-grid">
+      <!-- COMPANY -->
+      <div class="custom-footer-col col-company">
+        <h4>Company</h4>
+        <a href="/pages/about-us">About Us</a>
+        <a href="/pages/leadership">Leadership</a>
+        <a href="/pages/medical-advisory-board">Medical Advisory Board</a>
+        <a href="/pages/careers">Careers</a>
+        <a href="/pages/newsroom">Newsroom</a>
+      </div>
+      <!-- SUPPORT -->
+      <div class="custom-footer-col col-support">
+        <h4>Support</h4>
+        <a href="/pages/faq">FAQ</a>
+        <a href="/pages/contact-us">Contact Us</a>
+        <a href="/pages/partners">Partners</a>
+      </div>
+      <!-- RESOURCES -->
+      <div class="custom-footer-col col-resources">
+        <h4>Resources</h4>
+        <a href="/pages/collateral-library">Collateral Library</a>
+        <a href="/pages/health-care-professional">Health Care Professional</a>
+        <a href="/pages/learn">Learn</a>
+      </div>
+      <!-- CONNECT -->
+      <div class="custom-footer-col col-connect">
+        <h4>Connect</h4>
+        <a href="https://facebook.com/SoundHealth" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://instagram.com/SoundHealth" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com/SoundHealth" target="_blank" rel="noopener">X</a>
+        <a href="https://linkedin.com/company/SoundHealth" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://youtube.com/SoundHealth" target="_blank" rel="noopener">Youtube</a>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="custom-footer-divider">
+
+  <!-- BOTTOM FOOTER -->
+  <div class="custom-footer-bottom">
+    <!-- DESKTOP BOTTOM LINKS -->
+    <div class="custom-footer-bottom-links-desktop">
+      <a href="/policies/privacy-policy">Privacy Policy</a>
+      <a href="/policies/terms-of-service">Terms of Use</a>
+      <a href="/pages/biometric-notice">Biometric Notice</a>
+      <a href="/pages/warranty-return-policy">Warranty & Return Policy</a>
+    </div>
+    <!-- MOBILE BOTTOM LINKS -->
+    <div class="custom-footer-bottom-links-mobile">
+      <a href="/policies/terms-of-service">Terms & Conditions</a>
+      <a href="/policies/privacy-policy">Privacy Policy</a>
+      <a href="/pages/accessibility">Accessibility</a>
+      <a href="/pages/ip-notice">IP Notice</a>
+      <a href="/pages/security-center">Security Center</a>
+    </div>
+    
+    <p class="custom-footer-copyright">
+      &copy; 2026 SoundHealth All rights reserved. Designed and developed by Spinta digital
+    </p>
   </div>
 </footer>
+
 {% schema %}
 {
-  "name": "t:names.footer",
-  "settings": [
+  "name": "SoundHealth Footer",
+  "settings": [],
+  "presets": [
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:settings.menu"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_follow_on_shop",
-      "label": "t:settings.enable_follow_on_shop",
-      "info": "t:info.enable_follow_on_shop",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_social_media_icons",
-      "label": "t:settings.enable_social_media_icons",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_language_selector",
-      "label": "t:settings.enable_language_selector",
-      "info": "t:info.enable_language_selector",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_country_selector",
-      "label": "t:settings.enable_country_selector",
-      "info": "t:info.enable_country_selector",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_payment_icons",
-      "label": "t:settings.enable_payment_icons",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "t:content.appearance"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:settings.color_scheme",
-      "default": "scheme-1"
-    },
-    {
-      "type": "select",
-      "id": "border",
-      "label": "t:settings.borders",
-      "options": [
-        {
-          "value": "none",
-          "label": "t:options.none"
-        },
-        {
-          "value": "solid",
-          "label": "t:options.solid"
-        }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "range",
-      "id": "border_width",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "label": "t:settings.border_width",
-      "default": 1,
-      "visible_if": "{{ section.settings.border != 'none' }}"
-    },
-    {
-      "type": "range",
-      "id": "border_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "label": "t:settings.border_opacity",
-      "default": 100,
-      "visible_if": "{{ section.settings.border != 'none' }}"
-    },
-    {
-      "type": "range",
-      "id": "border_radius",
-      "label": "t:settings.border_radius",
-      "min": 0,
-      "max": 32,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "t:content.padding"
-    },
-    {
-      "type": "select",
-      "id": "device",
-      "label": "t:settings.devices",
-      "options": [
-        {
-          "value": "desktop",
-          "label": "t:options.desktop"
-        },
-        {
-          "value": "mobile",
-          "label": "t:options.mobile"
-        }
-      ],
-      "default": "desktop"
-    },
-    {
-      "type": "range",
-      "id": "padding-block-start",
-      "label": "t:settings.top",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 80,
-      "visible_if": "{{ section.settings.device == 'desktop' }}"
-    },
-    {
-      "type": "range",
-      "id": "padding-block-start-mobile",
-      "label": "t:settings.top",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 40,
-      "visible_if": "{{ section.settings.device == 'mobile' }}"
-    },
-    {
-      "type": "header",
-      "content": "Custom Background & Margins"
-    },
-    {
-      "type": "image_picker",
-      "id": "bg_image",
-      "label": "Background Image"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background Color"
-    },
-    {
-      "type": "color_background",
-      "id": "bg_gradient",
-      "label": "Background Gradient"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color"
-    },
-    {
-      "type": "color",
-      "id": "link_color",
-      "label": "Link Color"
-    },
-    {
-      "type": "color",
-      "id": "link_hover_color",
-      "label": "Link Hover Color"
-    },
-    {
-      "type": "range",
-      "id": "custom_margin_top",
-      "label": "Margin Top (Desktop)",
-      "min": -150,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "custom_margin_top_mobile",
-      "label": "Margin Top (Mobile)",
-      "min": -150,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    }
-  ],
-  "blocks": [
-    {
-      "type": "_footer-column"
+      "name": "SoundHealth Footer"
     }
   ]
 }
