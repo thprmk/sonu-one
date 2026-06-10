@@ -938,8 +938,8 @@
 }
 
 .card-content h3 {
-  font-size: 19.5px !important;
-  line-height: 23.5px !important;
+  /* font-size: 19.5px !important; */
+  line-height: 35px !important;
   font-family: 'Instrument Sans', sans-serif !important;
   font-weight: 500;
   color: #fff !important;
@@ -4299,7 +4299,7 @@
   }
 
   .card-content h3 {
-    font-size: 18px !important;
+    font-size: 28px !important;
   }
 }
 
