@@ -749,21 +749,6 @@
     "sonu_testimonial_LnWe4p": {
       "type": "sonu-testimonial",
       "blocks": {
-        "testimonial_ciki7d": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/Mobile Version_SONU Band - Try Risk Free for 30 Days.mp4",
-            "video_url": "",
-            "subheading": "",
-            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing. SONU has been the best addition yet to my nasal hygiene routine. I highly recommend it to anyone struggling with nasal congestion.",
-            "heading_tag": "h1",
-            "quote_font_size": 16,
-            "quote_font_size_desktop": 36,
-            "author_name": "[[Zach]]",
-            "author_bio": "College counselor",
-            "show_stars": true
-          }
-        },
         "testimonial_7qgGxk": {
           "type": "testimonial",
           "settings": {
@@ -775,6 +760,21 @@
             "quote_font_size": 16,
             "quote_font_size_desktop": 36,
             "author_name": "Zach",
+            "author_bio": "College counselor",
+            "show_stars": true
+          }
+        },
+        "testimonial_ciki7d": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/Mobile Version_SONU Band - Try Risk Free for 30 Days.mp4",
+            "video_url": "",
+            "subheading": "",
+            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing. SONU has been the best addition yet to my nasal hygiene routine. I highly recommend it to anyone struggling with nasal congestion.",
+            "heading_tag": "h1",
+            "quote_font_size": 16,
+            "quote_font_size_desktop": 36,
+            "author_name": "[[Zach]]",
             "author_bio": "College counselor",
             "show_stars": true
           }
@@ -796,8 +796,8 @@
         }
       },
       "block_order": [
-        "testimonial_ciki7d",
         "testimonial_7qgGxk",
+        "testimonial_ciki7d",
         "testimonial_iXw6hF"
       ],
       "name": "Contained Video Slider",
