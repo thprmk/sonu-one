@@ -1,0 +1,615 @@
+{% schema %}
+{
+  "name": "SONU Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_bg",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "id": "top_text",
+      "label": "Top Small Text",
+      "default": "Featured in TIME's 2025 Best Inventions"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Clear & Free\nNasal Breathing"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "No Drugs. No Side Effects. No Compromises."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "The world's first FDA 510-K cleared wearable that uses personalized vibro-acoustic therapy to relieve nasal congestion in minutes."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "Bottom Badge Image"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Desktop Button Background",
+      "default": "#656AE3"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Badge 1 Settings"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_text",
+      "label": "Badge 1 Text",
+      "default": "CLINICALLY PROVEN"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_1_icon",
+      "label": "Badge 1 Icon (SVG)"
+    },
+    {
+      "type": "header",
+      "content": "Badge 2 Settings"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_text",
+      "label": "Badge 2 Text",
+      "default": "NO SIDE EFFECTS"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_2_icon",
+      "label": "Badge 2 Icon (SVG)"
+    },
+    {
+      "type": "header",
+      "content": "Badge 3 Settings"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_text",
+      "label": "Badge 3 Text",
+      "default": "DRUG FREE"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_3_icon",
+      "label": "Badge 3 Icon (SVG)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SONU Hero Banner"
+    }
+  ]
+}
+{% endschema %}
+
+<!-- Google Fonts Preconnect and Link tags for rock-solid font loading in any browser/theme -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<section class="sonuh-wrapper">
+  <div class="sonuh-hero">
+
+    <div class="sonuh-bg">
+      {% if section.settings.desktop_bg != blank %}
+        <img
+          class="sonuh-desktop-bg"
+          src="{{ section.settings.desktop_bg | image_url: width: 2500 }}"
+          alt=""
+        >
+      {% endif %}
+
+      {% if section.settings.mobile_bg != blank %}
+        <img
+          class="sonuh-mobile-bg"
+          src="{{ section.settings.mobile_bg | image_url: width: 1200 }}"
+          alt=""
+        >
+      {% endif %}
+    </div>
+
+    <div class="sonuh-overlay"></div>
+
+    <div class="sonuh-content">
+      <div class="sonuh-top-content">
+        {% if section.settings.logo != blank %}
+          <div class="sonu-logo">
+            <img 
+              src="{{ section.settings.logo | image_url: width: 400 }}" 
+              alt="Logo"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+
+        {% if section.settings.top_text != blank %}
+          <p class="sonu-top-text">
+            {{ section.settings.top_text }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          {% assign sonu_heading = section.settings.heading
+            | replace: '[[', '<span class="sonu-highlight">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+          %}
+          <h1 class="sonu-heading">
+            {{ sonu_heading }}
+          </h1>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <div class="sonu-subheading">
+            {{ section.settings.subheading | newline_to_br }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="sonuh-bottom-content">
+        {% if section.settings.description != blank %}
+          <div class="sonu-description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+
+        <div class="sonuh-btn-wrap">
+          {% if section.settings.button_text != blank %}
+            <a href="{{ section.settings.button_link }}" class="sonuh-btn">
+              {{ section.settings.button_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {%- assign hide_badges_on_desktop = false -%}
+    {%- if section.settings.desktop_bg != blank -%}
+      {%- assign bg_str = section.settings.desktop_bg | image_url -%}
+      {%- if bg_str contains 'Group_21' or bg_str contains 'group_21' -%}
+        {%- assign hide_badges_on_desktop = true -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="sonuh-badges-wrapper{% if hide_badges_on_desktop %} desktop-hidden{% endif %}">
+      {% if section.settings.badge_image != blank %}
+        <div class="sonuh-badge">
+          <img
+            src="{{ section.settings.badge_image | image_url: width: 500 }}"
+            alt="Badge"
+            loading="lazy"
+          >
+        </div>
+      {% else %}
+        <div class="sonuh-badges-container">
+          <div class="sonuh-badge-item">
+            <svg class="sonuh-svg-badge" viewBox="0 0 100 100" width="76" height="76">
+              <path id="badge-circle-1" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" fill="none"></path>
+              <text fill="#ffffff" font-size="7.5" font-family="var(--sonu-font-primary), sans-serif" font-weight="600" letter-spacing="1">
+                <textPath href="#badge-circle-1" startOffset="50%" text-anchor="middle">
+                  {%- assign text_1 = section.settings.badge_1_text | default: "CLINICALLY PROVEN" | upcase -%}
+                  {{ text_1 }} • {{ text_1 }} •
+                </textPath>
+              </text>
+              <circle cx="50" cy="50" r="28" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.8"></circle>
+              <circle cx="50" cy="50" r="43" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.8"></circle>
+              {% if section.settings.badge_1_icon != blank %}
+                <image x="38" y="38" width="24" height="24" href="{{ section.settings.badge_1_icon | image_url: width: 100 }}" />
+              {% else %}
+                <path d="M 50,41 L 50,59 M 41,50 L 59,50" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path>
+              {% endif %}
+            </svg>
+          </div>
+          <div class="sonuh-badge-item">
+            <svg class="sonuh-svg-badge" viewBox="0 0 100 100" width="76" height="76">
+              <path id="badge-circle-2" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" fill="none"></path>
+              <text fill="#ffffff" font-size="7.5" font-family="var(--sonu-font-primary), sans-serif" font-weight="600" letter-spacing="1">
+                <textPath href="#badge-circle-2" startOffset="50%" text-anchor="middle">
+                  {%- assign text_2 = section.settings.badge_2_text | default: "NO SIDE EFFECTS" | upcase -%}
+                  {{ text_2 }} • {{ text_2 }} •
+                </textPath>
+              </text>
+              <circle cx="50" cy="50" r="28" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.8"></circle>
+              <circle cx="50" cy="50" r="43" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.8"></circle>
+              {% if section.settings.badge_2_icon != blank %}
+                <image x="38" y="38" width="24" height="24" href="{{ section.settings.badge_2_icon | image_url: width: 100 }}" />
+              {% else %}
+                <path d="M 41,50 L 47,56 L 59,44" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              {% endif %}
+            </svg>
+          </div>
+          <div class="sonuh-badge-item">
+            <svg class="sonuh-svg-badge" viewBox="0 0 100 100" width="76" height="76">
+              <path id="badge-circle-3" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" fill="none"></path>
+              <text fill="#ffffff" font-size="7.5" font-family="var(--sonu-font-primary), sans-serif" font-weight="600" letter-spacing="1">
+                <textPath href="#badge-circle-3" startOffset="50%" text-anchor="middle">
+                  {%- assign text_3 = section.settings.badge_3_text | default: "DRUG FREE" | upcase -%}
+                  {{ text_3 }} • {{ text_3 }} •
+                </textPath>
+              </text>
+              <circle cx="50" cy="50" r="28" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.8"></circle>
+              <circle cx="50" cy="50" r="43" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.8"></circle>
+              {% if section.settings.badge_3_icon != blank %}
+                <image x="38" y="38" width="24" height="24" href="{{ section.settings.badge_3_icon | image_url: width: 100 }}" />
+              {% else %}
+                <g transform="rotate(-30 45 47)">
+                  <rect x="42" y="38" width="6" height="14" rx="3" stroke="#ffffff" stroke-width="1.5" fill="none"></rect>
+                  <line x1="42" x2="48" y1="45" y2="45" stroke="#ffffff" stroke-width="1.5"></line>
+                </g>
+                <g transform="rotate(30 55 53)">
+                  <rect x="52" y="44" width="6" height="14" rx="3" stroke="#ffffff" stroke-width="1.5" fill="none"></rect>
+                  <line x1="52" x2="58" y1="51" y2="51" stroke="#ffffff" stroke-width="1.5"></line>
+                </g>
+              {% endif %}
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-RegularItalic.woff2" | asset_url }}') format('woff2');
+}
+.sonuh-wrapper{
+  padding:20px;
+  width:100%;
+  max-width:1760px;
+  margin:0 auto;
+}
+.sonu-highlight{
+  font-family:'pp-editorial', serif !important;
+  font-style:italic;
+  font-weight:400;
+}
+.sonuh-hero{
+  position:relative;
+  min-height:100vh!important;
+  display:flex;
+  align-items:flex-end;
+  color:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  padding:60px 80px;
+}
+
+.sonuh-bg{
+  position:absolute;
+  inset:0;
+  z-index:1;
+}
+
+.sonuh-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.sonuh-desktop-bg{
+  display:block;
+}
+
+.sonuh-mobile-bg{
+  display:none;
+}
+
+.sonuh-overlay{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.20) 45%,
+    rgba(0,0,0,.05) 100%
+  );
+}
+
+.sonuh-content{
+  position:relative;
+  z-index:3;
+  width:100%;
+  max-width:680px;
+}
+
+.sonuh-top-content {
+  width: 100%;
+}
+
+.sonu-logo{
+  margin-bottom:60px;
+}
+
+.sonu-logo img{
+  max-width:220px;
+  display:block;
+}
+
+.sonu-top-text{
+  font-size:24px;
+  line-height:29px;
+  color:#fff;
+  margin-bottom:20px;
+}
+
+.sonu-heading{
+  font-family:'Instrument Sans',sans-serif;
+  font-weight:500;
+  font-size:85px;
+  line-height:104px;
+  color:#fff;
+  margin:0 0 24px;
+}
+
+.sonu-subheading{
+  font-size:22px;
+  line-height:32px;
+  color:#fff;
+  margin-bottom:40px;
+}
+
+.sonuh-bottom-content {
+  width: 100%;
+}
+
+.sonu-description{
+  font-size:22px;
+  line-height:1.5;
+  color:#fff;
+  margin-bottom:40px;
+  max-width:600px;
+}
+
+.sonuh-btn-wrap{
+  margin-top:20px;
+}
+
+.sonuh-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:305px;
+  height:66px;
+  background:{{ section.settings.button_bg }};
+  color:{{ section.settings.button_text_color }};
+  border-radius:33px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:18px;
+  text-transform:uppercase;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.sonuh-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Badges section */
+.sonuh-badges-wrapper {
+  position:absolute;
+  bottom:60px;
+  right:80px;
+  z-index:4;
+}
+
+.sonuh-badges-wrapper.desktop-hidden {
+  display:none;
+}
+
+.sonuh-badges-container {
+  display:flex;
+  gap:16px;
+  align-items:center;
+}
+
+.sonuh-badge-item {
+  width:76px;
+  height:76px;
+}
+
+.sonuh-svg-badge {
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.sonuh-badge img{
+  width:220px;
+  display:block;
+}
+
+@media(max-width:768px){
+
+  .sonuh-wrapper{
+    padding:0;
+  }
+
+  .sonuh-hero{
+    min-height:100svh;
+    border-radius:0;
+    padding:40px 20px 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sonuh-desktop-bg{
+    display:none;
+  }
+
+  .sonuh-mobile-bg{
+    display:block;
+  }
+
+  .sonuh-overlay{
+    background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.45) 100%),
+                linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.5) 100%);
+  }
+
+  .sonuh-content{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    max-width:340px;
+    flex-grow: 1;
+    margin: 0 auto;
+  }
+
+  .sonuh-top-content {
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width: 100%;
+  }
+
+  .sonu-logo{
+    display:none;
+  }
+
+  .sonu-top-text{
+    display:none;
+  }
+
+  .sonu-heading{
+    font-size:42px;
+    line-height:50px;
+    text-align:center;
+    margin-bottom:12px;
+  }
+
+  .sonu-subheading{
+    font-size:16px;
+    line-height:22px;
+    text-align:center;
+    margin-bottom:0;
+  }
+
+  .sonuh-bottom-content {
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width: 100%;
+    margin-top: auto;
+  }
+
+  .sonu-description{
+    font-size:14px;
+    line-height:22px;
+    text-align:center;
+    max-width:300px;
+    margin:0 auto 16px;
+  }
+
+  .sonuh-btn-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+    margin-top:0;
+    margin-bottom: 20px;
+  }
+
+  .sonuh-btn{
+    width:auto;
+    height:auto;
+    background:transparent;
+    color:#FFFFFF;
+    border-radius:0;
+    font-size:16px;
+    line-height:20px;
+    font-weight: 600;
+    padding: 8px 16px;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+  }
+  
+  .sonuh-btn:hover {
+    transform: none;
+    opacity: 0.8;
+  }
+
+  .sonuh-badges-wrapper {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    z-index: 4;
+  }
+
+  .sonuh-badges-wrapper.desktop-hidden {
+    display: flex;
+  }
+
+  .sonuh-badges-container {
+    gap: 12px;
+  }
+
+  .sonuh-badge-item {
+    width:64px;
+    height:64px;
+  }
+
+  .sonuh-badge{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .sonuh-badge img{
+    width:120px;
+  }
+}
+</style>

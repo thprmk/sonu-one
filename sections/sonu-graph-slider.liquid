@@ -1,0 +1,610 @@
+{% comment %}
+  Research Graph Slider
+  Premium Oura Style
+{% endcomment %}
+
+<section class="research-graphs section">
+
+  <div class="page-width">
+
+    <!-- TOP -->
+    <div class="research-top">
+
+      {% if section.settings.heading != blank %}
+
+        {% assign formatted_heading = section.settings.heading
+          | replace: '[[', '<span class="research-serif">'
+          | replace: ']]', '</span>'
+          | newline_to_br
+        %}
+
+        <h2 class="research-heading animate-blur">
+          {{ formatted_heading }}
+        </h2>
+
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+
+        <div class="research-desc animate-blur delay-1">
+          {{ section.settings.description }}
+        </div>
+
+      {% endif %}
+
+    </div>
+
+    <!-- SLIDER -->
+    <div class="research-slider-wrapper">
+
+      <div class="research-slider" id="researchSlider-{{ section.id }}">
+
+        {% for block in section.blocks %}
+
+          <div class="research-card">
+
+            <div class="research-card-inner">
+
+              <!-- TITLE -->
+              <h3 class="research-card-title">
+                {{ block.settings.heading }}
+              </h3>
+
+              <!-- IMAGE -->
+              {% if block.settings.graph_image != blank %}
+
+                <div class="research-image-wrap">
+
+                  <img
+                    src="{{ block.settings.graph_image | image_url: width: 1200 }}"
+                    alt=""
+                    class="research-image"
+                    loading="lazy"
+                  >
+
+                </div>
+
+              {% endif %}
+
+            </div>
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="research-bottom">
+
+      <!-- PROGRESS -->
+      <div class="research-progress">
+
+        <div class="research-progress-bar">
+          <span class="research-progress-fill"></span>
+        </div>
+
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="research-controls">
+
+        {% if section.settings.button_text != blank %}
+
+          <a href="{{ section.settings.button_link }}"
+             class="research-btn">
+
+            {{ section.settings.button_text }}
+
+          </a>
+
+        {% endif %}
+
+        <!-- ARROWS -->
+        <div class="research-arrows">
+          <button class="research-arrow prev" aria-label="Previous Slide">
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="research-arrow next" aria-label="Next Slide">
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+/* SECTION */
+.research-graphs {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+  background: {{ section.settings.bg_color }};
+}
+
+@media (max-width: 768px) {
+  .research-graphs {
+    padding: 10px 0;
+  }
+}
+
+/* TOP */
+.research-top {
+  margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  .research-top {
+    margin-bottom: 40px;
+  }
+}
+
+/* HEADING */
+.research-heading {
+  margin: 0 0 20px;
+  color: {{ section.settings.heading_color }};
+  font-family: var(--sonu-font-primary);
+  font-size: 72px;
+  line-height: 1.05;
+  letter-spacing: -3px;
+  font-weight: 400;
+}
+
+.research-heading .research-serif {
+  font-family: var(--sonu-font-serif);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .research-heading {
+    font-size: 42px;
+    line-height: 1.1;
+    letter-spacing: 0px;
+  }
+}
+
+/* DESC */
+.research-desc {
+  max-width: 760px;
+  color: {{ section.settings.text_color }};
+  font-family: var(--sonu-font-primary);
+  font-size: 14px;
+  line-height: 22px;
+  color: #1E1E1E;
+}
+
+/* SLIDER */
+.research-slider-wrapper {
+  overflow: hidden;
+}
+
+.research-slider {
+  display: flex;
+  gap: 36px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 10px;
+}
+
+.research-slider::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .research-slider {
+    gap: 0px;
+    scroll-snap-type: x mandatory;
+    padding-right: 30px;
+  }
+}
+
+/* CARD */
+.research-card {
+  flex: 0 0 calc(45% - 18px);
+  min-width: 320px;
+}
+
+@media (max-width: 1100px) {
+  .research-card {
+    flex: 0 0 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .research-card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+}
+
+/* INNER */
+.research-card-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: transparent;
+  border: 1px solid rgba(84, 54, 32, 0.35);
+  border-radius: 24px;
+  padding: 40px;
+  transition: transform 0.35s ease;
+}
+
+@media (max-width: 768px) {
+  .research-card-inner {
+    padding: 28px;
+    border-radius: 20px;
+    border: none;
+  }
+}
+
+/* TITLE */
+.research-card-title {
+  margin: 0 0 35px;
+  color: {{ section.settings.card_heading_color }};
+  font-family: var(--sonu-font-primary);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.1;
+  color: #3D1B03;
+  letter-spacing: -0.5px;
+}
+
+@media (max-width: 768px) {
+  .research-card-title {
+    font-size: 28px;
+    line-height: 1.15;
+    margin-bottom: 28px;
+  }
+}
+
+/* IMAGE */
+.research-image-wrap {
+  position: relative;
+}
+
+.research-image {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* BOTTOM */
+.research-bottom {
+  margin-top: 45px;
+}
+
+@media (max-width: 768px) {
+  .research-bottom {
+    margin-top: 28px;
+  }
+}
+
+/* PROGRESS */
+.research-progress {
+  margin-bottom: 35px;
+}
+
+.research-progress-bar {
+  position: relative;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.research-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30%;
+  height: 100%;
+  background: #8e8479;
+  transition: width 0.3s ease, transform 0.3s ease;
+}
+
+/* CONTROLS */
+.research-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .research-controls {
+    margin-top: 30px;
+    align-items: center;
+  }
+}
+
+/* BUTTON */
+.research-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sonu-font-primary);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  color: {{ section.settings.button_text_color }};
+  background: {{ section.settings.button_bg }};
+  border-radius: 33px;
+  width: auto;
+  min-width: 150px;
+  height: 44px;
+  padding: 0 28px;
+  white-space: nowrap;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.research-btn:hover {
+  background-color: #1e1e1e;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .research-btn {
+    width: auto;
+    min-width: 130px;
+    height: 41px;
+    font-size: 14px;
+    padding: 0 20px;
+    text-transform: none;
+  }
+}
+
+/* ARROWS */
+.research-arrows {
+  display: flex;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .research-arrows {
+    gap: 12px;
+  }
+}
+
+.research-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #1E1E1E;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.research-arrow:hover {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.research-arrow:hover svg {
+  stroke: #ffffff;
+}
+
+.research-arrow svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #1E1E1E;
+  stroke-width: 1.8;
+  transition: stroke 0.3s ease;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+.animate-blur {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(20px);
+  animation: blurFade 1s ease forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.15s;
+}
+
+@keyframes blurFade {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+</style>
+
+<script>
+(function() {
+  function initResearchSlider(section) {
+    const slider = section.querySelector(".research-slider");
+    if (!slider) return;
+
+    const prevBtn = section.querySelector(".prev");
+    const nextBtn = section.querySelector(".next");
+    const progressFill = section.querySelector(".research-progress-fill");
+
+    if (!prevBtn || !nextBtn || !progressFill) return;
+
+    function updateProgress() {
+      const maxScroll = slider.scrollWidth - slider.clientWidth;
+      if (maxScroll <= 0) {
+        progressFill.style.width = "100%";
+        return;
+      }
+      const progress = slider.scrollLeft / maxScroll;
+      const visibleWidth = slider.clientWidth / slider.scrollWidth;
+      const fillWidth = visibleWidth + (1 - visibleWidth) * progress;
+      progressFill.style.width = `${fillWidth * 100}%`;
+    }
+
+    updateProgress();
+    slider.addEventListener("scroll", updateProgress);
+    window.addEventListener("resize", updateProgress);
+
+    function getSlideAmount() {
+      if (window.innerWidth <= 768) {
+        return slider.clientWidth;
+      }
+      return slider.clientWidth * 0.48;
+    }
+
+    nextBtn.addEventListener("click", function() {
+      slider.scrollBy({
+        left: getSlideAmount(),
+        behavior: "smooth"
+      });
+    });
+
+    prevBtn.addEventListener("click", function() {
+      slider.scrollBy({
+        left: -getSlideAmount(),
+        behavior: "smooth"
+      });
+    });
+  }
+
+  // Initial load
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".research-graphs").forEach(function(section) {
+      initResearchSlider(section);
+    });
+  });
+
+  // Theme Editor reload
+  document.addEventListener("shopify:section:load", function(event) {
+    const section = event.target.querySelector(".research-graphs");
+    if (section) {
+      initResearchSlider(section);
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Graph Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Clinical study results [[proven by science]]."
+    },
+    {
+      "type":"textarea",
+      "id":"description",
+      "label":"Description"
+    },
+
+    {
+      "type":"color",
+      "id":"bg_color",
+      "label":"Background Color",
+      "default":"#f4f1ee"
+    },
+
+    {
+      "type":"color",
+      "id":"heading_color",
+      "label":"Heading Color",
+      "default":"#3d1d12"
+    },
+
+    {
+      "type":"color",
+      "id":"text_color",
+      "label":"Text Color",
+      "default":"#3d1d12"
+    },
+
+    {
+      "type":"color",
+      "id":"card_heading_color",
+      "label":"Card Heading Color",
+      "default":"#3d1d12"
+    },
+
+    {
+      "type":"text",
+      "id":"button_text",
+      "label":"Button Text",
+      "default":"Learn More"
+    },
+
+    {
+      "type":"url",
+      "id":"button_link",
+      "label":"Button Link"
+    },
+
+    {
+      "type":"color",
+      "id":"button_bg",
+      "label":"Button Background",
+      "default":"#000000"
+    },
+
+    {
+      "type":"color",
+      "id":"button_text_color",
+      "label":"Button Text Color",
+      "default":"#ffffff"
+    }
+
+  ],
+
+  "blocks":[
+
+    {
+      "type":"graph",
+      "name":"Graph Card",
+      "settings":[
+
+        {
+          "type":"text",
+          "id":"heading",
+          "label":"Heading",
+          "default":"Reduction in Nasal Congestion"
+        },
+
+        {
+          "type":"image_picker",
+          "id":"graph_image",
+          "label":"Graph Image"
+        }
+
+      ]
+    }
+
+  ],
+
+  "presets":[
+    {
+      "name":"Graph Slider"
+    }
+  ]
+}
+{% endschema %}

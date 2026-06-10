@@ -1,0 +1,781 @@
+{%- liquid
+  assign bg_color = section.settings.bg_color
+  assign bg_gradient = section.settings.bg_gradient
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign padding_top_mobile = section.settings.padding_top_mobile
+  assign padding_bottom_mobile = section.settings.padding_bottom_mobile
+-%}
+
+<div id="shopify-section-{{ section.id }}" class="custom-card-slider-wrapper image-bg-{{ section.id }}" style="
+  {% if bg_gradient != blank %}
+    background: {{ bg_gradient }};
+  {% elsif bg_color != blank %}
+    background-color: {{ bg_color }};
+  {% endif %}
+  --padding-top: {{ padding_top }}px;
+  --padding-bottom: {{ padding_bottom }}px;
+  --padding-top-mobile: {{ padding_top_mobile }}px;
+  --padding-bottom-mobile: {{ padding_bottom_mobile }}px;
+">
+  <style>
+    #shopify-section-{{ section.id }} .custom-card-slider-wrapper {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding-left: {{ section.settings.desktop_left_padding | default: 80 }}px !important;
+    }
+    
+    {% if section.settings.bg_image != blank %}
+    .image-bg-{{ section.id }} {
+      background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+    }
+    {% endif %}
+
+    #shopify-section-{{ section.id }} .custom-card-slider-heading {
+      color: {{ section.settings.heading_color }} !important;
+    }
+    
+    #shopify-section-{{ section.id }} .custom-card-slider-header {
+      margin-bottom: {{ section.settings.desktop_heading_margin_bottom }}px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide {
+      width: {{ section.settings.desktop_card_width }}px !important;
+      height: {{ section.settings.desktop_card_height }}px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide__inner {
+      {% if section.settings.card_border_radius != blank %}
+        border-radius: {{ section.settings.card_border_radius }}px !important;
+      {% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide__title {
+      {% if section.settings.card_title_color != blank %}
+        color: {{ section.settings.card_title_color }} !important;
+      {% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide__desc {
+      {% if section.settings.card_desc_color != blank %}
+        color: {{ section.settings.card_desc_color }} !important;
+      {% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide__top-badge span {
+      {% if section.settings.top_badge_bg != blank %}
+        background: {{ section.settings.top_badge_bg }} !important;
+      {% endif %}
+      {% if section.settings.top_badge_border != blank %}
+        border-color: {{ section.settings.top_badge_border }} !important;
+      {% endif %}
+      {% if section.settings.top_badge_color != blank %}
+        color: {{ section.settings.top_badge_color }} !important;
+      {% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-slide__bottom-badge span {
+      {% if section.settings.bottom_badge_bg != blank %}
+        background: {{ section.settings.bottom_badge_bg }} !important;
+      {% endif %}
+      {% if section.settings.bottom_badge_color != blank %}
+        color: {{ section.settings.bottom_badge_color }} !important;
+      {% endif %}
+    }
+
+    /* Progress bar styling */
+    #shopify-section-{{ section.id }} .custom-card-progressbar-wrapper {
+      position: relative !important;
+      flex-grow: 1 !important;
+      max-width: 800px !important;
+      height: {{ section.settings.progressbar_height }}px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-progressbar.swiper-pagination-progressbar {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      {% if section.settings.progressbar_bg_color != blank %}
+        background: {{ section.settings.progressbar_bg_color }} !important;
+      {% endif %}
+      border-radius: 999px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-progressbar.swiper-pagination-lock {
+      display: block !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-progressbar .swiper-pagination-progressbar-fill {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      transform-origin: left top !important;
+      {% if section.settings.progressbar_fill_color != blank %}
+        background: {{ section.settings.progressbar_fill_color }} !important;
+      {% endif %}
+      border-radius: 999px !important;
+    }
+
+    /* Navigation button styles */
+    #shopify-section-{{ section.id }} .custom-card-nav-btn {
+      {% if section.settings.nav_arrow_color != blank %}
+        color: {{ section.settings.nav_arrow_color }} !important;
+      {% endif %}
+      {% if section.settings.nav_border_color != blank %}
+        border-color: {{ section.settings.nav_border_color }} !important;
+      {% endif %}
+      {% if section.settings.nav_bg_color != blank %}
+        background: {{ section.settings.nav_bg_color }} !important;
+      {% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .custom-card-nav-btn:hover {
+      {% if section.settings.nav_hover_arrow_color != blank %}
+        color: {{ section.settings.nav_hover_arrow_color }} !important;
+      {% endif %}
+      {% if section.settings.nav_hover_border_color != blank %}
+        border-color: {{ section.settings.nav_hover_border_color }} !important;
+      {% endif %}
+      {% if section.settings.nav_hover_bg_color != blank %}
+        background: {{ section.settings.nav_hover_bg_color }} !important;
+      {% endif %}
+    }
+
+    @media screen and (max-width: 768px) {
+      .image-bg-{{ section.id }} {
+        {% if section.settings.mobile_bg_image != blank %}
+          background-image: url('{{ section.settings.mobile_bg_image | image_url: width: 1000 }}') !important;
+        {% elsif section.settings.bg_image != blank %}
+          background-image: url('{{ section.settings.bg_image | image_url: width: 1000 }}') !important;
+        {% endif %}
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slider-wrapper {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slider-container {
+        position: relative !important;
+        height: 100% !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slider-header {
+        display: none !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-swiper {
+        overflow: hidden !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slide {
+        width: 100% !important;
+        height: 100vh !important;
+        min-height: 640px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slide__inner {
+        border-radius: 0 !important;
+        height: 100% !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slide__content {
+        padding: 24px 24px 120px 24px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slide__title {
+        font-size: 32px !important;
+        line-height: 1.2 !important;
+        font-weight: 400 !important;
+        margin-bottom: 16px !important;
+        letter-spacing: -0.5px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slide__desc {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 28px !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slide__bottom-badge {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 0 !important;
+        margin-bottom: 20px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-slide__bottom-badge span {
+        background: rgba(18, 14, 23, 0.6) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 13px !important;
+        font-weight: 400 !important;
+        padding: 10px 20px !important;
+        border-radius: 999px !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-controls-row {
+        position: absolute !important;
+        bottom: 24px !important;
+        left: 24px !important;
+        right: 24px !important;
+        width: auto !important;
+        z-index: 10 !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 20px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-progressbar-wrapper {
+        width: 100% !important;
+        position: relative !important;
+        height: 2px !important;
+        max-width: none !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-progressbar.swiper-pagination-progressbar {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        margin: 0 !important;
+        border-radius: 999px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-progressbar .swiper-pagination-progressbar-fill {
+        background: #E5D5FA !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-arrows {
+        width: auto !important;
+        align-self: flex-end !important;
+        display: flex !important;
+        gap: 12px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-nav-btn {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 50% !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-nav-btn:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: #ffffff !important;
+        color: #ffffff !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-card-nav-btn.swiper-button-disabled {
+        opacity: 0.3 !important;
+        pointer-events: none !important;
+      }
+    }
+  </style>
+
+  <div class="custom-card-slider-container">
+    
+    {% if section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="custom-card-slider-header">
+        {% if section.settings.subheading != blank %}
+          <span class="custom-card-slider-subheading">{{ section.settings.subheading }}</span>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-card-slider-heading {{ section.settings.heading_tag | default: 'h2' }}">{{ section.settings.heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Swiper Carousel -->
+    <div class="swiper custom-card-swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide custom-card-slide" {{ block.shopify_attributes }}>
+            <div class="custom-card-slide__inner">
+              
+              <!-- Background Image -->
+              <div class="custom-card-slide__image">
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </div>
+              
+              <!-- Overlay Gradient -->
+              <div class="custom-card-slide__overlay"></div>
+
+              <!-- Top Badge/Pill -->
+              {% if block.settings.top_badge != blank %}
+                <div class="custom-card-slide__top-badge">
+                  <span>{{ block.settings.top_badge }}</span>
+                </div>
+              {% endif %}
+
+              <!-- Slide Contents -->
+              <div class="custom-card-slide__content">
+                {% if block.settings.title != blank %}
+                  <h3 class="custom-card-slide__title h3">{{ block.settings.title }}</h3>
+                {% endif %}
+                
+                {% if block.settings.description != blank %}
+                  <p class="custom-card-slide__desc rte">{{ block.settings.description }}</p>
+                {% endif %}
+
+                {% if block.settings.bottom_badge != blank %}
+                  <div class="custom-card-slide__bottom-badge">
+                    <span>{{ block.settings.bottom_badge }}</span>
+                  </div>
+                {% endif %}
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Navigation & Progress Controls at Bottom -->
+    <div class="custom-card-controls-row">
+      <div class="custom-card-progressbar-wrapper">
+        <div class="custom-card-progressbar swiper-pagination"></div>
+      </div>
+      
+      <div class="custom-card-arrows">
+        <button class="custom-card-nav-btn custom-card-nav-btn--prev" aria-label="Previous">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="custom-card-nav-btn custom-card-nav-btn--next" aria-label="Next">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Card Slider",
+  "tag": "section",
+  "class": "custom-card-slider-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F3EEF9"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Padding Top Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Padding Bottom Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "range",
+      "id": "desktop_heading_margin_bottom",
+      "label": "Desktop Heading Margin Bottom (px)",
+      "default": 48,
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_margin_bottom",
+      "label": "Mobile Heading Margin Bottom (px)",
+      "default": 32,
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Card Sizing & Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_card_width",
+      "label": "Desktop Card Width (px)",
+      "default": 440,
+      "min": 250,
+      "max": 600,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_card_height",
+      "label": "Desktop Card Height (px)",
+      "default": 580,
+      "min": 350,
+      "max": 800,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_left_padding",
+      "label": "Desktop Left Padding (px)",
+      "default": 80,
+      "min": 20,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Border Radius (px)",
+      "default": 28,
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_width",
+      "label": "Mobile Card Width (vw)",
+      "default": 85,
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vw"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_height",
+      "label": "Mobile Card Height (px)",
+      "default": 440,
+      "min": 300,
+      "max": 600,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "label": "Mobile Side Padding (px)",
+      "default": 20,
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Card Content Settings"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_desc_color",
+      "label": "Card Description Color",
+      "default": "rgba(255, 255, 255, 0.85)"
+    },
+    {
+      "type": "header",
+      "content": "Card Badges Settings"
+    },
+    {
+      "type": "color",
+      "id": "top_badge_bg",
+      "label": "Top Badge Background Color",
+      "default": "rgba(255, 255, 255, 0.12)"
+    },
+    {
+      "type": "color",
+      "id": "top_badge_border",
+      "label": "Top Badge Border Color",
+      "default": "rgba(255, 255, 255, 0.18)"
+    },
+    {
+      "type": "color",
+      "id": "top_badge_color",
+      "label": "Top Badge Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bottom_badge_bg",
+      "label": "Bottom Badge Background Color",
+      "default": "rgba(0, 0, 0, 0.45)"
+    },
+    {
+      "type": "color",
+      "id": "bottom_badge_color",
+      "label": "Bottom Badge Text Color",
+      "default": "rgba(255, 255, 255, 0.9)"
+    },
+    {
+      "type": "header",
+      "content": "Slider Controls Settings"
+    },
+    {
+      "type": "range",
+      "id": "progressbar_height",
+      "label": "Progress Bar Height (px)",
+      "default": 2,
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "progressbar_fill_color",
+      "label": "Progress Bar Active Color",
+      "default": "#5E53E5"
+    },
+    {
+      "type": "color",
+      "id": "progressbar_bg_color",
+      "label": "Progress Bar Track Color",
+      "default": "rgba(94, 83, 229, 0.15)"
+    },
+    {
+      "type": "range",
+      "id": "nav_btn_size",
+      "label": "Navigation Button Size (px)",
+      "default": 44,
+      "min": 32,
+      "max": 64,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "nav_arrow_color",
+      "label": "Arrow Icon Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "nav_border_color",
+      "label": "Arrow Border Color",
+      "default": "rgba(0, 0, 0, 0.15)"
+    },
+    {
+      "type": "color",
+      "id": "nav_bg_color",
+      "label": "Arrow Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_arrow_color",
+      "label": "Arrow Hover Icon Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_border_color",
+      "label": "Arrow Hover Border Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_bg_color",
+      "label": "Arrow Hover Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Background Image"
+        },
+        {
+          "type": "text",
+          "id": "top_badge",
+          "label": "Top Badge Text",
+          "default": "How it Works"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Gentle sound, delivered through bone"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "The Spatial Sleep band rests on your forehead and sends soft acoustic vibrations through your skull — no earbuds needed."
+        },
+        {
+          "type": "text",
+          "id": "bottom_badge",
+          "label": "Bottom Badge Text",
+          "default": "No effort required · Works while you rest"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Card Slider",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "top_badge": "How it Works",
+            "title": "Gentle sound, delivered through bone",
+            "description": "The Spatial Sleep band rests on your forehead and sends soft acoustic vibrations through your skull — no earbuds needed. Each ear receives a slightly different frequency, and your brain naturally blends them into a calming rhythm that guides you toward sleep.",
+            "bottom_badge": "No effort required · Works while you rest"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "top_badge": "Why it Takes Time",
+            "title": "Think of pushing a swing",
+            "description": "One push barely moves it. But small, steady pushes — timed just right — build into a deep, effortless rhythm. That's how neural entrainment works. Each night, Spatial Sleep gives your brain another gentle push toward its natural sleep frequency.",
+            "bottom_badge": "2–4 weeks to build momentum"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "top_badge": "Consistency Matters",
+            "title": "Every night counts",
+            "description": "In clinical studies, participants who used the band nightly saw the strongest results — insomnia severity dropped by nearly 50% over four weeks, with three-quarters no longer qualifying as having insomnia.",
+            "bottom_badge": "Lin et al., Journal of Sleep Medicine, 2025 · Consistent with broader acoustic entrainment research"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

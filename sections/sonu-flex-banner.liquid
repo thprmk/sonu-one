@@ -1,0 +1,203 @@
+<style>
+  #sonu-sound-banner-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | default: 125 }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom | default: 125 }}px !important;
+  }
+  @media screen and (max-width: 768px) {
+    #sonu-sound-banner-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top | default: 24 }}px !important;
+      padding-bottom: {{ section.settings.mobile_padding_bottom | default: 24 }}px !important;
+    }
+  }
+</style>
+<section id="sonu-sound-banner-{{ section.id }}" class="sonu-sound-banner" style="
+  --heading-color: {{ section.settings.heading_color | default: '#001755' }};
+  --btn-bg: {{ section.settings.btn_bg_color | default: '#ffffff' }};
+  --btn-text: {{ section.settings.btn_text_color | default: '#001755' }};
+">
+
+  <div class="sonu-sound-banner__wrapper">
+
+    <div class="sonu-sound-banner__image-wrapper">
+
+      {% if section.settings.desktop_image != blank %}
+        <img
+          src="{{ section.settings.desktop_image | image_url: width: 2000 }}"
+          alt="{{ section.settings.heading }}"
+          class="sonu-sound-banner__image sonu-sound-banner__desktop-image"
+          loading="lazy"
+        >
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg sonu-sound-banner__image sonu-sound-banner__desktop-image' }}
+      {% endif %}
+
+      {% if section.settings.mobile_image != blank %}
+        <img
+          src="{{ section.settings.mobile_image | image_url: width: 1000 }}"
+          alt="{{ section.settings.heading }}"
+          class="sonu-sound-banner__image sonu-sound-banner__mobile-image"
+          loading="lazy"
+        >
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg sonu-sound-banner__image sonu-sound-banner__mobile-image' }}
+      {% endif %}
+
+    </div>
+
+    <div class="sonu-sound-banner__content">
+
+      {%- assign heading_tag = section.settings.heading_tag | default: 'h2' -%}
+      <{{ heading_tag }} class="sonu-sound-banner__heading">
+        {{ section.settings.heading | newline_to_br }}
+      </{{ heading_tag }}>
+
+      <div class="sonu-sound-banner__buttons">
+
+        {% if section.settings.button_1_text != blank %}
+          <a href="{{ section.settings.button_1_link | default: '#' }}" class="sonu-sound-banner__button sonu-sound-banner__button--one">
+            {{ section.settings.button_1_text }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.button_2_text != blank %}
+          <a href="{{ section.settings.button_2_link | default: '#' }}" class="sonu-sound-banner__button sonu-sound-banner__button--two">
+            {{ section.settings.button_2_text }}
+          </a>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{{ 'sonu-custom.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "SONU Sound Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Experience the future of personalized sound therapeutics."
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Buttons Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Buttons Text Color",
+      "default": "#001755"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "Explore SONU"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "Explore Spatial Sleep"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 125,
+      "unit": "px",
+      "label": "Padding Top (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 125,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 24,
+      "unit": "px",
+      "label": "Padding Top (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 24,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SONU Sound Banner"
+    }
+  ]
+}
+{% endschema %}

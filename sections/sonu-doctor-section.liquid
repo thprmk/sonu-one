@@ -1,0 +1,712 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap');
+
+.hc-tm-section {
+  padding: var(--section-padding-top) var(--section-padding-right) var(--section-padding-bottom) var(--section-padding-left);
+  background: #ffffff;
+  font-family: 'Instrument Sans', sans-serif;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.hc-tm-section *, .hc-tm-section *::before, .hc-tm-section *::after {
+  box-sizing: border-box;
+}
+
+/* BASE WRAPPER */
+.hc-tm-wrapper {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+}
+
+.hc-tm-wrapper::-webkit-scrollbar {
+  display: none !important;
+}
+
+.hc-tm-wrapper {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.hc-tm-controls {
+  display: none;
+}
+
+/* DESKTOP LAYOUT VARIANTS */
+.hc-tm-desktop-grid .hc-tm-wrapper {
+  grid-template-columns: repeat(var(--desktop-cols), 1fr);
+}
+
+.hc-tm-desktop-slider .hc-tm-wrapper,
+.hc-tm-mobile-slider .hc-tm-wrapper {
+  display: flex !important;
+  overflow-x: auto !important;
+  scroll-snap-type: x mandatory !important;
+  margin: auto;
+  width: 100%;
+}
+
+.hc-tm-desktop-slider .hc-tm-wrapper {
+  max-width: 90rem;
+  justify-content: center;
+}
+
+.hc-tm-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.hc-tm-desktop-grid .hc-tm-card {
+  max-width: 100%;
+}
+
+.hc-tm-desktop-slider .hc-tm-card {
+  flex: 0 0 calc((100% - (20px * (var(--desktop-cols) - 1))) / var(--desktop-cols)) !important;
+  max-width: calc((100% - (20px * (var(--desktop-cols) - 1))) / var(--desktop-cols)) !important;
+}
+
+/* CARD IMAGE ACCENTS */
+.hc-tm-img-wrap {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 100%;
+  line-height: 0;
+}
+
+.hc-tm-img-wrap img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+}
+
+/* COVER OVERLAY */
+.hc-tm-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.20);
+  pointer-events: none;
+}
+
+/* Icon */
+.hc-tm-card-arrow {
+  position: absolute;
+  left: 17.29%;
+  right: 81.2%;
+  top: 49.13%;
+  bottom: 50.54%;
+  border: 2px solid #FFFFFF;
+
+  /* Display overrides for premium centered chevron look */
+  left: auto !important;
+  right: 21px !important;
+  top: auto !important;
+  bottom: 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 3 !important;
+  transition: transform 0.2s ease, background-color 0.2s ease !important;
+}
+
+.hc-tm-card:hover .hc-tm-card-arrow {
+  transform: scale(1.1) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.hc-tm-card-arrow svg {
+  width: 8px;
+  height: 12px;
+  display: block;
+}
+
+/* CARD TEXT INSIDE IMAGE */
+.hc-tm-img-content {
+  position: absolute;
+  left: 21px;
+  bottom: 28px;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.hc-tm-img-content h4 {
+  margin: 0 0 6px 0;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
+}
+
+.hc-tm-img-content p {
+  margin: 0;
+  max-width: 211px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #FFFFFF;
+}
+
+/* OUTSIDE CARD DESCRIPTION */
+.hc-tm-desc {
+  margin-top: 18px;
+  margin-bottom: 0;
+  width: 100%;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #000000;
+}
+
+/* ACTION DIALOG MODAL FRAMEWORK */
+.hc-tm-modal {
+  z-index: 99999;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.hc-tm-modal-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+}
+
+.hc-tm-modal-inner {
+  display: flex;
+  gap: 30px;
+}
+
+.hc-tm-modal-inner .hc-tm-left {
+  flex-shrink: 0;
+}
+
+.hc-tm-modal-inner .hc-tm-left img {
+  width: 260px;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;
+}
+
+.hc-tm-modal-inner .hc-tm-right {
+  flex: 1;
+}
+
+.hc-tm-modal-inner .hc-tm-right h3 {
+  margin: 0 0 8px 0;
+  color: #001755;
+  font-size: 24px;
+}
+
+.hc-tm-modal-inner .hc-tm-right .hc-tm-modal-role {
+  margin: 0 0 16px 0;
+  font-weight: 500;
+  color: #6f78a8;
+}
+
+.hc-tm-modal-inner .hc-tm-right p {
+  margin: 0;
+  line-height: 1.6;
+  color: #333333;
+}
+
+.hc-tm-close {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 28px;
+  color: #000000;
+  line-height: 1;
+}
+
+/* BREAKPOINT MOBILE SYSTEM OVERRIDES */
+@media (max-width: 768px) {
+  .hc-tm-section {
+    padding: var(--section-padding-top-mobile) var(--section-padding-right-mobile) var(--section-padding-bottom-mobile) var(--section-padding-left-mobile);
+    overflow: hidden;
+  }
+
+  .hc-tm-mobile-grid .hc-tm-wrapper {
+    grid-template-columns: repeat(var(--mobile-cols), 1fr) !important;
+    display: grid !important;
+  }
+
+  .hc-tm-mobile-slider .hc-tm-wrapper {
+    gap: 14px !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    scroll-behavior: smooth !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-bottom: 10px !important;
+    scroll-padding-left: 20px !important;
+    margin: 0 -20px !important;
+    width: calc(100% + 40px) !important;
+  }
+
+  .hc-tm-mobile-slider .hc-tm-card {
+    flex: 0 0 244px !important;
+    max-width: 244px !important;
+    scroll-snap-align: start !important;
+  }
+
+  .hc-tm-img-wrap img {
+    width: 100% !important;
+    height: 270px !important;
+  }
+
+  .hc-tm-desc {
+    font-size: 14px;
+    line-height: 22px;
+    margin-top: 18px;
+  }
+
+  .hc-tm-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 28px;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .hc-tm-progress-wrap {
+    width: 100%;
+    height: 3px;
+    background: #d8d8d8;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .hc-tm-progress-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 20%;
+    background: #6f78a8;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+  }
+
+  .hc-tm-arrows {
+    display: flex;
+    gap: 12px;
+  }
+
+  .hc-tm-btn {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .hc-tm-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: #000000;
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .hc-tm-modal-inner {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .hc-tm-modal-inner .hc-tm-left img {
+    width: 100%;
+    max-height: 250px;
+  }
+}
+</style>
+
+<section 
+  class="hc-tm-section hc-tm-desktop-{{ section.settings.desktop_layout }} hc-tm-mobile-{{ section.settings.mobile_layout }}"
+  style="
+    --desktop-cols: {{ section.settings.desktop_columns }};
+    --mobile-cols: {{ section.settings.mobile_columns }};
+    background: {{ section.settings.bg_color }};
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-right: {{ section.settings.padding_right }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --section-padding-left: {{ section.settings.padding_left }}px;
+    --section-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --section-padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
+    --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --section-padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
+  "
+>
+
+  <div class="hc-tm-wrapper">
+    {% for block in section.blocks %}
+      {% assign words = block.settings.desc | split: ' ' %}
+      {% assign trimmed = words | slice: 0, section.settings.trim_words | join: ' ' %}
+
+      <div class="hc-tm-card" {{ block.shopify_attributes }}>
+        <div class="hc-tm-img-wrap">
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.name | escape }}" loading="lazy" />
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+
+          <div class="hc-tm-overlay"></div>
+
+          <div class="hc-tm-img-content">
+            <h4>{{ block.settings.name | escape }}</h4>
+            <p>{{ block.settings.role | escape }}</p>
+          </div>
+
+          <div class="hc-tm-card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 5L15 11L9 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <p class="hc-tm-desc">{{ trimmed }}...</p>
+
+        <div class="hc-tm-modal-data" hidden style="display:none !important;">
+          <img src="{{ block.settings.image | image_url: width: 600 }}">
+          <h3>{{ block.settings.name | escape }}</h3>
+          <p class="hc-tm-modal-raw-role">{{ block.settings.role | escape }}</p>
+          <p class="hc-tm-modal-raw-desc">{{ block.settings.desc | escape }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.mobile_layout == 'slider' %}
+    <div class="hc-tm-controls">
+      <div class="hc-tm-progress-wrap">
+        <div class="hc-tm-progress-bar"></div>
+      </div>
+      <div class="hc-tm-arrows">
+        <button class="hc-tm-btn hc-tm-prev-btn" type="button" aria-label="Previous Slide">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="hc-tm-btn hc-tm-next-btn" type="button" aria-label="Next Slide">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="hc-tm-modal" aria-hidden="true">
+    <div class="hc-tm-modal-box">
+      <span class="hc-tm-close">&times;</span>
+      <div class="hc-tm-modal-inner">
+        <div class="hc-tm-left"></div>
+        <div class="hc-tm-right"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.currentScript ? document.currentScript.closest('section') : document.querySelector('.hc-tm-section');
+  const sectionNamespace = container || document;
+
+  // Modal Functionality
+  sectionNamespace.querySelectorAll('.hc-tm-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      const data = card.querySelector('.hc-tm-modal-data');
+      const modal = sectionNamespace.querySelector('.hc-tm-modal');
+      if (!data || !modal) return;
+
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+
+      const modalImg = data.querySelector('img').cloneNode(true);
+      const leftPanel = modal.querySelector('.hc-tm-left');
+      leftPanel.innerHTML = '';
+      leftPanel.appendChild(modalImg);
+
+      modal.querySelector('.hc-tm-right').innerHTML = `
+        <h3>${data.querySelector('h3').textContent}</h3>
+        <p class="hc-tm-modal-role">${data.querySelector('.hc-tm-modal-raw-role').textContent}</p>
+        <p>${data.querySelector('.hc-tm-modal-raw-desc').textContent}</p>
+      `;
+    });
+  });
+
+  const closeBtn = sectionNamespace.querySelector('.hc-tm-close');
+  const modalWrap = sectionNamespace.querySelector('.hc-tm-modal');
+  
+  if (closeBtn && modalWrap) {
+    closeBtn.onclick = () => {
+      modalWrap.style.display = 'none';
+      modalWrap.setAttribute('aria-hidden', 'true');
+    };
+    modalWrap.onclick = (e) => {
+      if (e.target === modalWrap) {
+        modalWrap.style.display = 'none';
+        modalWrap.setAttribute('aria-hidden', 'true');
+      }
+    };
+  }
+
+  /* AUTOMATED LAYOUT MONITORING RULES */
+  function checkSlider() {
+    const wrapper = sectionNamespace.querySelector('.hc-tm-wrapper');
+    if (!wrapper) return;
+
+    const cardsCount = wrapper.querySelectorAll('.hc-tm-card').length;
+    const cols = parseInt(getComputedStyle(sectionNamespace).getPropertyValue('--desktop-cols')) || 5;
+
+    if (sectionNamespace.classList.contains('hc-tm-desktop-slider')) {
+      wrapper.style.overflowX = cardsCount > cols ? 'auto' : 'hidden';
+      wrapper.style.justifyContent = cardsCount > cols ? 'flex-start' : 'center';
+    }
+  }
+
+  checkSlider();
+  window.addEventListener('resize', checkSlider);
+
+  /* MOBILE SLIDER INTERFACES */
+  const sliderTrack = sectionNamespace.querySelector('.hc-tm-mobile-slider .hc-tm-wrapper');
+  const progressBar = sectionNamespace.querySelector('.hc-tm-progress-bar');
+  const nextBtn = sectionNamespace.querySelector('.hc-tm-next-btn');
+  const prevBtn = sectionNamespace.querySelector('.hc-tm-prev-btn');
+
+  if (sliderTrack) {
+    const updateProgress = () => {
+      if (!progressBar) return;
+      const maxScroll = sliderTrack.scrollWidth - sliderTrack.clientWidth;
+
+      if (maxScroll <= 0) {
+        progressBar.style.width = '20%';
+        return;
+      }
+
+      const progress = (sliderTrack.scrollLeft / maxScroll) * 80;
+      progressBar.style.width = `${20 + progress}%`;
+    };
+
+    sliderTrack.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
+
+    nextBtn?.addEventListener('click', () => {
+      const card = sliderTrack.querySelector('.hc-tm-card');
+      if (card) {
+        sliderTrack.scrollBy({
+          left: card.offsetWidth + 14,
+          behavior: 'smooth'
+        });
+      }
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      const card = sliderTrack.querySelector('.hc-tm-card');
+      if (card) {
+        sliderTrack.scrollBy({
+          left: -(card.offsetWidth + 14),
+          behavior: 'smooth'
+        });
+      }
+    });
+
+    // Run Initial execution check path
+    setTimeout(updateProgress, 200);
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Team Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0,
+      "unit": "px",
+      "label": "Desktop Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Bottom"
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px",
+      "label": "Desktop Padding Left"
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px",
+      "label": "Desktop Padding Right"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0,
+      "unit": "px",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "unit": "px",
+      "label": "Mobile Padding Bottom"
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "unit": "px",
+      "label": "Mobile Padding Left"
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "unit": "px",
+      "label": "Mobile Padding Right"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "Desktop Layout",
+      "options": [
+        { "value": "grid", "label": "Grid" },
+        { "value": "slider", "label": "Slider" }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 5,
+      "label": "Desktop Columns"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile Layout",
+      "options": [
+        { "value": "grid", "label": "Grid" },
+        { "value": "slider", "label": "Slider" }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "range",
+      "id": "mobile_columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1,
+      "label": "Mobile Columns"
+    },
+    {
+      "type": "range",
+      "id": "trim_words",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "default": 20,
+      "label": "Trim words"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "doctor",
+      "name": "Doctor",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "role", "label": "Profession" },
+        { "type": "textarea", "id": "desc", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Team Section" }
+  ]
+}
+{% endschema %}

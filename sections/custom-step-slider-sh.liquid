@@ -1,0 +1,594 @@
+{%- liquid
+  assign bg_color = section.settings.bg_color
+  assign text_color = section.settings.text_color
+-%}
+
+<div class="custom-step-wrapper" style="
+  {% if section.settings.bg_gradient != blank %}
+    background: {{ section.settings.bg_gradient }};
+  {% else %}
+    background-color: {{ bg_color }};
+  {% endif %}
+  {% if section.settings.bg_image != blank %}
+    --bg-image-desktop: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+  {% endif %}
+  {% if section.settings.mobile_bg_image != blank %}
+    --bg-image-mobile: url('{{ section.settings.mobile_bg_image | image_url: width: 1000 }}');
+  {% elsif section.settings.bg_image != blank %}
+    --bg-image-mobile: url('{{ section.settings.bg_image | image_url: width: 1000 }}');
+  {% endif %}
+  --text-color: {{ text_color }}; 
+  --padding-top: {{ section.settings.padding_top }}px; 
+  --padding-bottom: {{ section.settings.padding_bottom }}px;
+  --padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+  --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+">
+  <style>
+    #shopify-section-{{ section.id }} .custom-step-wrapper {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      {% if section.settings.bg_image != blank %}
+        background-image: var(--bg-image-desktop);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      {% endif %}
+    }
+    #shopify-section-{{ section.id }} .custom-step-container {
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+    #shopify-section-{{ section.id }} .custom-step-desktop-layout {
+      {% if section.settings.enable_bottom_radius %}
+        border-radius: 0 0 {{ section.settings.bottom_radius }}px {{ section.settings.bottom_radius }}px !important;
+      {% else %}
+        border-radius: 0 !important;
+      {% endif %}
+    }
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{ section.id }} .custom-step-wrapper {
+        {% if section.settings.enable_bottom_radius %}
+          border-radius: 0 0 {{ section.settings.bottom_radius }}px {{ section.settings.bottom_radius }}px !important;
+          overflow: hidden;
+        {% else %}
+          border-radius: 0 !important;
+        {% endif %}
+      }
+    }
+    #shopify-section-{{ section.id }} .custom-step-desktop-heading {
+      color: {{ section.settings.heading_color }} !important;
+      margin-bottom: {{ section.settings.desktop_heading_margin_bottom }}px !important;
+    }
+    #shopify-section-{{ section.id }} .custom-step-desktop-heading em,
+    #shopify-section-{{ section.id }} .custom-step-desktop-heading .highlight-pp {
+      font-family: var(--font-highlight--family, var(--sonu-font-serif)) !important;
+      font-style: var(--font-highlight--style, italic) !important;
+      font-weight: var(--font-highlight--weight, normal) !important;
+    }
+    #shopify-section-{{ section.id }} .custom-step-desktop-heading .highlight-times {
+      font-family: var(--font-highlight-secondary--family, 'Times New Roman', Times, serif) !important;
+      font-style: var(--font-highlight-secondary--style, italic) !important;
+      font-weight: var(--font-highlight-secondary--weight, normal) !important;
+    }
+    #shopify-section-{{ section.id }} .custom-step-heading {
+      color: {{ text_color }} !important;
+      margin-bottom: {{ section.settings.mobile_heading_margin_bottom }}px !important;
+    }
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{ section.id }} .custom-step-wrapper {
+        {% if section.settings.bg_image != blank or section.settings.mobile_bg_image != blank %}
+          background-image: var(--bg-image-mobile);
+        {% endif %}
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        padding-top: {{ section.settings.padding_top_mobile }}px !important;
+        padding-bottom: {{ section.settings.padding_bottom_mobile }}px !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-mobile-layout {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-header {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-bottom: 36px !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-heading {
+        font-family: var(--sonu-font-family, sans-serif) !important;
+        font-size: 32px !important;
+        line-height: 1.25 !important;
+        font-weight: normal !important;
+        text-align: center !important;
+        color: #3D1B03 !important;
+        margin-bottom: 0 !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-heading em,
+      #shopify-section-{{ section.id }} .custom-step-heading .highlight-pp {
+        font-family: var(--font-highlight--family, var(--sonu-font-serif)) !important;
+        font-style: var(--font-highlight--style, italic) !important;
+        font-weight: var(--font-highlight--weight, normal) !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-heading .highlight-times {
+        font-family: var(--font-highlight-secondary--family, 'Times New Roman', Times, serif) !important;
+        font-style: var(--font-highlight-secondary--style, italic) !important;
+        font-weight: var(--font-highlight-secondary--weight, normal) !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-slider-row {
+        overflow: visible !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-swiper {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        overflow: visible !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-swiper .swiper-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-slide {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-image-wrap {
+        aspect-ratio: 1.5 / 1 !important;
+        border-radius: 20px !important;
+        margin-bottom: 16px !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-slide-title {
+        font-family: var(--sonu-font-family, sans-serif) !important;
+        font-size: 24px !important;
+        font-weight: 500 !important;
+        color: #3D1B03 !important;
+        margin: 0 0 10px 0 !important;
+        line-height: 1.25 !important;
+        text-align: left !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-slide-desc {
+        font-family: var(--sonu-font-family, sans-serif) !important;
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+        color: #3D1B03 !important;
+        opacity: 0.8 !important;
+        text-align: left !important;
+        margin: 0 !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-controls-row {
+        display: none !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-mobile-button-wrap {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 48px !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-mobile-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 340px !important;
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        font-family: var(--sonu-font-family, sans-serif) !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        padding: 18px 24px !important;
+        border-radius: 999px !important;
+        text-decoration: none !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+      }
+      #shopify-section-{{ section.id }} .custom-step-mobile-btn:active {
+        background-color: #1a1a1a !important;
+      }
+    }
+  </style>
+  <div class="custom-step-container">
+    
+    <!-- Desktop Interactive Layout -->
+    <div class="custom-step-desktop-layout">
+      <!-- Background Image Showcase -->
+      <div class="custom-step-bg-images">
+        {% for block in section.blocks %}
+          <div class="custom-step-bg-image{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 1800 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+        {% endfor %}
+        <div class="custom-step-bg-overlay"></div>
+      </div>
+
+      <!-- Left Hand Side Content -->
+      <div class="custom-step-desktop-inner">
+        <div class="custom-step-desktop-left">
+          {% if section.settings.heading != blank %}
+            <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-desktop-heading {{ section.settings.heading_tag | default: 'h2' }}">{{ section.settings.heading | replace: '[[', '<em class="highlight-pp">' | replace: ']]', '</em>' | replace: '((', '<span class="highlight-times">' | replace: '))', '</span>' }}</{{ section.settings.heading_tag | default: 'h2' }}>
+          {% endif %}
+          
+          <div class="custom-step-desktop-list">
+            {% for block in section.blocks %}
+              <div class="custom-step-desktop-item{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}">
+                <div class="custom-step-desktop-indicator"></div>
+                <div class="custom-step-desktop-text">
+                  <h3 class="custom-step-desktop-title h3">{{ block.settings.title }}</h3>
+                  <p class="custom-step-desktop-desc rte">{{ block.settings.description }}</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Translucent Play Button on Bottom Right -->
+        {% if section.settings.button_text != blank %}
+          <div class="custom-step-desktop-right">
+            <a href="{{ section.settings.button_link | default: '#' }}" class="custom-step-play-btn">
+              <span class="custom-step-play-icon">
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.5 1.5L8.5 6L1.5 10.5V1.5Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="custom-step-btn-text">{{ section.settings.button_text }}</span>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile Swiper Layout -->
+    <div class="custom-step-mobile-layout">
+      <div class="custom-step-header">
+        {% if section.settings.heading != blank %}
+          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-heading {{ section.settings.heading_tag | default: 'h2' }}" style="color: {{ text_color }};">{{ section.settings.heading | replace: '[[', '<em class="highlight-pp">' | replace: ']]', '</em>' | replace: '((', '<span class="highlight-times">' | replace: '))', '</span>' }}</{{ section.settings.heading_tag | default: 'h2' }}>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="custom-step-desc rte" style="color: {{ text_color }};">{{ section.settings.description | newline_to_br }}</div>
+        {% endif %}
+      </div>
+
+      <div class="custom-step-slider-row">
+        <div class="swiper custom-step-swiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              <div class="swiper-slide custom-step-slide" {{ block.shopify_attributes }}>
+                
+                <div class="custom-step-image-wrap">
+                  {% if block.settings.image != blank %}
+                    <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy" class="custom-step-img">
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'custom-step-img placeholder-svg' }}
+                  {% endif %}
+                </div>
+
+                {% if block.settings.title != blank %}
+                  <h3 class="custom-step-slide-title h3" style="color: {{ text_color }};">{{ block.settings.title }}</h3>
+                {% endif %}
+
+                {% if block.settings.description != blank %}
+                  <p class="custom-step-slide-desc rte" style="color: {{ text_color }};">{{ block.settings.description }}</p>
+                {% endif %}
+
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Button at the bottom on mobile -->
+      {% if section.settings.button_text != blank %}
+        <div class="custom-step-mobile-button-wrap">
+          <a href="{{ section.settings.button_link | default: '#' }}" class="custom-step-mobile-btn">
+            {{ section.settings.button_text }}
+          </a>
+        </div>
+      {% endif %}
+
+      <!-- Bottom Navigation & Progress bar row -->
+      <div class="custom-step-controls-row">
+        <div class="custom-step-progressbar swiper-pagination"></div>
+        
+        <div class="custom-step-arrows">
+          <button class="custom-step-nav-btn custom-step-nav-btn--prev" aria-label="Previous">
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="custom-step-nav-btn custom-step-nav-btn--next" aria-label="Next">
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Step Slider",
+  "tag": "section",
+  "class": "custom-step-slider-section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Personalized Sound Therapy Built for make you Breathe Correctly through <em>Your Nose</em>"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "desktop_heading_margin_bottom",
+      "label": "Desktop Heading Margin Bottom (px)",
+      "default": 54,
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_margin_bottom",
+      "label": "Mobile Heading Margin Bottom (px)",
+      "default": 24,
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Watch the Acoustic Resonance Therapy Film"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F4EFEA"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient",
+      "info": "Overrides background color if set"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "header",
+      "content": "Section Rounded Corners"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bottom_radius",
+      "label": "Enable Bottom Rounded Corners",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "bottom_radius",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 100,
+      "unit": "px",
+      "label": "Bottom Border Radius"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Desktop Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Mobile Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Layout & Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "label": "Mobile Side Padding (px)",
+      "default": 24,
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_slide_width",
+      "label": "Mobile Slide Width (vw)",
+      "default": 85,
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vw"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_aspect_ratio",
+      "label": "Mobile Image Aspect Ratio",
+      "options": [
+        { "value": "1/1", "label": "Square (1:1)" },
+        { "value": "4/5", "label": "Vertical (4:5)" },
+        { "value": "3/4", "label": "Vertical (3:4)" },
+        { "value": "5/4", "label": "Horizontal (5:4)" }
+      ],
+      "default": "4/5"
+    },
+    {
+      "type": "range",
+      "id": "progressbar_height",
+      "label": "Progress Bar Height (px)",
+      "default": 2,
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "nav_btn_size",
+      "label": "Navigation Button Size (px)",
+      "default": 44,
+      "min": 32,
+      "max": 64,
+      "step": 2,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step_slide",
+      "name": "Step Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Select Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Scan Your Face"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Step Description",
+          "default": "The SONU app creates a 3D map of your sinus anatomy using AI."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Step Slider",
+      "blocks": [
+        {
+          "type": "step_slide",
+          "settings": {
+            "title": "Scan Your Face",
+            "description": "The SONU app creates a 3D map of your sinus anatomy using AI."
+          }
+        },
+        {
+          "type": "step_slide",
+          "settings": {
+            "title": "Acoustic Mapping",
+            "description": "Find the resonant frequencies of your unique nasal passages."
+          }
+        },
+        {
+          "type": "step_slide",
+          "settings": {
+            "title": "Breathe Naturally",
+            "description": "Wear the headband for 15 minutes a day to clear congestion."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,165 @@
+{{ 'sonu-custom.css' | asset_url | stylesheet_tag }}
+{% comment %}
+  Premium Product Cards - Oura Style
+{% endcomment %}
+
+<section class="product-cards section">
+
+ <div class="{% if section.settings.full_width %}full-width-wrapper{% else %}page-width{% endif %}">
+    <div class="cards-grid grid-{{ section.settings.columns }}">
+
+      {% for block in section.blocks %}
+        <div class="card">
+
+          <!-- IMAGE + OVERLAY -->
+          <div class="card-image-wrap">
+            
+            <div class="card-bg">
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 1500 }}"
+                  alt=""
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                >
+              {% endif %}
+            </div>
+
+            <!-- DESKTOP CONTENT -->
+            <div class="card-overlay-content">
+
+      <div class="card-text">
+        {%- assign card_heading = block.settings.heading_tag | default: 'h3' -%}
+        <{{ card_heading }} class="card-title sonu-blur-in">
+          {{ block.settings.title }}
+        </{{ card_heading }}>
+
+        <p class="card-desc sonu-blur-in sonu-blur-in--d1">
+          {{ block.settings.description }}
+        </p>
+      </div>
+
+      <div class="card-buttons sonu-blur-in sonu-blur-in--d2">
+        {% if block.settings.explore_text != blank %}
+          <a href="{{ block.settings.explore_link | default: '#' }}" class="btn-outline">
+            {{ block.settings.explore_text }}
+          </a>
+        {% endif %}
+
+        {% if block.settings.shop_text != blank %}
+          <a href="{{ block.settings.shop_link | default: '#' }}" class="btn-fill">
+            {{ block.settings.shop_text }}
+          </a>
+        {% endif %}
+      </div>
+
+    </div>
+              </div>
+
+              <!-- MOBILE CONTENT -->
+              <div class="card-mobile-content">
+
+                <div class="mobile-text">
+                  <{{ card_heading }} class="card-title">
+                    {{ block.settings.title }}
+                  </{{ card_heading }}>
+
+                  <p class="card-desc">
+                    {{ block.settings.description }}
+                  </p>
+                </div>
+
+                {% comment %} {% if block.settings.shop_text != blank %}
+                  <a href="{{ block.settings.shop_link | default: '#' }}" class="btn-fill mobile-btn">
+                    {{ block.settings.shop_text }}
+                  </a>
+                {% endif %} {% endcomment %}
+                 <div class="card-buttons sonu-blur-in sonu-blur-in--d2">
+        {% if block.settings.explore_text != blank %}
+          <a href="{{ block.settings.explore_link | default: '#' }}" class="btn-outline mobile-btn-outline">
+            {{ block.settings.explore_text }}
+          </a>
+        {% endif %}
+
+        {% if block.settings.shop_text != blank %}
+          <a href="{{ block.settings.shop_link | default: '#' }}" class="btn-fill mobile-btn">
+            {{ block.settings.shop_text }}
+          </a>
+        {% endif %}
+      </div>
+
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Product Cards ",
+  "settings": [
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Cards per row",
+      "options": [
+        { "value": "2", "label": "2 per row" },
+        { "value": "3", "label": "3 per row" },
+        { "value": "4", "label": "4 per row" }
+      ],
+      "default": "2"
+    }
+    ,
+{
+  "type": "checkbox",
+  "id": "full_width",
+  "label": "Enable Full Width Layout",
+  "default": false
+}
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title" },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading type",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" }
+          ],
+          "default": "h3"
+        },
+        { "type": "textarea", "id": "description", "label": "Description" },
+
+        { "type": "text", "id": "explore_text", "label": "Explore Button", "default": "Explore" },
+        { "type": "url", "id": "explore_link", "label": "Explore Link" },
+
+        { "type": "text", "id": "shop_text", "label": "Shop Button", "default": "Shop" },
+        { "type": "url", "id": "shop_link", "label": "Shop Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Cards",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

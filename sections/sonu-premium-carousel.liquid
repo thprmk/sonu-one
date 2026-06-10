@@ -1,0 +1,255 @@
+{{ 'sonu-custom.css' | asset_url | stylesheet_tag }}
+<style>
+  #premium-carousel-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | default: 80 }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom | default: 80 }}px !important;
+  }
+  @media screen and (max-width: 768px) {
+    #premium-carousel-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top | default: 60 }}px !important;
+      padding-bottom: {{ section.settings.mobile_padding_bottom | default: 60 }}px !important;
+    }
+  }
+</style>
+<section class="science-bg-area">
+
+<section
+  id="premium-carousel-{{ section.id }}"
+  class="premium-carousel section"
+  style="
+    background-color: {{ section.settings.bg_color }};
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+  "
+>
+  <div class="carousel-inner">
+
+    {% if section.settings.heading != blank %}
+      <div class="carousel-heading-wrap text-{{ section.settings.text_align }}">
+        {%- assign heading_style = 'color: ' | append: section.settings.text_color | append: '; margin-bottom: 0;' -%}
+        {% render 'sonu-section-header',
+          heading: section.settings.heading,
+          heading_tag: section.settings.heading_tag,
+          heading_class: 'carousel-heading',
+          heading_style: heading_style,
+          text_align: section.settings.text_align,
+          animate: true
+        %}
+      </div>
+    {% endif %}
+
+    <div class="carousel-wrapper" id="carousel-{{ section.id }}">
+      <div class="carousel-track">
+
+        {% for block in section.blocks %}
+          <div class="carousel-card">
+
+            <div class="carousel-card-bg {% if block.settings.enable_parallax %}parallax{% endif %}">
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 1500 }}"
+                  alt=""
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                >
+              {% endif %}
+            </div>
+
+            {% if block.settings.badge_text != blank or block.settings.badge_icon != blank or block.settings.badge_svg != blank %}
+              <div class="card-badge">
+                {% if block.settings.badge_svg != blank %}
+                  <span class="badge-icon">{{ block.settings.badge_svg }}</span>
+                {% elsif block.settings.badge_icon != blank %}
+                  <span class="badge-icon">
+                    <img
+                      src="{{ block.settings.badge_icon | image_url: width: 40 }}"
+                      alt=""
+                      width="{{ block.settings.badge_icon.width }}"
+                      height="{{ block.settings.badge_icon.height }}"
+                    >
+                  </span>
+                {% endif %}
+                {% if block.settings.badge_text != blank %}
+                  <span class="badge-text">{{ block.settings.badge_text }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <div class="card-content sonu-blur-in sonu-blur-in--d1">
+              {%- assign card_heading = block.settings.heading_tag | default: 'h3' -%}
+              <{{ card_heading }}>{{ block.settings.title }}</{{ card_heading }}>
+              <div class="card-desc">{{ block.settings.description }}</div>
+            </div>
+
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <!-- PROGRESS BAR -->
+    {% render 'sonu-progress-bar',
+      progress_id: 'progress-' | append: section.id,
+      container_class: 'carousel-progress',
+      bar_class: 'progress-bar-card'
+    %}
+
+    <!-- ARROWS -->
+    <div class="carousel-arrows">
+      {% render 'sonu-nav-arrows',
+        prev_class: 'custom-arrow-btn carousel-prev',
+        next_class: 'custom-arrow-btn carousel-next'
+      %}
+    </div>
+
+  </div>
+
+</section>
+</section>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Premium Carousel",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (HTML allowed)"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left",   "label": "Left"   },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right"  }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Top (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Padding Top (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "image_picker", "id": "image",        "label": "Image" },
+        { "type": "checkbox",     "id": "enable_parallax", "label": "Enable Parallax", "default": false },
+        { "type": "text",         "id": "badge_text",   "label": "Badge Text" },
+        { "type": "image_picker", "id": "badge_icon",   "label": "Badge Icon (Image)" },
+        { "type": "textarea",     "id": "badge_svg",    "label": "Badge SVG Code" },
+        { "type": "text",         "id": "title",        "label": "Title" },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading type",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" }
+          ],
+          "default": "h3"
+        },
+        { "type": "richtext",     "id": "description",  "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Carousel",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+<script src="{{ 'sonu-premium-carousel.js' | asset_url }}" defer="defer"></script>

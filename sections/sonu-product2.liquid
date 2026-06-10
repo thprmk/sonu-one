@@ -1,0 +1,904 @@
+{{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' | stylesheet_tag }}
+
+{%- assign product = all_products[section.settings.product] -%}
+
+<section class="sonu-product-section">
+  <div class="page-width">
+    <div class="sonu-product-grid">
+      <div class="sonu-product-gallery">
+        <div class="sonu-main-image">
+          {% if product.selected_or_first_available_variant.featured_image %}
+            <img src="{{ product.selected_or_first_available_variant.featured_image | img_url: 'master' }}" 
+                 alt="{{ product.title }}"
+                 id="SonuProductMainImage"
+                 loading="lazy">
+          {% elsif product.featured_image %}
+            <img src="{{ product.featured_image | img_url: 'master' }}" 
+                 alt="{{ product.title }}"
+                 id="SonuProductMainImage"
+                 loading="lazy">
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'sonu-placeholder-svg' }}
+          {% endif %}
+        </div>
+        
+        {% if product.images.size > 1 %}
+          <div class="sonu-thumbnail-list">
+            {% for image in product.images limit: 4 %}
+              <div class="sonu-thumbnail-item {% if forloop.first %}active{% endif %}" data-image="{{ image.src | img_url: 'master' }}">
+                <img src="{{ image.src | img_url: '150x150' }}" alt="{{ product.title }}" loading="lazy">
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="sonu-product-info">
+        <{{ section.settings.heading_tag | default: 'h1' }} class="sonu-product-title">{{ product.title }}</{{ section.settings.heading_tag | default: 'h1' }}>
+        
+        <div class="sonu-reviews-rating">
+          <div class="sonu-stars-group">
+            <span class="sonu-star"></span>
+            <span class="sonu-star"></span>
+            <span class="sonu-star"></span>
+            <span class="sonu-star"></span>
+            <span class="sonu-star"></span>
+          </div>
+          <span class="sonu-reviews-count">66 reviews</span>
+        </div>
+        
+        <div class="sonu-product-description">
+          {{ product.description }}
+        </div>
+        
+        <div class="sonu-product-price">
+          <span class="sonu-current-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+          {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+            <span class="sonu-compare-price">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+          {% endif %}
+        </div>
+        
+        {% if section.settings.fsa_hsa_text != blank %}
+          <div class="sonu-fsa-hsa-info">
+            <span class="sonu-fsa-badge">{{ section.settings.fsa_hsa_text }}</span>
+          </div>
+        {% endif %}
+        
+        <div class="sonu-options-row">
+          <div class="sonu-color-option-box">
+            <div class="sonu-option-label">Color</div>
+            <div class="sonu-color-swatches">
+              {% if product.variants.size > 1 %}
+                {% assign shown_colors = '' %}
+                {% for variant in product.variants %}
+                  {% assign color_value = variant.options[0] %}
+                  {% unless shown_colors contains color_value %}
+                    {% assign shown_colors = shown_colors | append: color_value | append: ',' %}
+                    <div
+                      class="sonu-color-swatch {% if variant.id == product.selected_or_first_available_variant.id %}active{% endif %}"
+                      data-value="{{ color_value }}"
+                      data-variant-id="{{ variant.id }}"
+                      data-price="{{ variant.price | money }}"
+                      data-compare-price="{{ variant.compare_at_price | money }}"
+                      data-image="{{ variant.featured_image | default: product.featured_image | img_url: 'master' }}"
+                      data-available="{{ variant.available }}"
+                    >
+                      <span class="sonu-swatch-color" style="{% if color_value contains 'Black' or color_value contains 'Dark' %}background:#232220;{% else %}background:#C4C3C9;{% endif %}"></span>
+                    </div>
+                  {% endunless %}
+                {% endfor %}
+              {% else %}
+                <div class="sonu-color-swatch active">
+                  <span class="sonu-swatch-color" style="background:#232220;"></span>
+                </div>
+                <div class="sonu-color-swatch">
+                  <span class="sonu-swatch-color" style="background:#C4C3C9;"></span>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="sonu-quantity-option-box">
+            <div class="sonu-option-label">Quantity</div>
+            <div class="sonu-quantity-selector">
+              <button type="button" class="sonu-quantity-btn sonu-minus" aria-label="Decrease quantity">−</button>
+              <span class="sonu-quantity-number">1</span>
+              <button type="button" class="sonu-quantity-btn sonu-plus" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="sonu-stock-status">
+          {% if product.selected_or_first_available_variant.available %}
+            <span class="sonu-in-stock">In stock, ready to ship</span>
+          {% else %}
+            <span class="sonu-out-of-stock">✗ Out of stock</span>
+          {% endif %}
+        </div>
+        
+        <div class="sonu-action-buttons">
+          <button type="button" 
+                  class="sonu-btn sonu-btn-primary sonu-buy-now" 
+                  data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                  {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+            {{ section.settings.buy_now_text | default: 'BUY NOW' }}
+          </button>
+          <button type="button" class="sonu-btn sonu-btn-secondary sonu-try-risk-free">
+            {{ section.settings.try_free_text | default: 'TRY RISK FREE FOR 45 DAYS' }}
+          </button>
+        </div>
+        
+        {% if section.settings.feature_heading != blank %}
+          <div class="sonu-features-list">
+            <{{ section.settings.features_heading_tag | default: 'h3' }} class="sonu-features-heading">{{ section.settings.feature_heading }}</{{ section.settings.features_heading_tag | default: 'h3' }}>
+            <ul>
+              {% if section.settings.feature_1 != blank %}<li>{{ section.settings.feature_1 }}</li>{% endif %}
+              {% if section.settings.feature_2 != blank %}<li>{{ section.settings.feature_2 }}</li>{% endif %}
+              {% if section.settings.feature_3 != blank %}<li>{{ section.settings.feature_3 }}</li>{% endif %}
+              {% if section.settings.feature_4 != blank %}<li>{{ section.settings.feature_4 }}</li>{% endif %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.sonu-product-section {
+  background: {{ section.settings.bg_color | default: '#ffffff' }};
+  padding-top: {{ section.settings.padding_top | default: 60 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | default: 60 }}px;
+  width: 100%;
+}
+
+.sonu-product-section .page-width {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.sonu-product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* =========================
+   PRODUCT GALLERY
+========================= */
+.sonu-product-gallery {
+  position: relative;
+  width: 100%;
+}
+
+.sonu-main-image {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f8f8f8;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.sonu-main-image img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.sonu-thumbnail-list {
+  display: flex;
+  gap: 12px;
+}
+
+.sonu-thumbnail-item {
+  width: 68px;
+  height: 68px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.sonu-thumbnail-item.active {
+  border-color: #112a73;
+}
+
+.sonu-thumbnail-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   PRODUCT INFO & REVIEWS
+========================= */
+.sonu-product-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.sonu-product-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: {{ section.settings.title_color | default: '#3D1B03' }};
+  margin: 0 0 8px 0;
+  text-align: left;
+}
+
+.sonu-reviews-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sonu-stars-group {
+  display: flex;
+  gap: 4.4px;
+}
+
+.sonu-star {
+  width: 17.74px;
+  height: 17px;
+  background: #FFCD0F;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  display: inline-block;
+}
+
+.sonu-reviews-count {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 36px;
+  color: #1E1E1E;
+}
+
+.sonu-product-description {
+  width: 100%;
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: {{ section.settings.text_color | default: '#1E1E1E' }};
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.sonu-product-price {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.sonu-current-price {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  color: {{ section.settings.title_color | default: '#3D1B03' }};
+}
+
+.sonu-compare-price {
+  font-size: 24px;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 10px;
+}
+
+/* =========================
+   FSA HSA / MEDICAL BADGES
+========================= */
+.sonu-fsa-hsa-info {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.sonu-fsa-badge {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 36px;
+  color: {{ section.settings.badge_color | default: '#1E1E1E' }};
+  background: none;
+  padding: 0;
+}
+
+/* =========================
+   OPTIONS ROW
+========================= */
+.sonu-options-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 24px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.sonu-color-option-box,
+.sonu-quantity-option-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sonu-option-label {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 36px;
+  color: {{ section.settings.text_color | default: '#1E1E1E' }};
+  margin: 0;
+  text-align: left;
+}
+
+.sonu-color-swatches {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+.sonu-color-swatch {
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 2px;
+  border: 3px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sonu-color-swatch.active {
+  border-color: #656AE3;
+}
+
+.sonu-swatch-color {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  display: block;
+}
+
+/* =========================
+   QUANTITY
+========================= */
+.sonu-quantity-selector {
+  box-sizing: border-box;
+  width: 146px;
+  height: 66px;
+  border: 1px solid {{ section.settings.quantity_border_color | default: '#86A0AF' }};
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: {{ section.settings.quantity_bg_color | default: '#ffffff' }};
+}
+
+.sonu-quantity-btn {
+  border: none;
+  background: none;
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 36px;
+  color: {{ section.settings.quantity_btn_color | default: '#86A0AF' }};
+  cursor: pointer;
+  padding: 0;
+}
+
+.sonu-quantity-number {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+  color: {{ section.settings.text_color | default: '#1E1E1E' }};
+  text-align: center;
+}
+
+/* =========================
+   STOCK
+========================= */
+.sonu-stock-status {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.sonu-in-stock {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 36px;
+  color: {{ section.settings.text_color | default: '#1E1E1E' }};
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.sonu-in-stock::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #98BD42;
+  display: inline-block;
+}
+
+.sonu-out-of-stock {
+  color: #e53935;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 12px;
+  text-align: left;
+}
+
+/* =========================
+   BUTTONS (UPDATED FOR HORIZONTAL VIEW)
+========================= */
+.sonu-action-buttons {
+  display: flex;
+  flex-direction: row; /* Forces layout side-by-side on desktop */
+  gap: 16px;
+  width: 100%;
+}
+
+.sonu-btn {
+  box-sizing: border-box;
+  flex: 1; /* Instructs buttons to take up equal horizontal widths */
+  max-width: 320px; /* Limits size expansion cleanly */
+  height: {{ section.settings.button_height | default: 60 }}px;
+  border-radius: 9999px !important;
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.sonu-btn-primary {
+  background: {{ section.settings.button_primary_bg | default: '#001755' }};
+  border: none;
+  color: {{ section.settings.button_primary_text_color | default: '#FFFFFF' }};
+}
+
+.sonu-btn-primary:hover {
+  opacity: 0.9;
+}
+
+.sonu-btn-secondary {
+  background: {{ section.settings.button_secondary_bg | default: '#FFFFFF' }};
+  border: 1px solid {{ section.settings.button_secondary_border_color | default: '#001755' }};
+  color: {{ section.settings.button_secondary_text_color | default: '#001755' }};
+}
+
+.sonu-btn-secondary:hover {
+  background: #f4f6fa;
+}
+
+.sonu-features-list {
+  display: none;
+}
+
+/* =========================
+   RESPONSIVE LAYOUT
+========================= */
+@media(max-width: 991px) {
+  .sonu-product-section .page-width {
+    padding: 0 24px;
+  }
+  .sonu-product-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .sonu-product-info {
+    text-align: center;
+    align-items: center;
+  }
+  .sonu-product-title,
+  .sonu-product-description,
+  .sonu-product-price,
+  .sonu-fsa-hsa-info,
+  .sonu-out-of-stock {
+    text-align: center;
+  }
+  .sonu-reviews-rating,
+  .sonu-in-stock, 
+  .sonu-options-row {
+    justify-content: center;
+  }
+  .sonu-action-buttons {
+    margin: 0 auto;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sonu-product-section {
+    padding-top: {{ section.settings.padding_top_mobile | default: 30 }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom_mobile | default: 30 }}px !important;
+  }
+  .sonu-options-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .sonu-thumbnail-list {
+    justify-content: center;
+  }
+  .sonu-thumbnail-item {
+    width: 55px;
+    height: 55px;
+  }
+  .sonu-action-buttons {
+    flex-direction: column; /* Safely resets vertically to prevent text cramming on smaller devices */
+    align-items: center;
+  }
+  .sonu-btn {
+    width: 100%;
+    max-width: 325px;
+    padding:20px 10px 20px 10px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const thumbnails = document.querySelectorAll('.sonu-thumbnail-item');
+  const mainImage = document.getElementById('SonuProductMainImage');
+  
+  thumbnails.forEach(thumb => {
+    thumb.addEventListener('click', function() {
+      const imageUrl = this.getAttribute('data-image');
+      if (imageUrl && mainImage) {
+        mainImage.src = imageUrl;
+      }
+      thumbnails.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+  
+  const minusBtn = document.querySelector('.sonu-quantity-btn.sonu-minus');
+  const plusBtn = document.querySelector('.sonu-quantity-btn.sonu-plus');
+  const quantityNumber = document.querySelector('.sonu-quantity-number');
+  
+  if (minusBtn && plusBtn && quantityNumber) {
+    let currentQuantity = 1;
+    
+    minusBtn.addEventListener('click', function() {
+      if (currentQuantity > 1) {
+        currentQuantity--;
+        quantityNumber.textContent = currentQuantity;
+      }
+    });
+    
+    plusBtn.addEventListener('click', function() {
+      currentQuantity++;
+      quantityNumber.textContent = currentQuantity;
+    });
+  }
+  
+  const colorSwatches = document.querySelectorAll('.sonu-color-swatch');
+  const priceElement = document.querySelector('.sonu-current-price');
+  const comparePriceElement = document.querySelector('.sonu-compare-price');
+  const stockStatusElement = document.querySelector('.sonu-stock-status');
+  const buyNowBtn = document.querySelector('.sonu-buy-now');
+  
+  colorSwatches.forEach(swatch => {
+    swatch.addEventListener('click', function() {
+      const variantId = this.getAttribute('data-variant-id');
+      const variantPrice = this.getAttribute('data-price');
+      const variantComparePrice = this.getAttribute('data-compare-price');
+      const variantAvailable = this.getAttribute('data-available') === 'true';
+      const variantImage = this.getAttribute('data-image');
+      
+      colorSwatches.forEach(s => s.classList.remove('active'));
+      this.classList.add('active');
+      
+      if (priceElement && variantPrice) priceElement.textContent = variantPrice;
+      
+      if (comparePriceElement) {
+        if (variantComparePrice && variantComparePrice !== '{{ 0 | money }}') {
+          comparePriceElement.textContent = variantComparePrice;
+          comparePriceElement.style.display = 'inline';
+        } else {
+          comparePriceElement.style.display = 'none';
+        }
+      }
+      
+      if (stockStatusElement) {
+        if (variantAvailable) {
+          stockStatusElement.innerHTML = '<span class="sonu-in-stock">In stock, ready to ship</span>';
+        } else {
+          stockStatusElement.innerHTML = '<span class="sonu-out-of-stock">✗ Out of stock</span>';
+        }
+      }
+      
+      if (buyNowBtn && variantId) {
+        buyNowBtn.setAttribute('data-variant-id', variantId);
+        buyNowBtn.disabled = !variantAvailable;
+      }
+      
+      if (variantImage && mainImage) {
+        mainImage.src = variantImage;
+      }
+    });
+  });
+  
+  if (buyNowBtn) {
+    buyNowBtn.addEventListener('click', function() {
+      const variantId = this.getAttribute('data-variant-id');
+      const quantity = parseInt(document.querySelector('.sonu-quantity-number')?.textContent || 1);
+      
+      if (!variantId) return;
+      
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          id: parseInt(variantId),
+          quantity: quantity
+        })
+      })
+      .then(response => response.json())
+      .then(() => { window.location.href = '/cart'; })
+      .catch(() => { window.location.href = '/cart/' + variantId + ':' + quantity; });
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Sonu Product Section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product"
+    },
+    {
+      "type": "text",
+      "id": "fsa_hsa_text",
+      "label": "FSA/HSA Badge Text",
+      "default": "FDA 510-K Approved | FSA/HSA Eligible | VA Approved"
+    },
+    {
+      "type": "text",
+      "id": "buy_now_text",
+      "label": "Buy Now Button Text",
+      "default": "BUY NOW"
+    },
+    {
+      "type": "text",
+      "id": "try_free_text",
+      "label": "Try Risk Free Button Text",
+      "default": "TRY RISK FREE FOR 45 DAYS"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Desktop Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Desktop Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 30,
+      "unit": "px",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 30,
+      "unit": "px",
+      "label": "Mobile Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#3D1B03"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text/Description Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge Text Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "quantity_border_color",
+      "label": "Quantity Selector Border Color",
+      "default": "#86A0AF"
+    },
+    {
+      "type": "color",
+      "id": "quantity_bg_color",
+      "label": "Quantity Selector Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "quantity_btn_color",
+      "label": "Quantity Selector Button Color",
+      "default": "#86A0AF"
+    },
+    {
+      "type": "color",
+      "id": "button_primary_bg",
+      "label": "Primary Button Background",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "button_primary_text_color",
+      "label": "Primary Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_bg",
+      "label": "Secondary Button Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_border_color",
+      "label": "Secondary Button Border Color",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_text_color",
+      "label": "Secondary Button Text Color",
+      "default": "#001755"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Product Title Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" },
+        { "value": "span", "label": "Span" },
+        { "value": "div", "label": "Div" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "select",
+      "id": "features_heading_tag",
+      "label": "Features List Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph (P)" },
+        { "value": "span", "label": "Span" },
+        { "value": "div", "label": "Div" }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "header",
+      "content": "Button Sizing & Shape"
+    },
+    {
+      "type": "range",
+      "id": "button_height",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "default": 60,
+      "unit": "px",
+      "label": "Button Height"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 30,
+      "unit": "px",
+      "label": "Button Border Radius"
+    },
+    {
+      "type": "header",
+      "content": "Features List"
+    },
+    {
+      "type": "text",
+      "id": "feature_heading",
+      "label": "Features Heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sonu Product Section",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

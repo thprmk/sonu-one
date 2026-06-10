@@ -1,0 +1,359 @@
+import { Swiper, Navigation, Pagination } from '@theme/swiper';
+
+function initCustomFeaturedProduct(container) {
+  const swiperEl = container.querySelector('.custom-prod-gallery');
+  if (!swiperEl) return;
+
+  const prevBtn = container.querySelector('.custom-prod-gallery__arrow--prev');
+  const nextBtn = container.querySelector('.custom-prod-gallery__arrow--next');
+  const paginationEl = container.querySelector('.custom-prod-gallery__pagination');
+
+  // 1. Initialize Swiper Gallery
+  new Swiper(swiperEl, {
+    modules: [Navigation, Pagination],
+    loop: true,
+    navigation: {
+      nextEl: nextBtn,
+      prevEl: prevBtn,
+    },
+    pagination: {
+      el: paginationEl,
+      clickable: true,
+      bulletClass: 'swiper-pagination-bullet',
+      bulletActiveClass: 'swiper-pagination-bullet-active',
+    }
+  });
+
+  // 2. Quantity Selector Logic
+  const minusBtn = container.querySelector('.custom-prod-qty-btn--minus');
+  const plusBtn = container.querySelector('.custom-prod-qty-btn--plus');
+  const qtyValue = container.querySelector('.custom-prod-qty-value');
+
+  if (minusBtn && plusBtn && qtyValue) {
+    let currentQty = 1;
+    minusBtn.addEventListener('click', () => {
+      if (currentQty > 1) {
+        currentQty--;
+        qtyValue.textContent = currentQty;
+      }
+    });
+    plusBtn.addEventListener('click', () => {
+      currentQty++;
+      qtyValue.textContent = currentQty;
+    });
+  }
+
+  // 3. Color Swatch and Active State Logic
+  const swatches = container.querySelectorAll('.custom-prod-swatch');
+  const swatchLabel = container.querySelector('.custom-prod-swatch-label');
+  const buyBtn = container.querySelector('.custom-prod-buy-btn');
+
+  swatches.forEach(swatch => {
+    swatch.addEventListener('click', () => {
+      swatches.forEach(s => s.classList.remove('active'));
+      swatch.classList.add('active');
+
+      const color = swatch.getAttribute('data-color');
+      const variantId = swatch.getAttribute('data-variant-id');
+      const isAvailable = swatch.getAttribute('data-available') === 'true';
+
+      if (swatchLabel && color) {
+        swatchLabel.textContent = color;
+      }
+
+      if (buyBtn && variantId) {
+        buyBtn.setAttribute('data-variant-id', variantId);
+        buyBtn.disabled = !isAvailable;
+      }
+    });
+  });
+
+  // 4. AJAX Cart Submit Handler
+  if (buyBtn) {
+    buyBtn.addEventListener('click', () => {
+      const variantId = buyBtn.getAttribute('data-variant-id');
+      const quantity = parseInt(qtyValue?.textContent || 1);
+      if (!variantId) return;
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          id: parseInt(variantId),
+          quantity: quantity
+        })
+      })
+      .then(response => response.json())
+      .then(() => {
+        // Redirect or trigger cart drawer refresh
+        window.location.href = '/cart';
+      })
+      .catch(error => {
+        console.error('Add to cart failed:', error);
+      });
+    });
+  }
+}
+
+function initCustomComparison(container) {
+  const swiperEl = container.querySelector('.custom-comp-swiper');
+  if (!swiperEl) return;
+
+  const prevBtn = container.querySelector('.custom-comp-nav-btn--prev');
+  const nextBtn = container.querySelector('.custom-comp-nav-btn--next');
+
+  new Swiper(swiperEl, {
+    modules: [Navigation],
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    loop: false,
+    navigation: {
+      nextEl: nextBtn,
+      prevEl: prevBtn,
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 8,
+      },
+      768: {
+        spaceBetween: 12,
+      },
+      992: {
+        spaceBetween: 16,
+      }
+    }
+  });
+}
+
+function initCustomVideoSlider(container) {
+  const swiperEl = container.querySelector('.custom-vid-swiper');
+  if (!swiperEl) return;
+
+  const prevBtn = container.querySelector('.custom-vid-nav-btn--prev');
+  const nextBtn = container.querySelector('.custom-vid-nav-btn--next');
+  const progressbarEl = container.querySelector('.custom-vid-progressbar');
+
+  new Swiper(swiperEl, {
+    modules: [Navigation, Pagination],
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    loop: false,
+    navigation: {
+      nextEl: nextBtn,
+      prevEl: prevBtn,
+    },
+    pagination: {
+      el: progressbarEl,
+      type: 'progressbar',
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 16,
+      },
+      768: {
+        spaceBetween: 24,
+      }
+    }
+  });
+}
+
+function initCustomStepSlider(container) {
+  // Desktop Interactive Steps
+  const stepItems = container.querySelectorAll('.custom-step-desktop-item');
+  const bgImages = container.querySelectorAll('.custom-step-bg-image');
+
+  stepItems.forEach(item => {
+    // Click behavior
+    item.addEventListener('click', () => {
+      const index = item.getAttribute('data-index');
+
+      // Update active classes on items
+      stepItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+
+      // Update active classes on background images
+      bgImages.forEach(img => {
+        if (img.getAttribute('data-index') === index) {
+          img.classList.add('active');
+        } else {
+          img.classList.remove('active');
+        }
+      });
+    });
+
+    // Hover support
+    item.addEventListener('mouseenter', () => {
+      const index = item.getAttribute('data-index');
+      
+      stepItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+
+      bgImages.forEach(img => {
+        if (img.getAttribute('data-index') === index) {
+          img.classList.add('active');
+        } else {
+          img.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  // Mobile Swiper Slider
+  const swiperEl = container.querySelector('.custom-step-swiper');
+  if (!swiperEl) return;
+
+  const prevBtn = container.querySelector('.custom-step-nav-btn--prev');
+  const nextBtn = container.querySelector('.custom-step-nav-btn--next');
+  const progressbarEl = container.querySelector('.custom-step-progressbar');
+
+  new Swiper(swiperEl, {
+    modules: [Navigation, Pagination],
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    loop: false,
+    navigation: {
+      nextEl: nextBtn,
+      prevEl: prevBtn,
+    },
+    pagination: {
+      el: progressbarEl,
+      type: 'progressbar',
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 16,
+      },
+      768: {
+        spaceBetween: 24,
+      }
+    }
+  });
+}
+
+function initCustomStatsSlider(container) {
+  const swiperEl = container.querySelector('.custom-stats-swiper');
+  if (!swiperEl) return;
+
+  const prevBtn = container.querySelector('.custom-stats-nav-btn--prev');
+  const nextBtn = container.querySelector('.custom-stats-nav-btn--next');
+  const progressbarEl = container.querySelector('.custom-stats-progressbar');
+
+  new Swiper(swiperEl, {
+    modules: [Navigation, Pagination],
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    loop: false,
+    navigation: {
+      nextEl: nextBtn,
+      prevEl: prevBtn,
+    },
+    pagination: {
+      el: progressbarEl,
+      type: 'progressbar',
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 16,
+      },
+      768: {
+        spaceBetween: 24,
+      }
+    }
+  });
+}
+
+function initCustomCardSlider(container) {
+  const swiperEl = container.querySelector('.custom-card-swiper');
+  if (!swiperEl) return;
+
+  const prevBtn = container.querySelector('.custom-card-nav-btn--prev');
+  const nextBtn = container.querySelector('.custom-card-nav-btn--next');
+  const progressbarEl = container.querySelector('.custom-card-progressbar');
+
+  new Swiper(swiperEl, {
+    modules: [Navigation, Pagination],
+    slidesPerView: 'auto',
+    spaceBetween: 32,
+    loop: false,
+    navigation: {
+      nextEl: nextBtn,
+      prevEl: prevBtn,
+    },
+    pagination: {
+      el: progressbarEl,
+      type: 'progressbar',
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 16,
+      },
+      768: {
+        spaceBetween: 32,
+      }
+    }
+  });
+}
+
+function initCustomExpectationsSlider(container) {
+  const swiperEl = container.querySelector('.custom-expect-swiper');
+  if (!swiperEl) return;
+
+  const prevBtn = container.querySelector('.custom-expect-nav-btn--prev');
+  const nextBtn = container.querySelector('.custom-expect-nav-btn--next');
+  const progressbarEl = container.querySelector('.custom-expect-progressbar');
+
+  new Swiper(swiperEl, {
+    modules: [Navigation, Pagination],
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    loop: false,
+    navigation: {
+      nextEl: nextBtn,
+      prevEl: prevBtn,
+    },
+    pagination: {
+      el: progressbarEl,
+      type: 'progressbar',
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 16,
+      },
+      768: {
+        spaceBetween: 24,
+      }
+    }
+  });
+}
+
+function initAll() {
+  document.querySelectorAll('.shopify-section').forEach(section => {
+    initCustomFeaturedProduct(section);
+    initCustomComparison(section);
+    initCustomVideoSlider(section);
+    initCustomStepSlider(section);
+    initCustomStatsSlider(section);
+    initCustomCardSlider(section);
+    initCustomExpectationsSlider(section);
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
+}
+
+// Theme Editor load
+document.addEventListener('shopify:section:load', (event) => {
+  initCustomFeaturedProduct(event.target);
+  initCustomComparison(event.target);
+  initCustomVideoSlider(event.target);
+  initCustomStepSlider(event.target);
+  initCustomStatsSlider(event.target);
+  initCustomCardSlider(event.target);
+  initCustomExpectationsSlider(event.target);
+});

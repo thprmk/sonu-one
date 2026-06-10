@@ -1,0 +1,54 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:names.header",
+  "sections": {
+    "sonu_announcement_dAJVK8": {
+      "type": "sonu-announcement",
+      "name": "Custom Announcement Bar",
+      "settings": {
+        "announcement_text": "SONU is one of TIME's 2025 Best Inventions"
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [
+        ".header__row {max-width: 90rem; margin: auto;}",
+        ".header[data-sticky-state=\"active\"] {background-color: #4a47411a !important; backdrop-filter: blur(2rem);}",
+        "header,header-component {margin: inherit; border-radius: 10px;}",
+        ".header[transparent] {position: relative !important;}"
+      ],
+      "settings": {
+        "enable_transparent_header_home": false,
+        "enable_transparent_header_product": false,
+        "enable_transparent_header_collection": false,
+        "enable_transparent_header_global": false,
+        "custom_logo_image": "shopify://shop_images/logo_soundhealth.svg",
+        "menu": "main-menu",
+        "menu_mobile": "",
+        "header_layout": "logo-left",
+        "sticky_header": "always",
+        "enable_search_form": true,
+        "search_form_style": "solid",
+        "color_scheme": "scheme-1",
+        "show_sperator_line": true,
+        "hide_sperator_line_for_templates": "",
+        "enable_dividers": false,
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    }
+  },
+  "order": [
+    "sonu_announcement_dAJVK8",
+    "header"
+  ]
+}

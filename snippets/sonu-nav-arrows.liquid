@@ -1,0 +1,32 @@
+{%- comment -%}
+  Renders circular navigation arrow buttons for sliders/carousels.
+  
+  Usage:
+    render 'sonu-nav-arrows',
+      prev_id: 'carousel-prev-id',
+      next_id: 'carousel-next-id',
+      prev_class: 'carousel-prev',
+      next_class: 'carousel-next'
+{%- endcomment -%}
+
+<button 
+  type="button"
+  class="sonu-arrow-btn {{ prev_class | default: 'sonu-prev-btn' }}" 
+  id="{{ prev_id }}" 
+  aria-label="{{ 'accessibility.slideshow_previous' | t }}"
+>
+  <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<button 
+  type="button"
+  class="sonu-arrow-btn {{ next_class | default: 'sonu-next-btn' }}" 
+  id="{{ next_id }}" 
+  aria-label="{{ 'accessibility.slideshow_next' | t }}"
+>
+  <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>

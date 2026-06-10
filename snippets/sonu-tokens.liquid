@@ -1,0 +1,447 @@
+{%- comment -%}
+  ==========================================================================
+  SONU Design Tokens & Shared Components
+  ==========================================================================
+  * SINGLE SOURCE OF TRUTH *
+  
+  WARNING TO DEVELOPERS:
+  This file is the central source of truth for all custom brand tokens, 
+  CSS variables, and global custom styles. 
+  
+  Do NOT add custom styling for these sections inside the core theme.css 
+  or global.css files. Keeping styles here ensures that core Shopify theme 
+  updates will not overwrite your custom layouts in the future.
+  
+  Rendered once in the <head> of layout/theme.liquid.
+{%- endcomment -%}
+
+<style>
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('{{ "InstrumentSans-VariableFont.ttf" | asset_url }}') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('{{ "InstrumentSans-Italic-VariableFont.ttf" | asset_url }}') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-Regular-BF644b214ff145f.otf" | asset_url }}') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-Italic-BF644b214fb0c0a.otf" | asset_url }}') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-Ultrabold-BF644b21500840c.otf" | asset_url }}') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-Ultrabold-BF644b21500840c.otf" | asset_url }}') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-UltraboldItalic-BF644b214faef01.otf" | asset_url }}') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-UltraboldItalic-BF644b214faef01.otf" | asset_url }}') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-Ultralight-BF644b21500d0c0.otf" | asset_url }}') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('{{ "PPEditorialNew-UltralightItalic-BF644b214ff1e9b.otf" | asset_url }}') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-Regular-BF644b214ff145f.otf" | asset_url }}') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-Italic-BF644b214fb0c0a.otf" | asset_url }}') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-Ultrabold-BF644b21500840c.otf" | asset_url }}') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-Ultrabold-BF644b21500840c.otf" | asset_url }}') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-UltraboldItalic-BF644b214faef01.otf" | asset_url }}') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pp-editorial';
+  src: url('{{ "PPEditorialNew-UltraboldItalic-BF644b214faef01.otf" | asset_url }}') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Brand Colors */
+  --sonu-navy:        #001755;
+  --sonu-accent:      #656AE3;
+  --sonu-bg-light:    #F5F6FB;
+  --sonu-bg-blue:     #EAF3FD;
+  --sonu-bg-gradient: linear-gradient(90deg, #F2EDF4 0%, #EEF1FA 45%, #E8F2FF 100%);
+  
+  /* Brand Typography */
+  --sonu-font-primary:   'Instrument Sans', var(--font-body-family), sans-serif;
+  --sonu-font-serif:     'pp-editorial', 'Times New Roman', var(--font-heading-family), serif;
+  
+  /* Nav Arrow Size */
+  --sonu-arrow-size:     42px;
+  
+  /* Progress Bar */
+  --sonu-progress-height: 3px;
+  --sonu-progress-bg:    #dddddd;
+  --sonu-progress-fill:  var(--sonu-accent);
+  
+  /* Card Radius */
+  --sonu-card-radius:    20px;
+  
+  /* Section Padding */
+  --sonu-section-pad-desktop: 80px 0;
+  --sonu-section-pad-mobile:  60px 20px;
+  
+  /* Blur Animation */
+  --sonu-blur-duration:  1s;
+  --sonu-blur-distance:  20px;
+}
+
+/* ==========================================================================
+   SHARED SHARED STYLES & TRANSITIONS
+   ========================================================================== */
+
+/* Blur Fade In Animation */
+@keyframes sonuBlurFade {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.sonu-blur-in {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+
+/* Only apply transition/animations if globally enabled in theme editor */
+.animations-enabled .sonu-blur-in {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(var(--sonu-blur-distance));
+}
+
+.animations-enabled .sonu-blur-in.animated {
+  animation: sonuBlurFade var(--sonu-blur-duration) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.sonu-blur-in--d1 { animation-delay: 0.15s !important; }
+.sonu-blur-in--d2 { animation-delay: 0.3s !important; }
+.sonu-blur-in--d3 { animation-delay: 0.45s !important; }
+
+/* Reusable Progress Bar */
+.sonu-progress {
+  height: var(--sonu-progress-height);
+  background: var(--sonu-progress-bg);
+  width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.sonu-progress__fill {
+  height: 100%;
+  width: 0;
+  background: var(--sonu-progress-fill);
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reusable Arrow Button */
+.sonu-arrow-btn {
+  width: var(--sonu-arrow-size);
+  height: var(--sonu-arrow-size);
+  padding: 0;
+  border: none;
+  background: transparent !important;
+  color: var(--sonu-navy);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.sonu-arrow-btn:hover {
+  transform: scale(1.08);
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.sonu-arrow-btn[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.sonu-arrow-btn svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Standardized Section Header styling */
+.sonu-section-header {
+  margin-bottom: 5px!important;
+  width: 100%;
+}
+
+.sonu-section-header.text-center { text-align: center; }
+.sonu-section-header.text-left { text-align: left; }
+.sonu-section-header.text-right { text-align: right; }
+
+.sonu-section-header__small-heading {
+  font-family: var(--sonu-font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--sonu-accent);
+  margin: 0 0 10px 0;
+}
+
+@media (max-width: 768px) {
+  .sonu-section-header__small-heading {
+    text-align: center;
+  }
+}
+
+.sonu-section-header__subheading {
+  font-family: var(--sonu-font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(0, 23, 85, 0.75);
+  margin: 15px 0 0 0;
+  max-width: 700px;
+}
+.sonu-section-header.text-center .sonu-section-header__subheading {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sonu-section-header .highlight {
+  font-family: var(--sonu-font-serif);
+  font-style: italic;
+  font-weight: normal;
+}
+</style>
+
+<script>
+// Global Intersection Observer for viewport-triggered fade/blur animations
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.body.classList.contains("animations-enabled")) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animated");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: "0px 0px -50px 0px" });
+
+    document.querySelectorAll(".sonu-blur-in").forEach(el => observer.observe(el));
+  }
+});
+
+// Global typography bracket parser for highlights
+(() => {
+  const bracketOpen = '[' + '[';
+  const bracketClose = ']' + ']';
+  const parenOpen = '(' + '(';
+  const parenClose = ')' + ')';
+
+  function parseBrackets(str, openToken, closeToken, className, excludeList) {
+    let result = "";
+    let currentIndex = 0;
+    let hasMatches = false;
+
+    while (true) {
+      const start = str.indexOf(openToken, currentIndex);
+      if (start === -1) {
+        result += str.substring(currentIndex);
+        break;
+      }
+
+      result += str.substring(currentIndex, start);
+      const end = str.indexOf(closeToken, start + openToken.length);
+      if (end === -1) {
+        result += str.substring(start);
+        break;
+      }
+
+      const content = str.substring(start + openToken.length, end);
+      const trimmed = content.trim();
+
+      if (excludeList && excludeList.includes(trimmed)) {
+        result += openToken + content + closeToken;
+      } else {
+        result += `<span class="${className}">${content}</span>`;
+        hasMatches = true;
+      }
+
+      currentIndex = end + closeToken.length;
+    }
+
+    return { text: result, hasMatches };
+  }
+
+  function processNode(node) {
+    if (!node) return;
+    if (node.nodeType === 3) { // Text Node
+      const text = node.nodeValue;
+      if (text && (text.includes(bracketOpen) || text.includes(parenOpen))) {
+        let hasMatches = false;
+        let newText = text;
+
+        // Escape HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.textContent = newText;
+        newText = tempDiv.innerHTML;
+
+        // Replace [[content]] -> <span class="highlight-pp">content</span>
+        if (newText.includes(bracketOpen)) {
+          const parsed = parseBrackets(newText, bracketOpen, bracketClose, 'highlight-pp');
+          newText = parsed.text;
+          if (parsed.hasMatches) hasMatches = true;
+        }
+
+        // Replace ((content)) -> <span class="highlight-times">content</span>
+        if (newText.includes(parenOpen)) {
+          const parsed = parseBrackets(newText, parenOpen, parenClose, 'highlight-times');
+          newText = parsed.text;
+          if (parsed.hasMatches) hasMatches = true;
+        }
+
+        if (hasMatches) {
+          const wrapper = document.createElement('span');
+          wrapper.className = 'parsed-highlight-wrapper';
+          wrapper.innerHTML = newText;
+          node.parentNode.replaceChild(wrapper, node);
+        }
+      }
+    } else if (node.nodeType === 1) { // Element Node
+      const tag = node.tagName.toLowerCase();
+      if (
+        tag !== 'script' && 
+        tag !== 'style' && 
+        tag !== 'iframe' && 
+        tag !== 'svg' && 
+        tag !== 'input' && 
+        tag !== 'textarea' && 
+        tag !== 'noscript' &&
+        !node.classList.contains('parsed-highlight-wrapper')
+      ) {
+        const children = Array.from(node.childNodes);
+        for (const child of children) {
+          processNode(child);
+        }
+      }
+    }
+  }
+
+  // Initialize parsing
+  const init = () => {
+    processNode(document.body);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  // Monitor dynamic changes (AJAX, cart drawer, customizer updates, etc.)
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        processNode(node);
+      }
+    }
+  });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  // Handle Shopify customizer section loads
+  document.addEventListener("shopify:section:load", (event) => {
+    processNode(event.target);
+  });
+})();
+</script>

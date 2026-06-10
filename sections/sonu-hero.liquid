@@ -1,0 +1,242 @@
+{{ 'sonu-custom.css' | asset_url | stylesheet_tag }}
+
+{% assign overlay_alpha = section.settings.overlay_opacity | times: 0.01 %}
+
+<section class="custom-hero-wrapper">
+  <div class="custom-hero" style="
+    --hero-overlay-direction: {{ section.settings.overlay_direction }}; 
+    --hero-overlay-color: {{ section.settings.overlay_color | color_modify: 'alpha', overlay_alpha }}; 
+    --hero-button-bg: {{ section.settings.button_bg }}; 
+    --hero-button-text-color: {{ section.settings.button_text_color }}; 
+    --hero-button-bg-mobile: {{ section.settings.button_bg_mobile }}; 
+    --hero-button-text-color-mobile: {{ section.settings.button_text_color_mobile }};
+  ">
+
+    <!-- Background Image -->
+    <div class="hero-bg">
+      {% if section.settings.bg_image != blank %}
+        <img
+          class="desktop-bg"
+          src="{{ section.settings.bg_image | image_url: width: 2500 }}"
+          alt=""
+          width="{{ section.settings.bg_image.width }}"
+          height="{{ section.settings.bg_image.height }}"
+        >
+      {% endif %}
+      
+      {% if section.settings.mobile_bg_image != blank %}
+        <img
+          class="mobile-bg"
+          src="{{ section.settings.mobile_bg_image | image_url: width: 1200 }}"
+          alt=""
+          width="{{ section.settings.mobile_bg_image.width }}"
+          height="{{ section.settings.mobile_bg_image.height }}"
+        >
+      {% else %}
+        {% if section.settings.bg_image != blank %}
+          <img
+            class="mobile-bg"
+            src="{{ section.settings.bg_image | image_url: width: 1200 }}"
+            alt=""
+            width="{{ section.settings.bg_image.width }}"
+            height="{{ section.settings.bg_image.height }}"
+          >
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <!-- Gradient Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      
+      <!-- Top Half (Mobile) -->
+      <div class="hero-text-wrap">
+        {% if section.settings.tagline != blank %}
+          <div class="hero-tagline sonu-blur-in">{{ section.settings.tagline }}</div>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          {%- capture newline -%}
+          {%- endcapture -%}
+          {%- capture double_br -%}<br />
+<br />{%- endcapture -%}
+          {%- capture double_br_short -%}<br>
+<br>{%- endcapture -%}
+          {%- capture single_br -%}<br />{%- endcapture -%}
+          {% assign formatted_heading = section.settings.heading
+            | replace: '<br>', newline
+            | replace: '<br/>', newline
+            | replace: '<br />', newline
+            | replace: '[[', '<span class="highlight">'
+            | replace: ']]', '</span>'
+            | newline_to_br
+            | replace: double_br, single_br
+            | replace: double_br_short, single_br
+          %}
+          {%- assign heading_tag = section.settings.heading_tag | default: 'h1' -%}
+          <{{ heading_tag }} class="hero-title sonu-blur-in sonu-blur-in--d1">{{ formatted_heading }}</{{ heading_tag }}>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <p class="hero-subtitle sonu-blur-in sonu-blur-in--d2">{{ section.settings.subheading }}</p>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="hero-description sonu-blur-in sonu-blur-in--d3">{{ section.settings.description }}</div>
+        {% endif %}
+
+        {% if section.settings.mobile_description != blank %}
+          <div class="hero-description-mobile sonu-blur-in sonu-blur-in--d3">{{ section.settings.mobile_description }}</div>
+        {% else %}
+          <div class="hero-description-mobile sonu-blur-in sonu-blur-in--d3">{{ section.settings.description }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Bottom Half (Mobile) -->
+      <div class="hero-btn-wrap">
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link }}" class="hero-btn sonu-blur-in sonu-blur-in--d3">
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.custom_liquid != blank %}
+          <div class="hero-custom-liquid sonu-blur-in sonu-blur-in--d3">{{ section.settings.custom_liquid }}</div>
+        {% endif %}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "overlay_direction",
+      "label": "Overlay Direction",
+      "options": [
+        { "value": "to right", "label": "Left to Right" },
+        { "value": "to left", "label": "Right to Left" },
+        { "value": "to bottom", "label": "Top to Bottom" },
+        { "value": "to top", "label": "Bottom to Top" }
+      ],
+      "default": "to right"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (Use [[ ]] for special font)"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Desktop Description"
+    },
+    {
+      "type": "richtext",
+      "id": "mobile_description",
+      "label": "Mobile Description"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Custom Liquid "
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Desktop Button Background",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Desktop Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_mobile",
+      "label": "Mobile Button Background",
+      "default": "#001755"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color_mobile",
+      "label": "Mobile Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero"
+    }
+  ]
+}
+{% endschema %}

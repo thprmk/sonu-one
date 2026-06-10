@@ -1,0 +1,861 @@
+{%- liquid
+  assign bg_color = section.settings.bg_color
+  assign bg_gradient = section.settings.bg_gradient
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign padding_top_mobile = section.settings.padding_top_mobile
+  assign padding_bottom_mobile = section.settings.padding_bottom_mobile
+-%}
+
+<div id="shopify-section-{{ section.id }}" class="custom-expectations-wrapper image-bg-{{ section.id }}" style="
+  {% if bg_gradient != blank %}
+    background: {{ bg_gradient }};
+  {% elsif bg_color != blank %}
+    background-color: {{ bg_color }};
+  {% endif %}
+  --padding-top: {{ padding_top }}px;
+  --padding-bottom: {{ padding_bottom }}px;
+  --padding-top-mobile: {{ padding_top_mobile }}px;
+  --padding-bottom-mobile: {{ padding_bottom_mobile }}px;
+">
+  <style>
+    #shopify-section-{{ section.id }} .custom-expectations-wrapper {
+      padding-top: var(--padding-top);
+      padding-bottom: var(--padding-bottom);
+      padding-left: {{ section.settings.desktop_left_padding | default: 80 }}px !important;
+      padding-right: {{ section.settings.desktop_left_padding | default: 80 }}px !important;
+      box-sizing: border-box;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    {% if section.settings.bg_image != blank %}
+    .image-bg-{{ section.id }} {
+      background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    {% endif %}
+
+    #shopify-section-{{ section.id }} .custom-expect-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: {{ section.settings.desktop_heading_margin_bottom }}px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-subheading {
+      font-family: var(--sonu-font-family, sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: {{ section.settings.top_badge_color | default: '#5E53E5' }} !important;
+      margin-bottom: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-heading {
+      color: {{ section.settings.heading_color }} !important;
+      margin: 0;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-heading em {
+      font-family: 'pp-editorial', 'PP Editorial New', Georgia, serif;
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-desc {
+      font-family: var(--sonu-font-family, sans-serif);
+      font-size: 16px;
+      line-height: 1.5;
+      color: {{ section.settings.card_desc_color | default: '#1E1E1E' }} !important;
+      margin-top: 16px;
+      max-width: 600px;
+    }
+
+    /* Slides structure */
+    #shopify-section-{{ section.id }} .custom-expect-swiper {
+      width: 100%;
+      overflow: visible !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-slide__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-slide__top-badge {
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-slide__top-badge span {
+      display: inline-block;
+      background: {{ section.settings.top_badge_bg | default: '#E2D9F3' }} !important;
+      color: {{ section.settings.top_badge_color | default: '#5E53E5' }} !important;
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-family: var(--sonu-font-family, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-moon-container {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 32px auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-moon-circle-outer {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border: 1px solid rgba(125, 116, 227, 0.15);
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-moon-circle-inner {
+      position: absolute;
+      width: 106px;
+      height: 106px;
+      border: 1px solid rgba(125, 116, 227, 0.15);
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-moon-phase {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: #D3C7EC; /* Default light moon color */
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-moon-phase-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-moon-phase img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-slide__title {
+      font-family: var(--sonu-font-family, sans-serif);
+      color: {{ section.settings.card_title_color | default: '#0E1B4C' }} !important;
+      margin: 0 0 16px 0;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-slide__desc {
+      font-family: var(--sonu-font-family, sans-serif);
+      color: {{ section.settings.card_desc_color | default: '#1E1E1E' }} !important;
+      margin: 0 0 28px 0;
+      max-width: 340px;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-slide__bottom-badge {
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-slide__bottom-badge span {
+      display: inline-block;
+      background: {{ section.settings.bottom_badge_bg | default: '#AFAFB2' }} !important;
+      color: {{ section.settings.bottom_badge_color | default: '#ffffff' }} !important;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-family: var(--sonu-font-family, sans-serif);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    /* Slider Controls */
+    #shopify-section-{{ section.id }} .custom-expect-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 48px;
+      padding-right: 80px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-progressbar-wrapper {
+      position: relative !important;
+      flex-grow: 1 !important;
+      max-width: 800px !important;
+      height: {{ section.settings.progressbar_height }}px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-progressbar.swiper-pagination-progressbar {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      background: {{ section.settings.progressbar_bg_color }} !important;
+      border-radius: 999px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-progressbar .swiper-pagination-progressbar-fill {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      transform-origin: left top !important;
+      background: {{ section.settings.progressbar_fill_color }} !important;
+      border-radius: 999px !important;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-arrows {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: {{ section.settings.nav_btn_size }}px !important;
+      height: {{ section.settings.nav_btn_size }}px !important;
+      border-radius: 50%;
+      border: 1.5px solid {{ section.settings.nav_border_color | default: 'rgba(0, 0, 0, 0.15)' }} !important;
+      background: {{ section.settings.nav_bg_color | default: 'transparent' }} !important;
+      color: {{ section.settings.nav_arrow_color | default: '#1E1E1E' }} !important;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-nav-btn svg {
+      width: 7px;
+      height: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-nav-btn:hover {
+      background: {{ section.settings.nav_hover_bg_color | default: '#ffffff' }} !important;
+      border-color: {{ section.settings.nav_hover_border_color | default: '#1E1E1E' }} !important;
+      color: {{ section.settings.nav_hover_arrow_color | default: '#1E1E1E' }} !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-nav-btn.swiper-button-disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    #shopify-section-{{ section.id }} .custom-expect-progressbar.swiper-pagination-lock {
+      display: block !important;
+    }
+
+    /* Desktop Layout Overrides - 3 columns grid/flex instead of slider */
+    @media screen and (min-width: 769px) {
+      #shopify-section-{{ section.id }} .custom-expect-swiper .swiper-wrapper {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: {{ section.settings.desktop_column_gap | default: 48 }}px !important;
+        transform: none !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-expect-slide {
+        flex: 1 !important;
+        width: auto !important;
+        height: auto !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-expect-controls-row {
+        display: none !important;
+      }
+    }
+
+    /* Mobile settings */
+    @media screen and (max-width: 768px) {
+      .image-bg-{{ section.id }} {
+        {% if section.settings.mobile_bg_image != blank %}
+          background-image: url('{{ section.settings.mobile_bg_image | image_url: width: 1000 }}') !important;
+        {% elsif section.settings.bg_image != blank %}
+          background-image: url('{{ section.settings.bg_image | image_url: width: 1000 }}') !important;
+        {% endif %}
+      }
+
+      #shopify-section-{{ section.id }} .custom-expectations-wrapper {
+        padding-left: {{ section.settings.mobile_side_padding | default: 24 }}px !important;
+        padding-right: 0 !important;
+        padding-top: var(--padding-top-mobile);
+        padding-bottom: var(--padding-bottom-mobile);
+      }
+
+      #shopify-section-{{ section.id }} .custom-expect-header {
+        padding-right: {{ section.settings.mobile_side_padding | default: 24 }}px !important;
+        margin-bottom: {{ section.settings.mobile_heading_margin_bottom | default: 40 }}px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-expect-slide {
+        width: {{ section.settings.mobile_card_width | default: 85 }}vw !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-expect-slide__desc {
+        max-width: none !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-expect-controls-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 20px !important;
+        padding-left: 0 !important;
+        padding-right: {{ section.settings.mobile_side_padding | default: 24 }}px !important;
+        margin-top: 32px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-expect-progressbar-wrapper {
+        width: 100% !important;
+        position: relative !important;
+        height: {{ section.settings.progressbar_height }}px !important;
+        max-width: none !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-expect-progressbar.swiper-pagination-progressbar {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: {{ section.settings.progressbar_bg_color }} !important;
+        margin: 0 !important;
+        border-radius: 999px !important;
+      }
+
+      #shopify-section-{{ section.id }} .custom-expect-arrows {
+        width: auto !important;
+        align-self: flex-end !important;
+        display: flex !important;
+        gap: 12px !important;
+      }
+    }
+  </style>
+
+  <div class="custom-expectations-container">
+    {% if section.settings.heading != blank or section.settings.subheading != blank or section.settings.description != blank %}
+      <div class="custom-expect-header">
+        {% if section.settings.subheading != blank %}
+          <span class="custom-expect-subheading">{{ section.settings.subheading }}</span>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-expect-heading {{ section.settings.heading_tag | default: 'h2' }}">
+            {{ section.settings.heading }}
+          </{{ section.settings.heading_tag | default: 'h2' }}>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="custom-expect-desc">{{ section.settings.description }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Swiper Carousel (slid on mobile, columns on desktop) -->
+    <div class="swiper custom-expect-swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide custom-expect-slide" {{ block.shopify_attributes }}>
+            <div class="custom-expect-slide__inner">
+              
+              <!-- Top Badge -->
+              {% if block.settings.top_badge != blank %}
+                <div class="custom-expect-slide__top-badge">
+                  <span>{{ block.settings.top_badge }}</span>
+                </div>
+              {% endif %}
+
+              <!-- Moon phase graphic -->
+              <div class="custom-expect-moon-container">
+                <div class="custom-expect-moon-circle-outer"></div>
+                <div class="custom-expect-moon-circle-inner"></div>
+                <div class="custom-expect-moon-phase">
+                  {% if block.settings.icon_image != blank %}
+                    <img src="{{ block.settings.icon_image | image_url: width: 120 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                  {% else %}
+                    {% case block.settings.moon_phase %}
+                      {% when 'crescent' %}
+                        <svg class="custom-expect-moon-phase-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="50" cy="50" r="24" fill="#D3C7EC" />
+                          <path d="M 50 26 A 24 24 0 0 0 50 74 A 12 24 0 0 1 50 26 Z" fill="#7D74E3" />
+                        </svg>
+                      {% when 'half' %}
+                        <svg class="custom-expect-moon-phase-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="50" cy="50" r="24" fill="#D3C7EC" />
+                          <path d="M 50 26 A 24 24 0 0 0 50 74 Z" fill="#7D74E3" />
+                        </svg>
+                      {% when 'gibbous' %}
+                        <svg class="custom-expect-moon-phase-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="50" cy="50" r="24" fill="#7D74E3" />
+                          <path d="M 50 26 A 24 24 0 0 1 50 74 A 12 24 0 0 0 50 26 Z" fill="#D3C7EC" />
+                        </svg>
+                      {% else %}
+                        <svg class="custom-expect-moon-phase-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="50" cy="50" r="24" fill="#7D74E3" />
+                        </svg>
+                    {% endcase %}
+                  {% endif %}
+                </div>
+              </div>
+
+              <!-- Content details -->
+              {% if block.settings.title != blank %}
+                <h3 class="custom-expect-slide__title h3">{{ block.settings.title }}</h3>
+              {% endif %}
+              
+              {% if block.settings.description != blank %}
+                <p class="custom-expect-slide__desc rte">{{ block.settings.description }}</p>
+              {% endif %}
+
+              {% if block.settings.bottom_badge != blank %}
+                <div class="custom-expect-slide__bottom-badge">
+                  <span>{{ block.settings.bottom_badge }}</span>
+                </div>
+              {% endif %}
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Controls Row at bottom -->
+    <div class="custom-expect-controls-row">
+      <div class="custom-expect-progressbar-wrapper">
+        <div class="custom-expect-progressbar swiper-pagination"></div>
+      </div>
+      
+      <div class="custom-expect-arrows">
+        <button class="custom-expect-nav-btn custom-expect-nav-btn--prev" aria-label="Previous">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="custom-expect-nav-btn custom-expect-nav-btn--next" aria-label="Next">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Expectations Timeline",
+  "tag": "section",
+  "class": "custom-expectations-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What to Expect & When to Expect It"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F3EEF9"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Padding Top Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60,
+      "unit": "px",
+      "label": "Padding Bottom Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Custom Heading Typography"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#0E1B4C"
+    },
+    {
+      "type": "range",
+      "id": "desktop_heading_margin_bottom",
+      "label": "Desktop Heading Margin Bottom (px)",
+      "default": 64,
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_margin_bottom",
+      "label": "Mobile Heading Margin Bottom (px)",
+      "default": 40,
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Columns Sizing & Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_left_padding",
+      "label": "Desktop Left/Right Margin Padding (px)",
+      "default": 80,
+      "min": 20,
+      "max": 200,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_column_gap",
+      "label": "Desktop Column Gap (px)",
+      "default": 48,
+      "min": 16,
+      "max": 96,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_width",
+      "label": "Mobile Card Slide Width (vw)",
+      "default": 85,
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vw"
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "label": "Mobile Side Margin Padding (px)",
+      "default": 24,
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Card Content Styling"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card Title Color",
+      "default": "#0E1B4C"
+    },
+    {
+      "type": "color",
+      "id": "card_desc_color",
+      "label": "Card Description Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "header",
+      "content": "Badges Pill Colors"
+    },
+    {
+      "type": "color",
+      "id": "top_badge_bg",
+      "label": "Top Badge Background Color",
+      "default": "#E2D9F3"
+    },
+    {
+      "type": "color",
+      "id": "top_badge_color",
+      "label": "Top Badge Text Color",
+      "default": "#5E53E5"
+    },
+    {
+      "type": "color",
+      "id": "bottom_badge_bg",
+      "label": "Bottom Badge Background Color",
+      "default": "#AFAFB2"
+    },
+    {
+      "type": "color",
+      "id": "bottom_badge_color",
+      "label": "Bottom Badge Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Slider Controls Colors"
+    },
+    {
+      "type": "range",
+      "id": "progressbar_height",
+      "label": "Progress Bar Height (px)",
+      "default": 2,
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "progressbar_fill_color",
+      "label": "Progress Bar Active Color",
+      "default": "#5E53E5"
+    },
+    {
+      "type": "color",
+      "id": "progressbar_bg_color",
+      "label": "Progress Bar Track Color",
+      "default": "rgba(94, 83, 229, 0.15)"
+    },
+    {
+      "type": "range",
+      "id": "nav_btn_size",
+      "label": "Navigation Button Size (px)",
+      "default": 44,
+      "min": 32,
+      "max": 64,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "nav_arrow_color",
+      "label": "Arrow Icon Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "nav_border_color",
+      "label": "Arrow Border Color",
+      "default": "rgba(0, 0, 0, 0.15)"
+    },
+    {
+      "type": "color",
+      "id": "nav_bg_color",
+      "label": "Arrow Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_arrow_color",
+      "label": "Arrow Hover Icon Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_border_color",
+      "label": "Arrow Hover Border Color",
+      "default": "#1E1E1E"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_bg_color",
+      "label": "Arrow Hover Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Timeline Stage",
+      "settings": [
+        {
+          "type": "text",
+          "id": "top_badge",
+          "label": "Top Stage Badge (e.g. DAYS 1-7)",
+          "default": "DAYS 1-7"
+        },
+        {
+          "type": "select",
+          "id": "moon_phase",
+          "label": "Default Moon Graphic Phase",
+          "options": [
+            { "value": "crescent", "label": "Crescent Moon" },
+            { "value": "half", "label": "Half Moon" },
+            { "value": "gibbous", "label": "Gibbous Moon" },
+            { "value": "full", "label": "Full Moon" }
+          ],
+          "default": "crescent"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Custom Icon Image (Overrides default Moon)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Stage Title",
+          "default": "Your body is listening"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Stage Description",
+          "default": "This week, your acoustic therapy is personalized to you."
+        },
+        {
+          "type": "text",
+          "id": "bottom_badge",
+          "label": "Bottom Sub-text Badge",
+          "default": "Use nightly for best results"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Expectations Timeline",
+      "blocks": [
+        {
+          "type": "column",
+          "settings": {
+            "top_badge": "DAYS 1-7",
+            "moon_phase": "crescent",
+            "title": "Your body is listening",
+            "description": "This week, your acoustic therapy is personalized to you. Each session gently trains your brain's natural sleep response. Be patient with yourself — the foundation is being built.",
+            "bottom_badge": "Use nightly for best results"
+          }
+        },
+        {
+          "type": "column",
+          "settings": {
+            "top_badge": "DAYS 8-14",
+            "moon_phase": "half",
+            "title": "Changes are starting",
+            "description": "Most people notice the first shift right around now — falling asleep a little easier, waking a little less. Your brain is responding to the therapy. Keep going.",
+            "bottom_badge": "Use nightly for best results"
+          }
+        },
+        {
+          "type": "column",
+          "settings": {
+            "top_badge": "WEEK 4 & BEYOND",
+            "moon_phase": "gibbous",
+            "title": "Sleep that transforms",
+            "description": "After four weeks, clinical studies show insomnia severity can be reduced by nearly half — with 3 in 4 people no longer qualifying as having insomnia. You're on your way.",
+            "bottom_badge": "~50% insomnia reduction at 4 weeks"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

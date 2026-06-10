@@ -1,0 +1,875 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "custom-featured-product-sh",
+      "settings": {
+        "product": "sonu-band",
+        "reviews_text": "66 reviews",
+        "description": "",
+        "card_bg_color": "#f0e7f7",
+        "bg_color": "#f0e7f7",
+        "bg_gradient": "",
+        "heading_tag": "h2",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "comparison": {
+      "type": "custom-comparison-sh",
+      "blocks": {
+        "column_sonu": {
+          "type": "column",
+          "settings": {
+            "title": "Spatial",
+            "highlight": true,
+            "bg_color": "#d2bee4",
+            "border_color": "",
+            "text_color": "",
+            "title_color": "",
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "check",
+            "row_2_text": "",
+            "row_3_val": "text",
+            "row_3_text": "Non-invasive low-frequency sounds",
+            "row_4_val": "text",
+            "row_4_text": "None",
+            "row_5_val": "text",
+            "row_5_text": "Days",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_steroids1": {
+          "type": "column",
+          "settings": {
+            "title": "Prescription Medicine",
+            "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
+            "title_color": "",
+            "row_1_val": "cross",
+            "row_1_text": "",
+            "row_2_val": "cross",
+            "row_2_text": "",
+            "row_3_val": "text",
+            "row_3_text": "Sedative",
+            "row_4_val": "text",
+            "row_4_text": "Groggy, drowsy, headaches, amnesia.",
+            "row_5_val": "text",
+            "row_5_text": "Immediate",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_steroids2": {
+          "type": "column",
+          "settings": {
+            "title": "Melatonin & Other Supplements",
+            "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
+            "title_color": "",
+            "row_1_val": "cross",
+            "row_1_text": "",
+            "row_2_val": "cross",
+            "row_2_text": "",
+            "row_3_val": "text",
+            "row_3_text": "Forces increase in level of melatonin and magnesium",
+            "row_4_val": "text",
+            "row_4_text": "Headache, dizziness, nausea",
+            "row_5_val": "text",
+            "row_5_text": "Days",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_steroids3": {
+          "type": "column",
+          "settings": {
+            "title": "CBT-I",
+            "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
+            "title_color": "",
+            "row_1_val": "check",
+            "row_1_text": "",
+            "row_2_val": "cross",
+            "row_2_text": "",
+            "row_3_val": "text",
+            "row_3_text": "Sessions with sleep therapist",
+            "row_4_val": "text",
+            "row_4_text": "Increased fatigue, emotional discomfort",
+            "row_5_val": "text",
+            "row_5_text": "Months",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        },
+        "column_paNeLJ": {
+          "type": "column",
+          "settings": {
+            "title": "Other Sleep Wearables and Trackers",
+            "highlight": false,
+            "bg_color": "",
+            "border_color": "",
+            "text_color": "",
+            "title_color": "",
+            "row_1_val": "cross",
+            "row_1_text": "",
+            "row_2_val": "cross",
+            "row_2_text": "",
+            "row_3_val": "text",
+            "row_3_text": "Electric currents",
+            "row_4_val": "text",
+            "row_4_text": "Undeterminable due to lack of data",
+            "row_5_val": "cross",
+            "row_5_text": "",
+            "row_6_val": "text",
+            "row_6_text": "",
+            "row_7_val": "text",
+            "row_7_text": "",
+            "row_8_val": "text",
+            "row_8_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_sonu",
+        "column_steroids1",
+        "column_steroids2",
+        "column_steroids3",
+        "column_paNeLJ"
+      ],
+      "settings": {
+        "heading": "More effective thanother sleep-aids",
+        "heading_tag": "h2",
+        "block_heading_tag": "h3",
+        "description": "<p>Spatial Sleep is the only sleep wearable validated with a real clinical sleep scale in rigorous trials.</p>",
+        "bg_color": "#f0e7f7",
+        "bg_gradient": "",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "label_1": "Clinically Proven",
+        "label_2": "Anatomical personalization",
+        "label_3": "Stimulus",
+        "label_4": "Side effect",
+        "label_5": "Time to work",
+        "label_6": "",
+        "label_7": "",
+        "label_8": ""
+      }
+    },
+    "sonu_logo_list_PtxqbC": {
+      "type": "sonu-logo-list",
+      "blocks": {
+        "logo_gAUHc4": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_sharp-stealy.png"
+          }
+        },
+        "logo_PTFi6p": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_harvard-medical-school-color.avif"
+          }
+        },
+        "logo_zPApU9": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_stanford-medicine-color.avif"
+          }
+        },
+        "logo_Ng7bFG": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_cedars-sinai.avif"
+          }
+        },
+        "logo_i7PifX": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_ucsf-health-color.avif"
+          }
+        }
+      },
+      "block_order": [
+        "logo_gAUHc4",
+        "logo_PTFi6p",
+        "logo_zPApU9",
+        "logo_Ng7bFG",
+        "logo_i7PifX"
+      ],
+      "name": "Logo Carousel",
+      "settings": {
+        "bg_color_desktop": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
+        "bg_color_desktop_solid": "#f0e7f7",
+        "bg_color_mobile": "linear-gradient(90deg, rgba(242, 237, 244, 1), rgba(238, 241, 250, 1) 45%, rgba(232, 242, 255, 1) 100%)",
+        "bg_color_mobile_solid": "#f0e7f7",
+        "heading": "",
+        "heading_tag": "h2",
+        "description": "",
+        "button_text": "",
+        "button_link": "",
+        "button_bg": "#001755",
+        "button_text_color": "#ffffff",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20
+      }
+    },
+    "doctors_testimonials": {
+      "type": "doctors-testimonials-sh",
+      "blocks": {
+        "doctor_jBzba9": {
+          "type": "doctor",
+          "settings": {
+            "image": "shopify://shop_images/Group_36.png",
+            "name": "Clete Kushida,",
+            "role": "MD, PhDAssociate Chair, Stanford Sleep Medicine",
+            "desc": "ART, with its novel application in customized binaural ..."
+          }
+        },
+        "doctor_pJdVxJ": {
+          "type": "doctor",
+          "settings": {
+            "image": "shopify://shop_images/Group_22.png",
+            "name": "Michael S. Blaiss,",
+            "role": "MD Allergist,Medical College of Georgia",
+            "desc": "As an airway-centric dentist, I work closely with patients ..."
+          }
+        },
+        "doctor_ijwkWt": {
+          "type": "doctor",
+          "settings": {
+            "image": "shopify://shop_images/Group_35.png",
+            "name": "Robson Capasso,",
+            "role": "MDChief of Sleep Surgery, Stanford University School of Medicine",
+            "desc": "As an airway-centric dentist, I work closely with patients ..."
+          }
+        },
+        "doctor_9p76N7": {
+          "type": "doctor",
+          "settings": {
+            "image": "shopify://shop_images/michael_s.webp",
+            "name": "Jacob Johnson,",
+            "role": "MD, Otolaryngologist UCSF",
+            "desc": "As an airway-centric dentist, I work closely with patients ..."
+          }
+        },
+        "doctor_kydX3J": {
+          "type": "doctor",
+          "settings": {
+            "image": "shopify://shop_images/jacob.webp",
+            "name": "Michael S. Blaiss,",
+            "role": "MD Allergist, Medical College of Georgia",
+            "desc": "As an airway-centric dentist, I work closely with patients ..."
+          }
+        }
+      },
+      "block_order": [
+        "doctor_jBzba9",
+        "doctor_pJdVxJ",
+        "doctor_ijwkWt",
+        "doctor_9p76N7",
+        "doctor_kydX3J"
+      ],
+      "name": "sonu Team Section",
+      "settings": {
+        "heading": "",
+        "heading_tag": "h1",
+        "bg_color": "#f0e7f7",
+        "bg_gradient": "",
+        "grad_color_1": "#f9f6f0",
+        "grad_color_2": "#f9f6f0",
+        "grad_color_3": "#f9f6f0",
+        "grad_color_4": "#f9f6f0",
+        "desktop_layout": "grid",
+        "mobile_layout": "slider",
+        "trim_words": 20,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 36
+      }
+    },
+    "card_slider": {
+      "type": "custom-card-slider-sh",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Group_12_b1289c6e-da35-4228-bd90-9f5258e75540.png",
+            "top_badge": "How it Works",
+            "title": "Gentle sound, delivered through bone",
+            "description": "The Spatial Sleep band rests on your forehead and sends soft acoustic vibrations through your skull — no earbuds needed. Each ear receives a slightly different frequency, and your brain naturally blends them into a calming rhythm that guides you toward sleep.",
+            "bottom_badge": "No effort required · Works while you rest"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Group_31.png",
+            "top_badge": "Why it Takes Time",
+            "title": "Think of pushing a swing",
+            "description": "One push barely moves it. But small, steady pushes — timed just right — build into a deep, effortless rhythm. That's how neural entrainment works. Each night, Spatial Sleep gives your brain another gentle push toward its natural sleep frequency.",
+            "bottom_badge": "2–4 weeks to build momentum"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Group_32.png",
+            "top_badge": "Consistency Matters",
+            "title": "Every night counts",
+            "description": "In clinical studies, participants who used the band nightly saw the strongest results — insomnia severity dropped by nearly 50% over four weeks, with three-quarters no longer qualifying as having insomnia.",
+            "bottom_badge": "Lin et al., Journal of Sleep Medicine, 2025 · Consistent with broader acoustic entrainment research"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_tag": "h2",
+        "subheading": "",
+        "bg_color": "#f0e7f7",
+        "bg_gradient": "",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "heading_color": "#3d1b03",
+        "desktop_heading_margin_bottom": 48,
+        "mobile_heading_margin_bottom": 32,
+        "desktop_card_width": 440,
+        "desktop_card_height": 580,
+        "desktop_left_padding": 80,
+        "card_border_radius": 28,
+        "mobile_card_width": 85,
+        "mobile_card_height": 440,
+        "mobile_side_padding": 20,
+        "card_title_color": "#ffffff",
+        "card_desc_color": "#ffffffd9",
+        "top_badge_bg": "#ffffff1f",
+        "top_badge_border": "#ffffff2e",
+        "top_badge_color": "#ffffff",
+        "bottom_badge_bg": "#00000073",
+        "bottom_badge_color": "#ffffffe6",
+        "progressbar_height": 2,
+        "progressbar_fill_color": "#5e53e5",
+        "progressbar_bg_color": "#5e53e526",
+        "nav_btn_size": 44,
+        "nav_arrow_color": "#1e1e1e",
+        "nav_border_color": "#00000026",
+        "nav_bg_color": "rgba(0,0,0,0)",
+        "nav_hover_arrow_color": "#1e1e1e",
+        "nav_hover_border_color": "#1e1e1e",
+        "nav_hover_bg_color": "#ffffff"
+      }
+    },
+    "expectations_timeline": {
+      "type": "custom-expectations-sh",
+      "blocks": {
+        "expect_1": {
+          "type": "column",
+          "settings": {
+            "top_badge": "DAYS 1-7",
+            "moon_phase": "crescent",
+            "icon_image": "shopify://shop_images/Group_38.png",
+            "title": "Your body is listening",
+            "description": "This week, your acoustic therapy is personalized to you. Each session gently trains your brain's natural sleep response. Be patient with yourself — the foundation is being built.",
+            "bottom_badge": "Use nightly for best results"
+          }
+        },
+        "expect_2": {
+          "type": "column",
+          "settings": {
+            "top_badge": "DAYS 8-14",
+            "moon_phase": "half",
+            "title": "Changes are starting",
+            "description": "Most people notice the first shift right around now — falling asleep a little easier, waking a little less. Your brain is responding to the therapy. Keep going.",
+            "bottom_badge": "Use nightly for best results"
+          }
+        },
+        "expect_3": {
+          "type": "column",
+          "settings": {
+            "top_badge": "WEEK 4 & BEYOND",
+            "moon_phase": "gibbous",
+            "title": "Sleep that transforms",
+            "description": "After four weeks, clinical studies show insomnia severity can be reduced by nearly half — with 3 in 4 people no longer qualifying as having insomnia. You're on your way.",
+            "bottom_badge": "~50% insomnia reduction at 4 weeks"
+          }
+        }
+      },
+      "block_order": [
+        "expect_1",
+        "expect_2",
+        "expect_3"
+      ],
+      "settings": {
+        "heading": "((What)) to Expect & ((When)) to Expect It",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "bg_color": "#f0e7f7",
+        "bg_gradient": "",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "heading_color": "#0e1b4c",
+        "desktop_heading_margin_bottom": 64,
+        "mobile_heading_margin_bottom": 40,
+        "desktop_left_padding": 80,
+        "desktop_column_gap": 48,
+        "mobile_card_width": 85,
+        "mobile_side_padding": 24,
+        "card_title_color": "#0e1b4c",
+        "card_desc_color": "#1e1e1e",
+        "top_badge_bg": "#e2d9f3",
+        "top_badge_color": "#000000",
+        "bottom_badge_bg": "#afafb2",
+        "bottom_badge_color": "#ffffff",
+        "progressbar_height": 2,
+        "progressbar_fill_color": "#5e53e5",
+        "progressbar_bg_color": "#5e53e526",
+        "nav_btn_size": 44,
+        "nav_arrow_color": "#1e1e1e",
+        "nav_border_color": "#00000026",
+        "nav_bg_color": "rgba(0,0,0,0)",
+        "nav_hover_arrow_color": "#1e1e1e",
+        "nav_hover_border_color": "#1e1e1e",
+        "nav_hover_bg_color": "#ffffff"
+      }
+    },
+    "patient_testimonials": {
+      "type": "sonu-v2-testi-sh",
+      "blocks": {
+        "slide_NCYPrX": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
+            "review_1": "Before using Spatial Sleep, I would wake up several times a night and never felt truly rested. After a few weeks of wearing it regularly, I started sleeping in long, uninterrupted stretches. For the first time in years, I wake up feeling refreshed and energized.",
+            "name_1": "Jay G",
+            "role_1": "Corporate Vice President @ Fortune 500 Company",
+            "review_2": "As a physician on call, quality sleep is rare. With Spatial Sleep, I finally get deep, restorative rest.",
+            "name_2": "Ram G MD",
+            "role_2": "Radiologist",
+            "review_3": "Spatial Sleep has been a real game changer for me. I fall asleep so much faster and actually wake up feeling refreshed. I noticed a difference the very first night. Fell asleep faster, slept deeper. I used to toss and turn for hours, but with Spatial I'm out in minutes and I wake up rested.",
+            "name_3": "Julie K",
+            "role_3": "Retired RN",
+            "review_4": "I love the color and the comfort. It's subtle yet powerful. My REM sleep increased dramatically.",
+            "name_4": "Lindsay M",
+            "role_4": "Clinical Psychologist"
+          }
+        }
+      },
+      "block_order": [
+        "slide_NCYPrX"
+      ],
+      "name": "Testimonials Video sonu",
+      "settings": {
+        "heading": "Real Patients, Real Results",
+        "heading_tag": "h2",
+        "section_bg_color": "#f0e7f7",
+        "section_bg_gradient": "",
+        "heading_color": "#001755",
+        "card_bg_color": "#f0e7f7",
+        "card_border_color": "#8f00ff",
+        "card_border_width": 1,
+        "card_border_radius": 16,
+        "card_padding": 32,
+        "desktop_review_text_color": "#1e2a3e",
+        "desktop_author_name_color": "#001755",
+        "desktop_author_role_color": "#5a6874",
+        "mobile_card_bg_color": "rgba(0,0,0,0)",
+        "mobile_card_border_color": "#b8b7ff",
+        "mobile_card_border_radius": 25,
+        "mobile_card_padding": 24,
+        "mobile_review_text_color": "#000000",
+        "mobile_author_name_color": "#3d1b03",
+        "mobile_author_role_color": "#5a6874",
+        "star_color": "#ffcd0f",
+        "nav_arrow_color": "#1f428a",
+        "nav_border_color": "#001755",
+        "container_width": "contained",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 20,
+        "desktop_heading_margin_bottom": 70,
+        "mobile_heading_margin_bottom": 16
+      }
+    },
+    "step_slider": {
+      "type": "custom-step-slider-sh",
+      "blocks": {
+        "step_slide_RbbMfg": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_104_1.png",
+            "title": "Find Your Frequency",
+            "description": "Using the 3D map, the app calculates the acoustic resonance frequency that calms your unique brainwave."
+          }
+        },
+        "step_slide_gWXmXK": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_105.png",
+            "title": "Deliver Targeted Sound Waves",
+            "description": "The frequency is delivered through the headband using bone conduction."
+          }
+        },
+        "step_slide_WU89hq": {
+          "type": "step_slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_106_1.png",
+            "title": "Sleep Better — Fast",
+            "description": "The frequencies will sooth your brainwaves to a restful state, for a night of restorative rest."
+          }
+        }
+      },
+      "block_order": [
+        "step_slide_RbbMfg",
+        "step_slide_gWXmXK",
+        "step_slide_WU89hq"
+      ],
+      "settings": {
+        "heading": "Personalized to you. [[No guesswork.]]",
+        "heading_tag": "h2",
+        "heading_color": "#ffffff",
+        "desktop_heading_margin_bottom": 54,
+        "mobile_heading_margin_bottom": 0,
+        "description": "",
+        "button_text": "Watch the Acoustic Resonance Therapy Film",
+        "button_link": "",
+        "bg_color": "#f0e7f7",
+        "bg_gradient": "linear-gradient(180deg, rgba(240, 231, 247, 1), rgba(255, 255, 255, 1) 100%)",
+        "text_color": "#001755",
+        "enable_bottom_radius": true,
+        "bottom_radius": 100,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 60,
+        "mobile_side_padding": 24,
+        "mobile_slide_width": 85,
+        "mobile_image_aspect_ratio": "4/5",
+        "progressbar_height": 2,
+        "nav_btn_size": 44
+      }
+    },
+    "spatial_therapy": {
+      "type": "spatial-therapy-sh",
+      "blocks": {
+        "stat_LxMmDy": {
+          "type": "stat",
+          "settings": {
+            "prefix": "",
+            "number": "[[2]]",
+            "postfix": "[[X]]",
+            "heading": "[[Better Sleep]]",
+            "text": "Clinical trial participants reported 2X improvement in sleep quality after 2 weeks' use.",
+            "card_bg_color": "#fdd4d4",
+            "card_border_color": "#ffffff",
+            "number_color": "#3d1b03",
+            "label_color": "#001755",
+            "caption_color": "#001755"
+          }
+        },
+        "stat_hdha8Q": {
+          "type": "stat",
+          "settings": {
+            "prefix": "",
+            "number": "[[100]]",
+            "postfix": "[[%]]",
+            "heading": "[[Faster Onset]]",
+            "text": "100% of trial participants fell asleep faster.",
+            "card_bg_color": "#ffffff66",
+            "card_border_color": "#ffffff66",
+            "number_color": "#3d1b03",
+            "label_color": "#3d1b03",
+            "caption_color": "#1e1e1e"
+          }
+        },
+        "stat_hxVVwj": {
+          "type": "stat",
+          "settings": {
+            "prefix": "[[>]]",
+            "number": "[[70]]",
+            "postfix": "[[%]]",
+            "heading": "[[Stayed Asleep]]",
+            "text": "Over 70% of trial participants slept through the night.",
+            "card_bg_color": "#ffffff66",
+            "card_border_color": "#ffffff66",
+            "number_color": "#3d1b03",
+            "label_color": "#3d1b03",
+            "caption_color": "#1e1e1e"
+          }
+        }
+      },
+      "block_order": [
+        "stat_LxMmDy",
+        "stat_hdha8Q",
+        "stat_hxVVwj"
+      ],
+      "name": "STE Therapy Editorial",
+      "settings": {
+        "hide_mobile": false,
+        "show_description_mobile": true,
+        "block_heading_tag": "h3",
+        "enable_top_gradient": true,
+        "gradient_color": "#ffffff",
+        "gradient_stop": 0,
+        "gradient_fade_end": 20,
+        "bg_color": "#f0e7f7",
+        "bg_gradient": "",
+        "text_color": "#001755",
+        "desktop_image": "shopify://shop_images/Group_20.png",
+        "desktop_image_position": "center center",
+        "mobile_image_position": "center center",
+        "heading": "Acoustic Resonance (( Therapy  modified for Sleep))",
+        "heading_tag": "h2",
+        "description": "<p><strong>Acoustic Resonance Therapy modified for Sleep</strong><br/>The brain has a natural tendency to synchronize its electrical cycles with external stimuli. When you are awake, your brain typically operates in Beta waves (13–30 Hz). To enter deep sleep, it must slow down to Delta waves (0.5–4 Hz). By playing low-frequency acoustic sounds, Spatial Sleep acts as a metronome. The brain’s activity shifts to the slower rhythm, manually downshifting the nervous system from alertness to calm.</p>",
+        "heading_color": "#001755",
+        "highlight_color": "#001755",
+        "description_color": "#001755",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 52,
+        "padding_bottom_mobile": 44
+      }
+    },
+    "app_banner": {
+      "type": "sonu-banner-sh",
+      "settings": {
+        "bg_image": "shopify://shop_images/Rectangle_50_9ef31dfe-5457-4b4c-8626-430e0b687970.webp",
+        "mobile_bg_image": "shopify://shop_images/Rectangle_5_fc9e341c-fe9d-4792-a51f-106b7166d57a.png",
+        "bg_color": "rgba(0,0,0,0)",
+        "bg_gradient": "",
+        "heading": "Your Breathing,\n((Personalized))",
+        "heading_tag": "h2",
+        "subtext": "<p>SONU Check uses your voice as a biomarker to help you keep track of your nasal breathing in real time.  Personalized to your nasal anatomy and your very own voice.</p>",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "heading_color": "#ffffff",
+        "description_color": "#ffffff",
+        "custom_html": "<div class=\"img-flex\">\n  <a href=\"#\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/0992/3166/2451/files/Group.png?v=1778794788\" \n      alt=\"Google Play\"\n    >\n  </a>\n\n  <a href=\"#\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/0992/3166/2451/files/App_Store.png?v=1778794774\" \n      alt=\"App Store\"\n    >\n  </a>\n</div>\n\n<style>\n  .img-flex{\n    display:flex;\n    align-items:center;\n    gap:16px;\n    flex-wrap:wrap;\njustify-content: right;\n  }\n\n  .img-flex a{\n    display:block;\n  }\n\n  .img-flex img{\n    display:block;\n    width:160px;\n    max-width:100%;\n    height:auto;\n  }\n\n  /* Desktop */\n  @media (min-width: 1024px){\n    .img-flex img{\n      width:180px;\n    }\n  }\n\n  /* Mobile */\n  @media (max-width: 767px){\n    .img-flex{\n      gap:12px;\njustify-content: center;\n    }\n\n    .img-flex img{\n      width:140px;\n    }\n  }\n</style>",
+        "content_position": "right",
+        "text_align": "left",
+        "mobile_layout_style": "image-top",
+        "mobile_text_align": "center",
+        "mobile_heading_color": "#001755",
+        "mobile_description_color": "#001755",
+        "mobile_content_bg": "#ffffff",
+        "btn1_text": "",
+        "btn1_link": "",
+        "btn2_text": "",
+        "btn2_link": ""
+      }
+    },
+    "faq": {
+      "type": "sonu-faq-sh",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "What will I hear after I tap “Sleep Now” on the app?",
+            "answer": "<p>You will hear melodies playing from the front of the headband, where the transducers are located. The transducers will also gently vibrate. </p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How long do I have to listen to the harmony ? ",
+            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How often should I use Spatial Sleep?",
+            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does the battery last between charges?",
+            "answer": "<p>The SONU band is the world’s first and only FDA 510-K cleared, drug- free, wearable therapy for symptoms related to allergic and nonallergic rhinitis. This includes nasal congestion, sneezing, runny nose, and nasal itching.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4"
+      ],
+      "name": "SONU FAQ",
+      "settings": {
+        "heading": "FAQ",
+        "heading_tag": "h2",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 70,
+        "padding_bottom_mobile": 14,
+        "bg_image_desktop": "shopify://shop_images/Rectangle_60_2.png",
+        "bg_image_mobile": "shopify://shop_images/Rectangle_60.png",
+        "bg_color": "#d2bee4",
+        "bg_gradient": ""
+      }
+    },
+    "tech_specs": {
+      "type": "custom-specification-sh",
+      "blocks": {
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/Icon_800x800_bb9f8e7a-ff33-4256-b385-49c951189f38.svg",
+            "heading": "What's Included",
+            "text": "<ul><li>One Spatial Sleep Headband</li><li>USB-C charging cable</li><li>Quick Start Guide</li></ul>"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/Isolation_Mode_800x800_6ce1f240-8c5e-45a4-b825-255f667db2bb.svg",
+            "heading": "Weight",
+            "text": "<ul><li>2.5 oz (72 g)</li></ul>"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/Icon_1_800x800_7814756d-0dd0-4c96-bd6b-df586c69a046.svg",
+            "heading": "Dimensions",
+            "text": "<ul><li>4 in x 7.8 in x 3.7 in</li><li>104 mm x 200 mm x 94 mm</li></ul>"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/Icon_2_800x800_c309aca6-aeca-43bf-a0b9-83b7cdf81fc5.svg",
+            "heading": "Material",
+            "text": "<ul><li>Hypoallergenic, soft fabric band</li></ul>"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/Icon_3_800x800_cb4d3201-9cb1-4570-9e8b-fd4667dce115.svg",
+            "heading": "Size",
+            "text": "<ul><li>One size fits all, adjustable</li></ul>"
+          }
+        },
+        "spec_6": {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/Icon_5_800x800_e9e1fafa-9f2b-4a79-b837-92f33fcafc35.svg",
+            "heading": "Compatibility",
+            "text": "<ul><li>Requires Android (except OnePlus) or iPhone 10 or newer, or iPad with Face ID</li></ul>"
+          }
+        },
+        "spec_7": {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/Icon_6_800x800_66f140de-1112-4247-9980-8910772f9bf1.svg",
+            "heading": "Warranty",
+            "text": "<ul><li>1-year limited warranty</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "spec_6",
+        "spec_7"
+      ],
+      "settings": {
+        "heading": "Tech Specifications",
+        "heading_tag": "h2",
+        "padding_top": 90,
+        "padding_bottom": 90,
+        "padding_top_mobile": 70,
+        "padding_bottom_mobile": 70,
+        "note_text": "",
+        "bg_image": "shopify://shop_images/Rectangle_65_1.png",
+        "mobile_bg_image": "shopify://shop_images/section-5-mobile_1_1.png",
+        "bg_color": "#d2bee4",
+        "bg_gradient": "",
+        "overlay_opacity": 0,
+        "text_color": "#ffffff",
+        "enable_bottom_radius_desktop": true,
+        "bottom_radius_desktop": 100,
+        "enable_bottom_radius_mobile": false,
+        "bottom_radius_mobile": 50
+      }
+    }
+  },
+  "order": [
+    "main",
+    "comparison",
+    "sonu_logo_list_PtxqbC",
+    "doctors_testimonials",
+    "card_slider",
+    "expectations_timeline",
+    "patient_testimonials",
+    "step_slider",
+    "spatial_therapy",
+    "app_banner",
+    "faq",
+    "tech_specs"
+  ]
+}
