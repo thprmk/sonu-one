@@ -1,11 +1,13 @@
 <style>
   #sonu-press-{{ section.id }} {
     position: relative;
-    z-index: 1000 !important;
+    z-index: 9999 !important;
     padding-top: {{ section.settings.padding_top | default: 80 }}px !important;
     padding-bottom: {{ section.settings.padding_bottom | default: 80 }}px !important;
     margin-bottom: -{{ section.settings.margin_bottom_negative | default: 40 }}px !important;
     overflow: hidden;
+    border-bottom-left-radius: {{ section.settings.bottom_border_radius | default: 0 }}px;
+    border-bottom-right-radius: {{ section.settings.bottom_border_radius | default: 0 }}px;
   }
 
   @media screen and (max-width: 768px) {
@@ -13,6 +15,8 @@
       padding-top: {{ section.settings.mobile_padding_top | default: 40 }}px !important;
       padding-bottom: {{ section.settings.mobile_padding_bottom | default: 26 }}px !important;
       margin-bottom: -{{ section.settings.margin_bottom_negative_mobile | default: 35 }}px !important;
+      border-bottom-left-radius: {{ section.settings.mobile_bottom_border_radius | default: 0 }}px;
+      border-bottom-right-radius: {{ section.settings.mobile_bottom_border_radius | default: 0 }}px;
     }
   }
 
@@ -22,6 +26,8 @@
     inset: 0;
     z-index: -1;
     overflow: hidden;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
   }
 
   .press-bg img {
@@ -831,6 +837,30 @@
       "default": 80,
       "unit": "px",
       "label": "Padding Bottom (Mobile)"
+    },
+    {
+      "type": "header",
+      "content": "Border Radius Settings"
+    },
+    {
+      "type": "range",
+      "id": "bottom_border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 0,
+      "unit": "px",
+      "label": "Bottom Border Radius (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_bottom_border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 0,
+      "unit": "px",
+      "label": "Bottom Border Radius (Mobile)"
     },
     {
       "type": "image_picker",
