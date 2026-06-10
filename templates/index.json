@@ -44,7 +44,7 @@
             "image_mobile": "shopify://shop_images/Screenshot_2026-04-24_at_6.45.04_PM_1_2.png",
             "toggle_overlay": false,
             "overlay_color": "#00000033",
-            "position": "middle-center",
+            "position": "top-center",
             "position_mobile": "middle",
             "color_scheme": "scheme-2",
             "pagination_label": ""
