@@ -421,6 +421,11 @@
 
               {%- if block.settings.quote != blank -%}
                 {%- assign quote_tag = block.settings.heading_tag | default: 'h2' -%}
+                {%- assign quote_text = block.settings.quote | replace: '"', '' | replace: '“', '' -%}
+                {%- assign formatted_quote = quote_text 
+                  | replace: '[[', '<em class="highlight-text relative z--1 highlight-text--standard highlight-text--color-inherit animate" is="highlight-text" style="--hl-font-style: italic;">' 
+                  | replace: ']]', '</em>' 
+                -%}
                 <{{ quote_tag }} class="main-quote" style="
                   {% if block.settings.quote_font_size != blank %}
                     --quote-font-size-mobile: {{ block.settings.quote_font_size }}px;
@@ -429,7 +434,7 @@
                     --quote-font-size-desktop: {{ block.settings.quote_font_size_desktop }}px;
                   {% endif %}
                 ">
-                  “{{ block.settings.quote | replace: '"', '' | replace: '“', '' }}”
+                  “{{ formatted_quote }}”
                 </{{ quote_tag }}>
               {%- endif -%}
 
@@ -534,12 +539,17 @@
 
               {%- if block.settings.quote != blank -%}
                 {%- assign quote_tag = block.settings.heading_tag | default: 'h2' -%}
+                {%- assign quote_text = block.settings.quote | replace: '"', '' | replace: '“', '' -%}
+                {%- assign formatted_quote = quote_text 
+                  | replace: '[[', '<em class="highlight-text relative z--1 highlight-text--standard highlight-text--color-inherit animate" is="highlight-text" style="--hl-font-style: italic;">' 
+                  | replace: ']]', '</em>' 
+                -%}
                 <{{ quote_tag }} class="main-quote" style="
                   {% if block.settings.quote_font_size != blank %}
                     --quote-font-size-mobile: {{ block.settings.quote_font_size }}px;
                   {% endif %}
                 ">
-                  “{{ block.settings.quote | replace: '"', '' | replace: '“', '' }}”
+                  “{{ formatted_quote }}”
                 </{{ quote_tag }}>
               {%- endif -%}
 
