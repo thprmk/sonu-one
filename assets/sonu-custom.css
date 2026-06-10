@@ -4449,3 +4449,26 @@ h6 em,
   font-style: var(--font-highlight-secondary--style, italic) !important;
   font-weight: var(--font-highlight-secondary--weight, 400) !important;
 }
+
+/* Custom Slide Content Mobile Positioning */
+@media screen and (max-width: 768px) {
+  .section-slideshow .slide__inner {
+    transform: translateY(var(--mobile-offset-y, 0px));
+  }
+}
+
+/* Custom Responsive Heading Breakpoint */
+.heading-br-space {
+  display: inline;
+}
+.heading-br-line {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .heading-br-space {
+    display: none;
+  }
+  .heading-br-line {
+    display: inline;
+  }
+}

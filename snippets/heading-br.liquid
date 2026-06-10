@@ -1,0 +1,24 @@
+{%- comment -%}
+  Renders a heading text with {{br}}, [br], or {br} replaced by a responsive breakpoint span.
+  Accepts:
+  - heading: {string} The heading text
+{%- endcomment -%}
+{%- liquid
+  assign clean_heading = heading
+
+  if clean_heading contains '{{br}}'
+    assign clean_heading = clean_heading | replace: ' {{br}} ', '{{br}}' | replace: ' {{br}}', '{{br}}' | replace: '{{br}} ', '{{br}}' | replace: '{{br}}', '<span class="heading-br-space"> </span><br class="heading-br-line">'
+  endif
+  if clean_heading contains '{{ br }}'
+    assign clean_heading = clean_heading | replace: ' {{ br }} ', '{{ br }}' | replace: ' {{ br }}', '{{ br }}' | replace: '{{ br }} ', '{{ br }}' | replace: '{{ br }}', '<span class="heading-br-space"> </span><br class="heading-br-line">'
+  endif
+  if clean_heading contains '[br]'
+    assign clean_heading = clean_heading | replace: ' [br] ', '[br]' | replace: ' [br]', '[br]' | replace: '[br] ', '[br]' | replace: '[br]', '<span class="heading-br-space"> </span><br class="heading-br-line">'
+  endif
+  if clean_heading contains '{br}'
+    assign clean_heading = clean_heading | replace: ' {br} ', '{br}' | replace: ' {br}', '{br}' | replace: '{br} ', '{br}' | replace: '{br}', '<span class="heading-br-space"> </span><br class="heading-br-line">'
+  endif
+
+  echo clean_heading
+-%}
+

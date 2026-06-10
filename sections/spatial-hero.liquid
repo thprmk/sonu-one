@@ -125,7 +125,10 @@
         {% endif %}
 
         {% if section.settings.heading != blank %}
-          {% assign sbh_heading = section.settings.heading
+          {% capture heading_with_br %}
+            {% render 'heading-br', heading: section.settings.heading %}
+          {% endcapture %}
+          {% assign sbh_heading = heading_with_br
             | replace: '[[', '<span class="sbh-serif-highlight">'
             | replace: ']]', '</span>'
             | newline_to_br

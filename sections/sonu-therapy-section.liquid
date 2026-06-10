@@ -11,7 +11,10 @@
       <!-- LEFT COLUMN: Editorial Content -->
       <div class="sonu-therapy-editorial-content sonu-therapy-animate-blur sonu-therapy-delay-4">
         {% if section.settings.heading != blank %}
-          {% assign formatted_heading = section.settings.heading
+          {% capture heading_with_br %}
+            {% render 'heading-br', heading: section.settings.heading %}
+          {% endcapture %}
+          {% assign formatted_heading = heading_with_br
             | replace: '[[', '<span class="sonu-therapy-highlight">'
             | replace: ']]', '</span>'
             | newline_to_br
@@ -76,7 +79,7 @@
 
               {% if block.settings.heading != blank %}
                 <h3 class="sonu-therapy-stat-heading">
-                  {{ block.settings.heading }}
+                  {% render 'heading-br', heading: block.settings.heading %}
                 </h3>
               {% endif %}
             </div>

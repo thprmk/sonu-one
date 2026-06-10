@@ -184,7 +184,7 @@
   >
     {%- if block.settings.heading != blank -%}
       <h2 class="video-testimonials__heading {{ block.settings.heading_preset }}">
-        {{ block.settings.heading }}
+        {% render 'heading-br', heading: block.settings.heading %}
       </h2>
     {%- endif -%}
     <div class="video-testimonials__videos">
@@ -213,7 +213,7 @@
           <div class="dialog__content flex flex-col gap-3">
             {%- if block.settings.heading != blank -%}
               <h2 class="{{ block.settings.heading_preset }}">
-                {{ block.settings.heading }}
+                {% render 'heading-br', heading: block.settings.heading %}
               </h2>
             {%- endif -%}
             <flex-carousel

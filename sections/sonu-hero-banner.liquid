@@ -173,10 +173,12 @@
           {% assign sonu_heading = section.settings.heading
             | replace: '[[', '<span class="sonu-highlight">'
             | replace: ']]', '</span>'
-            | newline_to_br
           %}
+          {% capture sonu_heading_with_br %}
+            {% render 'heading-br', heading: sonu_heading %}
+          {% endcapture %}
           <h1 class="sonu-heading">
-            {{ sonu_heading }}
+            {{ sonu_heading_with_br | newline_to_br }}
           </h1>
         {% endif %}
 

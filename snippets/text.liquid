@@ -140,8 +140,11 @@ assign text_alignment_mobile = text_alignment_mobile | default: block_settings.c
   endif
 -%}
 
+{%- capture render_text_with_br -%}
+  {% render 'heading-br', heading: render_text %}
+{%- endcapture -%}
 {%- capture render_text -%}
-  {{ render_text
+  {{ render_text_with_br
     | replace: '[[', '<span class="sonu-highlight">'
     | replace: ']]', '</span>'
   }}

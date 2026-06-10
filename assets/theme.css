@@ -11273,3 +11273,20 @@ body:not(:has(.header[is=sticky-header])) .section--scrolling-layers {
   margin-top: 10px !important;
 }
 
+/* Custom Responsive Heading Breakpoint */
+.heading-br-space {
+  display: inline;
+}
+.heading-br-line {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .heading-br-space {
+    display: none;
+  }
+  .heading-br-line {
+    display: inline;
+  }
+}
+
+

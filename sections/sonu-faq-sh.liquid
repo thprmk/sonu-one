@@ -25,7 +25,7 @@
   <div class="sonu-faq-container">
 
     <{{ section.settings.heading_tag | default: 'h2' }} class="sonu-faq-heading">
-      {{ section.settings.heading }}
+      {% render 'heading-br', heading: section.settings.heading %}
     </{{ section.settings.heading_tag | default: 'h2' }}>
 
     <div class="sonu-faq-list">

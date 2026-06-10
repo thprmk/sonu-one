@@ -39,7 +39,10 @@
   {%- endif -%}
 
   {%- if heading != blank -%}
-    {%- assign formatted_heading = heading 
+    {%- capture heading_with_br -%}
+      {%- render 'heading-br', heading: heading -%}
+    {%- endcapture -%}
+    {%- assign formatted_heading = heading_with_br
       | replace: '<br>', newline 
       | replace: '<br/>', newline 
       | replace: '<br />', newline 
@@ -55,7 +58,10 @@
   {%- endif -%}
 
   {%- if subheading != blank -%}
-    {%- assign formatted_subheading = subheading 
+    {%- capture subheading_with_br -%}
+      {%- render 'heading-br', heading: subheading -%}
+    {%- endcapture -%}
+    {%- assign formatted_subheading = subheading_with_br
       | replace: '<br>', newline 
       | replace: '<br/>', newline 
       | replace: '<br />', newline 

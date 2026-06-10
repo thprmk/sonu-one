@@ -38,6 +38,16 @@
   
   {%- if settings.height == 'fill' -%}
     --size-style-height: 100%;
+  {%- elsif settings.height == 'custom' and settings.custom_height != blank -%}
+    --size-style-height: {{ settings.custom_height }}px;
+  {%- endif -%}
+
+  {%- if settings.height_mobile == 'fill' -%}
+    --size-style-height-mobile: 100%;
+  {%- elsif settings.height_mobile == 'custom' and settings.custom_height_mobile != blank -%}
+    --size-style-height-mobile: {{ settings.custom_height_mobile }}px;
+  {%- elsif settings.height_mobile == 'auto' -%}
+    --size-style-height-mobile: auto;
   {%- endif -%}
 {%- endcapture -%}
 {{- size_style | strip | strip_newlines -}}

@@ -81,7 +81,7 @@
 
             <div class="card-content sonu-blur-in sonu-blur-in--d1">
               {%- assign card_heading = block.settings.heading_tag | default: 'h3' -%}
-              <{{ card_heading }}>{{ block.settings.title }}</{{ card_heading }}>
+              <{{ card_heading }}>{% render 'heading-br', heading: block.settings.title %}</{{ card_heading }}>
               <div class="card-desc">{{ block.settings.description }}</div>
             </div>
 

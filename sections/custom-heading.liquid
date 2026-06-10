@@ -41,7 +41,7 @@
 
   <div class="page-width">
     <h2 class="custom-heading-{{ section.id }}">
-      {{ section.settings.heading }}
+      {% render 'heading-br', heading: section.settings.heading %}
     </h2>
   </div>
 </section>
