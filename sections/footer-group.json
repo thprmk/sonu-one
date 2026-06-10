@@ -14,12 +14,13 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "logo_width": 180,
+        "logo": "shopify://shop_images/Layer_1_4_a7d46f97-70e6-40ca-a197-ccdea08ac83a.png",
+        "logo_width": 210,
         "logo_link": "",
         "bg_color": "#0c1b24",
         "bg_gradient": "",
         "margin_top": 0,
-        "margin_top_mobile": -55,
+        "margin_top_mobile": -45,
         "padding_top": 80,
         "padding_bottom": 40,
         "text_color": "#ffffff",
