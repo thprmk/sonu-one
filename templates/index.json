@@ -633,8 +633,8 @@
         "description": "<p>Your head and neck are command centers packed with bio-sensors directly wired to your body's regulatory systems. Through forehead bone conduction, we harness the skull's natural resonance to harmonize your nervous system — unlocking deeper recovery, balance, and focus.</p>",
         "padding_top": 40,
         "padding_bottom": 40,
-        "mobile_padding_top": 40,
-        "mobile_padding_bottom": 40
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 50
       }
     },
     "doctors_testimonials_dg6NG8": {
