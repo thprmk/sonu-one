@@ -591,259 +591,277 @@
 </div>
 <script>
   (function() {
+    // Wait for DOM to be fully loaded
     function initTestimonialSection(sectionContainer) {
       if (!sectionContainer) return;
+      
+      // Small delay to ensure DOM is ready
+      setTimeout(function() {
+        // --- DESKTOP SLIDER LOGIC ---
+        try {
+          const desktopSlider = sectionContainer.querySelector('.desktop-only-slider');
+          if (desktopSlider && desktopSlider.querySelectorAll('.testimonial-slide').length > 0) {
+            const track = desktopSlider.querySelector('.testimonial-slider-track');
+            const slides = desktopSlider.querySelectorAll('.testimonial-slide');
+            const totalSlides = slides.length;
+            let currentIndex = 0;
 
-      // --- DESKTOP SLIDER LOGIC ---
-      const desktopSlider = sectionContainer.querySelector('.desktop-only-slider');
-      if (desktopSlider && desktopSlider.querySelectorAll('.testimonial-slide').length > 0) {
-        const track = desktopSlider.querySelector('.testimonial-slider-track');
-        const slides = desktopSlider.querySelectorAll('.testimonial-slide');
-        const totalSlides = slides.length;
-        let currentIndex = 0;
+            const counterDisplay = desktopSlider.querySelector('.current-index');
+            const progressFill = desktopSlider.querySelector('.indicator-line-fill');
 
-        const counterDisplay = desktopSlider.querySelector('.current-index');
-        const progressFill = desktopSlider.querySelector('.indicator-line-fill');
+            function updateSlider() {
+              if (!track) return;
+              const translateXValue = -(currentIndex * 100);
+              track.style.transform = 'translateX(' + translateXValue + '%)';
+              const fillPercentage = ((currentIndex + 1) / totalSlides) * 100;
+              if (counterDisplay) counterDisplay.textContent = currentIndex + 1;
+              if (progressFill) progressFill.style.width = fillPercentage + '%';
+            }
 
-        function updateSlider() {
-          const translateXValue = -(currentIndex * 100);
-          track.style.transform = `translateX(${translateXValue}%)`;
-          const fillPercentage = ((currentIndex + 1) / totalSlides) * 100;
-          if (counterDisplay) counterDisplay.textContent = currentIndex + 1;
-          if (progressFill) progressFill.style.width = fillPercentage + '%';
-        }
+            function nextSlide() {
+              currentIndex = (currentIndex + 1) % totalSlides;
+              updateSlider();
+            }
 
-        function nextSlide() {
-          currentIndex = (currentIndex + 1) % totalSlides;
-          updateSlider();
-        }
+            function prevSlide() {
+              currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+              updateSlider();
+            }
 
-        function prevSlide() {
-          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-          updateSlider();
-        }
+            const nextBtn = desktopSlider.querySelector('.desktop-testimonial-next');
+            const prevBtn = desktopSlider.querySelector('.desktop-testimonial-prev');
+            
+            if (nextBtn) {
+              nextBtn.removeEventListener('click', nextSlide);
+              nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                nextSlide();
+                return false;
+              });
+            }
+            if (prevBtn) {
+              prevBtn.removeEventListener('click', prevSlide);
+              prevBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                prevSlide();
+                return false;
+              });
+            }
 
-        const nextBtn = desktopSlider.querySelector('.desktop-testimonial-next');
-        const prevBtn = desktopSlider.querySelector('.desktop-testimonial-prev');
-        
-        if (nextBtn) nextBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          nextSlide();
-        });
-        if (prevBtn) prevBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          prevSlide();
-        });
-
-        updateSlider();
-      }
-
-      // --- MOBILE SLIDERS LOGIC ---
-      const mobileSlider = sectionContainer.querySelector('.mobile-only-slider');
-      if (mobileSlider) {
-        // Get all elements
-        const videoTrack = mobileSlider.querySelector('.mobile-video-track');
-        const videoSlides = mobileSlider.querySelectorAll('.mobile-video-slide');
-        const testimonialTrack = mobileSlider.querySelector('.mobile-testimonial-track');
-        const testimonialSlides = mobileSlider.querySelectorAll('.mobile-testimonial-slide');
-        
-        const totalVideos = videoSlides.length;
-        const totalTestimonials = testimonialSlides.length;
-        
-        let currentVideoIndex = 0;
-        let currentTestimonialIndex = 0;
-        
-        const counterDisplay = mobileSlider.querySelector('.current-index');
-        const progressFill = mobileSlider.querySelector('.indicator-line-fill');
-        
-        // Function to update video slider
-        function updateVideoSlider() {
-          if (totalVideos === 0) return;
-          const translateXValue = -(currentVideoIndex * 100);
-          videoTrack.style.transform = 'translateX(' + translateXValue + '%)';
-        }
-        
-        // Function to update testimonial slider
-        function updateTestimonialSlider() {
-          if (totalTestimonials === 0) return;
-          const translateXValue = -(currentTestimonialIndex * 100);
-          testimonialTrack.style.transform = 'translateX(' + translateXValue + '%)';
-          
-          // Update counter and progress bar (use testimonial index as master)
-          const fillPercentage = ((currentTestimonialIndex + 1) / totalTestimonials) * 100;
-          if (counterDisplay) counterDisplay.textContent = currentTestimonialIndex + 1;
-          if (progressFill) progressFill.style.width = fillPercentage + '%';
-        }
-        
-        // Video navigation functions
-        function nextVideo() {
-          currentVideoIndex = (currentVideoIndex + 1) % totalVideos;
-          updateVideoSlider();
-        }
-        
-        function prevVideo() {
-          currentVideoIndex = (currentVideoIndex - 1 + totalVideos) % totalVideos;
-          updateVideoSlider();
-        }
-        
-        // Testimonial navigation functions
-        function nextTestimonial() {
-          currentTestimonialIndex = (currentTestimonialIndex + 1) % totalTestimonials;
-          updateTestimonialSlider();
-          // Also sync video index if they should stay together
-          if (currentVideoIndex !== currentTestimonialIndex) {
-            currentVideoIndex = currentTestimonialIndex;
-            updateVideoSlider();
+            updateSlider();
           }
+        } catch(e) {
+          console.warn('Desktop slider error:', e);
         }
-        
-        function prevTestimonial() {
-          currentTestimonialIndex = (currentTestimonialIndex - 1 + totalTestimonials) % totalTestimonials;
-          updateTestimonialSlider();
-          // Also sync video index if they should stay together
-          if (currentVideoIndex !== currentTestimonialIndex) {
-            currentVideoIndex = currentTestimonialIndex;
-            updateVideoSlider();
-          }
-        }
-        
-        // Get buttons
-        const videoNextBtn = mobileSlider.querySelector('.mobile-video-next');
-        const videoPrevBtn = mobileSlider.querySelector('.mobile-video-prev');
-        const testimonialNextBtn = mobileSlider.querySelector('.mobile-testimonial-next');
-        const testimonialPrevBtn = mobileSlider.querySelector('.mobile-testimonial-prev');
-        
-        // Add click listeners
-        if (videoNextBtn) {
-          videoNextBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            nextVideo();
-            // Optionally sync testimonial
-            if (currentTestimonialIndex !== currentVideoIndex) {
-              currentTestimonialIndex = currentVideoIndex;
+
+        // --- MOBILE SLIDERS LOGIC ---
+        try {
+          const mobileSlider = sectionContainer.querySelector('.mobile-only-slider');
+          if (mobileSlider) {
+            // Get all elements
+            const videoTrack = mobileSlider.querySelector('.mobile-video-track');
+            const videoSlides = mobileSlider.querySelectorAll('.mobile-video-slide');
+            const testimonialTrack = mobileSlider.querySelector('.mobile-testimonial-track');
+            const testimonialSlides = mobileSlider.querySelectorAll('.mobile-testimonial-slide');
+            
+            const totalVideos = videoSlides.length;
+            const totalTestimonials = testimonialSlides.length;
+            
+            if (totalVideos === 0 && totalTestimonials === 0) return;
+            
+            let currentVideoIndex = 0;
+            let currentTestimonialIndex = 0;
+            
+            const counterDisplay = mobileSlider.querySelector('.current-index');
+            const progressFill = mobileSlider.querySelector('.indicator-line-fill');
+            
+            // Function to update video slider
+            function updateVideoSlider() {
+              if (!videoTrack || totalVideos === 0) return;
+              const translateXValue = -(currentVideoIndex * 100);
+              videoTrack.style.transform = 'translateX(' + translateXValue + '%)';
+            }
+            
+            // Function to update testimonial slider
+            function updateTestimonialSlider() {
+              if (!testimonialTrack || totalTestimonials === 0) return;
+              const translateXValue = -(currentTestimonialIndex * 100);
+              testimonialTrack.style.transform = 'translateX(' + translateXValue + '%)';
+              
+              // Update counter and progress bar
+              const fillPercentage = ((currentTestimonialIndex + 1) / totalTestimonials) * 100;
+              if (counterDisplay) counterDisplay.textContent = currentTestimonialIndex + 1;
+              if (progressFill) progressFill.style.width = fillPercentage + '%';
+            }
+            
+            // Video navigation functions
+            function nextVideo() {
+              if (totalVideos === 0) return;
+              currentVideoIndex = (currentVideoIndex + 1) % totalVideos;
+              updateVideoSlider();
+            }
+            
+            function prevVideo() {
+              if (totalVideos === 0) return;
+              currentVideoIndex = (currentVideoIndex - 1 + totalVideos) % totalVideos;
+              updateVideoSlider();
+            }
+            
+            // Testimonial navigation functions
+            function nextTestimonial() {
+              if (totalTestimonials === 0) return;
+              currentTestimonialIndex = (currentTestimonialIndex + 1) % totalTestimonials;
               updateTestimonialSlider();
+              // Sync video index
+              if (currentVideoIndex !== currentTestimonialIndex && totalVideos > 0) {
+                currentVideoIndex = currentTestimonialIndex;
+                updateVideoSlider();
+              }
             }
-          });
-        }
-        
-        if (videoPrevBtn) {
-          videoPrevBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            prevVideo();
-            if (currentTestimonialIndex !== currentVideoIndex) {
-              currentTestimonialIndex = currentVideoIndex;
+            
+            function prevTestimonial() {
+              if (totalTestimonials === 0) return;
+              currentTestimonialIndex = (currentTestimonialIndex - 1 + totalTestimonials) % totalTestimonials;
               updateTestimonialSlider();
-            }
-          });
-        }
-        
-        if (testimonialNextBtn) {
-          testimonialNextBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            nextTestimonial();
-          });
-        }
-        
-        if (testimonialPrevBtn) {
-          testimonialPrevBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            prevTestimonial();
-          });
-        }
-        
-        // Add touch swipe support
-        function addTouchSwipe(element, onSwipeLeft, onSwipeRight) {
-          if (!element) return;
-          let touchStartX = 0;
-          let touchEndX = 0;
-          
-          element.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-          }, { passive: true });
-          
-          element.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) {
-              if (diff > 0) {
-                onSwipeLeft();
-              } else {
-                onSwipeRight();
+              // Sync video index
+              if (currentVideoIndex !== currentTestimonialIndex && totalVideos > 0) {
+                currentVideoIndex = currentTestimonialIndex;
+                updateVideoSlider();
               }
             }
-          }, { passive: true });
-        }
-        
-        // Add swipe to video slider
-        if (videoTrack) {
-          addTouchSwipe(videoTrack, () => nextVideo(), () => prevVideo());
-        }
-        
-        // Add swipe to testimonial slider
-        if (testimonialTrack) {
-          addTouchSwipe(testimonialTrack, () => nextTestimonial(), () => prevTestimonial());
-        }
-        
-        // Initialize both sliders
-        updateVideoSlider();
-        updateTestimonialSlider();
-        
-        // Debug - log to console to verify buttons are found
-        console.log('Mobile sliders initialized:', {
-          videoTrack: !!videoTrack,
-          videoSlides: totalVideos,
-          testimonialTrack: !!testimonialTrack,
-          testimonialSlides: totalTestimonials,
-          videoNextBtn: !!videoNextBtn,
-          videoPrevBtn: !!videoPrevBtn,
-          testimonialNextBtn: !!testimonialNextBtn,
-          testimonialPrevBtn: !!testimonialPrevBtn
-        });
-      }
-
-      // Shopify editor block selection sync
-      if (window.Shopify && Shopify.designMode) {
-        sectionContainer.addEventListener('shopify:block:select', function(e) {
-          const block = e.target;
-          const index = block.getAttribute('data-index');
-          if (index !== null) {
-            const slideIndex = parseInt(index);
-            if (!isNaN(slideIndex)) {
-              // For desktop
-              const desktopTrack = sectionContainer.querySelector('.desktop-only-slider .testimonial-slider-track');
-              if (desktopTrack) {
-                desktopTrack.style.transform = `translateX(-${slideIndex * 100}%)`;
+            
+            // Get buttons and attach events
+            const videoNextBtn = mobileSlider.querySelector('.mobile-video-next');
+            const videoPrevBtn = mobileSlider.querySelector('.mobile-video-prev');
+            const testimonialNextBtn = mobileSlider.querySelector('.mobile-testimonial-next');
+            const testimonialPrevBtn = mobileSlider.querySelector('.mobile-testimonial-prev');
+            
+            // Helper to safely attach event listener
+            function attachClick(element, handler) {
+              if (element) {
+                // Remove any existing listeners
+                const newElement = element.cloneNode(true);
+                element.parentNode.replaceChild(newElement, element);
+                newElement.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handler();
+                  return false;
+                });
+                return newElement;
               }
-              // For mobile
-              const mobileVideoTrack = sectionContainer.querySelector('.mobile-only-slider .mobile-video-track');
-              const mobileTestimonialTrack = sectionContainer.querySelector('.mobile-only-slider .mobile-testimonial-track');
-              if (mobileVideoTrack) {
-                mobileVideoTrack.style.transform = `translateX(-${slideIndex * 100}%)`;
-              }
-              if (mobileTestimonialTrack) {
-                mobileTestimonialTrack.style.transform = `translateX(-${slideIndex * 100}%)`;
+              return element;
+            }
+            
+            // Attach all button events
+            if (videoNextBtn) {
+              const btn = attachClick(videoNextBtn, nextVideo);
+              if (totalVideos > 0 && totalTestimonials > 0) {
+                btn.addEventListener('click', function() {
+                  if (currentTestimonialIndex !== currentVideoIndex) {
+                    currentTestimonialIndex = currentVideoIndex;
+                    updateTestimonialSlider();
+                  }
+                });
               }
             }
+            
+            if (videoPrevBtn) {
+              attachClick(videoPrevBtn, prevVideo);
+            }
+            
+            if (testimonialNextBtn) {
+              attachClick(testimonialNextBtn, nextTestimonial);
+            }
+            
+            if (testimonialPrevBtn) {
+              attachClick(testimonialPrevBtn, prevTestimonial);
+            }
+            
+            // Add touch swipe support
+            function addTouchSwipe(element, onSwipeLeft, onSwipeRight) {
+              if (!element) return;
+              let touchStartX = 0;
+              let touchEndX = 0;
+              
+              element.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+              }, { passive: true });
+              
+              element.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                  if (diff > 0) {
+                    onSwipeLeft();
+                  } else {
+                    onSwipeRight();
+                  }
+                }
+              }, { passive: true });
+            }
+            
+            // Add swipe to video slider
+            if (videoTrack && totalVideos > 1) {
+              addTouchSwipe(videoTrack, nextVideo, prevVideo);
+            }
+            
+            // Add swipe to testimonial slider
+            if (testimonialTrack && totalTestimonials > 1) {
+              addTouchSwipe(testimonialTrack, nextTestimonial, prevTestimonial);
+            }
+            
+            // Initialize both sliders
+            updateVideoSlider();
+            updateTestimonialSlider();
           }
-        });
-      }
+        } catch(e) {
+          console.warn('Mobile slider error:', e);
+        }
+      }, 100);
     }
 
-    // Initialize on page load
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('[id^="TestimonialSection-"]').forEach(initTestimonialSection);
+    // Initialize all sections
+    function initAllSections() {
+      const sections = document.querySelectorAll('[id^="TestimonialSection-"]');
+      sections.forEach(function(section) {
+        initTestimonialSection(section);
       });
-    } else {
-      document.querySelectorAll('[id^="TestimonialSection-"]').forEach(initTestimonialSection);
     }
 
-    // Re-initialize on Shopify section load
-    document.addEventListener('shopify:section:load', (e) => {
+    // Run initialization
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAllSections);
+    } else {
+      initAllSections();
+    }
+
+    // Handle dynamic content and theme editor
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.addedNodes.length) {
+            mutation.addedNodes.forEach(function(node) {
+              if (node.nodeType === 1 && node.id && node.id.indexOf('TestimonialSection-') === 0) {
+                initTestimonialSection(node);
+              }
+              if (node.querySelectorAll) {
+                const foundSections = node.querySelectorAll('[id^="TestimonialSection-"]');
+                foundSections.forEach(function(section) {
+                  initTestimonialSection(section);
+                });
+              }
+            });
+          }
+        });
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // Shopify theme editor reload
+    document.addEventListener('shopify:section:load', function(e) {
       const section = e.target.querySelector('[id^="TestimonialSection-"]');
       if (section) initTestimonialSection(section);
     });
