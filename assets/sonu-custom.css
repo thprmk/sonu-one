@@ -4248,6 +4248,7 @@
     white-space: nowrap !important;
     /* Force onto one line exactly like Figma */
     letter-spacing: 0em !important;
+    color: white!important;
   }
 
   /* Match Figma Mobile Button (Black Pill, White Text, No Icon) */
