@@ -321,7 +321,7 @@
       "name": "t:names.slideshow_minimal",
       "settings": {
         "container": "full",
-        "slide_height": "adapt",
+        "slide_height": "large",
         "content_position": "inside",
         "enable_header_overlay": false,
         "allow_next_section_overlap": false,
