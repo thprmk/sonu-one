@@ -463,12 +463,12 @@
           <div class="indicator-line-fill"></div>
         </div>
         <div class="nav-arrows">
-          <button class="nav-arrow prev-slide" aria-label="Previous Slide">
+          <button class="nav-arrow desktop-testimonial-prev" aria-label="Previous Slide">
             <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          <button class="nav-arrow next-slide" aria-label="Next Slide">
+          <button class="nav-arrow desktop-testimonial-next" aria-label="Next Slide">
             <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -574,12 +574,12 @@
           <div class="indicator-line-fill"></div>
         </div>
         <div class="nav-arrows">
-          <button class="nav-arrow prev-slide" aria-label="Previous Slide">
+          <button class="nav-arrow mobile-testimonial-prev" aria-label="Previous Slide">
             <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          <button class="nav-arrow next-slide" aria-label="Next Slide">
+          <button class="nav-arrow mobile-testimonial-next" aria-label="Next Slide">
             <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -643,11 +643,11 @@
       }
 
       desktopSlider.addEventListener('click', function(e) {
-        if (e.target.closest('.next-slide')) {
+        if (e.target.closest('.desktop-testimonial-next')) {
           e.preventDefault();
           showSlide(currentIndex + 1);
         }
-        if (e.target.closest('.prev-slide')) {
+        if (e.target.closest('.desktop-testimonial-prev')) {
           e.preventDefault();
           showSlide(currentIndex - 1);
         }
@@ -724,11 +724,11 @@
           showVideo(currentVideoIndex - 1);
         }
         // Testimonial text navigation (bottom arrows)
-        if (e.target.closest('.next-slide')) {
+        if (e.target.closest('.mobile-testimonial-next')) {
           e.preventDefault();
           showTestimonial(currentTestimonialIndex + 1);
         }
-        if (e.target.closest('.prev-slide')) {
+        if (e.target.closest('.mobile-testimonial-prev')) {
           e.preventDefault();
           showTestimonial(currentTestimonialIndex - 1);
         }
