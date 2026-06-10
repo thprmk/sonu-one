@@ -152,6 +152,10 @@
 }
 
 /* LINKS GRID */
+.custom-footer-links-column-wrapper {
+  display: contents;
+}
+
 .custom-footer-links-grid {
   grid-column: 2;
   grid-row: 2;
@@ -298,38 +302,18 @@
     font-weight: 500;
   }
 
+  .custom-footer-links-column-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
   .custom-footer-links-grid {
     order: 3;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    row-gap: 40px;
     column-gap: 20px;
     width: 100%;
-  }
-
-  .custom-footer-col {
-    grid-column: span 1;
-  }
-
-  .col-company {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .col-support {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .col-resources {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .col-connect {
-    grid-column: 2;
-    grid-row: 2;
-    margin-top: 0;
   }
 
   .custom-footer-col h4 {
@@ -458,37 +442,44 @@
 
     <!-- LINKS GRID -->
     <div class="custom-footer-links-grid">
-      <!-- COMPANY -->
-      <div class="custom-footer-col col-company">
-        <h4>Company</h4>
-        <a href="/pages/about-us">About Us</a>
-        <a href="/pages/leadership">Leadership</a>
-        <a href="/pages/medical-advisory-board">Medical Advisory Board</a>
-        <a href="/pages/careers">Careers</a>
-        <a href="/pages/newsroom">Newsroom</a>
+      <!-- COLUMN 1 (Company & Resources) -->
+      <div class="custom-footer-links-column-wrapper">
+        <!-- COMPANY -->
+        <div class="custom-footer-col col-company">
+          <h4>Company</h4>
+          <a href="/pages/about-us">About Us</a>
+          <a href="/pages/leadership">Leadership</a>
+          <a href="/pages/medical-advisory-board">Medical Advisory Board</a>
+          <a href="/pages/careers">Careers</a>
+          <a href="/pages/newsroom">Newsroom</a>
+        </div>
+        <!-- RESOURCES -->
+        <div class="custom-footer-col col-resources">
+          <h4>Resources</h4>
+          <a href="/pages/collateral-library">Collateral Library</a>
+          <a href="/pages/health-care-professional">Health Care Professional</a>
+          <a href="/pages/learn">Learn</a>
+        </div>
       </div>
-      <!-- SUPPORT -->
-      <div class="custom-footer-col col-support">
-        <h4>Support</h4>
-        <a href="/pages/faq">FAQ</a>
-        <a href="/pages/contact-us">Contact Us</a>
-        <a href="/pages/partners">Partners</a>
-      </div>
-      <!-- RESOURCES -->
-      <div class="custom-footer-col col-resources">
-        <h4>Resources</h4>
-        <a href="/pages/collateral-library">Collateral Library</a>
-        <a href="/pages/health-care-professional">Health Care Professional</a>
-        <a href="/pages/learn">Learn</a>
-      </div>
-      <!-- CONNECT -->
-      <div class="custom-footer-col col-connect">
-        <h4>Connect</h4>
-        <a href="https://facebook.com/SoundHealth" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://instagram.com/SoundHealth" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://x.com/SoundHealth" target="_blank" rel="noopener">X</a>
-        <a href="https://linkedin.com/company/SoundHealth" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://youtube.com/SoundHealth" target="_blank" rel="noopener">Youtube</a>
+
+      <!-- COLUMN 2 (Support & Connect) -->
+      <div class="custom-footer-links-column-wrapper">
+        <!-- SUPPORT -->
+        <div class="custom-footer-col col-support">
+          <h4>Support</h4>
+          <a href="/pages/faq">FAQ</a>
+          <a href="/pages/contact-us">Contact Us</a>
+          <a href="/pages/partners">Partners</a>
+        </div>
+        <!-- CONNECT -->
+        <div class="custom-footer-col col-connect">
+          <h4>Connect</h4>
+          <a href="https://facebook.com/SoundHealth" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://instagram.com/SoundHealth" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://x.com/SoundHealth" target="_blank" rel="noopener">X</a>
+          <a href="https://linkedin.com/company/SoundHealth" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://youtube.com/SoundHealth" target="_blank" rel="noopener">Youtube</a>
+        </div>
       </div>
     </div>
 
