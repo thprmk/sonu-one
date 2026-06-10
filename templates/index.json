@@ -520,7 +520,7 @@
       "name": "Premium Carousel",
       "settings": {
         "heading": "<span style=\"white-space: nowrap;\">Precision therapeutics</span><br>\npowered by <span style=\"color:#656AE3;\"> AI & sound science.</span>",
-        "heading_tag": "h1",
+        "heading_tag": "h2",
         "bg_color": "#eff1ff",
         "text_color": "#001755",
         "text_align": "center",
