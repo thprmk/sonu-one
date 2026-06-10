@@ -1,25 +1,15 @@
 <style>
 .custom-new-footer {
   position: relative;
-  {%- if section.settings.bg_image != blank -%}
-    background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
-  {%- else -%}
-    background-image: url('https://cdn.shopify.com/s/files/1/0992/3166/2451/files/Rectangle_42.webp?v=1780063233');
-  {%- endif -%}
-  {%- if section.settings.bg_gradient != blank -%}
-    background: {{ section.settings.bg_gradient }};
-  {%- elsif section.settings.bg_color != blank -%}
-    background-color: {{ section.settings.bg_color }};
-  {%- endif -%}
+  background-image: url('https://cdn.shopify.com/s/files/1/0992/3166/2451/files/Rectangle_42.webp?v=1780063233');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: {{ section.settings.text_color | default: '#FFFFFF' }};
-  padding: {{ section.settings.padding_top | default: 80 }}px 80px {{ section.settings.padding_bottom | default: 40 }}px 80px;
+  color: #FFFFFF;
+  padding: 100px 80px 40px 80px;
   font-family: 'Instrument Sans', sans-serif;
   overflow: hidden;
   z-index: 1;
-  margin-top: {{ section.settings.margin_top | default: 0 }}px;
 }
 
 .custom-footer-container {
@@ -40,7 +30,7 @@
 }
 
 .custom-footer-logo {
-  max-width: {{ section.settings.logo_width | default: 180 }}px;
+  max-width: 180px;
   height: auto;
   object-fit: contain;
   display: block;
@@ -89,7 +79,7 @@
 .custom-footer-desc {
   font-size: 18px;
   line-height: 1.5;
-  color: {{ section.settings.text_color | default: '#FFFFFF' }};
+  color: #FFFFFF;
   margin: 0 0 20px 0;
   max-width: 320px;
 }
@@ -110,11 +100,11 @@
   width: 100%;
   padding: 14px 20px;
   border-radius: 30px;
-  border: 1px solid {{ section.settings.input_border | default: 'rgba(255,255,255,0.3)' }};
-  background: {{ section.settings.input_bg | default: 'rgba(255,255,255,0.05)' }};
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: {{ section.settings.text_color | default: '#FFFFFF' }};
+  color: #FFFFFF;
   font-size: 16px;
   box-sizing: border-box;
   outline: none;
@@ -148,8 +138,8 @@
   padding: 14px 28px;
   border-radius: 30px;
   border: none;
-  background: {{ section.settings.btn_bg | default: '#FFFFFF' }};
-  color: {{ section.settings.btn_text_color | default: '#000000' }};
+  background: #FFFFFF;
+  color: #000000;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -162,10 +152,6 @@
 }
 
 /* LINKS GRID */
-.custom-footer-links-column-wrapper {
-  display: contents;
-}
-
 .custom-footer-links-grid {
   grid-column: 2;
   grid-row: 2;
@@ -179,28 +165,28 @@
 .custom-footer-col {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .custom-footer-col h4 {
   font-size: 16px;
   font-weight: 500;
-  color: {{ section.settings.heading_color | default: 'rgba(255,255,255,0.5)' }};
-  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 8px 0;
   text-transform: capitalize;
   letter-spacing: 0.05em;
 }
 
 .custom-footer-col a {
   font-size: 16px;
-  color: {{ section.settings.text_color | default: '#FFFFFF' }};
+  color: #FFFFFF;
   text-decoration: none;
   transition: opacity 0.2s ease;
   line-height: 1.3;
 }
 
 .custom-footer-col a:hover {
-  color: {{ section.settings.link_hover_color | default: 'rgba(255,255,255,0.7)' }};
+  opacity: 0.7;
 }
 
 /* DIVIDER */
@@ -230,14 +216,13 @@
 
 .custom-footer-bottom-links-desktop a {
   font-size: 14px;
-  color: {{ section.settings.text_color | default: '#FFFFFF' }};
+  color: #FFFFFF;
   text-decoration: none;
   opacity: 0.8;
   transition: opacity 0.2s ease;
 }
 
 .custom-footer-bottom-links-desktop a:hover {
-  color: {{ section.settings.link_hover_color | default: 'rgba(255,255,255,0.7)' }};
   opacity: 1;
 }
 
@@ -247,7 +232,7 @@
 
 .custom-footer-copyright {
   font-size: 14px;
-  color: {{ section.settings.heading_color | default: 'rgba(255,255,255,0.5)' }};
+  color: rgba(255, 255, 255, 0.7);
   margin: 0;
 }
 
@@ -260,14 +245,13 @@
 
 @media screen and (max-width: 768px) {
   .custom-new-footer {
-    padding: 80px 40px 48px 40px;
-    margin-top: {{ section.settings.margin_top_mobile | default: 0 }}px;
+    padding: 60px 20px 40px 20px;
   }
 
   .custom-footer-container {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 40px;
   }
 
   .custom-footer-logo-wrap {
@@ -310,22 +294,51 @@
 
   .custom-mobile-payment-text {
     font-size: 15px;
-    color: {{ section.settings.text_color | default: '#FFFFFF' }};
+    color: #FFFFFF;
     font-weight: 500;
-  }
-
-  .custom-footer-links-column-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 56px;
-    align-items: flex-start;
   }
 
   .custom-footer-links-grid {
     order: 3;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 40px;
+    column-gap: 20px;
     width: 100%;
+  }
+
+  .custom-footer-col {
+    grid-column: span 1;
+  }
+
+  .col-company {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .col-support {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .col-resources {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .col-connect {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 0;
+  }
+
+  .custom-footer-col h4 {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .custom-footer-col a {
+    font-size: 15px;
   }
 
   .custom-footer-newsletter-wrap {
@@ -352,7 +365,7 @@
   }
 
   .custom-footer-divider {
-    margin: 48px 0 32px 0;
+    margin: 40px 0 24px 0;
   }
 
   .custom-footer-bottom {
@@ -368,13 +381,13 @@
   .custom-footer-bottom-links-mobile {
     display: grid;
     grid-template-columns: max-content max-content max-content;
-    gap: 20px 32px;
+    gap: 16px 24px;
     width: 100%;
   }
 
   .custom-footer-bottom-links-mobile a {
     font-size: 14px;
-    color: {{ section.settings.text_color | default: '#FFFFFF' }};
+    color: #FFFFFF;
     text-decoration: none;
     opacity: 0.8;
   }
@@ -391,63 +404,47 @@
     
     <!-- LOGO -->
     <div class="custom-footer-logo-wrap">
-      <a href="{{ section.settings.logo_link | default: '/' }}">
-        {%- if section.settings.logo != blank -%}
-          <img src="{{ section.settings.logo | image_url: width: 500 }}" alt="{{ section.settings.logo.alt | default: shop.name }}" class="custom-footer-logo">
-        {%- else -%}
-          <img src="https://soundhealthsonu.myshopify.com/cdn/shop/files/logo.png?height=108&v=1776786182" alt="SoundHealth Logo" class="custom-footer-logo">
-        {%- endif -%}
+      <a href="/">
+        <img src="https://soundhealthsonu.myshopify.com/cdn/shop/files/logo.png?height=108&v=1776786182" alt="SoundHealth Logo" class="custom-footer-logo">
       </a>
     </div>
 
     <!-- PAYMENTS -->
-    {%- if section.settings.show_payments -%}
-      <div class="custom-footer-payments">
-        <!-- DESKTOP PAYMENT ICONS -->
-        <div class="custom-payments-desktop-only">
-          <ul>
-            {%- assign payment_types = section.settings.payments_desktop | split: ',' -%}
-            {%- for type in payment_types -%}
-              {%- assign type_stripped = type | strip -%}
-              {%- if type_stripped != blank -%}
-                <li>
-                  {{ type_stripped | payment_type_svg_tag }}
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
-        </div>
-        
-        <!-- MOBILE PAYMENT ICONS -->
-        <div class="custom-payments-mobile-only">
-          <ul class="custom-mobile-payment-icons">
-            {%- assign payment_types_mobile = section.settings.payments_mobile | split: ',' -%}
-            {%- for type in payment_types_mobile -%}
-              {%- assign type_stripped = type | strip -%}
-              {%- if type_stripped != blank -%}
-                <li>
-                  {{ type_stripped | payment_type_svg_tag }}
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
-          {%- if section.settings.payments_mobile_label != blank -%}
-            <span class="custom-mobile-payment-text">{{ section.settings.payments_mobile_label }}</span>
-          {%- endif -%}
-        </div>
+    <div class="custom-footer-payments">
+      <!-- DESKTOP PAYMENT ICONS -->
+      <div class="custom-payments-desktop-only">
+        <ul>
+          {%- assign payment_types = 'paypal,apple_pay,google_pay,visa,master,american_express' | split: ',' -%}
+          {%- for type in payment_types -%}
+            <li>
+              {{ type | payment_type_svg_tag }}
+            </li>
+          {%- endfor -%}
+        </ul>
       </div>
-    {%- endif -%}
+      
+      <!-- MOBILE PAYMENT ICONS -->
+      <div class="custom-payments-mobile-only">
+        <ul class="custom-mobile-payment-icons">
+          {%- assign payment_types_mobile = 'visa,master,american_express' | split: ',' -%}
+          {%- for type in payment_types_mobile -%}
+            <li>
+              {{ type | payment_type_svg_tag }}
+            </li>
+          {%- endfor -%}
+        </ul>
+        <span class="custom-mobile-payment-text">Major Cards Accepted</span>
+      </div>
+    </div>
 
     <!-- NEWSLETTER -->
     <div class="custom-footer-newsletter-wrap">
-      {%- if section.settings.newsletter_desc != blank -%}
-        <p class="custom-footer-desc">{{ section.settings.newsletter_desc }}</p>
-      {%- endif -%}
+      <p class="custom-footer-desc">Subscribe to our newsletter for the latest updates and offers.</p>
       
       {% form 'customer', class: 'custom-footer-form' %}
         <input type="hidden" name="contact[tags]" value="newsletter">
         <div class="custom-footer-input-wrapper">
-          <input type="email" name="contact[email]" placeholder="{{ section.settings.newsletter_placeholder | default: 'Enter your Email' }}" required autocomplete="email">
+          <input type="email" name="contact[email]" placeholder="Enter your Email" required autocomplete="email">
           <button type="submit" class="custom-footer-inline-submit" aria-label="Subscribe">
             <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 1L17 6L12 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -455,84 +452,43 @@
             </svg>
           </button>
         </div>
-        {%- if section.settings.newsletter_button_text != blank -%}
-          <button type="submit" class="custom-footer-desktop-submit">{{ section.settings.newsletter_button_text }}</button>
-        {%- endif -%}
+        <button type="submit" class="custom-footer-desktop-submit">Sign me up</button>
       {% endform %}
     </div>
 
     <!-- LINKS GRID -->
     <div class="custom-footer-links-grid">
-      <!-- COLUMN 1 (Company & Resources) -->
-      <div class="custom-footer-links-column-wrapper">
-        <!-- COMPANY -->
-        <div class="custom-footer-col col-company">
-          {%- if section.settings.menu_company != blank -%}
-            {%- assign menu_company = linklists[section.settings.menu_company] -%}
-            <h4>{{ menu_company.title }}</h4>
-            {%- for link in menu_company.links -%}
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            {%- endfor -%}
-          {%- else -%}
-            <h4>Company</h4>
-            <a href="/pages/about-us">About Us</a>
-            <a href="/pages/leadership">Leadership</a>
-            <a href="/pages/medical-advisory-board">Medical Advisory Board</a>
-            <a href="/pages/careers">Careers</a>
-            <a href="/pages/newsroom">Newsroom</a>
-          {%- endif -%}
-        </div>
-        <!-- RESOURCES -->
-        <div class="custom-footer-col col-resources">
-          {%- if section.settings.menu_resources != blank -%}
-            {%- assign menu_resources = linklists[section.settings.menu_resources] -%}
-            <h4>{{ menu_resources.title }}</h4>
-            {%- for link in menu_resources.links -%}
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            {%- endfor -%}
-          {%- else -%}
-            <h4>Resources</h4>
-            <a href="/pages/collateral-library">Collateral Library</a>
-            <a href="/pages/health-care-professional">Health Care Professional</a>
-            <a href="/pages/learn">Learn</a>
-          {%- endif -%}
-        </div>
+      <!-- COMPANY -->
+      <div class="custom-footer-col col-company">
+        <h4>Company</h4>
+        <a href="/pages/about-us">About Us</a>
+        <a href="/pages/leadership">Leadership</a>
+        <a href="/pages/medical-advisory-board">Medical Advisory Board</a>
+        <a href="/pages/careers">Careers</a>
+        <a href="/pages/newsroom">Newsroom</a>
       </div>
-
-      <!-- COLUMN 2 (Support & Connect) -->
-      <div class="custom-footer-links-column-wrapper">
-        <!-- SUPPORT -->
-        <div class="custom-footer-col col-support">
-          {%- if section.settings.menu_support != blank -%}
-            {%- assign menu_support = linklists[section.settings.menu_support] -%}
-            <h4>{{ menu_support.title }}</h4>
-            {%- for link in menu_support.links -%}
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            {%- endfor -%}
-          {%- else -%}
-            <h4>Support</h4>
-            <a href="/pages/faq">FAQ</a>
-            <a href="/pages/contact-us">Contact Us</a>
-            <a href="/pages/partners">Partners</a>
-          {%- endif -%}
-        </div>
-        <!-- CONNECT -->
-        <div class="custom-footer-col col-connect">
-          {%- if section.settings.menu_connect != blank -%}
-            {%- assign menu_connect = linklists[section.settings.menu_connect] -%}
-            <h4>{{ menu_connect.title }}</h4>
-            {%- for link in menu_connect.links -%}
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            {%- endfor -%}
-          {%- else -%}
-            <h4>Connect</h4>
-            <a href="https://facebook.com/SoundHealth" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://instagram.com/SoundHealth" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://x.com/SoundHealth" target="_blank" rel="noopener">X</a>
-            <a href="https://linkedin.com/company/SoundHealth" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://youtube.com/SoundHealth" target="_blank" rel="noopener">Youtube</a>
-          {%- endif -%}
-        </div>
+      <!-- SUPPORT -->
+      <div class="custom-footer-col col-support">
+        <h4>Support</h4>
+        <a href="/pages/faq">FAQ</a>
+        <a href="/pages/contact-us">Contact Us</a>
+        <a href="/pages/partners">Partners</a>
+      </div>
+      <!-- RESOURCES -->
+      <div class="custom-footer-col col-resources">
+        <h4>Resources</h4>
+        <a href="/pages/collateral-library">Collateral Library</a>
+        <a href="/pages/health-care-professional">Health Care Professional</a>
+        <a href="/pages/learn">Learn</a>
+      </div>
+      <!-- CONNECT -->
+      <div class="custom-footer-col col-connect">
+        <h4>Connect</h4>
+        <a href="https://facebook.com/SoundHealth" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://instagram.com/SoundHealth" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com/SoundHealth" target="_blank" rel="noopener">X</a>
+        <a href="https://linkedin.com/company/SoundHealth" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://youtube.com/SoundHealth" target="_blank" rel="noopener">Youtube</a>
       </div>
     </div>
 
@@ -544,36 +500,22 @@
   <div class="custom-footer-bottom">
     <!-- DESKTOP BOTTOM LINKS -->
     <div class="custom-footer-bottom-links-desktop">
-      {%- if section.settings.menu_bottom_desktop != blank -%}
-        {%- assign menu_bottom_desktop = linklists[section.settings.menu_bottom_desktop] -%}
-        {%- for link in menu_bottom_desktop.links -%}
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        {%- endfor -%}
-      {%- else -%}
-        <a href="/policies/privacy-policy">Privacy Policy</a>
-        <a href="/policies/terms-of-service">Terms of Use</a>
-        <a href="/pages/biometric-notice">Biometric Notice</a>
-        <a href="/pages/warranty-return-policy">Warranty & Return Policy</a>
-      {%- endif -%}
+      <a href="/policies/privacy-policy">Privacy Policy</a>
+      <a href="/policies/terms-of-service">Terms of Use</a>
+      <a href="/pages/biometric-notice">Biometric Notice</a>
+      <a href="/pages/warranty-return-policy">Warranty & Return Policy</a>
     </div>
     <!-- MOBILE BOTTOM LINKS -->
     <div class="custom-footer-bottom-links-mobile">
-      {%- if section.settings.menu_bottom_mobile != blank -%}
-        {%- assign menu_bottom_mobile = linklists[section.settings.menu_bottom_mobile] -%}
-        {%- for link in menu_bottom_mobile.links -%}
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        {%- endfor -%}
-      {%- else -%}
-        <a href="/policies/terms-of-service">Terms & Conditions</a>
-        <a href="/policies/privacy-policy">Privacy Policy</a>
-        <a href="/pages/accessibility">Accessibility</a>
-        <a href="/pages/ip-notice">IP Notice</a>
-        <a href="/pages/security-center">Security Center</a>
-      {%- endif -%}
+      <a href="/policies/terms-of-service">Terms & Conditions</a>
+      <a href="/policies/privacy-policy">Privacy Policy</a>
+      <a href="/pages/accessibility">Accessibility</a>
+      <a href="/pages/ip-notice">IP Notice</a>
+      <a href="/pages/security-center">Security Center</a>
     </div>
     
     <p class="custom-footer-copyright">
-      &copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text | default: "SoundHealth All rights reserved. Designed and developed by Spinta digital" }}
+      &copy; 2026 SoundHealth All rights reserved. Designed and developed by Spinta digital
     </p>
   </div>
 </footer>
@@ -581,238 +523,7 @@
 {% schema %}
 {
   "name": "SoundHealth Footer",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Logo"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo Image"
-    },
-    {
-      "type": "range",
-      "id": "logo_width",
-      "min": 50,
-      "max": 300,
-      "step": 10,
-      "unit": "px",
-      "label": "Logo Width (Desktop)",
-      "default": 180
-    },
-    {
-      "type": "url",
-      "id": "logo_link",
-      "label": "Logo Link URL"
-    },
-    {
-      "type": "header",
-      "content": "Background & Spacing"
-    },
-    {
-      "type": "image_picker",
-      "id": "bg_image",
-      "label": "Background Image override"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background Color",
-      "default": "#0c1b24"
-    },
-    {
-      "type": "color_background",
-      "id": "bg_gradient",
-      "label": "Background Gradient"
-    },
-    {
-      "type": "range",
-      "id": "margin_top",
-      "min": -100,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Margin Top (Desktop)",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "margin_top_mobile",
-      "min": -100,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Margin Top (Mobile)",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 20,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "label": "Padding Top (Desktop)",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 20,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "label": "Padding Bottom (Desktop)",
-      "default": 40
-    },
-    {
-      "type": "header",
-      "content": "Colors"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text / Link Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading / Dimmed Color",
-      "default": "rgba(255, 255, 255, 0.5)"
-    },
-    {
-      "type": "color",
-      "id": "link_hover_color",
-      "label": "Link Hover Color",
-      "default": "rgba(255, 255, 255, 0.7)"
-    },
-    {
-      "type": "color",
-      "id": "input_bg",
-      "label": "Input Box Background",
-      "default": "rgba(255, 255, 255, 0.05)"
-    },
-    {
-      "type": "color",
-      "id": "input_border",
-      "label": "Input Box Border",
-      "default": "rgba(255, 255, 255, 0.3)"
-    },
-    {
-      "type": "color",
-      "id": "btn_bg",
-      "label": "Desktop Button Background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "btn_text_color",
-      "label": "Desktop Button Text",
-      "default": "#000000"
-    },
-    {
-      "type": "header",
-      "content": "Newsletter Form"
-    },
-    {
-      "type": "textarea",
-      "id": "newsletter_desc",
-      "label": "Description Text",
-      "default": "Subscribe to our newsletter for the latest updates and offers."
-    },
-    {
-      "type": "text",
-      "id": "newsletter_placeholder",
-      "label": "Input Placeholder",
-      "default": "Enter your Email"
-    },
-    {
-      "type": "text",
-      "id": "newsletter_button_text",
-      "label": "Desktop Button Label",
-      "default": "Sign me up"
-    },
-    {
-      "type": "header",
-      "content": "Navigation Menus"
-    },
-    {
-      "type": "link_list",
-      "id": "menu_company",
-      "label": "Company Menu",
-      "info": "Falls back to default links if left empty"
-    },
-    {
-      "type": "link_list",
-      "id": "menu_support",
-      "label": "Support Menu",
-      "info": "Falls back to default links if left empty"
-    },
-    {
-      "type": "link_list",
-      "id": "menu_resources",
-      "label": "Resources Menu",
-      "info": "Falls back to default links if left empty"
-    },
-    {
-      "type": "link_list",
-      "id": "menu_connect",
-      "label": "Connect Menu",
-      "info": "Falls back to default links if left empty"
-    },
-    {
-      "type": "link_list",
-      "id": "menu_bottom_desktop",
-      "label": "Bottom Links (Desktop)",
-      "info": "Falls back to default links if left empty"
-    },
-    {
-      "type": "link_list",
-      "id": "menu_bottom_mobile",
-      "label": "Bottom Links (Mobile)",
-      "info": "Falls back to default links if left empty"
-    },
-    {
-      "type": "header",
-      "content": "Payments"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_payments",
-      "label": "Show Payment Icons",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "payments_desktop",
-      "label": "Desktop Icons (comma separated)",
-      "default": "paypal,apple_pay,google_pay,visa,master,american_express"
-    },
-    {
-      "type": "text",
-      "id": "payments_mobile",
-      "label": "Mobile Icons (comma separated)",
-      "default": "visa,master,american_express"
-    },
-    {
-      "type": "text",
-      "id": "payments_mobile_label",
-      "label": "Mobile Label Text",
-      "default": "Major Cards Accepted"
-    },
-    {
-      "type": "header",
-      "content": "Copyright"
-    },
-    {
-      "type": "text",
-      "id": "copyright_text",
-      "label": "Copyright Text",
-      "default": "SoundHealth All rights reserved. Designed and developed by Spinta digital"
-    }
-  ],
+  "settings": [],
   "presets": [
     {
       "name": "SoundHealth Footer"
