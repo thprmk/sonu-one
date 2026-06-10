@@ -366,17 +366,18 @@
   }
 
   .custom-footer-bottom-links-mobile {
-    display: grid;
-    grid-template-columns: max-content max-content max-content;
-    gap: 20px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
     width: 100%;
   }
 
   .custom-footer-bottom-links-mobile a {
-    font-size: 14px;
+    font-size: 13px;
     color: {{ section.settings.text_color | default: '#FFFFFF' }};
     text-decoration: none;
     opacity: 0.8;
+    line-height: 1.4;
   }
 
   .custom-footer-copyright {
