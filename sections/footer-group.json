@@ -1,14 +1,48 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {},
-      "block_order": [],
       "settings": {
-        "custom_margin_top": -15,
-        "custom_margin_top_mobile": -25
+        "logo_width": 180,
+        "logo_link": "",
+        "bg_color": "#0c1b24",
+        "bg_gradient": "",
+        "margin_top": 0,
+        "margin_top_mobile": -55,
+        "padding_top": 80,
+        "padding_bottom": 40,
+        "text_color": "#ffffff",
+        "heading_color": "#ffffff80",
+        "link_hover_color": "#ffffffb3",
+        "input_bg": "#ffffff0d",
+        "input_border": "#ffffff4d",
+        "btn_bg": "#ffffff",
+        "btn_text_color": "#000000",
+        "newsletter_desc": "Subscribe to our newsletter for the latest updates and offers.",
+        "newsletter_placeholder": "Enter your Email",
+        "newsletter_button_text": "Sign me up",
+        "menu_company": "",
+        "menu_support": "",
+        "menu_resources": "",
+        "menu_connect": "",
+        "menu_bottom_desktop": "",
+        "menu_bottom_mobile": "",
+        "show_payments": true,
+        "payments_desktop": "paypal,apple_pay,google_pay,visa,master,american_express",
+        "payments_mobile": "visa,master,american_express",
+        "payments_mobile_label": "Major Cards Accepted",
+        "copyright_text": "SoundHealth All rights reserved. Designed and developed by Spinta digital"
       }
     }
   },
