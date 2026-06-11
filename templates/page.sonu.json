@@ -993,15 +993,6 @@
             "text": "<ul><li>One size fits all, adjustable</li></ul>"
           }
         },
-        "spec_6": {
-          "type": "spec",
-          "settings": {
-            "icon_svg": "",
-            "icon_image": "shopify://shop_images/Icon_5_800x800_e9e1fafa-9f2b-4a79-b837-92f33fcafc35.svg",
-            "heading": "Compatibility",
-            "text": "<ul><li>Requires Android (except OnePlus) or iPhone 10 or newer, or iPad with Face ID</li></ul>"
-          }
-        },
         "spec_7": {
           "type": "spec",
           "settings": {
@@ -1009,6 +1000,15 @@
             "icon_image": "shopify://shop_images/Icon_6_800x800_66f140de-1112-4247-9980-8910772f9bf1.svg",
             "heading": "Warranty",
             "text": "<ul><li>1-year limited warranty</li></ul>"
+          }
+        },
+        "spec_6": {
+          "type": "spec",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/Icon_5_800x800_e9e1fafa-9f2b-4a79-b837-92f33fcafc35.svg",
+            "heading": "Compatibility",
+            "text": "<ul><li>Requires Android (except OnePlus) or iPhone 10 or newer, or iPad with Face ID</li></ul>"
           }
         }
       },
@@ -1018,8 +1018,8 @@
         "spec_3",
         "spec_4",
         "spec_5",
-        "spec_6",
-        "spec_7"
+        "spec_7",
+        "spec_6"
       ],
       "name": "Custom Tech Specs",
       "settings": {
