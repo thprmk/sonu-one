@@ -130,7 +130,7 @@
         "description_color": "#1e1e1e",
         "padding_top": 80,
         "padding_bottom": 80,
-        "padding_top_mobile": 60,
+        "padding_top_mobile": 24,
         "padding_bottom_mobile": 60
       }
     },
