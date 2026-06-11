@@ -597,6 +597,74 @@
         "button_border_radius": 33
       }
     },
+    "sonu_testimonial_rQtT4X": {
+      "type": "sonu-testimonial",
+      "blocks": {
+        "testimonial_wgBjn4": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
+            "video_url": "",
+            "subheading": "",
+            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing. SONU has been the best addition yet to my nasal hygiene routine. I highly recommend it to anyone struggling with nasal congestion.",
+            "heading_tag": "h2",
+            "quote_font_size": 16,
+            "quote_font_size_desktop": 36,
+            "author_name": "[[Zach]]",
+            "author_bio": "College counselor",
+            "show_stars": true
+          }
+        },
+        "testimonial_HEceVJ": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/Mobile Version_SONU Band - Try Risk Free for 30 Days.mp4",
+            "video_url": "",
+            "subheading": "",
+            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing. SONU has been the best addition yet to my nasal hygiene routine. I highly recommend it to anyone struggling with nasal congestion.",
+            "heading_tag": "h1",
+            "quote_font_size": 16,
+            "quote_font_size_desktop": 36,
+            "author_name": "[[Zach]]",
+            "author_bio": "College counselor",
+            "show_stars": true
+          }
+        },
+        "testimonial_C9VQPw": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/d03b832fcb094af99f19714025e27984.mp4",
+            "video_url": "",
+            "subheading": "",
+            "quote": "As an airway patient I am always looking for ways to improve my nasal breathing. SONU has been the best addition yet to my nasal hygiene routine. I highly recommend it to anyone struggling with nasal congestion.",
+            "heading_tag": "h2",
+            "quote_font_size": 16,
+            "quote_font_size_desktop": 36,
+            "author_name": "[[Zach]]",
+            "author_bio": "College counselor",
+            "show_stars": true
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_wgBjn4",
+        "testimonial_HEceVJ",
+        "testimonial_C9VQPw"
+      ],
+      "name": "Contained Video Slider",
+      "settings": {
+        "heading": "Real Patients, {br} Real Results",
+        "heading_tag": "h2",
+        "heading_color": "#3d1b03",
+        "bg_color": "#ffffff",
+        "video_bg_color": "#f5f5f5",
+        "content_bg_color": "#e2f0ec",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 0
+      }
+    },
     "sonu_testimonial_fUb3n6": {
       "type": "sonu-testimonial",
       "blocks": {
@@ -650,6 +718,7 @@
         "testimonial_P8YpEA",
         "testimonial_ggtFEU"
       ],
+      "disabled": true,
       "name": "Contained Video Slider",
       "settings": {
         "heading": "Real Patients, Real Results",
@@ -1165,6 +1234,7 @@
     "doctors_testimonials_sh_4NUMtt",
     "custom_heading_zHRwPd",
     "sonu_benefits_hX6Enc",
+    "sonu_testimonial_rQtT4X",
     "sonu_testimonial_fUb3n6",
     "sonu_banner_sh_w7pmeq",
     "sonu_v2_testi_4a99Rw",
