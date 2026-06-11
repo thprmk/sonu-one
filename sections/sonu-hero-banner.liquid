@@ -13,6 +13,30 @@
       "label": "Mobile Background Image"
     },
     {
+      "type": "select",
+      "id": "slide_height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:options.adapt_to_image"
+        },
+        {
+          "value": "small",
+          "label": "t:options.small"
+        },
+        {
+          "value": "medium",
+          "label": "t:options.medium"
+        },
+        {
+          "value": "large",
+          "label": "t:options.large"
+        }
+      ],
+      "default": "medium",
+      "label": "t:settings.height"
+    },
+    {
       "type": "text",
       "id": "top_text",
       "label": "Top Small Text",
@@ -123,13 +147,19 @@
 }
 {% endschema %}
 
+{% liquid
+  assign height = section.settings.slide_height | default: 'medium'
+  assign aspect_ratio = section.settings.desktop_bg.aspect_ratio | default: '16/9'
+  assign aspect_ratio_mobile = section.settings.mobile_bg.aspect_ratio | default: aspect_ratio
+%}
+
 <!-- Google Fonts Preconnect and Link tags for rock-solid font loading in any browser/theme -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
 <section class="sonuh-wrapper">
-  <div class="sonuh-hero">
+  <div class="sonuh-hero sonuh-hero--height-{{ height }}" style="--ratio: {{ aspect_ratio }}; --ratio-mobile: {{ aspect_ratio_mobile }};">
 
     <div class="sonuh-bg">
       {% if section.settings.desktop_bg != blank %}
@@ -311,13 +341,46 @@
 }
 .sonuh-hero{
   position:relative;
-  min-height:100vh!important;
+  height: var(--hero-height, 52rem);
+  max-height: 100dvh;
   display:flex;
   align-items:flex-end;
   color:#fff;
   border-radius:15px;
   overflow:hidden;
   padding:60px 80px;
+}
+.sonuh-hero--height-small {
+  --hero-height: 42rem;
+}
+.sonuh-hero--height-medium {
+  --hero-height: 52rem;
+}
+.sonuh-hero--height-large {
+  --hero-height: 62rem;
+}
+.sonuh-hero--height-adapt {
+  height: auto;
+  aspect-ratio: var(--ratio-mobile, var(--ratio));
+}
+
+@media (min-width: 769px) {
+  .sonuh-hero {
+    height: var(--hero-height, 66rem);
+  }
+  .sonuh-hero--height-small {
+    --hero-height: 57rem;
+  }
+  .sonuh-hero--height-medium {
+    --hero-height: 66rem;
+  }
+  .sonuh-hero--height-large {
+    --hero-height: 75rem;
+  }
+  .sonuh-hero--height-adapt {
+    height: auto;
+    aspect-ratio: var(--ratio);
+  }
 }
 
 .sonuh-bg{
@@ -472,13 +535,18 @@
   }
 
   .sonuh-hero{
-    min-height:100svh;
+    height: var(--hero-height, 52rem);
+    min-height: auto;
     border-radius:0;
     padding:40px 20px 30px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+  }
+  .sonuh-hero--height-adapt {
+    height: auto;
+    aspect-ratio: var(--ratio-mobile, var(--ratio));
   }
 
   .sonuh-desktop-bg{
