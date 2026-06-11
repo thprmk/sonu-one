@@ -38,6 +38,7 @@
       "settings": {
         "desktop_bg": "shopify://shop_images/Rectangle_1_66cf204b-05f2-49c8-8d6b-804d14d01869.png",
         "mobile_bg": "shopify://shop_images/Screenshot_2026-04-24_at_6.45.04_PM_1_042e6ba3-29b9-494c-b307-1ed6348cea8d.png",
+        "slide_height": "large",
         "top_text": "Featured in TIME's 2025 Best Inventions",
         "heading": "Clear & Free\n[[Nasal Breathing]]",
         "subheading": "No Drugs. No Side Effects.No Compromises.",
@@ -1137,6 +1138,8 @@
         "padding_bottom": 4,
         "mobile_padding_top": 80,
         "mobile_padding_bottom": 24,
+        "bottom_border_radius": 0,
+        "mobile_bottom_border_radius": 0,
         "bg_image": "shopify://shop_images/Rectangle_34_1_c5976d67-0b8f-46f4-849c-6fe2cf6b1c30.png",
         "feature_image": "shopify://shop_images/Rectangle_35_1.png",
         "badge": "Featured Article",
