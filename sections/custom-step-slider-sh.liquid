@@ -1,6 +1,15 @@
 {%- liquid
   assign bg_color = section.settings.bg_color
   assign text_color = section.settings.text_color
+
+  assign formatted_heading = section.settings.heading | replace: '[[', '<em class="highlight-pp">' | replace: ']]', '</em>' | replace: '((', '<span class="highlight-times">' | replace: '))', '</span>'
+  if formatted_heading contains "Your Nose"
+    assign formatted_heading = formatted_heading | replace: "Your Nose", "<span class='highlight-your-nose'>Your Nose</span>"
+  elsif formatted_heading contains "your nose"
+    assign formatted_heading = formatted_heading | replace: "your nose", "<span class='highlight-your-nose'>your nose</span>"
+  elsif formatted_heading contains "Your nose"
+    assign formatted_heading = formatted_heading | replace: "Your nose", "<span class='highlight-your-nose'>Your nose</span>"
+  endif
 -%}
 
 <div class="custom-step-wrapper" style="
@@ -60,7 +69,8 @@
       margin-bottom: {{ section.settings.desktop_heading_margin_bottom }}px !important;
     }
     #shopify-section-{{ section.id }} .custom-step-desktop-heading em,
-    #shopify-section-{{ section.id }} .custom-step-desktop-heading .highlight-pp {
+    #shopify-section-{{ section.id }} .custom-step-desktop-heading .highlight-pp,
+    #shopify-section-{{ section.id }} .custom-step-desktop-heading .highlight-your-nose {
       font-family: var(--font-highlight--family, var(--sonu-font-serif)) !important;
       font-style: var(--font-highlight--style, italic) !important;
       font-weight: var(--font-highlight--weight, normal) !important;
@@ -103,15 +113,20 @@
         margin-bottom: 0 !important;
       }
       #shopify-section-{{ section.id }} .custom-step-heading em,
-      #shopify-section-{{ section.id }} .custom-step-heading .highlight-pp {
+      #shopify-section-{{ section.id }} .custom-step-heading .highlight-pp,
+      #shopify-section-{{ section.id }} .custom-step-heading .highlight-your-nose {
         font-family: var(--font-highlight--family, var(--sonu-font-serif)) !important;
         font-style: var(--font-highlight--style, italic) !important;
         font-weight: var(--font-highlight--weight, normal) !important;
+        display: block !important;
+        margin-top: 4px !important;
       }
       #shopify-section-{{ section.id }} .custom-step-heading .highlight-times {
         font-family: var(--font-highlight-secondary--family, 'Times New Roman', Times, serif) !important;
         font-style: var(--font-highlight-secondary--style, italic) !important;
         font-weight: var(--font-highlight-secondary--weight, normal) !important;
+        display: block !important;
+        margin-top: 4px !important;
       }
       #shopify-section-{{ section.id }} .custom-step-slider-row {
         overflow: visible !important;
@@ -209,7 +224,7 @@
       <div class="custom-step-desktop-inner">
         <div class="custom-step-desktop-left">
           {% if section.settings.heading != blank %}
-            <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-desktop-heading {{ section.settings.heading_tag | default: 'h2' }}">{{ section.settings.heading | replace: '[[', '<em class="highlight-pp">' | replace: ']]', '</em>' | replace: '((', '<span class="highlight-times">' | replace: '))', '</span>' }}</{{ section.settings.heading_tag | default: 'h2' }}>
+            <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-desktop-heading {{ section.settings.heading_tag | default: 'h2' }}">{{ formatted_heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
           {% endif %}
           
           <div class="custom-step-desktop-list">
@@ -245,7 +260,7 @@
     <div class="custom-step-mobile-layout">
       <div class="custom-step-header">
         {% if section.settings.heading != blank %}
-          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-heading {{ section.settings.heading_tag | default: 'h2' }}" style="color: {{ text_color }};">{{ section.settings.heading | replace: '[[', '<em class="highlight-pp">' | replace: ']]', '</em>' | replace: '((', '<span class="highlight-times">' | replace: '))', '</span>' }}</{{ section.settings.heading_tag | default: 'h2' }}>
+          <{{ section.settings.heading_tag | default: 'h2' }} class="custom-step-heading {{ section.settings.heading_tag | default: 'h2' }}" style="color: {{ text_color }};">{{ formatted_heading }}</{{ section.settings.heading_tag | default: 'h2' }}>
         {% endif %}
         {% if section.settings.description != blank %}
           <div class="custom-step-desc rte" style="color: {{ text_color }};">{{ section.settings.description | newline_to_br }}</div>
