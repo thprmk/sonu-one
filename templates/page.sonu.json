@@ -400,21 +400,21 @@
     "doctors_testimonials_sh_4NUMtt": {
       "type": "doctors-testimonials-sh",
       "blocks": {
-        "doctor_hDrN3J": {
+        "doctor_VaqM84": {
           "type": "doctor",
           "settings": {
-            "image": "shopify://shop_images/jacob.webp",
-            "name": "Mayra Cramer,",
-            "role": "M.S., CCC-SLPSleep Language Pathologist, Menlo Park, California",
-            "desc": "As an airway-centric dentist, I work closely with patients"
+            "image": "shopify://shop_images/misty.webp",
+            "name": "Misty Bridges,",
+            "role": "BS, CFNC, FNLP, COM Orofacial Myologist, Tyler, Texas",
+            "desc": "SONU has been a game changer for my clients"
           }
         },
-        "doctor_qUiiBe": {
+        "doctor_8PifUU": {
           "type": "doctor",
           "settings": {
-            "image": "shopify://shop_images/michael_s.webp",
-            "name": "Jacob Johnson,",
-            "role": "MD, Otolaryngologist UCSF",
+            "image": "shopify://shop_images/michael.webp",
+            "name": "Michael S. Blaiss,",
+            "role": "MD Allergist, Medical College of Georgia",
             "desc": "As an airway-centric dentist, I work closely with patients"
           }
         },
@@ -427,31 +427,31 @@
             "desc": "As an airway-centric dentist, I work closely with patients"
           }
         },
-        "doctor_8PifUU": {
+        "doctor_qUiiBe": {
           "type": "doctor",
           "settings": {
-            "image": "shopify://shop_images/michael.webp",
-            "name": "Michael S. Blaiss,",
-            "role": "MD Allergist, Medical College of Georgia",
+            "image": "shopify://shop_images/michael_s.webp",
+            "name": "Jacob Johnson,",
+            "role": "MD, Otolaryngologist UCSF",
             "desc": "As an airway-centric dentist, I work closely with patients"
           }
         },
-        "doctor_VaqM84": {
+        "doctor_hDrN3J": {
           "type": "doctor",
           "settings": {
-            "image": "shopify://shop_images/misty.webp",
-            "name": "Misty Bridges,",
-            "role": "BS, CFNC, FNLP, COM Orofacial Myologist, Tyler, Texas",
-            "desc": "SONU has been a game changer for my clients"
+            "image": "shopify://shop_images/jacob.webp",
+            "name": "Mayra Cramer,",
+            "role": "M.S., CCC-SLPSleep Language Pathologist, Menlo Park, California",
+            "desc": "As an airway-centric dentist, I work closely with patients"
           }
         }
       },
       "block_order": [
-        "doctor_hDrN3J",
-        "doctor_qUiiBe",
-        "doctor_jwXHKF",
+        "doctor_VaqM84",
         "doctor_8PifUU",
-        "doctor_VaqM84"
+        "doctor_jwXHKF",
+        "doctor_qUiiBe",
+        "doctor_hDrN3J"
       ],
       "name": "sonu Team Section",
       "settings": {
