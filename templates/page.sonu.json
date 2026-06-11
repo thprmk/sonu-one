@@ -476,7 +476,7 @@
       "type": "custom-heading",
       "name": "Custom Heading",
       "settings": {
-        "heading": "What Better Breathing Feels Like",
+        "heading": "What Better<br> Breathing Feels Like",
         "font_family": "var(--font-body--family)",
         "font_size": 42,
         "font_size_mobile": 31,
