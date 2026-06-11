@@ -707,7 +707,9 @@
     padding: 0 0 40px 0 !important;
     gap: 0;
   }
-
+ .custom-comp-info-col {
+    padding-top:20px;
+  }
   .custom-prod-gallery {
     height: auto;
     aspect-ratio: 1.05;
