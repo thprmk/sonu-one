@@ -3124,18 +3124,19 @@
 
   .custom-prod-gallery {
     height: auto;
-    aspect-ratio: 1.05;
+    aspect-ratio: unset;
     border-radius: 0;
     padding-bottom: 30px;
     box-sizing: border-box;
-    background: #ffffff;
+    background: transparent;
   }
 
   .custom-prod-gallery__slide img {
-    height: 100%;
+    width: 100%;
+    height: auto;
     border-radius: 0;
     object-fit: contain;
-    background: #ffffff;
+    background: transparent;
   }
 
   .custom-prod-gallery__controls {
