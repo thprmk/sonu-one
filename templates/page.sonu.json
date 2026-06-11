@@ -740,7 +740,7 @@
         "mobile_bg_image": "shopify://shop_images/Rectangle_5_fc9e341c-fe9d-4792-a51f-106b7166d57a.png",
         "bg_color": "rgba(0,0,0,0)",
         "bg_gradient": "",
-        "heading": "Your Breathing,\n[[Personalized]]",
+        "heading": "Your Breathing,\n((Personalized))",
         "heading_tag": "h2",
         "subtext": "<p>SONU Check uses your voice as a biomarker to help you keep track of your nasal breathing in real time.  Personalized to your nasal anatomy and your very own voice.</p>",
         "padding_top": 50,
