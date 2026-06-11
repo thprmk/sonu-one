@@ -115,7 +115,7 @@
         "enable_top_gradient": true,
         "gradient_color": "#ffffff",
         "gradient_stop": 0,
-        "gradient_fade_end": 25,
+        "gradient_fade_end": 20,
         "bg_color": "#f9f6f0",
         "bg_gradient": "",
         "text_color": "#3d1b03",
