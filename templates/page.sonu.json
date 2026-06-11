@@ -1160,34 +1160,34 @@
         "nav_btn_size": 44
       }
     },
-    "sonu_press_j7VRNf": {
+    "sonu_press_R4Graa": {
       "type": "sonu-press",
       "blocks": {
-        "press_mmK7pV": {
+        "press_kCwNAt": {
           "type": "press",
           "settings": {
             "enable_link": true,
-            "link": "shopify://collections/all",
+            "link": "shopify://blogs/news-and-media",
             "source_logo": "shopify://shop_images/image_14.png",
             "source": "",
             "text": "Revealed: The AI headband that relieves nasal allergy symptoms and that shoppers say 'literally helps me breathe'"
           }
         },
-        "press_UtFTTf": {
+        "press_YcEU89": {
           "type": "press",
           "settings": {
             "enable_link": true,
-            "link": "shopify://collections/all",
-            "source_logo": "shopify://shop_images/forbes_800x800_2f176094-b745-42e7-ab83-40398cfaf294.avif",
+            "link": "shopify://blogs/news-and-media/sonu-is-one-of-times-2025-best-inventions",
+            "source_logo": "shopify://shop_images/logo_espn_1.png",
             "source": "",
             "text": "Clear a Stuffy Nose in Minutes With This Sound Therapy Headband"
           }
         },
-        "press_KeMc89": {
+        "press_nkKDmj": {
           "type": "press",
           "settings": {
             "enable_link": true,
-            "link": "shopify://collections/all",
+            "link": "shopify://blogs/news-and-media/sonu-is-turning-sound-therapy-into-the-next-wave-of-wearable-wellness",
             "source_logo": "shopify://shop_images/forbes_800x800_2f176094-b745-42e7-ab83-40398cfaf294.avif",
             "source": "",
             "text": "Sonu Is Turning Sound Therapy Into The Next Wave Of Wearable Wellness"
@@ -1195,26 +1195,27 @@
         }
       },
       "block_order": [
-        "press_mmK7pV",
-        "press_UtFTTf",
-        "press_KeMc89"
+        "press_kCwNAt",
+        "press_YcEU89",
+        "press_nkKDmj"
       ],
       "name": "Press Feature",
       "settings": {
-        "margin_bottom_negative": 40,
-        "margin_bottom_negative_mobile": 35,
-        "padding_top": 80,
-        "padding_bottom": 4,
-        "mobile_padding_top": 80,
-        "mobile_padding_bottom": 24,
+        "margin_bottom_negative": 95,
+        "margin_bottom_negative_mobile": 0,
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 0,
         "bottom_border_radius": 0,
-        "mobile_bottom_border_radius": 0,
+        "mobile_bottom_border_radius": 48,
+        "button_icon": "shopify://shop_images/Icon.png",
         "bg_image": "shopify://shop_images/Rectangle_34_1_c5976d67-0b8f-46f4-849c-6fe2cf6b1c30.png",
         "feature_image": "shopify://shop_images/Rectangle_35_1.png",
         "badge": "Featured Article",
         "title": "SONU is one of TIME's 2025 Best Inventions",
         "title_tag": "h3",
-        "button_text": "Read More",
+        "button_text": "READ MORE",
         "button_link": "",
         "mobile_press_layout": "slider",
         "enable_advisors": true,
@@ -1244,6 +1245,6 @@
     "custom_specification_sh_xAqyyt",
     "sonu_slide2_BhV36f",
     "custom_step_slider_sh_CF43xV",
-    "sonu_press_j7VRNf"
+    "sonu_press_R4Graa"
   ]
 }
